@@ -20,8 +20,9 @@ var connection = mysql.createConnection({
 });
 
 var db = wrapper.wrap(connection);
+var dbseminars;
 db.ready(function() {
-    var dbseminars = db.table("pyros_seminars");
+    dbseminars = db.table("pyros_seminars");
 })
 
 
