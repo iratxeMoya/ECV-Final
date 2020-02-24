@@ -20,7 +20,7 @@ var connection = mysql.createConnection({
 });
 
 var db = wrapper.wrap(connection);
-var dbseminars =db.table("pyros_seminars")
+var dbseminars = db.table("pyros_seminars");
 
 //CLASSES
 function User (username, password, role, description, habilities, classes, checklist, events, ownPosts, connection) {
@@ -252,6 +252,7 @@ wss.on('connection', function(ws) {
             clean_data.prof = jsonData.prof;
             clean_data.subject = jsonData.subject;
             clean_data.description = jsonData.description;
+            console.log(dbseminars);
             dbseminars.save(clean_data).then(function(result){
                 console-log("info added");
             });
