@@ -3,7 +3,7 @@ var connection = new WebSocket ("wss://ecv-etic.upf.edu/node/9027/ws/");
 
 //var sw = document.querySelector("#switch");
 var send = document.querySelector("#send");
-var nom = document.querySelector("#name");
+var prof = document.querySelector("#prof");
 var sub = document.querySelector("#sub");
 var des = document.querySelector("#des");
 
@@ -19,7 +19,7 @@ function createClass () {
 
     var msg = {};
     msg.type = 'createSeminar';
-    msg.name = nom.value;
+    msg.prof = prof.value;
     msg.subject = sub.value;
     msg.description = des.value;
 

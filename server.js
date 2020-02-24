@@ -5,9 +5,22 @@ var WebSocket = require('ws');
 var router = express.Router();
 var path = require('path');
 var passwordHash = require('password-hash');
+var mysql = require ('mysql');
+var wrapper = require('node-mysql-wrapper');
 
 //start server
 var wss = new WebSocket.Server({server});
+
+//MySQL connection
+var connection = mysql.createConnection({
+    host : "localhost",
+    user : "ecv-user",
+    password : "ecv-upf-2019",
+    database : "ecv-2019"
+});
+
+var db = wrapper.wrap(connection);
+var dbseminar =db.table("pyros_seminars")
 
 //CLASSES
 function User (username, password, role, description, habilities, classes, checklist, events, ownPosts, connection) {
@@ -234,7 +247,15 @@ wss.on('connection', function(ws) {
         //ENCUENTROS
         //* Aqui hay un lio interesante de que pasa cuando un estudiante se afilia a una clase y esas cosas
         else if (jsonData.type === 'createSeminar') { // {sender, subject, level, classDays, classTimeStart, classTimeEnd, description}
-            console.log(jsonData)
+            console.log(jsonData);
+            let clean_data = {};
+            clean_data.prof = jsonData.prof;
+            clean_data.subject = jsonData.subject;
+            clean_data.description = jsonData.description;
+            dbseminars.save(clean_data).then(function(result){
+                console-log("info added");
+            });
+
         }
         else if (jsonData.type === 'deletePost') { // {post(name)}
 
