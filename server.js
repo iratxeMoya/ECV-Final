@@ -20,7 +20,11 @@ var connection = mysql.createConnection({
 });
 
 var db = wrapper.wrap(connection);
-var dbseminars = db.table("pyros_seminars");
+db.ready(function() {
+    var dbseminars = db.table("pyros_seminars");
+})
+
+
 
 //CLASSES
 function User (username, password, role, description, habilities, classes, checklist, events, ownPosts, connection) {
