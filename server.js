@@ -84,10 +84,8 @@ wss.on('connection', function(ws) {
 
             dbUsers.findSingle({username: `= ${jsonData.username}`}, function (found) {
                 
-                if (passwordHash.verify(jsonData.password, found.hashedPassword)) {
-                    console.log('modifying');
-                    found.connected = false;
-                }
+                console.log('modifying');
+                found.connected = false;
 
             })
         }
