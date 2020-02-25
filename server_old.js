@@ -20,20 +20,23 @@ var connection = mysql.createConnection({
 });
 
 var db = wrapper.wrap(connection);
-var dbSeminars, dbUsers, dbMessages, dbRequests;
+var dbseminars;
 db.ready(function() {
-    dbSeminars = db.table("pyros_seminars");
-    dbRequests = db.table("pyros_requests");
+    dbseminars = db.table("pyros_seminars");
 })
 
 
 
 //CLASSES
-function User (username, password, role, classes, ownPosts, connection) {
+function User (username, password, role, description, habilities, classes, checklist, events, ownPosts, connection) {
     this.username = username;
     this.password = password;
     this.role = role;
+    // this.description = description;
+    // this.habilities = habilities;
     this.classes = classes;
+    // this.checklist = checklist;
+    // this.events = events;
     this.ownPosts = ownPosts;
     this.connection = connection;
 }
@@ -48,6 +51,22 @@ function Class (name, teacher, students) {
     this.teacher = teacher;
     this.students = students;
     this.members = students.concat([teacher])
+}
+
+function ChecklistElement (name, checked) {
+    this.name = name;
+    this.checked = checked;
+}
+
+function Event (startDate, startTime, endDate, endTime, name, color, subject, isPrivate) {
+    this.startDate = startDate;
+    this.startTime = startTime;
+    this.endDate = endDate;
+    this.endTime = endTime;
+    this.name = name;
+    this.color = color;
+    this.subject = subject;
+    this.isPrivate = isPrivate;
 }
 
 function Post (sender, subject, level, classDays, classTimeStart, classTimeEnd, description) {
@@ -66,6 +85,13 @@ function Message (sender, text, subject) {
     this.subject = subject;
 }
 
+//LISTS
+var posts = []; // lista de Post
+var users = []; // lista de User
+var connectedUsers = []; // lista de User
+var messages = []; // lista de Message
+var subjects = []; // lista de Class
+
 wss.on('connection', function(ws) {
 
 	ws.on('message', function(data){
@@ -74,8 +100,6 @@ wss.on('connection', function(ws) {
 
         //LOG IN y SIGN IN
         if (jsonData.type === 'login') { // {username, password}
-
-            console.log('login: ', jsonData);
 
             var foundUser = users.find(user => user.username === jsonData.username);
 
@@ -227,28 +251,43 @@ wss.on('connection', function(ws) {
 
         //ENCUENTROS
         //* Aqui hay un lio interesante de que pasa cuando un estudiante se afilia a una clase y esas cosas
-        else if (jsonData.type === 'createSeminar') { // {prof, subject, description}
-
+        else if (jsonData.type === 'createSeminar') { // {sender, subject, level, classDays, classTimeStart, classTimeEnd, description}
+            console.log(jsonData);
             let clean_data = {};
-            clean_data.prof = jsonData.creator;
+            clean_data.prof = jsonData.prof;
             clean_data.subject = jsonData.subject;
             clean_data.description = jsonData.description;
-
-            dbSeminars.save(clean_data).then(function(result){
-                console.log("seminar added");
+            console.log(dbseminars);
+            dbseminars.save(clean_data).then(function(result){
+                console.log("info added");
             });
 
         }
-        else if(jsonData.type === 'createRequest') {
+        else if (jsonData.type === 'deletePost') { // {post(name)}
 
-            let clean_data = {};
-            clean_data.student = jsonData.requester;
-            clean_data.subject = jsonData.subject;
-            clean_data.description = jsonData.description;
+            var post = posts.find(post => post.name === jsonData.post);
+            posts.delete(post);
 
-            dbRequests.save(clean_data).then(function(result) {
-                console.log('request added');
-            })
+            //! Enviar a todos los connectedUsers que se ha eliminado un post
+        }
+        else if (jsonData.type === 'accessToPost') { // {post(name), requester, subject}
+
+            var post = posts.find(post => post.name === jsonData.post);
+            var requesterIndex = users.findIndex(user => user.username ===  jsonData.requester);
+            var foundClass = subjects.find(subj => (subj.name === jsonData.subject && subj.teacher === post.sender));
+
+            if (!foundClass) {
+
+                var newClass = new Class(jsonData.subject, post.sender, [].push(jsonData.requester));
+                subjects.push(newClass);
+                users[requesterIndex].classes.push(newClass);
+
+            } else {
+
+                users[requesterIndex].classes.push(foundClass);
+                //! avisar a los integrates actuales de la clase que hay un nuevo miembro
+
+            }
         }
         
 	});
