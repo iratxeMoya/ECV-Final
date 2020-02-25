@@ -54,7 +54,7 @@ wss.on('connection', function(ws) {
             console.log('hashedPass: ', clean_data.hashedPassword)
 
             dbUsers.save(clean_data).then(function(result) {
-                console.log('user added')
+                console.log('user added: ', result)
             })
         }
 
