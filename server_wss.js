@@ -137,6 +137,7 @@ function broadcastMsg(data, usersToSend) {
 
 	usersToSend.forEach(user => {
 
+        console.log(user)
 		user.ws.send(data);
 			
 	});
