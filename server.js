@@ -51,6 +51,7 @@ wss.on('connection', function(ws) {
             var clean_data = {};
             clean_data.username = jsonData.username;
             clean_data.hashedPassword = passwordHash.generate(jsonData.password);
+            console.log('hashedPass: ', clean_data.hashedPassword)
 
             dbUsers.save(clean_data).then(function(result) {
                 console.log('user added')
