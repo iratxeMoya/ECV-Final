@@ -36,13 +36,13 @@ function sendLogin () {
     me = new Student(userLog.value, passLog.value, 'login');
 }
 function sendRegister () {
-    me = new Student(userReg.value, passReg.value, 'register');
+    me = new Teacher(userReg.value, passReg.value, 'register');
 }
 function sendLogout () {
     me.logOut();
 }
 function sendRequest () {
-    me.createRequest(requestSub.value, requestDesc.value);
+    me.createSeminar(requestSub.value, requestDesc.value);
 }
 function sendApply () {
     me.applySeminar(seminarSub.value, seminarTeach.value);
