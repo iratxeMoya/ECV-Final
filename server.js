@@ -43,7 +43,9 @@ wss.on('connection', function(ws) {
                 
                 if (passwordHash.verify(jsonData.password, found.hashedPassword)) {
                     console.log('modifying');
-                    found.connected = true;
+                    db.query('UPDATE `pyros_users` SET `connected` = true WHERE `username`="' + jsonData.username + '"', function(error, results) {
+                        console.log('updating: ', error, results);
+                    });
                 }
 
             })
