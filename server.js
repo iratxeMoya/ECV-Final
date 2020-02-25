@@ -50,9 +50,8 @@ wss.on('connection', function(ws) {
             console.log('register: ', jsonData);
             var clean_data = {};
             clean_data.username = jsonData.username;
-            //clean_data.hashedPassword = passwordHash.generate(jsonData.password); // aunque en el result salga como que si, no se guarda bien
-            clean_data.hashedPassword = jsonData.password;
-            
+            clean_data.hashedPassword = passwordHash.generate(jsonData.password); // aunque en el result salga como que si, no se guarda bien
+
             dbUsers.save(clean_data).then(function(result) {
                 console.log('user added: ', result)
             })
