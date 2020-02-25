@@ -24,11 +24,12 @@ class User {
         connection.send(JSON.stringify(jsonData));
     }
 
-    sendMsg (msg) {
+    sendMsg (msg, subject) {
 
         var jsonData = {};
         jsonData.type = 'sendMsg';
         jsonData.username = this.username;
+        jsonData.subject = subject;
         jsonData.msg = msg;
 
         connection.send(JSON.stringify(jsonData));
@@ -61,12 +62,11 @@ class Student extends User {
         connection.send(JSON.stringify(jsonData));
     }
 
-    applySeminar (subject, teacher, students = []) {
+    applySeminar (subject, teacher) {  // subject + teacher ha de ser unequivoco
 
         var seminar = {};
         seminar.subject = subject;
         seminar.teacher = teacher;
-        seminar.students = students;
 
         this.appliedSeminars.push(seminar);
 
@@ -75,7 +75,6 @@ class Student extends User {
         jsonData.applier = this.username;
         jsonData.subject = subject;
         jsonData.teacher = teacher;
-        jsonData.students = students;
 
         connection.send(JSON.stringify(jsonData));
     }

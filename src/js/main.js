@@ -3,20 +3,44 @@ import { Student, Teacher } from './user.js';
 
 var me;
 
-var send = document.querySelector("#send");
-var a = document.querySelector("#prof");
-var b = document.querySelector("#sub");
-var sendMsgB = document.querySelector("#sendMsg");
-var m = document.querySelector("#msg");
+var userLog = document.querySelector("#userLog");
+var passLog = document.querySelector("#passLog");
+var sendLog = document.querySelector("#sendLog");
 
-send.addEventListener('click', sendInfo);
-sendMsgB.addEventListener('click', sendMsgC);
+var userReg = document.querySelector("#userReg");
+var passReg = document.querySelector("#passReg");
+var sendReg = document.querySelector("#sendReg");
 
-function sendMsgC () {
-    me.sendMsg(m.value);
+var requestSub = document.querySelector("#requestSub");
+var requestDesc = document.querySelector("#requestDesc");
+var sendReq = document.querySelector("#sendReq");
+
+var seminarSub = document.querySelector("#seminarSub");
+var seminarTeach = document.querySelector("#seminarTeach");
+var appSem = document.querySelector("#appSem");
+
+var msg = document.querySelector("#msg");
+var msgSub = document.querySelector("#msgSub");
+var sendMess = document.querySelector("#sendMess");
+
+sendLog.addEventListener('click', sendLogin);
+sendReg.addEventListener('click', sendRegister);
+sendReq.addEventListener('click', sendRequest);
+appSem.addEventListener('click', sendApply);
+sendMess.addEventListener('click', sendMessage);
+
+function sendLogin () {
+    me = new Student(userLog.value, passLog.value, 'login');
 }
-
-function sendInfo () {
-
-    me = new Student(a.value, b.value, 'login')
+function sendRegister () {
+    me = new Student(userReg.value, passReg.value, 'register');
+}
+function sendRequest () {
+    me.createRequest(requestSub.value, requestDesc.value);
+}
+function sendApply () {
+    me.applySeminar(seminarSub.value, seminarTeach.value);
+}
+function sendMessage () {
+    me.sendMsg(msg.value, msgSub.value);
 }

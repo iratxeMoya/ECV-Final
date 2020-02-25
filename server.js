@@ -76,144 +76,26 @@ wss.on('connection', function(ws) {
         if (jsonData.type === 'login') { // {username, password}
 
             console.log('login: ', jsonData);
+            //! FALTA
 
         } 
         else if (jsonData.type === 'register') { // {username, password}
 
-            var foundUser = users.find(user => user.username === jsonData.username);
-            
-            if (!foundUser) {
-
-                var newUser = new User (jsonData.username, passwordHash.generate(jsonData.password), jsonData.role, [], [], [], [], [], ws);
-                users.push(newUser);
-                connectedUsers.push(newUser);
-
-                //! send all posts
-                //! send all messages
-
-            }
+            console.log('register: ', jsonData);
+            //! FALTA
         }
 
         //CHAT
         else if (jsonData.type === 'sendMsg') { // {sender, subject, text}
 
             console.log('message sended: ', jsonData);
-        }
-
-        //CHECKLIST
-        else if (jsonData.type === 'newChecklistElement') { // {sender, name(el name del element)}
-            
-            var userIndex = users.findIndex(user => user.username === jsonData.sender);
-            var newElement = new ChecklistElement(jsonData.name, false);
-            users[userIndex].checklist.push(newElement);
-
-        }
-        else if (jsonData.type === 'changeChecklistElementStatus') { // {sender, checkListElement (el name), newStatus}
-
-            var userIndex = users.findIndex(user => user.username === jsonData.sender);
-            var checklistIndex = users[userIndex].checklist.findIndex(elem => elem.name === jsonData.checklistElement);
-            users[userIndex].checklist[checklistIndex].checked = jsonData.newStatus;
-
-        }
-
-        //PROFILE
-        else if (jsonData.type === 'addHability') { // {sender, level, name (el name del hability)}
-
-            var userIndex = users.findIndex(user => user.username === jsonData.sender);
-            var newHability = new Hability(jsonData.name, jsonData.level);
-            users[userIndex].habilities.push(newHability);
-
-            userIndex = connectedUsers(user => user.username === jsonData.sender);
-            connectedUsers[userIndex].habilities.push(newHability);
-
-            //! Avisar a todos los miembros de las clases del user que hay un cambio de nombre! FALTA
-
-        }
-        else if (jsonData.type === 'editHabilityName') { // {sender, oldName(del hability), newName(del hability)}
-
-            var userIndex = users.findIndex(user => user.username === jsonData.sender);
-            var habilityIndex = users[userIndex].habilities.findIndex(hab => hab.name === jsonData.oldName);
-            users[userIndex].habilities[habilityIndex].name = jsonData.newName;
-
-            userIndex = connectedUsers(user => user.username === jsonData.sender);
-            habilityIndex = connectedUsers[userIndex].habilities.findIndex(hab => hab.name === jsonData.oldName);
-            connectedUsers[userIndex].habilities[habilityIndex].name = jsonData.newName;
-
-            //! Avisar a todos los miembros de las clases del user que hay un cambio de nombre! FALTA
-        }
-        else if (jsonData.type === 'editHabilityLevel') { // {sender, name(del hability), newLevel}
-
-            var userIndex = users.findIndex(user => user.username === jsonData.sender);
-            var habilityIndex = users[userIndex].habilities.findIndex(hab => hab.name === jsonData.name);
-            users[userIndex].habilities[habilityIndex].level = jsonData.newLevel;
-
-            userIndex = connectedUsers(user => user.username === jsonData.sender);
-            habilityIndex = connectedUsers[userIndex].habilities.findIndex(hab => hab.name === jsonData.name);
-            users[userIndex].habilities[habilityIndex].level = jsonData.newLevel;
-
-            //! Avisar a todos los miembros de las clases del user que hay un cambio de nombre! FALTA
-        }
-        else if (jsonData.type === 'editUsername') { // {sender, newUsername}
-
-            var userIndex = users.findIndex(user => user.username === jsonData.sender);
-            users[userIndex].username = jsonData.newUsername;
-
-            userIndex = connectedUsers(user => user.username === jsonData.sender);
-            connectedUsers[userIndex].username = jsonData.newUsername;
-
-            //! Avisar a todos los miembros de las clases del user que hay un cambio de nombre! FALTA
-
-        }
-        else if (jsonData.type === 'editDescription') { // {sender, newDescription}
-
-            var userIndex = users.findIndex(user => user.username === jsonData.sender);
-            users[userIndex].description = jsonData.newDescription;
-
-            userIndex = connectedUsers(user => user.username === jsonData.sender);
-            connectedUsers[userIndex].description = jsonData.newDescription;
-
-            //! Avisar a todos los miembros de las clases del user que hay un cambio de nombre! FALTA
-
-        }
-
-        //CALENDARIO 
-        else if (jsonData.type === 'newEvent') { // {startDate, startTime, endDate, endTime, name(del event), subject, isrivate(bool)}
-
-            var newEvent = new Event(jsonData.startDate, jsonData.startTime, jsonData.endDate, jsonData.endTime, jsonData.name, jsonData.color, jsonData.subject, jsonData.isPrivate);
-            var sender = users.find(user => user.username === jsonData.sender);
-            if (sender.role === 'teacher' && !jsonDate.isPrivate){
-                var foundSubject = subjects.find(subj => subj.name === jsonData.subject);
-
-                //! Enviar nuevo evento a todos los foundSubject.members!!
-            }
-
-            //* Un estudiante puede crear eventos pero solo individuales. Los teachers pueden crear eventos para toda la clase o privados
-            
-        }
-
-        else if (jsonData.type === 'deleteEvent') { // {sender, event(name), subject}
-
-            var sender = users.find(user => user.username === jsonData.sender);
-            var senderIndex = users.findIndex(user => user.username === jsonData.sender);
-            var eventToDelete = users[senderIndex].events.find(event => event.name === jsonData.event);
-
-            if (eventToDelete.isPrivate) {
-                users[senderIndex].events.delete(eventToDelete);
-            }
-            else {
-                if (sender.role === 'teacher') {
-                    var foundSubject = subjects.find(subj => subj.name === jsonData.subject);
-
-                    //! Enviar a todos los foundSubject.members que un evento ha sido borrado!!
-                } else {
-                    //! Enviar error code al sender. NO SE PUEDE ELIMINAR UN EVENTO DE GRUPO SIENDO ESTUDIANTE!
-                }
-            }
+            //! FALTA
         }
 
         //ENCUENTROS
-        //* Aqui hay un lio interesante de que pasa cuando un estudiante se afilia a una clase y esas cosas
         else if (jsonData.type === 'createSeminar') { // {prof, subject, description}
+
+            console.log('createSeminar: ', jsonData);
 
             let clean_data = {};
             clean_data.prof = jsonData.creator;
@@ -223,10 +105,12 @@ wss.on('connection', function(ws) {
             dbSeminars.save(clean_data).then(function(result){
                 console.log("seminar added");
             });
+            //! FALTA compartir info?????
 
         }
         else if(jsonData.type === 'createRequest') {
 
+            console.log('createRequest: ', jsonData);
             let clean_data = {};
             clean_data.student = jsonData.requester;
             clean_data.subject = jsonData.subject;
@@ -234,7 +118,13 @@ wss.on('connection', function(ws) {
 
             dbRequests.save(clean_data).then(function(result) {
                 console.log('request added');
-            })
+            });
+            //! FALTA compartir info???
+        }
+        else if (jsonData.type === 'applySeminar') {
+
+            console.log('applySeminar: ', jsonData);
+            //! FALTA
         }
         
 	});
