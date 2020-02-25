@@ -84,8 +84,9 @@ wss.on('connection', function(ws) {
 
             dbUsers.findSingle({username: `= ${jsonData.username}`}, function (found) {
                 
-                console.log('modifying');
-                found.connected = false;
+                db.query('UPDATE `pyros_users` SET `connected` = false WHERE `username` = ' + jsonData.username, function(error, results) {
+                    console.log('updating: ', error, results);
+                });
 
             })
         }
