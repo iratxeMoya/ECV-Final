@@ -1,5 +1,5 @@
 
-import { Student, Teacher } from './user';
+import { Student, Teacher } from './user.js';
 
 var me;
 

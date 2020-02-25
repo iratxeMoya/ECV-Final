@@ -1,4 +1,4 @@
-import { connection } from './init';
+import { connection } from './init.js';
 
 class User {
 
