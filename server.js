@@ -24,47 +24,9 @@ var dbSeminars, dbUsers, dbMessages, dbRequests;
 db.ready(function() {
     dbSeminars = db.table("pyros_seminars");
     dbRequests = db.table("pyros_requests");
+    dbUsers = db.table("pyros_users");
 })
 
-
-
-//CLASSES
-function User (username, password, role, classes, ownPosts, connection) {
-    this.username = username;
-    this.password = password;
-    this.role = role;
-    this.classes = classes;
-    this.ownPosts = ownPosts;
-    this.connection = connection;
-}
-
-function Hability (name, level) {
-    this.name = name;
-    this.level = level;
-}
-
-function Class (name, teacher, students) {
-    this.name = name;
-    this.teacher = teacher;
-    this.students = students;
-    this.members = students.concat([teacher])
-}
-
-function Post (sender, subject, level, classDays, classTimeStart, classTimeEnd, description) {
-    this.sender = sender;
-    this.subject = subject;
-    this.level = level;
-    this.classDays = classDays;
-    this.classTimeStart = classTimeStart;
-    this.classTimeEnd = classTimeEnd;
-    this.description = description;
-}
-
-function Message (sender, text, subject) {
-	this.sender = sender;
-    this.text = text;
-    this.subject = subject;
-}
 
 wss.on('connection', function(ws) {
 
@@ -76,13 +38,23 @@ wss.on('connection', function(ws) {
         if (jsonData.type === 'login') { // {username, password}
 
             console.log('login: ', jsonData);
+
+            dbUsers.find({username: jsonData.username}, function (found) {
+                console.log('found: ', found)
+            })
             //! FALTA
 
         } 
         else if (jsonData.type === 'register') { // {username, password}
 
             console.log('register: ', jsonData);
-            //! FALTA
+            var clean_data = {};
+            clean_data.username = jsonData.username;
+            clean_data.hashedPassword = passwordHash.generate(jsonData.password);
+
+            dbUsers.save(clean_data).then(function(result) {
+                console.log('user added')
+            })
         }
 
         //CHAT
