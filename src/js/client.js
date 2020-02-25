@@ -1,5 +1,5 @@
 
-import { connection } from './init';
+import { connection } from './init.js';
 
 connection.onopen = event => {
 	console.log('connection is open');
