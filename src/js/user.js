@@ -102,7 +102,7 @@ class Teacher extends User {
     }
 }
 
-export default {
+export {
     Student,
     Teacher,
 }
