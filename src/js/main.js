@@ -6,13 +6,13 @@ var me;
 var send = document.querySelector("#send");
 var a = document.querySelector("#prof");
 var b = document.querySelector("#sub");
-var sendMsg = document.querySelector("#sendMsg");
+var sendMsgB = document.querySelector("#sendMsg");
 var m = document.querySelector("#msg");
 
 send.addEventListener('click', sendInfo);
-sendMsg.addEventListener('click', sendMsg);
+sendMsgB.addEventListener('click', sendMsgC);
 
-function sendMsg () {
+function sendMsgC () {
     me.sendMsg(m.value);
 }
 
