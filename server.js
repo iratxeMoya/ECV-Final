@@ -49,7 +49,7 @@ wss.on('connection', function(ws) {
                 }
 
             })
-            //! FALTA
+            //! FALTA esta info hay que mandarsela a todos los connected???
 
         } 
         else if (jsonData.type === 'register') { // {username, password}
@@ -91,6 +91,8 @@ wss.on('connection', function(ws) {
                 });
 
             })
+
+            //! FALTA esta info hay que mandarsela a todos los connected??
         }
 
         //CHAT
@@ -113,7 +115,7 @@ wss.on('connection', function(ws) {
             dbSeminars.save(clean_data).then(function(result){
                 console.log("seminar added");
             });
-            //! FALTA compartir info?????
+            //! FALTA esta info hay que mandarsela a todos los connected???
 
         }
         else if(jsonData.type === 'createRequest') {
@@ -127,7 +129,7 @@ wss.on('connection', function(ws) {
             dbRequests.save(clean_data).then(function(result) {
                 console.log('request added');
             });
-            //! FALTA compartir info???
+            //! FALTA esta info hay que mandarsela a todos los connected???
         }
         else if (jsonData.type === 'applySeminar') {
 
