@@ -39,7 +39,7 @@ wss.on('connection', function(ws) {
 
             console.log('login: ', jsonData);
 
-            dbUsers.findSingle({username: `= ${jsonData.username}`}, function (found) { // no encuentra wtf por que
+            dbUsers.findSingle({username: `= ${jsonData.username}`}, function (found) {
                 console.log('found: ', found)
             })
             //! FALTA
@@ -50,9 +50,9 @@ wss.on('connection', function(ws) {
             console.log('register: ', jsonData);
             var clean_data = {};
             clean_data.username = jsonData.username;
-            clean_data.hashedPassword = passwordHash.generate(jsonData.password);
-            console.log('hashedPass: ', clean_data.hashedPassword)
-
+            //clean_data.hashedPassword = passwordHash.generate(jsonData.password); // aunque en el result salga como que si, no se guarda bien
+            clean_data.hashedPassword = jsonData.password;
+            
             dbUsers.save(clean_data).then(function(result) {
                 console.log('user added: ', result)
             })
