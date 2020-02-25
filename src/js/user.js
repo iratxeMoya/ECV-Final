@@ -7,8 +7,6 @@ class User {
         this.username = username;
         this.password = password;
 
-        console.log(this.username, this.password)
-
         var jsonData = {};
         jsonData.type = enterType;
         jsonData.username = username;

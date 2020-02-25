@@ -18,5 +18,5 @@ function sendMsgC () {
 
 function sendInfo () {
 
-    me = new Student(a, b, 'login')
+    me = new Student(a.value, b.value, 'login')
 }
