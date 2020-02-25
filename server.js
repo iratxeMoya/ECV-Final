@@ -95,14 +95,9 @@ wss.on('connection', function(ws) {
         }
 
         //CHAT
-        else if (jsonData.type === 'chatMsg') { // {sender, subject, text}
+        else if (jsonData.type === 'sendMsg') { // {sender, subject, text}
 
-            var message = new Message (jsonData.sender, jsonData.text, jsonData.subject);
-            messages.push(message);
-
-            var subject = subjects.find(subject => subject.name === jsonData.subject);
-
-            //! Mandar el mensaje a todos los del grupo (subject.members) FALTA! 
+            console.log('message sended: ', jsonData);
         }
 
         //CHECKLIST
