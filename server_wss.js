@@ -108,7 +108,7 @@ wss.on('connection', function(ws) {
                 console.log("seminar added");
             });
 
-            broadcastMsg(jsonData, wsu);
+            broadcastMsg(data, wsu);
 
         }
         else if(jsonData.type === 'createRequest') {
@@ -123,7 +123,7 @@ wss.on('connection', function(ws) {
                 console.log('request added');
             });
             
-            broadcastMsg(jsonData, wsu);
+            broadcastMsg(data, wsu);
         }
         else if (jsonData.type === 'applySeminar') {
 
