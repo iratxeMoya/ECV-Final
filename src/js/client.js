@@ -16,7 +16,10 @@ connection.onerror = (event) => {
 connection.onmessage = (event) => {
     var data = JSON.parse(event.data);
 
+    console.log(data);
+
     if (data.type === 'createSeminar') {
+
         var parent = document.querySelector("#postContainer");
         var seminar = document.createElement("span");
 
