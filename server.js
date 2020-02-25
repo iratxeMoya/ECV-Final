@@ -40,7 +40,12 @@ wss.on('connection', function(ws) {
             console.log('login: ', jsonData);
 
             dbUsers.findSingle({username: `= ${jsonData.username}`}, function (found) {
-                console.log('found: ', found)
+                
+                if (passwordHash.verify(jsonData.password, found.hashedPassword)) {
+                    console.log('modifying');
+                    found.connected = true;
+                }
+
             })
             //! FALTA
 
@@ -48,12 +53,40 @@ wss.on('connection', function(ws) {
         else if (jsonData.type === 'register') { // {username, password}
 
             console.log('register: ', jsonData);
-            var clean_data = {};
-            clean_data.username = jsonData.username;
-            clean_data.hashedPassword = passwordHash.generate(jsonData.password); // aunque en el result salga como que si, no se guarda bien
 
-            dbUsers.save(clean_data).then(function(result) {
-                console.log('user added: ', result)
+            var isAvailable = true;
+            dbUsers.findSingle({username: `= ${jsonData.username}`}, function (found) {
+                isAvailable = false;
+            })
+
+            if (isAvailable) {
+
+                var clean_data = {};
+                clean_data.username = jsonData.username;
+                clean_data.hashedPassword = passwordHash.generate(jsonData.password); // aunque en el result salga como que si, no se guarda bien
+                clean_data.connected = true;
+
+                dbUsers.save(clean_data).then(function(result) {
+                    console.log('user added: ', result)
+                })
+            }
+
+            //! FALTA: Hacemos dos tablas una para todos los users y otra para los connected users? o 
+            //! ponemos un parametro en la tabla de users que sea connected (bool) y a pastar? Voto por el 2
+            //! porque asi es facil hacer el login y logout (cambiar el parametro y venga)
+
+            //! Hay que mandar esta info a la gente connectada???
+            
+        }
+        else if (jsonData.type === 'logout') {
+
+            dbUsers.findSingle({username: `= ${jsonData.username}`}, function (found) {
+                
+                if (passwordHash.verify(jsonData.password, found.hashedPassword)) {
+                    console.log('modifying');
+                    found.connected = false;
+                }
+
             })
         }
 

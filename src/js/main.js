@@ -11,6 +11,8 @@ var userReg = document.querySelector("#userReg");
 var passReg = document.querySelector("#passReg");
 var sendReg = document.querySelector("#sendReg");
 
+var logout = document.querySelector("#logout");
+
 var requestSub = document.querySelector("#requestSub");
 var requestDesc = document.querySelector("#requestDesc");
 var sendReq = document.querySelector("#sendReq");
@@ -28,12 +30,16 @@ sendReg.addEventListener('click', sendRegister);
 sendReq.addEventListener('click', sendRequest);
 appSem.addEventListener('click', sendApply);
 sendMess.addEventListener('click', sendMessage);
+logout.addEventListener('click', sendLogout);
 
 function sendLogin () {
     me = new Student(userLog.value, passLog.value, 'login');
 }
 function sendRegister () {
     me = new Student(userReg.value, passReg.value, 'register');
+}
+function sendLogout () {
+    me.logOut();
 }
 function sendRequest () {
     me.createRequest(requestSub.value, requestDesc.value);
