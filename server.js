@@ -77,15 +77,6 @@ wss.on('connection', function(ws) {
 
             console.log('login: ', jsonData);
 
-            var foundUser = users.find(user => user.username === jsonData.username);
-
-            if (foundUser && passwordHash.verify(jsonData.password, foundUser.password)) {
-                connectedUsers.push(foundUser);
-
-                //! Avisar a todos los miembros de las clases del user que hay una nueva conexion! FALTA
-                //! send all posts
-                //! send all messages
-            }
         } 
         else if (jsonData.type === 'register') { // {username, password}
 
