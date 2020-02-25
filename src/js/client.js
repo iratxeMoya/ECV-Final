@@ -17,7 +17,7 @@ connection.onmessage = (event) => {
     var data = JSON.parse(event.data);
 
     if (data.type === 'createSeminar') {
-        var parent = document.querySelector("postContainer");
+        var parent = document.querySelector("#postContainer");
         var seminar = document.createElement("span");
 
         seminar.innerText = data.subject;
