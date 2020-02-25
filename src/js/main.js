@@ -33,7 +33,7 @@ sendMess.addEventListener('click', sendMessage);
 logout.addEventListener('click', sendLogout);
 
 function sendLogin () {
-    me = new Student(userLog.value, passLog.value, 'login');
+    me = new Teacher(userLog.value, passLog.value, 'login');
 }
 function sendRegister () {
     me = new Teacher(userReg.value, passReg.value, 'register');
