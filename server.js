@@ -39,7 +39,7 @@ wss.on('connection', function(ws) {
 
             console.log('login: ', jsonData);
 
-            dbUsers.findSingle({username: '= a'}, function (found) { // no encuentra wtf por que
+            dbUsers.findSingle({username: `= ${jsonData.username}`}, function (found) { // no encuentra wtf por que
                 console.log('found: ', found)
             })
             //! FALTA
