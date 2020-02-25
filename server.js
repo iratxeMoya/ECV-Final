@@ -80,6 +80,8 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'logout') {
 
+            console.log("logout: ", jsonData);
+
             dbUsers.findSingle({username: `= ${jsonData.username}`}, function (found) {
                 
                 if (passwordHash.verify(jsonData.password, found.hashedPassword)) {
