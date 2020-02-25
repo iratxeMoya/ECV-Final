@@ -72,6 +72,10 @@ wss.on('connection', function(ws) {
 
                 dbUsers.save(clean_data).then(function(result) {
                     console.log('user added: ', result)
+                });
+                wsu.push({
+                    username: jsonData.username,
+                    ws: ws,
                 })
             }
             
