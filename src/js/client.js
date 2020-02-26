@@ -7,7 +7,7 @@ var updater = setInterval(update, 0.5);
 var cvs = document.getElementById("workbench");
 var ctx = cvs.getContext("2d");
 
-var module_manager = new ModuleManager();
+var module_manager = new ModuleManager(codes);
 
 var test_module1 = new ArgModule({x:100,y:100}, "log", "none" , 0,"HI");
 var test_module2 = new ArgModule({x:200,y:200}, "log", "none" , 0,"HO")
