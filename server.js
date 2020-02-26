@@ -28,7 +28,7 @@ var dbUsers, dbModules;
 db.ready(function() {
     dbUsers = db.table("pyros_users");
     //dbModules = db.table("pyros_modules");
-});
+}); 
 
 wss.on('connection', function(ws) {
 
