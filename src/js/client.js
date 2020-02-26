@@ -2,7 +2,7 @@ import { Module,ArgModule,ModuleManager } from './module.js';
 import { codes } from './codes.js';
 
 var modules = document.getElementsByClassName("module");
-var updater = setInterval(update, 1);
+var updater = setInterval(update, 0.5);
 
 var cvs = document.getElementById("workbench");
 var ctx = cvs.getContext("2d");
@@ -13,6 +13,7 @@ var test_module1 = new ArgModule({x:100,y:100}, "log", "none" , 0,"HI");
 var test_module2 = new ArgModule({x:200,y:200}, "log", "none" , 0,"HO")
 
 var workbench = document.getElementsByClassName("user_screen")[0];
+var run_button = document.getElementsByClassName("run_code")[0];
 
 var wb_h =workbench.style.height;
 var wb_w =workbench.style.width;

@@ -80,7 +80,7 @@ class Module {
         connection.send(JSON.stringify(jsonData));
     }
 
-    executeCode (codedata) {
+    run (codedata) {
         eval(codedata[type]);
 
         //! esto entiendo que no hay que pasarselo al server ya que cada cliente ejecuta el codigo
@@ -106,8 +106,8 @@ class ArgModule extends Module{
 		this.arg=arg;
 	}
 	
-	executeCode(codedata,arg) {
-        eval(codedata[type].replace('$arg$',arg)); 
+	run(codedata) {
+        eval(codedata[this.type].replace('$arg$',this.arg)); 
 
         //! esto entiendo que no hay que pasarselo al server ya que cada cliente ejecuta el codigo
         //! cuando le da la gana no?
@@ -115,9 +115,10 @@ class ArgModule extends Module{
 }
 
 class ModuleManager{
-	constructor(){
+	constructor(codedata){
 		this.modules = [];
 		this.count=0;
+		this.codedata=codedata;
 	}
 	
 	add_module(module){
@@ -136,7 +137,6 @@ class ModuleManager{
 	
 	release_modules(){
 		this.modules.forEach(module =>{
-			let pos = module.position;
 			module.disable_moving();
 		});
 	}
@@ -153,6 +153,12 @@ class ModuleManager{
 	draw(ctx){
 		this.modules.forEach(module =>{
 			module.draw(ctx);
+		});
+	}
+	
+	run_modules(){
+		this.modules.forEach(module =>{
+			module.run(this.codedata);
 		});
 	}
 }
