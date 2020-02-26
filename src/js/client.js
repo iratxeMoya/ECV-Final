@@ -1,5 +1,5 @@
-import { Module } from 'module.js';
-import { codes } from 'codes.js';
+import { Module } from './module.js';
+import { codes } from './codes.js';
 
 var modules = document.getElementsByClassName("module");
 var updater = setInterval(update, 50);
