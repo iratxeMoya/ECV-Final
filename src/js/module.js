@@ -46,7 +46,7 @@ class Module {
 	
 	draw(ctx){
 		ctx.fillStyle = "#000000"
-		ctx.fillRect(10, 10, this.position.x-50, this.position.y-50);
+		ctx.fillRect(this.position.x-50,this.position.y-50, 10, 10);
 	}
 	
     /**
