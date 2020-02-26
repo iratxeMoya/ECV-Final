@@ -135,7 +135,7 @@ class ModuleManager{
 	
 	release_modules(){
 		this.modules.forEach(module =>{
-			pos = module.position;
+			let pos = module.position;
 			module.disable_moving();
 		});
 	}
