@@ -20,8 +20,7 @@ var wb_w =workbench.style.width;
 module_manager.add_module(test_module1);
 module_manager.add_module(test_module2);
 
-cvs.height=wb_h;
-cvs.width=wb_w;
+
 
 var mouseX;
 var mouseY;
@@ -44,6 +43,9 @@ cvs.addEventListener("mouseup",function(event){
 function update(){
 	wb_h =workbench.style.height;
 	wb_w =workbench.style.width;
+	cvs.height=wb_h;
+	cvs.width=wb_w;
+	
 	
 	ctx.fillStyle = "#FFFFFF";
 	ctx.fillRect(0, 0, wb_w, wb_h);
