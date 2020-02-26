@@ -7,38 +7,31 @@ var updater = setInterval(update, 50);
 var cvs = document.getElementById("workbench");
 var ctx = cvs.getContext("2d");
 
-var test_module1 = new ArgModule({x:100,y:100}, "log", "none" , 0,"HI");
+var module_manager = new ModuleManager();
 
+var test_module1 = new ArgModule({x:100,y:100}, "log", "none" , 0,"HI");
 var test_module2 = new ArgModule({x:200,y:200}, "log", "none" , 0,"HO")
 
+module_manager.append(test_module1);
+module_manager.append(test_module2);
 
 var mouseX;
 var mouseY;
 
 var moving = [];
 
-for (i=0;i<modules.length;i++){
-	moving[i]=false; 
-	let module = modules[i];
-	document.addEventListener("mousemove",function(event){
-		idx = modules.findIndex(module);
-		if(moving[i]){
-			module.style.left = event.clientX;;
-			module.style.top = event.clientY;
-			module.style.transform = "translate(-50%, -50%)";
-		}
+cvs.addEventListener("mousemove",function(event){
+		mouseX = event.clientX;;
+		mouseY = event.clientY;
 	});
-
-	module.addEventListener("mousedown",function(event){
-		console.log("AS");
-		ev= event
+cvs.addEventListener("mousedown",function(event){
 		moving = true;
 	});
-	module.addEventListener("mouseup",function(event){
+cvs.addEventListener("mouseup",function(event){
 		moving = false;
 		console.log("HA");	
 	});
-}
+
 
 function update(){
 	console.log("A");

@@ -35,6 +35,15 @@ class Module {
 
         connection.send(JSON.stringify(jsonData));
     }
+	
+	enable_moving(){
+		moving=true;
+	}
+	
+	disable_moving(){
+		moving=false;
+	}
+	
     /**
      * Deletes the Module
      */
@@ -100,7 +109,28 @@ class ArgModule extends Module{
     }
 }
 
+class ModuleManager{
+	constructor(){
+		this.modules = [];
+		this.count=0;
+	}
+	
+	add_module(module){
+		this.modules.push(module)
+	}
+	
+	click_modules(posx,posy){
+		this.modules.forEach(let module =>{
+			pos = module.position;
+			if (pos.x>posx-10 and pos.x<posx+10 and pos.y>posy-10 and pos.y<posy+10){
+				module.enable_moving();
+			}
+		});
+	}
+}
+
 export {
     Module,
-	ArgModule
+	ArgModule,
+	ModuleManager
 }
