@@ -14,8 +14,8 @@ var test_module2 = new ArgModule({x:200,y:200}, "log", "none" , 0,"HO")
 
 var workbench = document.getElementsByClassName("user_screen")[0];
 
-var wb_h =window.getComputedStyle(workbench).height;
-var wb_w =window.getComputedStyle(workbench).width;
+var wb_h =workbench.style.height;
+var wb_w =workbench.style.width;
 
 module_manager.add_module(test_module1);
 module_manager.add_module(test_module2);
@@ -42,6 +42,9 @@ cvs.addEventListener("mouseup",function(event){
 
 
 function update(){
+	wb_h =workbench.style.height;
+	wb_w =workbench.style.width;
+	
 	ctx.fillStyle = "#FFFFFF";
 	ctx.fillRect(0, 0, wb_w, wb_h);
 	ctx.fillStyle = "#FF0000";
