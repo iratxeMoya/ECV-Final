@@ -12,8 +12,8 @@ var module_manager = new ModuleManager();
 var test_module1 = new ArgModule({x:100,y:100}, "log", "none" , 0,"HI");
 var test_module2 = new ArgModule({x:200,y:200}, "log", "none" , 0,"HO")
 
-module_manager.append(test_module1);
-module_manager.append(test_module2);
+module_manager.add_module(test_module1);
+module_manager.add_module(test_module2);
 
 var mouseX;
 var mouseY;
