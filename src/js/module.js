@@ -44,6 +44,11 @@ class Module {
 		moving=false;
 	}
 	
+	draw(ctx){
+		ctx.fillStyle = "#000000"
+		ctx.fillRect(100, 100, this.position.x-50, this.position.y-50);
+	}
+	
     /**
      * Deletes the Module
      */
@@ -125,6 +130,28 @@ class ModuleManager{
 			if (pos.x>posx-10 && pos.x<posx+10 && pos.y>posy-10 && pos.y<posy+10){
 				module.enable_moving();
 			}
+		});
+	}
+	
+	release_modules(){
+		this.modules.forEach(module =>{
+			pos = module.position;
+			module.disable_moving();
+		});
+	}
+	
+	move_modules(posx,posy){
+		this.modules.forEach(module =>{
+			if (module.moving){
+				module.position.x=posx;
+				module.position.y=posy;
+			}
+		});
+	}
+	
+	draw(ctx){
+		this.modules.forEach(module =>{
+			module.draw(ctx);
 		});
 	}
 }

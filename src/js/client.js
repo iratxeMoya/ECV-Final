@@ -21,22 +21,19 @@ var mouseY;
 var moving = [];
 
 cvs.addEventListener("mousemove",function(event){
-		mouseX = event.clientX;;
-		mouseY = event.clientY;
+		module_manager.move_modules(event.clientX,event.clientY);
 	});
 cvs.addEventListener("mousedown",function(event){
-		moving = true;
+		module_manager.click_modules(event.clientX,event.clientY);
 	});
 cvs.addEventListener("mouseup",function(event){
-		moving = false;
-		console.log("HA");	
+		module_manager.release_modules();
 	});
 
 
 function update(){
-
-	ctx.rect(20, 20, 150, 100);
 	
+	module_manager.draw(ctx);
 }
 
 export{
