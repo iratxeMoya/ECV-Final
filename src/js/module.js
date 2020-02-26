@@ -122,7 +122,7 @@ class ModuleManager{
 	click_modules(posx,posy){
 		this.modules.forEach(module =>{
 			pos = module.position;
-			if (pos.x>posx-10 and pos.x<posx+10 and pos.y>posy-10 and pos.y<posy+10){
+			if (pos.x>posx-10 && pos.x<posx+10 && pos.y>posy-10 && pos.y<posy+10){
 				module.enable_moving();
 			}
 		});
