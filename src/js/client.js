@@ -1,4 +1,4 @@
-import { Module } from './module.js';
+import { Module,ArgModule,ModuleManager } from './module.js';
 import { codes } from './codes.js';
 
 var modules = document.getElementsByClassName("module");
@@ -34,7 +34,7 @@ cvs.addEventListener("mouseup",function(event){
 
 
 function update(){
-	console.log("A");
+
 	ctx.rect(20, 20, 150, 100);
 	
 }
