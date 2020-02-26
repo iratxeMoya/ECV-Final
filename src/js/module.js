@@ -1,4 +1,4 @@
-import { connection } from '.init.js';
+import { connection } from './init.js';
 
 class Module {
 
