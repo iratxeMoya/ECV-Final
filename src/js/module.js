@@ -37,11 +37,11 @@ class Module {
     }
 	
 	enable_moving(){
-		moving=true;
+		this.moving=true;
 	}
 	
 	disable_moving(){
-		moving=false;
+		this.moving=false;
 	}
 	
 	draw(ctx){
@@ -126,7 +126,7 @@ class ModuleManager{
 	
 	click_modules(posx,posy){
 		this.modules.forEach(module =>{
-			pos = module.position;
+			let pos = module.position;
 			if (pos.x>posx-10 && pos.x<posx+10 && pos.y>posy-10 && pos.y<posy+10){
 				module.enable_moving();
 			}
