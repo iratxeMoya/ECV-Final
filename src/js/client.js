@@ -1,4 +1,3 @@
-
 import { Module } from '.module.js';
 import { codes } from '.codes.js';
 
@@ -12,7 +11,6 @@ var test_module1 = new ArgModule({x:100,y:100}, "log", "none" , 0,"HI");
 
 var test_module2 = new ArgModule({x:200,y:200}, "log", "none" , 0,"HO")
 
-var codes={}
 
 var mouseX;
 var mouseY;
@@ -43,7 +41,6 @@ for (i=0;i<modules.length;i++){
 }
 
 function update(){
-	console.log("ASD");
 	ctx.rect(20, 20, 150, 100);
 	
 }
