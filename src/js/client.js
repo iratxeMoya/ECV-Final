@@ -26,6 +26,10 @@ var mouseY;
 
 var moving = [];
 
+run_button.addEventListener("click",function(){
+		module_manager.run_modules();
+	});
+
 cvs.addEventListener("mousemove",function(event){
 		mouseX=event.offsetX;
 		mouseY=event.offsetY;
