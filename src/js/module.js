@@ -120,7 +120,7 @@ class ModuleManager{
 	}
 	
 	click_modules(posx,posy){
-		this.modules.forEach(let module =>{
+		this.modules.forEach(module =>{
 			pos = module.position;
 			if (pos.x>posx-10 and pos.x<posx+10 and pos.y>posy-10 and pos.y<posy+10){
 				module.enable_moving();
