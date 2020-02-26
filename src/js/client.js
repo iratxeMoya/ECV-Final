@@ -20,20 +20,18 @@ var wb_w =workbench.style.width;
 module_manager.add_module(test_module1);
 module_manager.add_module(test_module2);
 
-
-
 var mouseX;
 var mouseY;
 
 var moving = [];
 
 cvs.addEventListener("mousemove",function(event){
-		mouseX=event.clientX;
-		mouseY=event.clientY;
-		module_manager.move_modules(event.clientX,event.clientY);
+		mouseX=event.offsetX;
+		mouseY=event.offsetY;
+		module_manager.move_modules(event.offsetX,event.offsetY);
 	});
 cvs.addEventListener("mousedown",function(event){
-		module_manager.click_modules(event.clientX,event.clientY);
+		module_manager.click_modules(event.offsetX,event.offsetY);
 	});
 cvs.addEventListener("mouseup",function(event){
 		module_manager.release_modules();
