@@ -1,18 +1,23 @@
 <html>
     <head>
-        
+        <link rel="stylesheet" type="text/css" href="CSS/client.css">
     </head>
     
     <body>
 		<div class = "module_shelf">
-			<span class="module">
+			<span class="module" id="module1">
+			</span>
+			<span class="module" id="module2">
 			</span>
 		</div>
 		<div class = "user_screen">
-			<canvas class="canvas">
+			<canvas class="canvas" id="workbench">
 			</canvas>
+			<span class = "run_code">
+			</span>
 		</div>
-    </body>
+    </body> 
+	<script type="module" src="js/client.js"></script>
     <script type="module" src="js/init.js"></script>
     <script type="module" src="js/wsClient.js"></script>
     <script type="module" src="js/DOMAccess.js"></script>

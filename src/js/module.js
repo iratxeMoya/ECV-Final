@@ -9,13 +9,14 @@ class Module {
      * @param {Module} target ???? 
      * @param {Int} id Unique ??????? no se como hacer esto
      */
-    constructor (position, code, target, id) {
+    constructor (position, type, target, id) {
         this.position = position;
-        this.code = code;
+		this.type = type;
         this.target = target;
         this.id = id;
         this.before = null;
         this.after = null;
+		this.moving=false;
     }
 /**
  * 
@@ -65,8 +66,34 @@ class Module {
         connection.send(JSON.stringify(jsonData));
     }
 
-    executeCode () {
-        eval(this.code);
+    executeCode (codedata) {
+        eval(codedata[type]);
+
+        //! esto entiendo que no hay que pasarselo al server ya que cada cliente ejecuta el codigo
+        //! cuando le da la gana no?
+    }
+}
+
+class ArgModule extends Module{
+	/**
+     * 
+     * @param {Object} position {x, y}
+     * @param {String} type 
+     * @param {Module} target ???? 
+     * @param {Int} id Unique ??????? no se como hacer esto
+     * @param {String} argument to pass	
+     */
+	constructor (position, type, target, id,arg) {
+		super(position, type, target, id)
+		this.arg = arg;
+    }
+	
+	set_arg(arg){
+		this.arg=arg;
+	}
+	
+	executeCode(codedata,arg) {
+        eval(codedata[type].replace('$arg$',arg)); 
 
         //! esto entiendo que no hay que pasarselo al server ya que cada cliente ejecuta el codigo
         //! cuando le da la gana no?
@@ -75,4 +102,5 @@ class Module {
 
 export {
     Module,
+	ArgModule
 }
