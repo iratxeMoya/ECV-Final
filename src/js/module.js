@@ -72,3 +72,7 @@ class Module {
         //! cuando le da la gana no?
     }
 }
+
+export {
+    Module,
+}
