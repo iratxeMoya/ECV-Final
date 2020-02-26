@@ -14,8 +14,8 @@ var test_module2 = new ArgModule({x:200,y:200}, "log", "none" , 0,"HO")
 
 var workbench = document.getElementsByClassName("user_screen")[0];
 
-var wb_h =window.getComputedStyle(workbench.style.height);
-var wb_w =window.getComputedStyle(workbench.style.width);
+var wb_h =window.getComputedStyle(workbench).height;
+var wb_w =window.getComputedStyle(workbench).width;
 
 module_manager.add_module(test_module1);
 module_manager.add_module(test_module2);
