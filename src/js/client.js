@@ -41,8 +41,8 @@ cvs.addEventListener("mouseup",function(event){
 
 
 function update(){
-	wb_h =workbench.style.height;
-	wb_w =workbench.style.width;
+	wb_h =workbench.clientHeight;
+	wb_w =workbench.clientWidth;
 	cvs.height=wb_h;
 	cvs.width=wb_w;
 	
