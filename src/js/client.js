@@ -1,5 +1,5 @@
-import { Module } from '.module.js';
-import { codes } from '.codes.js';
+import { Module } from 'module.js';
+import { codes } from 'codes.js';
 
 var modules = document.getElementsByClassName("module");
 var updater = setInterval(update, 50);
@@ -41,6 +41,7 @@ for (i=0;i<modules.length;i++){
 }
 
 function update(){
+	console.log("A");
 	ctx.rect(20, 20, 150, 100);
 	
 }
