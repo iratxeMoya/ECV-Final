@@ -2,7 +2,7 @@ import { Module,ArgModule,ModuleManager } from './module.js';
 import { codes } from './codes.js';
 
 var modules = document.getElementsByClassName("module");
-var updater = setInterval(update, 50);
+var updater = setInterval(update, 1);
 
 var cvs = document.getElementById("workbench");
 var ctx = cvs.getContext("2d");
