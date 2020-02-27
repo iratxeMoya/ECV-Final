@@ -68,5 +68,5 @@ function update() {
 }
 
 export{
-
+	module_manager,
 }

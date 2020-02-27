@@ -1,4 +1,5 @@
 import { connection } from './init.js';
+import { module_manager } from './client.js'
 
 connection.onopen = event => {
 	console.log('connection is open');
@@ -19,6 +20,15 @@ connection.onmessage = (event) => {
 
     if (jsonData.type === 'moveModule') {
         console.log('module moving: ', jsonData);
+        module_manager.move_modules(jsonData.newPosition.x, jsonData.newPosition.y);
+    }
+    else if (jsonData.type === 'clickModule') {
+        console.log('module clicked: ', jsonData);
+        module_manager.click_modules(jsonData.newPosition.x, jsonData.newPosition.y);
+    }
+    else if (jsonData.type === 'releaseModule') {
+        console.log('module clicked: ', jsonData);
+        module_manager.release_modules();
     }
     else if (jsonData.type === 'createModule') {
         console.log('Module created: ', jsonData);

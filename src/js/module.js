@@ -148,8 +148,15 @@ class ModuleManager{
 			if (pos.x > posx - 10 && pos.x < posx + 10 && pos.y > posy - 10 && pos.y < posy + 10){
                 
 				module.enable_moving();
-			}
-		});
+            }
+
+        });
+
+        var jsonData = {}
+        jsonData.type = 'clickModule';
+        jsonData.newPosition = { x: posx, y: posy };
+
+        connection.send(JSON.stringify(jsonData))
 	}
 	
 	release_modules() {
@@ -158,7 +165,9 @@ class ModuleManager{
             
             module.disable_moving();
             
-		});
+        });
+        
+        connection.send(JSON.stringify({type: 'releaseModule'}))
 	}
 	
 	move_modules(posx, posy) {

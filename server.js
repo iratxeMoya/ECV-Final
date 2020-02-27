@@ -25,9 +25,9 @@ var connection = mysql.createConnection({
 var db = wrapper.wrap(connection);
 var dbUsers, dbModules;
 
-db.ready(function() {
-    dbUsers = db.table("pyros_users");
-    dbModules = db.table("pyros_modules");
+db.ready(function() {jsonData
+    dbUsers = db.tabljsonData
+    dbModules = db.tajsonData
 }); 
 
 wss.on('connection', function(ws) {
@@ -93,6 +93,16 @@ wss.on('connection', function(ws) {
             
             broadcastMsg(data, connectedUsers);
 
+        }
+        else if (jsonData.type === 'clickModule') {
+
+            broadcastMsg(data, connectedUsers);
+            
+        }
+        else if (jsonData.type === 'releaseModule') {
+
+            broadcastMsg(data, connectedUsers);
+            
         }
         else if (jsonData.type === 'deleteModule') {
 
