@@ -37,6 +37,12 @@ cvs.addEventListener("mousemove", function(event) {
 		mouseX = event.offsetX;
 		mouseY = event.offsetY;
 		module_manager.move_modules(event.offsetX, event.offsetY);
+		
+		var jsonData = {};
+        jsonData.type = 'moveModule'
+        jsonData.newPosition = {x: mouseX, y: mouseY};
+
+        connection.send(JSON.stringify(jsonData));
 
 });
 
@@ -44,11 +50,19 @@ cvs.addEventListener("mousedown", function(event) {
 
 		module_manager.click_modules(event.offsetX, event.offsetY);
 		
+		var jsonData = {};
+        jsonData.type = 'clickModule'
+        jsonData.newPosition = {x: event.offsetX, y: event.offsetY};
+
+        connection.send(JSON.stringify(jsonData));
+
 });
 
 cvs.addEventListener("mouseup", function(event) {
 
 		module_manager.release_modules();
+
+		connection.send(JSON.stringify({type: 'releaseModule'}));
 
 });
 

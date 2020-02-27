@@ -71,6 +71,7 @@ class Module {
      * @param {Module} module 
      * @param {String} position before / after
      */
+    
     relate(module, position) {
 
         if (position === 'before') {
@@ -92,10 +93,9 @@ class Module {
     }
 
     run (codedata) {
-        eval(codedata[type]);
 
-        //! esto entiendo que no hay que pasarselo al server ya que cada cliente ejecuta el codigo
-        //! cuando le da la gana no?
+        eval(codedata[type]);
+    
     }
 }
 
@@ -119,9 +119,6 @@ class ArgModule extends Module{
 	
 	run(codedata) {
         eval(codedata[this.type].replace('$arg$', this.arg)); 
-
-        //! esto entiendo que no hay que pasarselo al server ya que cada cliente ejecuta el codigo
-        //! cuando le da la gana no?
     }
 }
 
@@ -152,11 +149,6 @@ class ModuleManager{
 
         });
 
-        var jsonData = {}
-        jsonData.type = 'clickModule';
-        jsonData.newPosition = { x: posx, y: posy };
-
-        connection.send(JSON.stringify(jsonData))
 	}
 	
 	release_modules() {
@@ -167,7 +159,6 @@ class ModuleManager{
             
         });
         
-        connection.send(JSON.stringify({type: 'releaseModule'}))
 	}
 	
 	move_modules(posx, posy) {
@@ -178,16 +169,10 @@ class ModuleManager{
 
 				module.position.x = posx;
                 module.position.y = posy;
-
-                var jsonData = {};
-                jsonData.type = 'moveModule'
-                jsonData.moduleId = module.id;
-                jsonData.newPosition = {x: posx, y: posy};
-
-                connection.send(JSON.stringify(jsonData));
                 
 			}
-		});
+        });
+       
 	}
 	
 	draw(ctx) {
