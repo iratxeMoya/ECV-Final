@@ -18,7 +18,7 @@ class Module {
         this.after = null;
         this.moving = false;
         
-        /*var newModule = {};
+        var newModule = {};
         newModule.type = 'createModule';
         newModule.moduleId = id;
         newModule.position = position;
@@ -26,7 +26,9 @@ class Module {
         newModule.before = this.before;
         newModule.target = target;
 
-        connection.send(JSON.stringify(newModule));*/
+        connection.send(JSON.stringify(newModule));
+
+        console.log('created')
     }
     /**
      * 
