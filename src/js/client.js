@@ -8,8 +8,8 @@ var ctx = cvs.getContext("2d");
 var moduleType_1 = document.querySelector("#module1");
 var moduleType_2 = document.querySelector("#module2");
 
-moduleType_1.addEventListene("click", createModuleType_1);
-moduleType_2.addEventListene("click", createModuleType_2);
+moduleType_1.addEventListener("click", createModuleType_1);
+moduleType_2.addEventListener("click", createModuleType_2);
 
 function createModuleType_1 () {
 
