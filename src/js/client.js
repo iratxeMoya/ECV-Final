@@ -1,5 +1,6 @@
 import { ArgModule, ModuleManager } from './module.js';
 import { codes } from './codes.js';
+import { connection } from './init.js';
 
 var modules = document.getElementsByClassName("module");
 var updater = setInterval(update, 0.5);

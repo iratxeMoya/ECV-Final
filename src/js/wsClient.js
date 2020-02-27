@@ -19,15 +19,15 @@ connection.onmessage = (event) => {
     console.log(jsonData);
 
     if (jsonData.type === 'moveModule') {
-        console.log('module moving: ', jsonData);
+
         module_manager.move_modules(jsonData.newPosition.x, jsonData.newPosition.y);
     }
     else if (jsonData.type === 'clickModule') {
-        console.log('module clicked: ', jsonData);
+
         module_manager.click_modules(jsonData.newPosition.x, jsonData.newPosition.y);
     }
     else if (jsonData.type === 'releaseModule') {
-        console.log('module clicked: ', jsonData);
+
         module_manager.release_modules();
     }
     else if (jsonData.type === 'createModule') {
