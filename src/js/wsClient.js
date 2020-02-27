@@ -13,11 +13,14 @@ connection.onerror = (event) => {
 };
 
 connection.onmessage = (event) => {
-    var data = JSON.parse(event.data);
+    var jsonData = JSON.parse(event.data);
 
-    console.log(data);
+    console.log(jsonData);
 
-    /*if (data.type === '') {
-
-    }*/
+    if (jsonData.type === 'moveModule') {
+        console.log('module moving: ', jsonData);
+    }
+    else if (jsonData.type === 'createModule') {
+        console.log('Module created: ', jsonData);
+    }
 }
