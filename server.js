@@ -7,6 +7,7 @@ var path = require('path');
 var passwordHash = require('password-hash');
 var mysql = require ('mysql');
 var wrapper = require('node-mysql-wrapper');
+var fs = require('fs');
 
 //start server
 var wss = new WebSocket.Server({server});
@@ -69,28 +70,32 @@ wss.on('connection', function(ws) {
             info.posy = jsonData.position.y;
             info.target_id = jsonData.target ? jsonData.target.id : null;
 
-            /*dbModules.save(info).then(function(result) {
+            fs.readFile('data/modules.json', 'utf8', (err, jsonString) => {
+                if (err) {
+                    console.log("File read failed:", err)
+                    return
+                }
 
-                console.log('added Module: ', result);
+                var jsonData = JSON.parse(jsonString);
+                console.log(info);
+                
+                fs.writeFile("data/modules.json", jsonContent, 'utf8', function (err) {
+                    if (err) {
+                        return console.log(err);
+                    }
+                
+                    console.log("The file was saved!");
+                });
+            })
 
-            })*/
+            
 
             broadcastMsg(data, connectedUsers);
             
         }
         else if (jsonData.type === 'moveModule') {
-
-            console.log('move Module: ', jsonData);
-
-            //! Tenemos que conseguir que el id del modulo sea el id de la db
-
-            /*dbModules.findSingle({id: `= ${jsonData.id}`}, function (found) {
-
-                found.posx = jsonData.newPosition.x;
-                found.posy = jsonData.newPosition.y;
-
-            });*/
             
+            //change position of the module
             broadcastMsg(data, connectedUsers);
 
         }
@@ -155,4 +160,3 @@ Array.prototype.delete = function() {
     }
     return this;
 };
-

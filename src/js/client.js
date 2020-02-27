@@ -2,25 +2,39 @@ import { ArgModule, ModuleManager } from './module.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
 
-var modules = document.getElementsByClassName("module");
-var updater = setInterval(update, 0.5);
-
 var cvs = document.getElementById("workbench");
 var ctx = cvs.getContext("2d");
 
+var moduleType_1 = document.querySelector("#module1");
+var moduleType_2 = document.querySelector("#module2");
+
+moduleType_1.addEventListene("click", createModuleType_1);
+moduleType_2.addEventListene("click", createModuleType_2);
+
+function createModuleType_1 () {
+
+	var arg = prompt("Please enter text to log:", "HI");
+	var module = new ArgModule({x: 100, y: 100}, "log", "none" , 0, arg);
+	module_manager.add_module(module);
+
+}
+
+function createModuleType_2 () {
+
+	var arg = prompt("Please enter text to log:", "HO");
+	var module = new ArgModule({x: 100, y: 200}, "log", "none" , 0, arg);
+	module_manager.add_module(module);
+	
+}
+
 var module_manager = new ModuleManager(codes);
 
-var test_module1 = new ArgModule({x: 100, y: 100}, "log", "none" , 0, "HI");
-var test_module2 = new ArgModule({x: 200, y: 200}, "log", "none" , 0, "HO")
 
 var workbench = document.getElementsByClassName("user_screen")[0];
 var run_button = document.getElementsByClassName("run_code")[0];
 
 var wb_h = workbench.style.height;
 var wb_w = workbench.style.width;
-
-module_manager.add_module(test_module1);
-module_manager.add_module(test_module2);
 
 var mouseX;
 var mouseY;
