@@ -132,6 +132,8 @@ class ModuleManager{
 	
 	add_module(module) {
 
+        console.log('adding module')
+
 		this.modules.push(module)
 	}
 	
