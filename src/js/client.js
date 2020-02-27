@@ -1,4 +1,4 @@
-import { Module,ArgModule,ModuleManager } from './module.js';
+import { ArgModule, ModuleManager } from './module.js';
 import { codes } from './codes.js';
 
 var modules = document.getElementsByClassName("module");
@@ -9,14 +9,14 @@ var ctx = cvs.getContext("2d");
 
 var module_manager = new ModuleManager(codes);
 
-var test_module1 = new ArgModule({x:100,y:100}, "log", "none" , 0,"HI");
-var test_module2 = new ArgModule({x:200,y:200}, "log", "none" , 0,"HO")
+var test_module1 = new ArgModule({x: 100, y: 100}, "log", "none" , 0, "HI");
+var test_module2 = new ArgModule({x: 200, y: 200}, "log", "none" , 0, "HO")
 
 var workbench = document.getElementsByClassName("user_screen")[0];
 var run_button = document.getElementsByClassName("run_code")[0];
 
-var wb_h =workbench.style.height;
-var wb_w =workbench.style.width;
+var wb_h = workbench.style.height;
+var wb_w = workbench.style.width;
 
 module_manager.add_module(test_module1);
 module_manager.add_module(test_module2);
@@ -26,29 +26,39 @@ var mouseY;
 
 var moving = [];
 
-run_button.addEventListener("click",function(){
+run_button.addEventListener("click", function() {
+
 		module_manager.run_modules();
-	});
 
-cvs.addEventListener("mousemove",function(event){
-		mouseX=event.offsetX;
-		mouseY=event.offsetY;
-		module_manager.move_modules(event.offsetX,event.offsetY);
-	});
-cvs.addEventListener("mousedown",function(event){
-		module_manager.click_modules(event.offsetX,event.offsetY);
-	});
-cvs.addEventListener("mouseup",function(event){
+});
+
+cvs.addEventListener("mousemove", function(event) {
+
+		mouseX = event.offsetX;
+		mouseY = event.offsetY;
+		module_manager.move_modules(event.offsetX, event.offsetY);
+
+});
+
+cvs.addEventListener("mousedown", function(event) {
+
+		module_manager.click_modules(event.offsetX, event.offsetY);
+		
+});
+
+cvs.addEventListener("mouseup", function(event) {
+
 		module_manager.release_modules();
-	});
+
+});
 
 
-function update(){
-	wb_h =workbench.clientHeight;
-	wb_w =workbench.clientWidth;
-	cvs.height=wb_h;
-	cvs.width=wb_w;
-	
+function update() {
+
+	wb_h = workbench.clientHeight;
+	wb_w = workbench.clientWidth;
+	cvs.height = wb_h;
+	cvs.width = wb_w;
 	
 	ctx.fillStyle = "#FFFFFF";
 	ctx.fillRect(0, 0, wb_w, wb_h);

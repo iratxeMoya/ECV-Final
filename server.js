@@ -27,10 +27,14 @@ var dbUsers, dbModules;
 
 db.ready(function() {
     dbUsers = db.table("pyros_users");
-    //dbModules = db.table("pyros_modules");
+    dbModules = db.table("pyros_modules");
 }); 
 
 wss.on('connection', function(ws) {
+
+    connectedUsers.push({
+        ws: ws,
+    });
 
     ws.on('message', function (data) {
 
@@ -53,12 +57,41 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'createModule') {
 
-            console.log('create module: ', jsonData);
+            console.log('create Module: ', jsonData);
 
+            //! LA ID DE LA DB NO ES AUTO INCREMENT, ES LA QUE SE LE META!
+
+            var info = {};
+            info.id = jsonData.moduleId;
+            info.prev_id = jsonData.before ? jsonData.before.id : null;
+            info.next_id = jsonData.after ? jsonData.after.id : null;
+            info.posx = jsonData.position.x;
+            info.posy = jsonData.position.y;
+            info.target_id = jsonData.target ? jsonData.target.id : null;
+
+            dbModules.save(info).then(function(result) {
+
+                console.log('added Module: ', result);
+
+            })
+
+            broadcastMsg(data, connectedUsers);
+            
         }
         else if (jsonData.type === 'moveModule') {
 
-            console.log('move module: ', jsonData);
+            console.log('move Module: ', jsonData);
+
+            //! Tenemos que conseguir que el id del modulo sea el id de la db
+
+            dbModules.findSingle({id: `= ${jsonData.id}`}, function (found) {
+
+                found.posx = jsonData.newPosition.x;
+                found.posy = jsonData.newPosition.y;
+
+            });
+            
+            broadcastMsg(data, connectedUsers);
 
         }
         else if (jsonData.type === 'deleteModule') {
@@ -71,17 +104,15 @@ wss.on('connection', function(ws) {
             console.log('relate modules: ', jsonData);
 
         }
-        else if (jsonData.type === 'executeGraph') {
-
-            console.log('execute graph: ', jsonData);
-
-        }
 
     });
 
     ws.on('close', function (event) {
 
         console.log('Connection closed');
+        var user = { ws: ws };
+
+        connectedUsers.delete(user);
 
 	});
 })

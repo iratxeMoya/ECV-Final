@@ -16,14 +16,14 @@ class Module {
         this.id = id;
         this.before = null;
         this.after = null;
-		this.moving=false;
+		this.moving = false;
     }
-/**
- * 
- * @param {Object} newPosition {x, y}
- * 
- * Moves the Module to a new position in the Canvas
- */
+    /**
+     * 
+     * @param {Object} newPosition {x, y}
+     * 
+     * Moves the Module to a new position in the Canvas
+     */
     move (newPosition) {
         this.position = newPosition;
         // aqui hacer lo que haya que hacer para moverlo en el canvas ????
@@ -97,7 +97,7 @@ class ArgModule extends Module{
      * @param {Int} id Unique ??????? no se como hacer esto
      * @param {String} argument to pass	
      */
-	constructor (position, type, target, id,arg) {
+	constructor (position, type, target, id, arg) {
 		super(position, type, target, id)
 		this.arg = arg;
     }
@@ -107,7 +107,7 @@ class ArgModule extends Module{
 	}
 	
 	run(codedata) {
-        eval(codedata[this.type].replace('$arg$',this.arg)); 
+        eval(codedata[this.type].replace('$arg$', this.arg)); 
 
         //! esto entiendo que no hay que pasarselo al server ya que cada cliente ejecuta el codigo
         //! cuando le da la gana no?
@@ -115,56 +115,81 @@ class ArgModule extends Module{
 }
 
 class ModuleManager{
-	constructor(codedata){
+
+	constructor(codedata) {
+
 		this.modules = [];
-		this.count=0;
-		this.codedata=codedata;
+		this.count = 0;
+		this.codedata = codedata;
 	}
 	
-	add_module(module){
+	add_module(module) {
+
 		this.modules.push(module)
 	}
 	
-	click_modules(posx,posy){
-		this.modules.forEach(module =>{
+	click_modules(posx, posy) {
+
+		this.modules.forEach(module => {
+
 			let pos = module.position;
-			console.log(pos.x+" "+posx+" "+pos.y+" "+posy);
-			if (pos.x>posx-10 && pos.x<posx+10 && pos.y>posy-10 && pos.y<posy+10){
+			console.log(pos.x + " " + posx + " " + pos.y + " " + posy);
+			if (pos.x > posx - 10 && pos.x < posx + 10 && pos.y > posy - 10 && pos.y < posy + 10){
+                
 				module.enable_moving();
 			}
 		});
 	}
 	
-	release_modules(){
-		this.modules.forEach(module =>{
-			module.disable_moving();
+	release_modules() {
+
+		this.modules.forEach(module => {
+            
+            module.disable_moving();
+            
 		});
 	}
 	
-	move_modules(posx,posy){
-		this.modules.forEach(module =>{
-			if (module.moving){
-				module.position.x=posx;
-				module.position.y=posy;
+	move_modules(posx, posy) {
+
+		this.modules.forEach(module => {
+
+			if (module.moving) {
+
+				module.position.x = posx;
+                module.position.y = posy;
+                
+                var jsonData = {};
+                jsonData.type = 'moveModule'
+                jsonData.moduleId = module.id;
+                jsonData.newPosition = {x: posx, y: posy};
+
+                connection.send(JSON.stringify(jsonData));
+                
 			}
 		});
 	}
 	
-	draw(ctx){
-		this.modules.forEach(module =>{
-			module.draw(ctx);
+	draw(ctx) {
+
+		this.modules.forEach(module => {
+
+            module.draw(ctx);
+            
 		});
 	}
 	
-	run_modules(){
-		this.modules.forEach(module =>{
-			module.run(this.codedata);
+	run_modules() {
+
+		this.modules.forEach(module => {
+
+            module.run(this.codedata);
+
 		});
 	}
 }
 
 export {
-    Module,
 	ArgModule,
 	ModuleManager
 }
