@@ -132,11 +132,9 @@ class ModuleManager{
 		this.codedata = codedata;
 	}
 	
-	add_module(module) {
+	add_module(newModule) {
 
-        console.log('adding module')
-
-		this.modules.push(module)
+		this.modules.push(newModule)
 	}
 	
 	click_modules(posx, posy) {

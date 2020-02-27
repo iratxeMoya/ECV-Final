@@ -2,6 +2,8 @@ import { ArgModule, ModuleManager } from './module.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
 
+var mouseDown = false;
+
 var cvs = document.getElementById("workbench");
 var ctx = cvs.getContext("2d");
 
@@ -15,16 +17,15 @@ moduleType_2.addEventListener("click", createModuleType_2);
 
 function createModuleType_1 () {
 
-	var arg = prompt("Please enter text to log:", "HI");
+	// var arg = prompt("Please enter text to log:", "HI");
 	var newModule = new ArgModule({x: 100, y: 100}, "log", "none" , 0, "HI");
 	module_manager.add_module(newModule);
-	console.log('added');
 
 }
 
 function createModuleType_2 () {
 
-	var arg = prompt("Please enter text to log:", "HO");
+	// var arg = prompt("Please enter text to log:", "HO");
 	var newModule = new ArgModule({x: 100, y: 200}, "log", "none" , 0, "HO");
 	module_manager.add_module(newModule);
 	
@@ -54,31 +55,40 @@ cvs.addEventListener("mousemove", function(event) {
 		mouseY = event.offsetY;
 		module_manager.move_modules(event.offsetX, event.offsetY);
 		
-		var jsonData = {};
-        jsonData.type = 'moveModule'
-        jsonData.newPosition = {x: mouseX, y: mouseY};
+		if (mouseDown) {
 
-        connection.send(JSON.stringify(jsonData));
+			var jsonData = {};
+			jsonData.type = 'moveModule'
+			jsonData.newPosition = {x: mouseX, y: mouseY};
+
+			connection.send(JSON.stringify(jsonData));
+			
+		}
+		
 
 });
 
 cvs.addEventListener("mousedown", function(event) {
 
-		module_manager.click_modules(event.offsetX, event.offsetY);
-		
-		var jsonData = {};
-        jsonData.type = 'clickModule'
-        jsonData.newPosition = {x: event.offsetX, y: event.offsetY};
+	mouseDown = true;
 
-        connection.send(JSON.stringify(jsonData));
+	module_manager.click_modules(event.offsetX, event.offsetY);
+	
+	var jsonData = {};
+	jsonData.type = 'clickModule'
+	jsonData.newPosition = {x: event.offsetX, y: event.offsetY};
+
+	connection.send(JSON.stringify(jsonData));
 
 });
 
 cvs.addEventListener("mouseup", function(event) {
 
-		module_manager.release_modules();
+	mouseDown = false;
 
-		connection.send(JSON.stringify({type: 'releaseModule'}));
+	module_manager.release_modules();
+
+	connection.send(JSON.stringify({type: 'releaseModule'}));
 
 });
 
