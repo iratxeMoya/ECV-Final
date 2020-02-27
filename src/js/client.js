@@ -5,6 +5,8 @@ import { connection } from './init.js';
 var cvs = document.getElementById("workbench");
 var ctx = cvs.getContext("2d");
 
+var module_manager = new ModuleManager(codes);
+
 var moduleType_1 = document.querySelector("#module1");
 var moduleType_2 = document.querySelector("#module2");
 
@@ -26,8 +28,6 @@ function createModuleType_2 () {
 	module_manager.add_module(newModule);
 	
 }
-
-var module_manager = new ModuleManager(codes);
 
 
 var workbench = document.getElementsByClassName("user_screen")[0];
