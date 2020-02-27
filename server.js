@@ -15,7 +15,7 @@ var wss = new WebSocket.Server({server});
 var connectedUsers = [];
 
 //MySQL connection
-var connection = mysql.createConnection({
+/*ar connection = mysql.createConnection({
     host : "localhost",
     user : "ecv-user",
     password : "ecv-upf-2019",
@@ -28,7 +28,7 @@ var dbUsers, dbModules;
 db.ready(function() {jsonData
     dbUsers = db.tabljsonData
     dbModules = db.tajsonData
-}); 
+});*/ 
 
 wss.on('connection', function(ws) {
 
@@ -69,11 +69,11 @@ wss.on('connection', function(ws) {
             info.posy = jsonData.position.y;
             info.target_id = jsonData.target ? jsonData.target.id : null;
 
-            dbModules.save(info).then(function(result) {
+            /*dbModules.save(info).then(function(result) {
 
                 console.log('added Module: ', result);
 
-            })
+            })*/
 
             broadcastMsg(data, connectedUsers);
             
@@ -84,12 +84,12 @@ wss.on('connection', function(ws) {
 
             //! Tenemos que conseguir que el id del modulo sea el id de la db
 
-            dbModules.findSingle({id: `= ${jsonData.id}`}, function (found) {
+            /*dbModules.findSingle({id: `= ${jsonData.id}`}, function (found) {
 
                 found.posx = jsonData.newPosition.x;
                 found.posy = jsonData.newPosition.y;
 
-            });
+            });*/
             
             broadcastMsg(data, connectedUsers);
 
