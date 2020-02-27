@@ -26,7 +26,7 @@ class Module {
         newModule.before = this.before;
         newModule.target = target;
 
-        connection.send(JSON.stringify(newModule))
+        connection.send(JSON.stringify(newModule));
     }
     /**
      * 

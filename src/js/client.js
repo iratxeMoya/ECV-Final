@@ -16,15 +16,16 @@ moduleType_2.addEventListener("click", createModuleType_2);
 function createModuleType_1 () {
 
 	var arg = prompt("Please enter text to log:", "HI");
-	var newModule = new ArgModule({x: 100, y: 100}, "log", "none" , 0, arg);
+	var newModule = new ArgModule({x: 100, y: 100}, "log", "none" , 0, "HI");
 	module_manager.add_module(newModule);
+	console.log('created');
 
 }
 
 function createModuleType_2 () {
 
 	var arg = prompt("Please enter text to log:", "HO");
-	var newModule = new ArgModule({x: 100, y: 200}, "log", "none" , 0, arg);
+	var newModule = new ArgModule({x: 100, y: 200}, "log", "none" , 0, "HO");
 	module_manager.add_module(newModule);
 	
 }
