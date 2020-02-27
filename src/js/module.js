@@ -178,8 +178,6 @@ class ModuleManager{
 	
 	draw(ctx) {
 
-        console.log(this.modules)
-
 		this.modules.forEach(module => {
 
             module.draw(ctx);
