@@ -16,7 +16,17 @@ class Module {
         this.id = id;
         this.before = null;
         this.after = null;
-		this.moving = false;
+        this.moving = false;
+        
+        var newModule = {};
+        newModule.type = 'createModule';
+        newModule.moduleId = id;
+        newModule.position = position;
+        newModule.after = this.after;
+        newModule.before = this.before;
+        newModule.target = target;
+
+        connection.send(JSON.stringify(newModule))
     }
     /**
      * 
@@ -158,7 +168,7 @@ class ModuleManager{
 
 				module.position.x = posx;
                 module.position.y = posy;
-                
+
                 var jsonData = {};
                 jsonData.type = 'moveModule'
                 jsonData.moduleId = module.id;
