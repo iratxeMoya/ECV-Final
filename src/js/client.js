@@ -2,6 +2,9 @@ import { ArgModule, ModuleManager } from './module.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
 
+var modules = document.getElementsByClassName("module");
+var updater = setInterval(update, 0.5);
+
 var mouseDown = false;
 
 var cvs = document.getElementById("workbench");
@@ -62,7 +65,7 @@ cvs.addEventListener("mousemove", function(event) {
 			jsonData.newPosition = {x: mouseX, y: mouseY};
 
 			connection.send(JSON.stringify(jsonData));
-			
+
 		}
 		
 
