@@ -1,6 +1,5 @@
 import { ArgModule, ModuleManager } from './module.js';
 import { codes } from './codes.js';
-import { connection } from './init.js';
 
 var modules = document.getElementsByClassName("module");
 var updater = setInterval(update, 0.5);
@@ -11,8 +10,7 @@ var ctx = cvs.getContext("2d");
 var module_manager = new ModuleManager(codes);
 
 var test_module1 = new ArgModule({x: 100, y: 100}, "log", "none" , 0, "HI");
-var test_module2 = new ArgModule({x: 200, y: 200}, "log", "none" , 0, "HO");
-
+var test_module2 = new ArgModule({x: 200, y: 200}, "log", "none" , 0, "HO")
 
 var workbench = document.getElementsByClassName("user_screen")[0];
 var run_button = document.getElementsByClassName("run_code")[0];
