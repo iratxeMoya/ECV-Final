@@ -96,17 +96,6 @@ class ArgModule extends Module{
 		super(position, type, target, id)
         this.arg = arg;
         
-        var newModule = {};
-        newModule.type = 'createModule';
-        newModule.moduleId = id;
-        newModule.position = position;
-        newModule.after = this.after;
-        newModule.before = this.before;
-        newModule.target = target;
-        newModule.type = type;
-        newModule.arg = arg;
-
-        connection.send(JSON.stringify(newModule));
     }
 	
 	set_arg(arg){

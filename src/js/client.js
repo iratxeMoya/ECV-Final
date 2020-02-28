@@ -25,6 +25,18 @@ function createModuleType_1 () {
 	var newModule = new ArgModule({x: 100, y: 100}, "log", "none" , 0, arg);
 	module_manager.add_module(newModule);
 
+	var newModule = {};
+	newModule.type = 'createModule';
+	newModule.moduleId = 0;
+	newModule.position = {x: 100, y: 100};
+	newModule.after = null;
+	newModule.before = null;
+	newModule.target = "none";
+	newModule.type = "log";
+	newModule.arg = arg;
+
+	connection.send(JSON.stringify(newModule));
+
 }
 
 function createModuleType_2 () {
@@ -32,6 +44,18 @@ function createModuleType_2 () {
 	var arg = prompt("Please enter text to log:", "HO");
 	var newModule = new ArgModule({x: 100, y: 200}, "log", "none" , 0, arg);
 	module_manager.add_module(newModule);
+
+	var newModule = {};
+	newModule.type = 'createModule';
+	newModule.moduleId = 0;
+	newModule.position = {x: 100, y: 100};
+	newModule.after = null;
+	newModule.before = null;
+	newModule.target = "none";
+	newModule.type = "log";
+	newModule.arg = arg;
+
+	connection.send(JSON.stringify(newModule));
 	
 }
 
