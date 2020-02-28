@@ -128,7 +128,9 @@ class ModuleManager{
 
                 console.log('moving: ', module)
 
-				this.modules.remove(module);
+                this.modules.remove(module);
+                
+                console.log(this.modules)
                 
 			}
         });
