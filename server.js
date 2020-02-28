@@ -81,7 +81,7 @@ wss.on('connection', function(ws) {
                 }
 
                 var json = JSON.parse(jsonString);
-                json[jsonData.id.toString()] = info;
+                json[info.id.toString()] = info;
                 jsonStr = JSON.stringify(json);
 
 
