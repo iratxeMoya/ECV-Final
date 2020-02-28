@@ -80,18 +80,14 @@ wss.on('connection', function(ws) {
                     return
                 }
 
-                /*console.log(jsonString);
-                var newJson = JSON.parse(jsonString);
-                console.log(info);
-                var str = JSON.stringify(newJson);*/
 
-                /*fs.writeFile("src/data/modules.json", str, 'utf8', function (err) {
+                fs.writeFile("src/data/modules.json", 'hola', 'utf8', function (err) {
                     if (err) {
                         return console.log(err);
                     }
                 
                     console.log("The file was saved!");
-                });*/
+                });
             })
 
             
