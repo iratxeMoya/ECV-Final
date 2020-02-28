@@ -70,8 +70,7 @@ wss.on('connection', function(ws) {
             info.id = jsonData.moduleId;
             info.prev_id = jsonData.before ? jsonData.before.id : null;
             info.next_id = jsonData.after ? jsonData.after.id : null;
-            info.posx = jsonData.position.x;
-            info.posy = jsonData.position.y;
+            info.position = jsonData.position;
             info.target_id = jsonData.target ? jsonData.target.id : null;
 
             fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
