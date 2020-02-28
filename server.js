@@ -90,7 +90,7 @@ wss.on('connection', function(ws) {
                         return console.log(err);
                     }
                 
-                    console.log("The file was saved! ", json);
+                    console.log("The file was saved! ", jsonStr);
                 });
             })
 
