@@ -122,6 +122,9 @@ class ModuleManager{
     }
     
     delete_module () {
+
+        console.log(this.modules)
+
         this.modules.forEach(module => {
 
 			if (module.moving) {
