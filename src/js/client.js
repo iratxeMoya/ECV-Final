@@ -110,6 +110,12 @@ function update() {
 	wb_w = workbench.clientWidth;
 	cvs.height = wb_h;
 	cvs.width = wb_w;
+
+	var img = new Image();
+	img.onload = function() {
+		ctx.drawImage(img, 0, 0);
+	}
+	img.src = "../icons/basura.svg";
 	
 	ctx.fillStyle = "#FFFFFF";
 	ctx.fillRect(0, 0, wb_w, wb_h);
