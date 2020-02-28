@@ -80,10 +80,10 @@ wss.on('connection', function(ws) {
                     return
                 }
 
-                var json = JSON.parse(jsonString);
+                jsonString.push(info)
 
 
-                fs.writeFile("src/data/modules.json", json, 'utf8', function (err) {
+                fs.writeFile("src/data/modules.json", jsonString, 'utf8', function (err) {
                     if (err) {
                         return console.log(err);
                     }
