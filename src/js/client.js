@@ -110,17 +110,17 @@ function update() {
 	wb_w = workbench.clientWidth;
 	cvs.height = wb_h;
 	cvs.width = wb_w;
+	
+	ctx.fillStyle = "#FFFFFF";
+	ctx.fillRect(0, 0, wb_w, wb_h);
+	ctx.fillStyle = "#FF0000";
+	ctx.fillRect(mouseX, mouseY, 5, 5);
 
 	var img = new Image();
 	img.onload = function() {
 		ctx.drawImage(img, 0, 0);
 	}
 	img.src = "icons/basura.svg";
-	
-	ctx.fillStyle = "#FFFFFF";
-	ctx.fillRect(0, 0, wb_w, wb_h);
-	ctx.fillStyle = "#FF0000";
-	ctx.fillRect(mouseX, mouseY, 5, 5);
 	module_manager.draw(ctx);
 }
 
