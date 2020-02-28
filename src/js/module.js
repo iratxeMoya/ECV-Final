@@ -130,7 +130,6 @@ class ModuleManager{
 
 			if (module.moving) {
 
-                activeModuleIds.push(module.id);
                 this.modules.remove(module);
                  
 			}
@@ -157,6 +156,10 @@ class ModuleManager{
 	release_modules() {
 
 		this.modules.forEach(module => {
+
+            if (module.moving) {
+                activeModuleIds.push(module.id);
+            }
             
             module.disable_moving();
             
