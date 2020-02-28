@@ -115,6 +115,28 @@ wss.on('connection', function(ws) {
 
             console.log(jsonData.modules); // esto tiene los id de los modulos que se mueven
 
+            jsonData.modules.forEach(module => {
+                fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
+                    if (err) {
+                        console.log("File read failed:", err)
+                        return
+                    }
+    
+                    var json = JSON.parse(jsonString);
+                    json[module.toString()].position = jsonData.position;
+                    var jsonStr = JSON.stringify(json);
+    
+    
+                    fs.writeFile("src/data/modules.json", jsonStr, 'utf8', function (err) {
+                        if (err) {
+                            return console.log(err);
+                        }
+                    
+                        console.log("The file was saved! ", jsonStr, ' ', jsonData.position);
+                    });
+                })
+            })
+
             broadcastMsg(data, connectedUsers, ws);
             
         }
