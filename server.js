@@ -82,14 +82,15 @@ wss.on('connection', function(ws) {
 
                 var json = JSON.parse(jsonString);
                 json[jsonData.id] = info;
+                jsonStr = JSON.stringify(json);
 
 
-                fs.writeFile("src/data/modules.json", json, 'utf8', function (err) {
+                fs.writeFile("src/data/modules.json", jsonStr, 'utf8', function (err) {
                     if (err) {
                         return console.log(err);
                     }
                 
-                    console.log("The file was saved!");
+                    console.log("The file was saved! ", json);
                 });
             })
 
