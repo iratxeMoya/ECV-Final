@@ -1,6 +1,7 @@
 import { ArgModule, ModuleManager } from './module.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
+import { isHover } from './utils.js';
 
 var modules = document.getElementsByClassName("module");
 var updater = setInterval(update, 0.5);
@@ -20,7 +21,7 @@ moduleType_2.addEventListener("click", createModuleType_2);
 
 function createModuleType_1 () {
 
-	// var arg = prompt("Please enter text to log:", "HI");
+	var arg = prompt("Please enter text to log:", "HI");
 	var newModule = new ArgModule({x: 100, y: 100}, "log", "none" , 0, "HI");
 	module_manager.add_module(newModule);
 
@@ -28,7 +29,7 @@ function createModuleType_1 () {
 
 function createModuleType_2 () {
 
-	// var arg = prompt("Please enter text to log:", "HO");
+	var arg = prompt("Please enter text to log:", "HO");
 	var newModule = new ArgModule({x: 100, y: 200}, "log", "none" , 0, "HO");
 	module_manager.add_module(newModule);
 	
@@ -89,7 +90,12 @@ cvs.addEventListener("mouseup", function(event) {
 
 	mouseDown = false;
 
+	if (isHover(trash)) {
+		module_manager.delete_module();
+	}
+
 	module_manager.release_modules();
+	var trash = document.querySelector("#trashIcon");
 
 	connection.send(JSON.stringify({type: 'releaseModule'}));
 

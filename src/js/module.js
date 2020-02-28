@@ -49,11 +49,11 @@ class Module {
     }
 	
 	enable_moving(){
-		this.moving=true;
+		this.moving = true;
 	}
 	
 	disable_moving(){
-		this.moving=false;
+		this.moving = false;
 	}
 	
 	draw(ctx){
@@ -61,12 +61,6 @@ class Module {
 		ctx.fillRect(this.position.x,this.position.y, 10, 10);
 	}
 	
-    /**
-     * Deletes the Module
-     */
-    delete () {
-        //! NO SE COMO HACER ESTO
-    }
     /**
      * 
      * @param {Module} module 
@@ -135,7 +129,18 @@ class ModuleManager{
 	add_module(newModule) {
 
 		this.modules.push(newModule)
-	}
+    }
+    
+    delete_module () {
+        this.modules.forEach(module => {
+
+			if (module.moving) {
+
+				this.modules.remove(module);
+                
+			}
+        });
+    }
 	
 	click_modules(posx, posy) {
 
@@ -194,6 +199,17 @@ class ModuleManager{
 		});
 	}
 }
+
+Array.prototype.remove = function() {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+};
 
 export {
 	ArgModule,

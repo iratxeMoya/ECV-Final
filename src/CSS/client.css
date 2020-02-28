@@ -57,3 +57,12 @@
 .run_code:hover{
 	background-color:lightgreen;
 }
+
+#trashIcon {
+	position: absolute;
+	font-size: 35px;
+}
+
+#trashIcon:hover{
+	color: red;
+}
