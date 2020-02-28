@@ -80,15 +80,15 @@ wss.on('connection', function(ws) {
                     return
                 }
 
-                var json = JSON.parse(jsonString);
+                var jsonData = JSON.parse(jsonString);
                 console.log(info);
 
-                fs.writeFile("src/data/modules.json", json, 'utf8', function (err) {
+                fs.writeFile("src/data/modules.json", jsonData, 'utf8', function (err) {
                     if (err) {
                         return console.log(err);
                     }
                 
-                    console.log("The file was saved! ", json);
+                    console.log("The file was saved!");
                 });
             })
 
