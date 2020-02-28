@@ -125,8 +125,6 @@ class ModuleManager{
         this.modules.forEach(module => {
 
 			if (module.moving) {
-                console.log(this.modules)
-                console.log('moving: ', module)
 
                 this.modules.remove(module);
                 

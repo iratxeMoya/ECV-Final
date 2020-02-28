@@ -116,7 +116,7 @@ cvs.addEventListener("mouseup", function(event) {
 	var remove = false;
 
 	if (isHover(event.screenX, event.screenY)) {
-		console.log('is hovered')
+
 		module_manager.delete_module();
 		remove = true;
 
