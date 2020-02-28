@@ -113,7 +113,7 @@ wss.on('connection', function(ws) {
 
             //change position of the modules moving???????
 
-            console.log(jsonData.modules);
+            console.log(jsonData.modules); // esto tiene los id de los modulos que se mueven
 
             broadcastMsg(data, connectedUsers, ws);
             

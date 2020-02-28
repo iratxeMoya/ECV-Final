@@ -21,13 +21,15 @@ moduleType_2.addEventListener("click", createModuleType_2);
 
 function createModuleType_1 () {
 
+	var id = Date.now();
+
 	var arg = prompt("Please enter text to log:", "HI");
-	var mod = new ArgModule({x: 100, y: 100}, "log", "none" , 0, arg);
+	var mod = new ArgModule({x: 100, y: 100}, "log", "none" , id, arg);
 	module_manager.add_module(mod);
 
 	var newModule = {};
 	newModule.type = 'createModule';
-	newModule.moduleId = 0;
+	newModule.moduleId = id;
 	newModule.position = {x: 100, y: 100};
 	newModule.after = null;
 	newModule.before = null;
@@ -41,13 +43,15 @@ function createModuleType_1 () {
 
 function createModuleType_2 () {
 
+	var id = Date.now();;
+
 	var arg = prompt("Please enter text to log:", "HO");
-	var mod = new ArgModule({x: 100, y: 200}, "log", "none" , 0, arg);
+	var mod = new ArgModule({x: 100, y: 200}, "log", "none" , id, arg);
 	module_manager.add_module(mod);
 
 	var newModule = {};
 	newModule.type = 'createModule';
-	newModule.moduleId = 0;
+	newModule.moduleId = id;
 	newModule.position = {x: 100, y: 100};
 	newModule.after = null;
 	newModule.before = null;

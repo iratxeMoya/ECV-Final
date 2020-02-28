@@ -155,6 +155,8 @@ class ModuleManager{
 	
 	release_modules() {
 
+        activeModuleIds = [];
+
 		this.modules.forEach(module => {
 
             if (module.moving) {
