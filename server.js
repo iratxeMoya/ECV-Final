@@ -142,7 +142,11 @@ function broadcastMsg(data, usersToSend) {
 
 	usersToSend.forEach(user => {
 
-		user.ws.send(data);
+        if(user.ws !== ws) {
+
+            user.ws.send(data);
+            
+        }
 			
 	});
 }

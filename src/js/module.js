@@ -130,9 +130,7 @@ class ModuleManager{
 			if (module.moving) {
 
                 this.modules.remove(module);
-                
-                
-                
+                 
 			}
         });
     }
