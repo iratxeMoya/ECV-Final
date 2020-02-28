@@ -1,5 +1,6 @@
 import { connection } from './init.js';
 
+var activeModuleIds = [];
 class Module {
 
     /**
@@ -123,12 +124,13 @@ class ModuleManager{
     
     delete_module () {
 
-        console.log(this.modules)
+        activeModuleIds = [];
 
         this.modules.forEach(module => {
 
 			if (module.moving) {
 
+                activeModuleIds.push(module.id);
                 this.modules.remove(module);
                  
 			}
@@ -206,5 +208,6 @@ Array.prototype.remove = function() {
 
 export {
 	ArgModule,
-	ModuleManager
+    ModuleManager,
+    activeModuleIds,
 }

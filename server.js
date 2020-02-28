@@ -64,7 +64,7 @@ wss.on('connection', function(ws) {
 
             //! LA ID DE LA DB NO ES AUTO INCREMENT, ES LA QUE SE LE META!
 
-            process.cwd()
+            console.log(process.cwd())
 
             var info = {};
             info.id = jsonData.moduleId;
@@ -99,7 +99,6 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'moveModule') {
             
-            //change position of the module
             broadcastMsg(data, connectedUsers, ws);
 
         }
@@ -111,6 +110,8 @@ wss.on('connection', function(ws) {
         else if (jsonData.type === 'releaseModule') {
 
             //change position of the modules moving???????
+
+            console.log(jsonContent.modules);
 
             broadcastMsg(data, connectedUsers, ws);
             

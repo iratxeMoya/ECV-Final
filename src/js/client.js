@@ -1,4 +1,4 @@
-import { ArgModule, ModuleManager } from './module.js';
+import { ArgModule, ModuleManager, activeModuleIds } from './module.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
 import { isHover } from './utils.js';
@@ -124,7 +124,7 @@ cvs.addEventListener("mouseup", function(event) {
 
 	module_manager.release_modules();
 
-	connection.send(JSON.stringify({type: 'releaseModule', position: {x: event.screenX, y: event.screenY}, remove: remove}));
+	connection.send(JSON.stringify({type: 'releaseModule', position: {x: event.screenX, y: event.screenY}, remove: remove, modules: activeModuleIds}));
 
 });
 var img = new Image();
