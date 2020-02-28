@@ -126,6 +126,8 @@ class ModuleManager{
 
 			if (module.moving) {
 
+                console.log('moving')
+
 				this.modules.remove(module);
                 
 			}
