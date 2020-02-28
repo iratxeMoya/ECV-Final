@@ -115,7 +115,7 @@ function update() {
 	img.onload = function() {
 		ctx.drawImage(img, 0, 0);
 	}
-	img.src = "../icons/basura.svg";
+	img.src = "icons/basura.svg";
 	
 	ctx.fillStyle = "#FFFFFF";
 	ctx.fillRect(0, 0, wb_w, wb_h);
