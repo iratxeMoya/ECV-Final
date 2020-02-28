@@ -92,8 +92,9 @@ cvs.addEventListener("mouseup", function(event) {
 
 	console.log(event);
 	var trash = document.querySelector("#trashIcon");
-
-	if (isHover(trash)) {
+	
+	if (isHover(event.screenX, event.screenY)) {
+		console.log('is hovered')
 		module_manager.delete_module();
 	}
 
