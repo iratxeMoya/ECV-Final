@@ -92,7 +92,7 @@ cvs.addEventListener("mouseup", function(event) {
 
 	console.log(event);
 	var trash = document.querySelector("#trashIcon");
-	
+
 	if (isHover(event.screenX, event.screenY)) {
 		console.log('is hovered')
 		module_manager.delete_module();
@@ -121,7 +121,7 @@ function update() {
 	ctx.fillStyle = "#000000"
 	
 
-	ctx.drawImage(img, 5, 5, 20, 20);
+	ctx.drawImage(img, 5, 5, 25, 25);
 
 	module_manager.draw(ctx);
 }
