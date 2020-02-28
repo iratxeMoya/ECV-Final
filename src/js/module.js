@@ -124,7 +124,7 @@ class ModuleManager{
     
     delete_module () {
 
-        activeModuleIds = [];
+        //activeModuleIds = [];
 
         this.modules.forEach(module => {
 

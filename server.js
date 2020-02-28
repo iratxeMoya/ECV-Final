@@ -74,7 +74,7 @@ wss.on('connection', function(ws) {
             info.posy = jsonData.position.y;
             info.target_id = jsonData.target ? jsonData.target.id : null;
 
-            fs.readFile('./src/data/modules.json', 'utf8', (err, jsonString) => {
+            fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
                 if (err) {
                     console.log("File read failed:", err)
                     return
