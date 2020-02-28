@@ -83,7 +83,7 @@ wss.on('connection', function(ws) {
                 var jsonData = JSON.parse(jsonString);
                 console.log(info);
 
-                fs.writeFile("./src/data/modules.json", jsonContent, 'utf8', function (err) {
+                fs.writeFile("src/data/modules.json", jsonContent, 'utf8', function (err) {
                     if (err) {
                         return console.log(err);
                     }
@@ -111,7 +111,7 @@ wss.on('connection', function(ws) {
 
             //change position of the modules moving???????
 
-            console.log(jsonContent.modules);
+            console.log(jsonData.modules);
 
             broadcastMsg(data, connectedUsers, ws);
             
