@@ -74,23 +74,25 @@ wss.on('connection', function(ws) {
             info.posy = jsonData.position.y;
             info.target_id = jsonData.target ? jsonData.target.id : null;
 
-            /*fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
+            fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
                 if (err) {
                     console.log("File read failed:", err)
                     return
                 }
 
+                console.log(jsonString);
                 var newJson = JSON.parse(jsonString);
                 console.log(info);
+                var str = JSON.stringify(newJson);
 
-                fs.writeFile("src/data/modules.json", newJson, 'utf8', function (err) {
+                /*fs.writeFile("src/data/modules.json", str, 'utf8', function (err) {
                     if (err) {
                         return console.log(err);
                     }
                 
                     console.log("The file was saved!");
-                });
-            })*/
+                });*/
+            })
 
             
 
