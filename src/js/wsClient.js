@@ -29,6 +29,9 @@ connection.onmessage = (event) => {
     else if (jsonData.type === 'releaseModule') {
 
         module_manager.release_modules();
+        if (jsonData.remove) {
+            module_manager.delete_module();
+        }
     }
     else if (jsonData.type === 'createModule') {
         console.log('Module created: ', jsonData);

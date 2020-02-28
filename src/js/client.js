@@ -89,18 +89,18 @@ cvs.addEventListener("mousedown", function(event) {
 cvs.addEventListener("mouseup", function(event) {
 
 	mouseDown = false;
-
-	console.log(event);
-	var trash = document.querySelector("#trashIcon");
+	var remove = false;
 
 	if (isHover(event.screenX, event.screenY)) {
 		console.log('is hovered')
 		module_manager.delete_module();
+		remove = true;
+
 	}
 
 	module_manager.release_modules();
 
-	connection.send(JSON.stringify({type: 'releaseModule'}));
+	connection.send(JSON.stringify({type: 'releaseModule', position: {x: event.screenX, y: event.screenY}, remove: remove}));
 
 });
 var img = new Image();
