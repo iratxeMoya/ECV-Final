@@ -91,13 +91,13 @@ cvs.addEventListener("mouseup", function(event) {
 	mouseDown = false;
 
 	console.log(event);
+	var trash = document.querySelector("#trashIcon");
 
 	if (isHover(trash)) {
 		module_manager.delete_module();
 	}
 
 	module_manager.release_modules();
-	var trash = document.querySelector("#trashIcon");
 
 	connection.send(JSON.stringify({type: 'releaseModule'}));
 

@@ -1,5 +1,5 @@
 function isHover(e) {
-    return (e.parentElement.querySelector(':hover') === e);
+    return (e ? e.parentElement.querySelector(':hover') === e : false);
 }
 
 
