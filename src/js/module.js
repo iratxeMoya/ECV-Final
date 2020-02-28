@@ -135,6 +135,8 @@ class ModuleManager{
                  
 			}
         });
+
+        console.log('in delete ', activeModuleIds)
     }
 	
 	click_modules(posx, posy) {

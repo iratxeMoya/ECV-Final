@@ -81,6 +81,9 @@ wss.on('connection', function(ws) {
                 }
 
                 var json = JSON.parse(jsonString);
+                console.log(info);
+
+                json.push(info);
 
                 fs.writeFile("src/data/modules.json", json, 'utf8', function (err) {
                     if (err) {
