@@ -32,7 +32,7 @@ function createModuleType_1 () {
 	newModule.after = null;
 	newModule.before = null;
 	newModule.target = "none";
-	newModule.type = "log";
+	newModule.moduleType = "log";
 	newModule.arg = arg;
 
 	connection.send(JSON.stringify(newModule));
@@ -52,7 +52,7 @@ function createModuleType_2 () {
 	newModule.after = null;
 	newModule.before = null;
 	newModule.target = "none";
-	newModule.type = "log";
+	newModule.moduleType = "log";
 	newModule.arg = arg;
 
 	connection.send(JSON.stringify(newModule));
