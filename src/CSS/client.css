@@ -65,4 +65,5 @@
 
 #trashIcon:hover{
 	color: red;
+	cursor: pointer;
 }
