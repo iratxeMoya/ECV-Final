@@ -40,8 +40,6 @@ wss.on('connection', function(ws) {
     ws.on('message', function (data) {
 
         jsonData = JSON.parse(data);
-
-        console.log('new message: ', jsonData)
         
         if (jsonData.type === 'login') {
 
@@ -64,7 +62,6 @@ wss.on('connection', function(ws) {
 
             //! LA ID DE LA DB NO ES AUTO INCREMENT, ES LA QUE SE LE META!
 
-            console.log(process.cwd())
 
             var info = {};
             info.id = jsonData.moduleId;
@@ -84,6 +81,7 @@ wss.on('connection', function(ws) {
                 console.log(info);
 
                 json.push(info);
+                json = JSON.stringify(json);
 
                 fs.writeFile("src/data/modules.json", json, 'utf8', function (err) {
                     if (err) {
