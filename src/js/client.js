@@ -90,6 +90,8 @@ cvs.addEventListener("mouseup", function(event) {
 
 	mouseDown = false;
 
+	console.log(event);
+
 	if (isHover(trash)) {
 		module_manager.delete_module();
 	}
