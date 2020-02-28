@@ -102,7 +102,8 @@ cvs.addEventListener("mouseup", function(event) {
 	connection.send(JSON.stringify({type: 'releaseModule'}));
 
 });
-
+var img = new Image();
+img.src = "icons/basura.svg";
 
 function update() {
 
@@ -117,11 +118,10 @@ function update() {
 	ctx.fillRect(mouseX, mouseY, 5, 5);
 
 	ctx.fillStyle = "#000000"
-	var img = new Image();
-	img.onload = function() {
-		ctx.drawImage(img, 5, 5, 20, 20);
-	}
-	img.src = "icons/basura.svg";
+	
+
+	ctx.drawImage(img, 5, 5, 20, 20);
+
 	module_manager.draw(ctx);
 }
 
