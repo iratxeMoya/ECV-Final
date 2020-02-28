@@ -35,7 +35,9 @@ connection.onmessage = (event) => {
         }
     }
     else if (jsonData.type === 'createModule') {
-        var newModule = new ArgModule(jsonData.position, jsonData.type, jsonData.target, jsonData.moduleId, jsonData.arg)
-        module_manager.add_module()
+
+        var newModule = new ArgModule(jsonData.position, jsonData.type, jsonData.target, jsonData.moduleId, jsonData.arg);
+
+        module_manager.add_module(newModule);
     }
 }
