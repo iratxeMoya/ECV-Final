@@ -118,7 +118,7 @@ function update() {
 
 	var img = new Image();
 	img.onload = function() {
-		ctx.drawImage(img, 0, 0);
+		ctx.drawImage(img, 0, 0, 20, 20);
 	}
 	img.src = "icons/basura.svg";
 	module_manager.draw(ctx);
