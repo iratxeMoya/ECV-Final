@@ -103,6 +103,12 @@ cvs.addEventListener("mouseup", function(event) {
 
 });
 
+var img = new Image();
+img.onload = function() {
+	ctx.drawImage(img, 5, 5, 20, 20);
+}
+img.src = "icons/basura.svg";
+
 
 function update() {
 
@@ -116,11 +122,6 @@ function update() {
 	ctx.fillStyle = "#FF0000";
 	ctx.fillRect(mouseX, mouseY, 5, 5);
 
-	var img = new Image();
-	img.onload = function() {
-		ctx.drawImage(img, 0, 0, 20, 20);
-	}
-	img.src = "icons/basura.svg";
 	module_manager.draw(ctx);
 }
 
