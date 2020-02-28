@@ -94,25 +94,25 @@ wss.on('connection', function(ws) {
 
             
 
-            broadcastMsg(data, connectedUsers);
+            broadcastMsg(data, connectedUsers, ws);
             
         }
         else if (jsonData.type === 'moveModule') {
             
             //change position of the module
-            broadcastMsg(data, connectedUsers);
+            broadcastMsg(data, connectedUsers, ws);
 
         }
         else if (jsonData.type === 'clickModule') {
 
-            broadcastMsg(data, connectedUsers);
+            broadcastMsg(data, connectedUsers, ws);
             
         }
         else if (jsonData.type === 'releaseModule') {
 
             //change position of the modules moving???????
 
-            broadcastMsg(data, connectedUsers);
+            broadcastMsg(data, connectedUsers, ws);
             
         }
         else if (jsonData.type === 'deleteModule') {
@@ -138,14 +138,14 @@ wss.on('connection', function(ws) {
 	});
 })
 
-function broadcastMsg(data, usersToSend) {
+function broadcastMsg(data, usersToSend, ws) {
 
 	usersToSend.forEach(user => {
 
         if(user.ws !== ws) {
 
             user.ws.send(data);
-            
+
         }
 			
 	});
