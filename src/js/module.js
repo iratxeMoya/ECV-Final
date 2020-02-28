@@ -17,18 +17,7 @@ class Module {
         this.before = null;
         this.after = null;
         this.moving = false;
-        
-        var newModule = {};
-        newModule.type = 'createModule';
-        newModule.moduleId = id;
-        newModule.position = position;
-        newModule.after = this.after;
-        newModule.before = this.before;
-        newModule.target = target;
 
-        connection.send(JSON.stringify(newModule));
-
-        console.log('created')
     }
     /**
      * 
@@ -105,7 +94,19 @@ class ArgModule extends Module{
      */
 	constructor (position, type, target, id, arg) {
 		super(position, type, target, id)
-		this.arg = arg;
+        this.arg = arg;
+        
+        var newModule = {};
+        newModule.type = 'createModule';
+        newModule.moduleId = id;
+        newModule.position = position;
+        newModule.after = this.after;
+        newModule.before = this.before;
+        newModule.target = target;
+        newModule.type = type;
+        newModule.arg = arg;
+
+        connection.send(JSON.stringify(newModule));
     }
 	
 	set_arg(arg){

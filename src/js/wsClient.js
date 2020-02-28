@@ -1,5 +1,6 @@
 import { connection } from './init.js';
 import { module_manager } from './client.js'
+import { ArgModule } from './module.js';
 
 connection.onopen = event => {
 	console.log('connection is open');
@@ -34,6 +35,7 @@ connection.onmessage = (event) => {
         }
     }
     else if (jsonData.type === 'createModule') {
-        console.log('Module created: ', jsonData);
+        var newModule = new ArgModule(jsonData.position, jsonData.type, jsonData.target, jsonData.moduleId, jsonData.arg)
+        module_manager.add_module()
     }
 }
