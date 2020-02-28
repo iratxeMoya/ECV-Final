@@ -29,10 +29,12 @@ connection.onmessage = (event) => {
     }
     else if (jsonData.type === 'releaseModule') {
 
-        module_manager.release_modules();
         if (jsonData.remove) {
             module_manager.delete_module();
         }
+        
+        module_manager.release_modules();
+
     }
     else if (jsonData.type === 'createModule') {
 
