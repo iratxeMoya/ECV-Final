@@ -195,7 +195,7 @@ Array.prototype.delete = function() {
     return this;
 };
 
-function init () {
+function init (ws) {
 
     fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
         if (err) {
