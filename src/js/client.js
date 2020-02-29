@@ -130,7 +130,7 @@ cvs.addEventListener("mouseup", function(event) {
 
 	console.log('modules: ', activeModuleIds);
 
-	connection.send(JSON.stringify({type: 'releaseModule', position: {x: event.screenX, y: event.screenY}, remove: remove, modules: activeModuleIds}));
+	connection.send(JSON.stringify({type: 'releaseModule', position: {x: event.offsetX, y: event.offsetY}, remove: remove, modules: activeModuleIds}));
 
 });
 var img = new Image();
