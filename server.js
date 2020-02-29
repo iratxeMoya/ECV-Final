@@ -84,7 +84,7 @@ wss.on('connection', function(ws) {
 
                 fs.writeFile("src/data/modules.json", jsonStr, 'utf8', function (err) {
                     if (err) {
-                        return console.log(err);
+                        return console.log('error: ', err);
                     }
                 
                     console.log("The file was saved! ", jsonStr);
@@ -107,10 +107,6 @@ wss.on('connection', function(ws) {
             
         }
         else if (jsonData.type === 'releaseModule') {
-
-            //change position of the modules moving???????
-
-            console.log(jsonData.modules); // esto tiene los id de los modulos que se mueven
 
             jsonData.modules.forEach(module => {
                 fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
