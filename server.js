@@ -108,6 +108,8 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'releaseModule') {
 
+            console.log('in release');
+
             jsonData.modules.forEach(module => {
                 fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
                     if (err) {
