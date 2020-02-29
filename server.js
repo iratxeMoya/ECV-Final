@@ -42,8 +42,6 @@ wss.on('connection', function(ws) {
     ws.on('message', function (data) {
 
         jsonData = JSON.parse(data);
-
-        console.log('new message: ', jsonData)
         
         if (jsonData.type === 'login') {
 
@@ -127,13 +125,15 @@ wss.on('connection', function(ws) {
                         delete json[module.toString()];
                     }
                     var jsonStr = JSON.stringify(json);
+
+                    console.log(json);
     
                     fs.writeFile("src/data/modules.json", jsonStr, 'utf8', function (err) {
                         if (err) {
                             return console.log(err);
                         }
                     
-                        console.log("The file was saved! ", jsonStr, ' ', jsonData.position);
+                        console.log("The file was saved! ", jsonStr);
                     });
                 })
             })
