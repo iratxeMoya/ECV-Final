@@ -10,13 +10,13 @@ class Module {
      * @param {Module} target ???? 
      * @param {Int} id Unique ??????? no se como hacer esto
      */
-    constructor (position, type, target, id) {
+    constructor (position, type, target, id, next, prev) {
         this.position = position;
 		this.type = type;
         this.target = target;
         this.id = id;
-        this.before = null;
-        this.after = null;
+        this.before = prev;
+        this.after = next;
         this.moving = false;
 
     }
@@ -93,8 +93,8 @@ class ArgModule extends Module{
      * @param {Int} id Unique ??????? no se como hacer esto
      * @param {String} argument to pass	
      */
-	constructor (position, type, target, id, arg) {
-		super(position, type, target, id)
+	constructor (position, type, target, id, arg, next, prev) {
+		super(position, type, target, id, next, prev)
         this.arg = arg;
         
     }

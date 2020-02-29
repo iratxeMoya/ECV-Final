@@ -70,6 +70,8 @@ wss.on('connection', function(ws) {
             info.next_id = jsonData.after ? jsonData.after.id : null;
             info.position = jsonData.position;
             info.target_id = jsonData.target ? jsonData.target.id : null;
+            info.type = jsonData.moduleType;
+            info.arg = jsonData.arg;
 
             fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
                 if (err) {
@@ -193,7 +195,7 @@ Array.prototype.delete = function() {
     return this;
 };
 
-function init (ws, ) {
+function init () {
 
 
     fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
@@ -203,8 +205,20 @@ function init (ws, ) {
         }
 
         var json = JSON.parse(jsonString);
-        for (module in json) {
-            console.log(module);
+        for (moduleId in json) {
+            var module = json[moduleId];
+            var data = {};
+            data.type = 'createModule';
+            data.position = module.position;
+            data.moduleType = module.type;
+            data.arg = module.arg;
+            data.target = module.target;
+            data.moduleId = module.id;
+            data.next = module.next_id;
+            data.prev = module.prev_id;
+
+            ws.send(JSON.stringify(data));
+
         }
 
     })
