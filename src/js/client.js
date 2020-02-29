@@ -121,12 +121,12 @@ cvs.addEventListener("mouseup", function(event) {
 
 	if (isHover(event.screenX, event.screenY)) {
 
+		console.log('modules: ', activeModuleIds);
 		module_manager.delete_module();
 		remove = true;
 
 	}
 
-	console.log('modules: ', activeModuleIds);
 	connection.send(JSON.stringify({type: 'releaseModule', position: {x: event.offsetX, y: event.offsetY}, remove: remove, modules: activeModuleIds}));
 
 	module_manager.release_modules();
