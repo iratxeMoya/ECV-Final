@@ -126,8 +126,6 @@ class ModuleManager{
     
     delete_module () {
 
-        //activeModuleIds = [];
-
         this.modules.forEach(module => {
 
 			if (module.moving) {
@@ -137,7 +135,6 @@ class ModuleManager{
 			}
         });
 
-        console.log('in delete ', activeModuleIds)
     }
 	
 	click_modules(posx, posy) {
