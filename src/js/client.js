@@ -126,11 +126,10 @@ cvs.addEventListener("mouseup", function(event) {
 
 	}
 
-	console.log('modules: ', activeModuleIds, deletingModuleIds);
-
-	connection.send(JSON.stringify({type: 'releaseModule', position: {x: event.offsetX, y: event.offsetY}, remove: remove, modules: remove ? deletingModuleIds : activeModuleIds}));
-
 	module_manager.release_modules();
+
+	console.log('modules: ', activeModuleIds, deletingModuleIds);
+	connection.send(JSON.stringify({type: 'releaseModule', position: {x: event.offsetX, y: event.offsetY}, remove: remove, modules: remove ? deletingModuleIds : activeModuleIds}));
 
 });
 var img = new Image();
