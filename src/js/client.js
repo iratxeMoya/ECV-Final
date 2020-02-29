@@ -1,4 +1,4 @@
-import { ArgModule, ModuleManager, activeModuleIds } from './module.js';
+import { ArgModule, ModuleManager, activeModuleIds, deletingModuleIds } from './module.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
 import { isHover } from './utils.js';
@@ -121,13 +121,14 @@ cvs.addEventListener("mouseup", function(event) {
 
 	if (isHover(event.screenX, event.screenY)) {
 
-		console.log('modules: ', activeModuleIds);
 		module_manager.delete_module();
 		remove = true;
 
 	}
 
-	connection.send(JSON.stringify({type: 'releaseModule', position: {x: event.offsetX, y: event.offsetY}, remove: remove, modules: activeModuleIds}));
+	console.log('modules: ', activeModuleIds, deletingModuleIds);
+
+	connection.send(JSON.stringify({type: 'releaseModule', position: {x: event.offsetX, y: event.offsetY}, remove: remove, modules: remove ? deletingModuleIds : activeModuleIds}));
 
 	module_manager.release_modules();
 
