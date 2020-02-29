@@ -52,7 +52,7 @@ function createModuleType_2 () {
 	var newModule = {};
 	newModule.type = 'createModule';
 	newModule.moduleId = id;
-	newModule.position = {x: 100, y: 100};
+	newModule.position = {x: 100, y: 200};
 	newModule.after = null;
 	newModule.before = null;
 	newModule.target = "none";
