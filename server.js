@@ -37,6 +37,8 @@ wss.on('connection', function(ws) {
         ws: ws,
     });
 
+    init(ws);
+
     ws.on('message', function (data) {
 
         jsonData = JSON.parse(data);
@@ -61,10 +63,6 @@ wss.on('connection', function(ws) {
         else if (jsonData.type === 'createModule') {
 
             console.log('create Module: ', jsonData);
-
-            //! LA ID DE LA DB NO ES AUTO INCREMENT, ES LA QUE SE LE META!
-
-            console.log(process.cwd())
 
             var info = {};
             info.id = jsonData.moduleId;
@@ -194,3 +192,28 @@ Array.prototype.delete = function() {
     }
     return this;
 };
+
+function init (ws, ) {
+
+    var info = {};
+    info.id = jsonData.moduleId;
+    info.prev_id = jsonData.before ? jsonData.before.id : null;
+    info.next_id = jsonData.after ? jsonData.after.id : null;
+    info.position = jsonData.position;
+    info.target_id = jsonData.target ? jsonData.target.id : null;
+
+
+    fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
+        if (err) {
+            console.log("File read failed:", err)
+            return
+        }
+
+        var json = JSON.parse(jsonString);
+        for (module in json) {
+            console.log(module);
+        }
+
+    })
+
+}
