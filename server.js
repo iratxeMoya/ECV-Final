@@ -123,8 +123,10 @@ wss.on('connection', function(ws) {
     
                     var json = JSON.parse(jsonString);
                     json[module.toString()].position = jsonData.position;
+                    if (jsonData.remove) {
+                        delete json[module.toString()];
+                    }
                     var jsonStr = JSON.stringify(json);
-    
     
                     fs.writeFile("src/data/modules.json", jsonStr, 'utf8', function (err) {
                         if (err) {
@@ -138,11 +140,6 @@ wss.on('connection', function(ws) {
 
             broadcastMsg(data, connectedUsers, ws);
             
-        }
-        else if (jsonData.type === 'deleteModule') {
-
-            console.log('delete module: ', jsonData);
-
         }
         else if (jsonData.type === 'relateModules') {
 
