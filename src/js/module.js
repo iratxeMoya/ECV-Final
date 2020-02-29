@@ -19,6 +19,8 @@ class Module {
         this.after = next;
         this.moving = false;
 
+        console.log('creating: ', position);
+
     }
     /**
      * 
