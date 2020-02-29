@@ -197,7 +197,6 @@ Array.prototype.delete = function() {
 
 function init () {
 
-
     fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
         if (err) {
             console.log("File read failed:", err)
@@ -205,6 +204,8 @@ function init () {
         }
 
         var json = JSON.parse(jsonString);
+
+        console.log('in init: ', json);
         for (moduleId in json) {
             var module = json[moduleId];
             var data = {};
