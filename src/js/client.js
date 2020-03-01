@@ -24,7 +24,7 @@ function createModuleType_1 () {
 	var id = Date.now();
 
 	var arg = prompt("Please enter text to log:", "HI");
-	var mod = new ArgModule({x: 100, y: 100}, "log", "none" , id, arg);
+	var mod = new ArgModule({x: 100, y: 100}, "log1", "none" , id, arg);
 	module_manager.add_module(mod);
 
 	var newModule = {};
@@ -34,7 +34,7 @@ function createModuleType_1 () {
 	newModule.after = null;
 	newModule.before = null;
 	newModule.target = "none";
-	newModule.moduleType = "log";
+	newModule.moduleType = "log1";
 	newModule.arg = arg;
 
 	connection.send(JSON.stringify(newModule));
@@ -46,7 +46,7 @@ function createModuleType_2 () {
 	var id = Date.now();;
 
 	var arg = prompt("Please enter text to log:", "HO");
-	var mod = new ArgModule({x: 100, y: 200}, "log", "none" , id, arg);
+	var mod = new ArgModule({x: 100, y: 200}, "log2", "none" , id, arg);
 	module_manager.add_module(mod);
 
 	var newModule = {};
@@ -56,7 +56,7 @@ function createModuleType_2 () {
 	newModule.after = null;
 	newModule.before = null;
 	newModule.target = "none";
-	newModule.moduleType = "log";
+	newModule.moduleType = "log2";
 	newModule.arg = arg;
 
 	connection.send(JSON.stringify(newModule));
