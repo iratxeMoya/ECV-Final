@@ -1,7 +1,8 @@
 import { connection } from './init.js';
-
+import { codes, styles } from './codes.js';
 var activeModuleIds = [];
 var deletingModuleIds = [];
+const MODULESIZE =25;
 class Module {
 
     /**
@@ -50,16 +51,19 @@ class Module {
 	}
 	
 	draw(ctx){
-		ctx.fillStyle = "#000000"
-		ctx.fillRect(this.position.x,this.position.y, 10, 10);
+		ctx.fillStyle = styles[this.type]
+		ctx.fillRect(this.position.x,this.position.y, MODULESIZE,MODULESIZE);
 	}
-	
+    
+    isNear(module){
+        return abs(module.position.x-this.position.x)<MODULESIZE/2 && abs(module.position.y-this.position.y)<MODULESIZE/2; 
+    }
+
     /**
      * 
      * @param {Module} module 
      * @param {String} position before / after
      */
-    
     relate(module, position) {
 
         if (position === 'before') {
@@ -80,9 +84,9 @@ class Module {
         connection.send(JSON.stringify(jsonData));
     }
 
-    run (codedata) {
+    run () {
 
-        eval(codedata[type]);
+        eval(codes[type]);
     
     }
 }
@@ -106,8 +110,8 @@ class ArgModule extends Module{
 		this.arg=arg;
 	}
 	
-	run(codedata) {
-        eval(codedata[this.type].replace('$arg$', this.arg)); 
+	run() {
+        eval(codes[this.type].replace('$arg$', this.arg)); 
     }
 }
 
@@ -117,8 +121,7 @@ class ModuleManager{
 
 		this.modules = [];
 		this.count = 0;
-		this.codedata = codedata;
-	}
+    }
 	
 	add_module(newModule) {
 
@@ -163,6 +166,12 @@ class ModuleManager{
 		this.modules.forEach(module => {
 
             if (module.moving) {
+                this.modules.forEach(nearModule => {
+                    if (module.isNear(nearModule)){
+                        this.position.x = nearModule.position.x;
+                        this.position.y = nearModule.position.y+MODULESIZE/2;
+                    }
+                });
                 activeModuleIds.push(module.id);
             }
             

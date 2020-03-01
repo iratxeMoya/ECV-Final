@@ -7,7 +7,6 @@ function isHover(x, y) {
     return false;
 }
 
-
 export {
     isHover,
 }
