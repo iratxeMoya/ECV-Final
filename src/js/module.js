@@ -20,6 +20,7 @@ class Module {
         this.before = prev;
         this.after = next;
         this.moving = false;
+        this.offset = 0;
 
         console.log('creating: ', position);
 
@@ -41,7 +42,18 @@ class Module {
 
         connection.send(JSON.stringify(jsonData));
     }
-	
+    
+    update_offset(){
+        if(this.prev === null){
+            this.offset=0;
+        }else{
+            this.offset = this.prev.offset + MODULESIZE;
+        }
+        if(this.next !== null){
+            this.next.update_offset();
+        }
+    }
+
 	enable_moving(){
 		this.moving = true;
 	}
@@ -168,8 +180,11 @@ class ModuleManager{
             if (module.moving) {
                 this.modules.forEach(nearModule => {
                     if (module.isNear(nearModule)&& module !== nearModule){
+                        module.relate(nearModule,"before");
+                        module.update_offset();
                         module.position.x = nearModule.position.x;
-                        module.position.y = nearModule.position.y+MODULESIZE;
+                        module.position.y = nearModule.position.y+offset;
+                        break;
                     }
                 });
                 activeModuleIds.push(module.id);
@@ -188,7 +203,7 @@ class ModuleManager{
 			if (module.moving) {
 
 				module.position.x = posx;
-                module.position.y = posy;
+                module.position.y = posy + module.offset;
                 
 			}
         });
