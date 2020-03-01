@@ -52,11 +52,11 @@ class Module {
 	
 	draw(ctx){
 		ctx.fillStyle = styles[this.type]
-		ctx.fillRect(this.position.x,this.position.y, MODULESIZE,MODULESIZE);
+		ctx.fillRect(this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2, MODULESIZE,MODULESIZE);
 	}
     
     isNear(module){
-        return abs(module.position.x-this.position.x)<MODULESIZE/2 && abs(module.position.y-this.position.y)<MODULESIZE/2; 
+        return Math.abs(module.position.x-this.position.x)<MODULESIZE*2 && Math.abs(module.position.y-this.position.y)<MODULESIZE*2; 
     }
 
     /**
@@ -167,9 +167,9 @@ class ModuleManager{
 
             if (module.moving) {
                 this.modules.forEach(nearModule => {
-                    if (module.isNear(nearModule)){
-                        this.position.x = nearModule.position.x;
-                        this.position.y = nearModule.position.y+MODULESIZE/2;
+                    if (module.isNear(nearModule)&& module !== nearModule){
+                        module.position.x = nearModule.position.x;
+                        module.position.y = nearModule.position.y+MODULESIZE;
                     }
                 });
                 activeModuleIds.push(module.id);
