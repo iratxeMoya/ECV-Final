@@ -267,7 +267,7 @@ class ModuleManager {
 
                 this.modules.forEach(nearModule => {
 
-                    if (module.isNear(nearModule) && !this.isParent(nearModule) && !this.isChild(nearModule)) {
+                    if (module.isNear(nearModule) && !module.isParent(nearModule) && !module.isChild(nearModule)) {
 
                         module.relate(nearModule, "before");
                         module.update_offset();
