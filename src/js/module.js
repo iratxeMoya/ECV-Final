@@ -131,7 +131,7 @@ class Module {
     }
 }
 
-class ArgModule extends Module{
+class ArgModule extends Module {
 	/**
      * 
      * @param {Object} position {x, y}
@@ -244,7 +244,7 @@ class ModuleManager {
                         module.relate(nearModule,"before");
                         module.update_offset();
                         module.position.x = nearModule.position.x;
-                        module.position.y = nearModule.position.y + offset;
+                        module.position.y = nearModule.position.y + module.offset;
                         return;
 
                     }
