@@ -94,13 +94,10 @@ class Module {
 
         if (position === 'before') {
 
-            var copiaThis = this;
-            copiaThis.next = null;
-            copiaThis.prev = null;
+            var copiaThis = new ArgModule(this.position, this.type, this.target, this.id, this.arg, null, null);
 
-            var copiaMod = module;
-            copiaMod.next = null;
-            copiaMod.prev = null;
+            var copiaMod = new ArgModule(module.position, module.type, module.target, module.id, module.arg, null, null);;
+
             this.prev = copiaMod;
             module.next = copiaThis;
             //module.prev.next = null;
