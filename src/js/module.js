@@ -245,7 +245,7 @@ class ModuleManager {
                         module.update_offset();
                         module.position.x = nearModule.position.x;
                         module.position.y = nearModule.position.y + offset;
-                        break;
+                        return;
 
                     }
 
