@@ -13,7 +13,7 @@ var mouseDown = false;
 var mouseX;
 var mouseY;
 
-var element = new Element("test",100,100);
+var element = new Element("test",{'x':100,'y':100});
 
 var module_manager = new ModuleManager(codes);
 var img = new Image();
