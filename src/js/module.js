@@ -407,4 +407,5 @@ export {
     ModuleManager,
     activeModuleIds,
     deletingModuleIds,
+	Element
 }
