@@ -255,20 +255,21 @@ class ModuleManager {
                 });
 
                 activeModuleIds.push(module.id);
+                
+                var nextModule = module;
+
+                console.log(nextModule)
+    
+                while (nextModule.next !== null) {
+    
+                    console.log(nextModule)
+                    nextModule = nextModule.next;
+                    nextModule.disable_moving();
+                }
 
             }
             
             module.disable_moving();
-
-            var nextModule = module;
-            console.log(nextModule)
-
-            while (nextModule.next !== null) {
-
-                console.log(nextModule)
-                nextModule = nextModule.next;
-                nextModule.disable_moving();
-            }
             
         });
         
