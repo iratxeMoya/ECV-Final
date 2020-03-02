@@ -1,4 +1,4 @@
-var cvs = document.getElementById("module_wb");
+var cvs = document.getElementById("wb_canvas");
 var ctx = cvs.getContext("2d");
 var moduleType_1 = document.querySelector("#module1");
 var moduleType_2 = document.querySelector("#module2");

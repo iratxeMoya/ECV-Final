@@ -208,7 +208,7 @@ class TargetModule extends module{
 		if (!this.executed){
 			codestr ="";
 			for (key in target.parameters){
-				codestr = codestr+" var exe_"+key+"="+target.parameters[key]";\n";
+				codestr = codestr+" var exe_"+key+"="+target.parameters[key]+";\n";
 			}
 			console.log(codestr);
 			eval(codestr);
