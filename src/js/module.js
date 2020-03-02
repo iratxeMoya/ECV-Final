@@ -169,7 +169,7 @@ class Module {
      */
     run () {
 
-        eval(codes[type]);
+        eval(codes[this.type]);
     
     }
 }
