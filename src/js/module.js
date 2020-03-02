@@ -218,8 +218,9 @@ class ModuleManager {
                 var nextModule = module;
 
                 while (nextModule.next !== null) {
-                    console.log('click ', nextModule.next)
+                    console.log('before ', nextModule.next)
                     nextModule = nextModule.next;
+                    console.log('after ', nextModule.next)
                     nextModule.enable_moving();
                 }
                 
