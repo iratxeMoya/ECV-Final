@@ -241,6 +241,7 @@ class ModuleManager {
 				if (module.prev){
 					module.prev.next=null;
 					module.prev = null;
+					module.offset = 0;
 				}
 				
                 module.enable_moving();
