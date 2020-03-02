@@ -34,7 +34,7 @@ class Module {
      * @param {Module} target ???? 
      * @param {Int} id Unique ??????? no se como hacer esto
      */
-    constructor (position, type, target, id, next, prev) {
+    constructor (position, type, id, next, prev) {
 		
 		console.log('in module ', id);
 
