@@ -17,7 +17,7 @@ function isHover(x, y) {
     return false;
 }
 
-function createModule (codetType, position, target=null, arg=null,moduleType = "basic" ) {
+function createModule (codeType, position, target=null, arg=null,moduleType = "basic" ) {
 
     var id = Date.now();
 	var mod;
