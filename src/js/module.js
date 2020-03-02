@@ -110,18 +110,16 @@ class Module {
     relate(module, position) {
 
         if (position === 'before') {
-
-            var copiaThis = new ArgModule(this.position, this.type, this.target, this.id, this.arg, null, null);
-
-            var copiaMod = new ArgModule(module.position, module.type, module.target, module.id, module.arg, null, null);;
-
-            this.prev = copiaMod;
-            module.next = copiaThis;
+			
+			this.prev = module;
+			module.next = this;
+			
 
         } 
         else {
 
             this.next = module;
+			module.prev = this;
 
         }
 
