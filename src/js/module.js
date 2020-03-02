@@ -403,7 +403,9 @@ Array.prototype.remove = function() {
 };
 
 export {
+	Module,
 	ArgModule,
+	TargetModule,
     ModuleManager,
     activeModuleIds,
     deletingModuleIds,

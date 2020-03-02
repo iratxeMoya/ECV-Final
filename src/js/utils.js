@@ -1,4 +1,4 @@
-import { ArgModule } from './module.js';
+import { Module, ArgModule, TargetModule, } from './module.js';
 import { module_manager } from './client.js';
 import { connection } from './init.js';
 
