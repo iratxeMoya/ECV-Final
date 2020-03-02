@@ -218,13 +218,17 @@ class ModuleManager {
 
 			if (pos.x > posx - 10 && pos.x < posx + 10 && pos.y > posy - 10 && pos.y < posy + 10){
                 
+				if (module.before){
+					module.before = null;
+				}
+				
                 module.enable_moving();
 
                 var nextModule = module;
 
                 console.log('fuera ', module);
 
-                while (nextModule.next !== null) {
+                while (!nextModule.next) {
                     console.log('before ', nextModule)
                     nextModule = nextModule.next;
                     nextModule.enable_moving();
@@ -250,7 +254,7 @@ class ModuleManager {
 
                 this.modules.forEach(nearModule => {
 
-                    if (module.isNear(nearModule) && module !== nearModule) {
+                    if (module.isNear(nearModule) && module !== nearModule && nearModule.position.y >= module.position.y) {
 
                         module.relate(nearModule, "before");
                         module.update_offset();
