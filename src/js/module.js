@@ -163,6 +163,8 @@ class Module {
 	}
 	
 	getTarget(){
+		
+		console.log('in get target ', this, typeof this)
 		return this.prev ? this.prev.getTarget() : (typeof this === "TargetModule" ? this.target : null);
 	}
 
