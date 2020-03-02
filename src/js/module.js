@@ -96,7 +96,7 @@ class Module {
 
             this.prev = module;
             module.next = this;
-            module.next.prev = null;
+            //module.next.prev = null;
 
             console.log(module, this)
 
