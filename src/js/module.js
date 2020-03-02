@@ -217,8 +217,8 @@ class ModuleManager {
 
                 var nextModule = module;
 
-                while (nextModule.next !== null) {
-                    console.log(nextModule)
+                while (nextModule.next !== null) { // este while le peta el pecho
+                    console.log('click ', nextModule)
                     nextModule = nextModule.next;
                     nextModule.enable_moving();
                 }
@@ -261,7 +261,7 @@ class ModuleManager {
     
                 while (nextModule.next !== null) {
     
-                    console.log(nextModule)
+                    console.log('release ', nextModule)
                     nextModule = nextModule.next;
                     nextModule.disable_moving();
                 }
