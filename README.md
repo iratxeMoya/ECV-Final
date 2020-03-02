@@ -103,7 +103,7 @@
 
 #### modules.json
 
-##### Data template:
+Data template:
 
     {
         id: int,
