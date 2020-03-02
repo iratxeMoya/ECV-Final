@@ -19,8 +19,8 @@ class Module {
 		this.type = type;
         this.target = target;
         this.id = id;
-        this.before = prev;
-        this.after = next;
+        this.prev = prev;
+        this.next = next;
         this.moving = false;
         this.offset = 0;
 
