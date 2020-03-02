@@ -140,7 +140,7 @@ class ArgModule extends Module{
      * @param {Int} id Unique ??????? no se como hacer esto
      * @param {String} argument to pass	
      */
-	constructor (position, type, target, id, arg, next, prev) {
+	constructor (position, type, target, id, arg, next = null, prev = null) {
 
 		super(position, type, target, id, next, prev)
         this.arg = arg;
