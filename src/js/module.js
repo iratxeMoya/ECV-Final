@@ -195,7 +195,7 @@ class ArgModule extends Module {
     }
 }
 
-class TargetModule extends module{
+class TargetModule extends Module{
 	constructor(position, target, id, next = null, prev = null) {
 		
 		this.target = target;
