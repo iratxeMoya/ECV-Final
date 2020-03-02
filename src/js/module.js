@@ -260,6 +260,7 @@ class ModuleManager {
             module.disable_moving();
 
             var nextModule = module;
+            console.log(nextModule)
 
             while (nextModule.next !== null) {
 
