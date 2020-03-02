@@ -35,6 +35,8 @@ class Module {
      * @param {Int} id Unique ??????? no se como hacer esto
      */
     constructor (position, type, target, id, next, prev) {
+		
+		console.log('in module ', id);
 
         this.position = position;
 		this.type = type;
@@ -185,7 +187,8 @@ class ArgModule extends Module {
      */
 	constructor (position, type, id, arg, next = null, prev = null) {
 
-		super(position, type, id, next, prev)
+		console.log('in arg module ', id);
+		super(position, type, id, next, prev);
         this.arg = arg;
         
     }
@@ -210,6 +213,7 @@ class ArgModule extends Module {
 class TargetModule extends Module{
 	constructor(position, target, id, next = null, prev = null) {
 		super(position, "target", id, next, prev);
+		console.log('in target module ', id);
 
 		this.target = target;
 		this.executed = false;
