@@ -297,6 +297,8 @@ class ModuleManager {
 	release_modules() {
 
         activeModuleIds = [];
+		
+		console.log('in release ', this.modules)
 
 		this.modules.forEach(module => {
 
@@ -316,7 +318,6 @@ class ModuleManager {
 
                 });
 				
-				console.log('in release ', module.id)
                 activeModuleIds.push(module.id);
 
             }
