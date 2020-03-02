@@ -44,7 +44,7 @@ class Module {
 
         }
 
-        if(typeof this.next !== 'undefined' || this.next !== null) {
+        if(typeof this.next !== 'undefined' && this.next !== null) {
 
             this.next.update_offset();
 
