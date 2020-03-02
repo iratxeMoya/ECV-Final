@@ -31,8 +31,6 @@ class Module {
      */
     update_offset(){
 
-        console.log(this)
-
         if(typeof this.prev === 'undefined' || this.prev === null) {
 
             this.offset = 0;
@@ -264,6 +262,8 @@ class ModuleManager {
             var nextModule = module;
 
             while (nextModule.next !== null) {
+
+                console.log(nextModule)
                 nextModule = nextModule.next;
                 nextModule.desable_moving();
             }
