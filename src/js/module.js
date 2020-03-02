@@ -8,11 +8,18 @@ const MODULESIZE =25;
 
 class Element {
 	
-	constructor (position, avatar = null, id) {
+	constructor (id,position, avatar = null) {
 		
-		this.parameters={'posx':position.x,'posy':position.y}
+		this.parameters={'posx':position.x,'posy':position.y,'sizex':MODULESIZE,'sizey':MODULESIZE}
 		this.id = id;
 		
+		
+	}
+	
+	draw(gs_ctx){
+		
+		gs_ctx.fillStyle = '#00FF00';
+        gs_ctx.fillRect(this.parameters.posx-this.parameters.sizex/2,this.parameters.posy-this.parameters.sizey/2, this.parameters.sizex,this.parameters.sizey);
 	}
 	
 }
@@ -82,12 +89,12 @@ class Module {
     /**
      * Draw module in canvas
      * 
-     * @param {Canvas context} ctx 
+     * @param {Canvas context} wb_ctx 
      */
-	draw(ctx) {
+	draw(wb_ctx) {
 
-		ctx.fillStyle = styles[this.type]
-        ctx.fillRect(this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2, MODULESIZE,MODULESIZE);
+		wb_ctx.fillStyle = styles[this.type]
+        wb_ctx.fillRect(this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2, MODULESIZE,MODULESIZE);
         
 	}
     
@@ -346,13 +353,13 @@ class ModuleManager {
     /**
      * Draws all the modules in the manager in the canvas
      * 
-     * @param {Canvas context} ctx 
+     * @param {Canvas context} wb_ctx 
      */
-	draw(ctx) {
+	draw(wb_ctx) {
 
 		this.modules.forEach(module => {
 
-            module.draw(ctx);
+            module.draw(wb_ctx);
             
 		});
 	}

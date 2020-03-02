@@ -49,16 +49,16 @@ function createModule (codetType, position, target=null, arg=null,moduleType = "
     
 }
 
-function paintInCanvas (wb_w, wb_h, ctx, mouseX, mouseY, img) {
+function paintInCanvas (wb_w, wb_h, wb_ctx, mouseX, mouseY, img) {
 
-	ctx.fillStyle = "#FFFFFF";
-	ctx.fillRect(0, 0, wb_w, wb_h);
+	wb_ctx.fillStyle = "#FFFFFF";
+	wb_ctx.fillRect(0, 0, wb_w, wb_h);
 
-	ctx.fillStyle = "#FF0000";
-	ctx.fillRect(mouseX, mouseY, 5, 5);
+	wb_ctx.fillStyle = "#FF0000";
+	wb_ctx.fillRect(mouseX, mouseY, 5, 5);
 
-	ctx.fillStyle = "#000000"
-	ctx.drawImage(img, 5, 5, 25, 25);
+	wb_ctx.fillStyle = "#000000"
+	wb_ctx.drawImage(img, 5, 5, 25, 25);
 
 }
 

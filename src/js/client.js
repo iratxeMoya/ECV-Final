@@ -1,15 +1,19 @@
-import { ModuleManager, activeModuleIds, deletingModuleIds } from './module.js';
+import { ModuleManager, activeModuleIds, deletingModuleIds, Element } from './module.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
 import { isHover, createModule, paintInCanvas } from './utils.js';
-import { cvs, ctx, moduleType_1, moduleType_2, workbench, run_button } from './DOMAccess.js';
+import { wb_cvs, wb_ctx,gs_cvs, gs_ctx, moduleType_1, moduleType_2, workbench, run_button } from './DOMAccess.js';
 
 var wb_h = workbench.style.height;
 var wb_w = workbench.style.width;
+var gs_h = workbench.style.height;
+var gs_w = workbench.style.width;
 var updater = setInterval(update, 0.5);
 var mouseDown = false;
 var mouseX;
 var mouseY;
+
+var element = new Element("test",20,20);
 
 var module_manager = new ModuleManager(codes);
 var img = new Image();
@@ -19,9 +23,9 @@ img.src = "icons/basura.svg";
 moduleType_1.addEventListener("click", function(){createModule('log1', {x: 100, y: 100}, null, prompt("Please enter text to log:", "HI"))});
 moduleType_2.addEventListener("click", function(){createModule('log2', {x: 100, y: 200}, null, prompt("Please enter text to log:", "HO"))});
 run_button.addEventListener("click", run);
-cvs.addEventListener("mousemove", move);
-cvs.addEventListener("mousedown", click);
-cvs.addEventListener("mouseup", release);
+wb_cvs.addEventListener("mousemove", move);
+wb_cvs.addEventListener("mousedown", click);
+wb_cvs.addEventListener("mouseup", release);
 
 // FUNCTIONS
 function run() {
@@ -86,12 +90,14 @@ function update() {
 
 	wb_h = workbench.clientHeight;
 	wb_w = workbench.clientWidth;
-	cvs.height = wb_h;
-	cvs.width = wb_w;
+	wb_cvs.height = wb_h;
+	wb_cvs.width = wb_w;
 
-	paintInCanvas(wb_w, wb_h, ctx, mouseX, mouseY, img);
+	paintInCanvas(wb_w, wb_h, wb_ctx, mouseX, mouseY, img);
 
-	module_manager.draw(ctx);
+	element.draw(gs_ctx);
+
+	module_manager.draw(wb_ctx);
 }
 
 export{
