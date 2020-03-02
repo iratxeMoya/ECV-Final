@@ -217,6 +217,8 @@ class ModuleManager {
 
                 var nextModule = module;
 
+                console.log('fuera ', module);
+
                 while (nextModule.next !== null) {
                     console.log('before ', nextModule.next)
                     nextModule = nextModule.next;
