@@ -267,7 +267,7 @@ class ModuleManager {
 
                 console.log(nextModule)
                 nextModule = nextModule.next;
-                nextModule.desable_moving();
+                nextModule.disable_moving();
             }
             
         });
