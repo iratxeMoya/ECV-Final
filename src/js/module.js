@@ -218,6 +218,7 @@ class ModuleManager {
                 var nextModule = module;
 
                 while (nextModule.next !== null) {
+                    console.log(nextModule)
                     nextModule = nextModule.next;
                     nextModule.enable_moving();
                 }
@@ -255,10 +256,8 @@ class ModuleManager {
                 });
 
                 activeModuleIds.push(module.id);
-                
-                var nextModule = module;
 
-                console.log(nextModule)
+                var nextModule = module;
     
                 while (nextModule.next !== null) {
     
