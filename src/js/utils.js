@@ -37,7 +37,21 @@ function createModule (type, position, target, arg) {
     
 }
 
+function paintInCanvas (wb_w, wb_h) {
+
+	ctx.fillStyle = "#FFFFFF";
+	ctx.fillRect(0, 0, wb_w, wb_h);
+
+	ctx.fillStyle = "#FF0000";
+	ctx.fillRect(mouseX, mouseY, 5, 5);
+
+	ctx.fillStyle = "#000000"
+	ctx.drawImage(img, 5, 5, 25, 25);
+
+}
+
 export {
     isHover,
-    createModule,
+	createModule,
+	paintInCanvas
 }
