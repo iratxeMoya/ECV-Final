@@ -101,12 +101,12 @@ class Module {
 
         if (position === 'before') {
 
-            this.before = module;
+            this.prev = module;
 
         } 
         else {
 
-            this.after = module;
+            this.next = module;
 
         }
 
