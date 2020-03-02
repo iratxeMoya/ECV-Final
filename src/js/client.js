@@ -92,8 +92,14 @@ function update() {
 	wb_w = workbench.clientWidth;
 	wb_cvs.height = wb_h;
 	wb_cvs.width = wb_w;
+	
+	gs_h = workbench.clientHeight;
+	gs_w = workbench.clientWidth;
+	gs_cvs.height = gs_h;
+	gs_cvs.width = gs_w;
 
 	paintInCanvas(wb_w, wb_h, wb_ctx, mouseX, mouseY, img);
+	paintInCanvas(wb_w, wb_h, gs_ctx, mouseX, mouseY, img);
 
 	element.draw(gs_ctx);
 
