@@ -2,12 +2,12 @@ import { ModuleManager, activeModuleIds, deletingModuleIds, Element } from './mo
 import { codes } from './codes.js';
 import { connection } from './init.js';
 import { isHover, createModule, paintInCanvas } from './utils.js';
-import { wb_cvs, wb_ctx,gs_cvs, gs_ctx, moduleType_1, moduleType_2, workbench, run_button } from './DOMAccess.js';
+import { wb_cvs, wb_ctx,gs_cvs, gs_ctx, moduleType_1, moduleType_2, workbench,game_screen, run_button } from './DOMAccess.js';
 
 var wb_h = workbench.style.height;
 var wb_w = workbench.style.width;
-var gs_h = workbench.style.height;
-var gs_w = workbench.style.width;
+var gs_h = game_screen.style.height;
+var gs_w = game_screen.style.width;
 var updater = setInterval(update, 0.5);
 var mouseDown = false;
 var mouseX;
