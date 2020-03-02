@@ -19,7 +19,6 @@ class Element {
 	}
 	
 	draw(gs_ctx){
-		console.log(this.parameters)
 		gs_ctx.fillStyle = '#00FF00';
         gs_ctx.fillRect(this.parameters.posx-this.parameters.sizex/2,this.parameters.posy-this.parameters.sizey/2, this.parameters.sizex,this.parameters.sizey);
 	}
