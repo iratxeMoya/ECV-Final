@@ -40,7 +40,7 @@ class Module {
         }
         else {
 
-            this.offset = this.prev.offset + MODULESIZE;
+            this.offset = MODULESIZE;
 
         }
 
