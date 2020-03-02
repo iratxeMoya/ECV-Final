@@ -31,7 +31,7 @@ class Module {
      */
     update_offset(){
 
-        if(this.prev === null) {
+        if(typeof this.prev === 'undefined') {
 
             this.offset = 0;
 
