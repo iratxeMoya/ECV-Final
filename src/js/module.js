@@ -209,10 +209,10 @@ class ArgModule extends Module {
 
 class TargetModule extends Module{
 	constructor(position, target, id, next = null, prev = null) {
-		
+		super(position, "target", id, next, prev);
+
 		this.target = target;
 		this.executed = false;
-		super(position, "target", id, next, prev);
 		
 	}
 	
