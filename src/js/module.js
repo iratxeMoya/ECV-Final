@@ -113,9 +113,9 @@ class Module {
         jsonData.moduleId = this.id;
         jsonData.position = this.position;
         jsonData.code = this.code;
-        jsonData.target = this.target;
-        jsonData.before = this.before;
-        jsonData.after = this.after;
+        jsonData.target = this.target ? this.target.id : null;
+        jsonData.before = this.before ? this.before.id : null;
+        jsonData.after = this.after ? this.after.id : null;
         
         connection.send(JSON.stringify(jsonData));
 

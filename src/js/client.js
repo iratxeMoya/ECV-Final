@@ -16,8 +16,8 @@ var img = new Image();
 
 img.src = "icons/basura.svg";
 
-moduleType_1.addEventListener("click", function(){createModule('log1', {x: 100, y: 100}, 'none', prompt("Please enter text to log:", "HI"))});
-moduleType_2.addEventListener("click", function(){createModule('log2', {x: 100, y: 200}, 'none', prompt("Please enter text to log:", "HO"))});
+moduleType_1.addEventListener("click", function(){createModule('log1', {x: 100, y: 100}, null, prompt("Please enter text to log:", "HI"))});
+moduleType_2.addEventListener("click", function(){createModule('log2', {x: 100, y: 200}, null, prompt("Please enter text to log:", "HO"))});
 run_button.addEventListener("click", run);
 cvs.addEventListener("mousemove", move);
 cvs.addEventListener("mousedown", click);
