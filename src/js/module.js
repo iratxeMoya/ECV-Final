@@ -94,9 +94,16 @@ class Module {
 
         if (position === 'before') {
 
-            this.prev = module;
-            module.next = this;
-            //module.next.prev = null;
+            var copiaThis = this;
+            copiaThis.next = null;
+            copiaThis.prev = null;
+
+            var copiaMod = module;
+            copiaMod.next = null;
+            copiaMod.prev = null;
+            this.prev = copiaMod;
+            module.next = copiaThis;
+            //module.prev.next = null;
 
             console.log(module, this)
 
