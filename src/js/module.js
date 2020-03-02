@@ -238,8 +238,9 @@ class ModuleManager {
 
 			if (Math.abs(posx-pos.x) < MODULESIZE / 2 && Math.abs(posy-pos.y) < MODULESIZE / 2 ){
                 
-				if (module.before){
-					module.before = null;
+				if (module.prev){
+					module.prev.next=null;
+					module.prev = null;
 				}
 				
                 module.enable_moving();
