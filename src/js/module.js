@@ -95,6 +95,10 @@ class Module {
         if (position === 'before') {
 
             this.prev = module;
+            module.next = this;
+            module.next.prev = null;
+
+            console.log(module, this)
 
         } 
         else {
@@ -248,7 +252,6 @@ class ModuleManager {
                     if (module.isNear(nearModule)&& module !== nearModule) {
 
                         module.relate(nearModule,"before");
-                        nearModule.relate(module, 'after');
                         module.update_offset();
                         module.position.x = nearModule.position.x;
                         module.position.y = nearModule.position.y + module.offset;
