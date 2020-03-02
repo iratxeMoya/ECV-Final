@@ -3,6 +3,8 @@ import { codes, styles } from './codes.js';
 
 var activeModuleIds = [];
 var deletingModuleIds = [];
+var exe_parameters={};
+
 const MODULESIZE =25;
 
 
@@ -158,6 +160,10 @@ class Module {
 		return this.prev ? this.prev.getMasterPos() : this.position;
 		
 	}
+	
+	getTarget(){
+		return this.prev ? this.prev.getTarget() : (typeof this === "TargetModule" ? this.target : null);
+	}
 
     /**
      * Runs code of the module
@@ -212,15 +218,6 @@ class TargetModule extends Module{
 	}
 	
 	run(){
-		if (!this.executed){
-			codestr ="";
-			for (key in target.parameters){
-				codestr = codestr+" var exe_"+key+"="+target.parameters[key]+";\n";
-			}
-			console.log(codestr);
-			eval(codestr);
-			this.executed = true;
-		}
 	}
 	
 }

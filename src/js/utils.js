@@ -29,7 +29,7 @@ function createModule (codeType, position, target=null, arg=null,moduleType = "b
 			mod = new TargetModule(position, target , id);
 			break;
 		default:
-			mod = new Module(position, codeType, target , id);
+			mod = new Module(position, codeType, id);
 			break;
 	}
     

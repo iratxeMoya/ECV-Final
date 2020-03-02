@@ -20,8 +20,8 @@ var img = new Image();
 
 img.src = "icons/basura.svg";
 
-moduleType_1.addEventListener("click", function(){createModule('log1', {x: 100, y: 100}, null, prompt("Please enter text to log:", "HI"))});
-moduleType_2.addEventListener("click", function(){createModule('log2', {x: 100, y: 200}, null, prompt("Please enter text to log:", "HO"))});
+moduleType_1.addEventListener("click", function(){createModule('log2', {x: 100, y: 100})});
+moduleType_2.addEventListener("click", function(){createModule({x: 100, y: 200}, element, 10,"target")});
 run_button.addEventListener("click", run);
 wb_cvs.addEventListener("mousemove", move);
 wb_cvs.addEventListener("mousedown", click);
@@ -93,13 +93,13 @@ function update() {
 	wb_cvs.height = wb_h;
 	wb_cvs.width = wb_w;
 	
-	gs_h = workbench.clientHeight;
-	gs_w = workbench.clientWidth;
+	gs_h = game_screen.clientHeight;
+	gs_w = game_screen.clientWidth;
 	gs_cvs.height = gs_h;
 	gs_cvs.width = gs_w;
 
 	paintInCanvas(wb_w, wb_h, wb_ctx, mouseX, mouseY, img,true);
-	paintInCanvas(wb_w, wb_h, gs_ctx, mouseX, mouseY, img,false);
+	paintInCanvas(gs_w, gs_h, gs_ctx, mouseX, mouseY, img,false);
 	
 
 	element.draw(gs_ctx);
