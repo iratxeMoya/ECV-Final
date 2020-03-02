@@ -100,9 +100,6 @@ class Module {
 
             this.prev = copiaMod;
             module.next = copiaThis;
-            //module.prev.next = null;
-
-            console.log(module, this)
 
         } 
         else {
@@ -228,10 +225,10 @@ class ModuleManager {
                 console.log('fuera ', module);
 
                 while (nextModule.next !== null) {
-                    console.log('before ', nextModule.next)
+                    console.log('before ', nextModule)
                     nextModule = nextModule.next;
-                    console.log('after ', nextModule.next)
                     nextModule.enable_moving();
+                    console.log('after ', nextModule)
                 }
                 
             }
@@ -253,9 +250,9 @@ class ModuleManager {
 
                 this.modules.forEach(nearModule => {
 
-                    if (module.isNear(nearModule)&& module !== nearModule) {
+                    if (module.isNear(nearModule) && module !== nearModule) {
 
-                        module.relate(nearModule,"before");
+                        module.relate(nearModule, "before");
                         module.update_offset();
                         module.position.x = nearModule.position.x;
                         module.position.y = nearModule.position.y + module.offset;
