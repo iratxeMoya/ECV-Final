@@ -44,11 +44,6 @@ class Module {
 
         }
 
-        /*if(typeof this.next !== 'undefined' && this.next !== null) {
-
-            this.next.update_offset();
-
-        }*/
     }
 
     /**
@@ -221,6 +216,13 @@ class ModuleManager {
 			if (pos.x > posx - 10 && pos.x < posx + 10 && pos.y > posy - 10 && pos.y < posy + 10){
                 
                 module.enable_moving();
+
+                var nextModule = module;
+
+                while (nextModule.next !== null) {
+                    nextModule = nextModule.next;
+                    nextModule.enable_moving();
+                }
                 
             }
 
@@ -258,6 +260,13 @@ class ModuleManager {
             }
             
             module.disable_moving();
+
+            var nextModule = module;
+
+            while (nextModule.next !== null) {
+                nextModule = nextModule.next;
+                nextModule.desable_moving();
+            }
             
         });
         
