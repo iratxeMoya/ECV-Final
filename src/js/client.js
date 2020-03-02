@@ -21,7 +21,7 @@ var img = new Image();
 img.src = "icons/basura.svg";
 
 moduleType_1.addEventListener("click", function(){createModule('log2', {x: 100, y: 100})});
-moduleType_2.addEventListener("click", function(){createModule({x: 100, y: 200}, element, 10,"target")});
+moduleType_2.addEventListener("click", function(){createModule(null,{x: 100, y: 200}, element, null,"target")});
 run_button.addEventListener("click", run);
 wb_cvs.addEventListener("mousemove", move);
 wb_cvs.addEventListener("mousedown", click);
