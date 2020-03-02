@@ -19,6 +19,7 @@ function isHover(x, y) {
 
 function createModule (type, position, target, arg) {
 
+    var id = Date.now();
     var mod = new ArgModule(position, type, target , id, arg);
 	module_manager.add_module(mod);
 
