@@ -61,8 +61,6 @@
 	position:absolute;
 	top:0px;
 	left:0px;
-	height:calc(100% - 20px);
-	width:calc(100% - 20px);
 	border:10px solid blue;
 }
 
