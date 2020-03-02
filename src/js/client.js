@@ -89,7 +89,7 @@ function update() {
 	cvs.height = wb_h;
 	cvs.width = wb_w;
 
-	paintInCanvas(wb_w, wb_h);
+	paintInCanvas(wb_w, wb_h, ctx);
 
 	module_manager.draw(ctx);
 }

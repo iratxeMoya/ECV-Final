@@ -37,7 +37,7 @@ function createModule (type, position, target, arg) {
     
 }
 
-function paintInCanvas (wb_w, wb_h) {
+function paintInCanvas (wb_w, wb_h, ctx) {
 
 	ctx.fillStyle = "#FFFFFF";
 	ctx.fillRect(0, 0, wb_w, wb_h);
