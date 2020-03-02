@@ -42,7 +42,7 @@ class Module {
 
         }
 
-        if(this.next !== null) {
+        if(typeof this.next !== 'undefined') {
 
             this.next.update_offset();
 
