@@ -33,7 +33,7 @@ class Module {
 
         console.log(this)
 
-        if(typeof this.prev === 'undefined') {
+        if(typeof this.prev === 'undefined' || this.prev === null) {
 
             this.offset = 0;
 
@@ -44,7 +44,7 @@ class Module {
 
         }
 
-        if(typeof this.next !== 'undefined') {
+        if(typeof this.next !== 'undefined' || this.next !== null) {
 
             this.next.update_offset();
 
