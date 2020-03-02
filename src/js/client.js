@@ -1,9 +1,8 @@
 import { ArgModule, ModuleManager, activeModuleIds, deletingModuleIds } from './module.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
-import { isHover } from './utils.js';
+import { isHover, createModule } from './utils.js';
 
-var modules = document.getElementsByClassName("module");
 var updater = setInterval(update, 0.5);
 
 var mouseDown = false;
@@ -16,25 +15,28 @@ var module_manager = new ModuleManager(codes);
 var moduleType_1 = document.querySelector("#module1");
 var moduleType_2 = document.querySelector("#module2");
 
-moduleType_1.addEventListener("click", createModuleType_1);
-moduleType_2.addEventListener("click", createModuleType_2);
+moduleType_1.addEventListener("click", function(){createModule('log1', {x: 100, y: 100}, 'none', prompt("Please enter text to log:", "HI"))});
+moduleType_2.addEventListener("click", function(){createModule('log2', {x: 100, y: 200}, 'none', prompt("Please enter text to log:", "HO"))});
 
 function createModuleType_1 () {
 
 	var id = Date.now();
-
+	var type = 'log1';
+	var target = "none";
+	var position = {x: 100, y: 100};
 	var arg = prompt("Please enter text to log:", "HI");
-	var mod = new ArgModule({x: 100, y: 100}, "log1", "none" , id, arg);
+
+	var mod = new ArgModule(position, type, target , id, arg);
 	module_manager.add_module(mod);
 
 	var newModule = {};
 	newModule.type = 'createModule';
 	newModule.moduleId = id;
-	newModule.position = {x: 100, y: 100};
+	newModule.position = position;
 	newModule.after = null;
 	newModule.before = null;
-	newModule.target = "none";
-	newModule.moduleType = "log1";
+	newModule.target = target;
+	newModule.moduleType = type;
 	newModule.arg = arg;
 
 	connection.send(JSON.stringify(newModule));
@@ -43,26 +45,28 @@ function createModuleType_1 () {
 
 function createModuleType_2 () {
 
-	var id = Date.now();;
-
+	var id = Date.now();
+	var position = {x: 100, y: 200};
+	var type = 'log2';
+	var target = "none";
 	var arg = prompt("Please enter text to log:", "HO");
-	var mod = new ArgModule({x: 100, y: 200}, "log2", "none" , id, arg);
+
+	var mod = new ArgModule(position, type, target, id, arg);
 	module_manager.add_module(mod);
 
 	var newModule = {};
 	newModule.type = 'createModule';
 	newModule.moduleId = id;
-	newModule.position = {x: 100, y: 200};
+	newModule.position = position;
 	newModule.after = null;
 	newModule.before = null;
-	newModule.target = "none";
-	newModule.moduleType = "log2";
+	newModule.target = target;
+	newModule.moduleType = type;
 	newModule.arg = arg;
 
 	connection.send(JSON.stringify(newModule));
 	
 }
-
 
 var workbench = document.getElementsByClassName("user_screen")[0];
 var run_button = document.getElementsByClassName("run_code")[0];
@@ -72,8 +76,6 @@ var wb_w = workbench.style.width;
 
 var mouseX;
 var mouseY;
-
-var moving = [];
 
 run_button.addEventListener("click", function() {
 
