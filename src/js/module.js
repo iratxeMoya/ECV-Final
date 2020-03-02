@@ -38,9 +38,13 @@ class Module {
         }
         else {
 
-            this.offset = MODULESIZE;
+            this.offset = this.prev.offset + MODULESIZE;
 
         }
+		
+		if (this.next) {
+			this.next.update_offset()
+		}
 
     }
 
@@ -50,6 +54,7 @@ class Module {
 	enable_moving() {
 
         this.moving = true;
+		this.next ? this.next.enable_moving() : null;
         
     }
     
@@ -84,6 +89,18 @@ class Module {
         return Math.abs(module.position.x - this.position.x) < MODULESIZE * 2 && Math.abs(module.position.y - this.position.y) < MODULESIZE * 2; 
 
     }
+	
+	isChild(module) {
+		
+		return this.id === module.id ? true : (this.next ? this.next.isChild(module) : false) ;
+	
+	}
+	
+	isParent(module) {
+		
+		return this.id === module.id ? true : (this.prev ? this.prev.isParent(module) : false) ;
+	
+	}
 
     /**
      * 
@@ -120,6 +137,11 @@ class Module {
         connection.send(JSON.stringify(jsonData));
 
     }
+	getMasterPos () {
+		
+		return this.prev ? this.prev.getMasterPos() : this.position;
+		
+	}
 
     /**
      * Runs code of the module
@@ -216,24 +238,15 @@ class ModuleManager {
 
 			let pos = module.position;
 
-			if (pos.x > posx - 10 && pos.x < posx + 10 && pos.y > posy - 10 && pos.y < posy + 10){
+			if (Math.abs(posx-pos.x) < MODULESIZE / 2 && Math.abs(posy-pos.y) < MODULESIZE / 2 ){
                 
 				if (module.before){
 					module.before = null;
 				}
 				
                 module.enable_moving();
-
-                var nextModule = module;
-
-                console.log('fuera ', module);
-
-                while (!nextModule.next) {
-                    console.log('before ', nextModule)
-                    nextModule = nextModule.next;
-                    nextModule.enable_moving();
-                    console.log('after ', nextModule)
-                }
+				
+				return;
                 
             }
 
@@ -254,12 +267,12 @@ class ModuleManager {
 
                 this.modules.forEach(nearModule => {
 
-                    if (module.isNear(nearModule) && module !== nearModule && nearModule.position.y >= module.position.y) {
+                    if (module.isNear(nearModule) && !isParent(nearModule) && !isChild(nearModule)) {
 
                         module.relate(nearModule, "before");
                         module.update_offset();
-                        module.position.x = nearModule.position.x;
-                        module.position.y = nearModule.position.y + module.offset;
+                        module.position.x = nearModule.getMasterPos().x;
+                        module.position.y = nearModule.getMasterPos().y + module.offset;
                         return;
 
                     }
