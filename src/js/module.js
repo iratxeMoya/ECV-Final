@@ -315,7 +315,8 @@ class ModuleManager {
                     }
 
                 });
-
+				
+				console.log('in release ', module.id)
                 activeModuleIds.push(module.id);
 
             }
