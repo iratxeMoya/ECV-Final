@@ -74,7 +74,7 @@ wss.on('connection', function(ws) {
             fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
                 if (err) {
                     console.log("File read failed:", err)
-                    return
+                    return;
                 }
 
                 var json = JSON.parse(jsonString);

@@ -4,6 +4,19 @@ import { codes, styles } from './codes.js';
 var activeModuleIds = [];
 var deletingModuleIds = [];
 const MODULESIZE =25;
+
+
+class Element {
+	
+	constructor (position, avatar = null, id) {
+		
+		this.parameters={'posx':position.x,'posy':position.y}
+		this.id = id;
+		
+	}
+	
+}
+
 class Module {
 
     /**
@@ -17,7 +30,6 @@ class Module {
 
         this.position = position;
 		this.type = type;
-        this.target = target;
         this.id = id;
         this.prev = prev;
         this.next = next;
@@ -128,7 +140,6 @@ class Module {
         jsonData.moduleId = this.id;
         jsonData.position = this.position;
         jsonData.code = this.code;
-        jsonData.target = this.target ? this.target.id : null;
         jsonData.before = this.before ? this.before.id : null;
         jsonData.after = this.after ? this.after.id : null;
         
@@ -156,13 +167,13 @@ class ArgModule extends Module {
      * 
      * @param {Object} position {x, y}
      * @param {String} type 
-     * @param {Module} target ???? 
+     * @param {Module} target
      * @param {Int} id Unique ??????? no se como hacer esto
      * @param {String} argument to pass	
      */
-	constructor (position, type, target, id, arg, next = null, prev = null) {
+	constructor (position, type, id, arg, next = null, prev = null) {
 
-		super(position, type, target, id, next, prev)
+		super(position, type, id, next, prev)
         this.arg = arg;
         
     }
@@ -182,6 +193,29 @@ class ArgModule extends Module {
         eval(codes[this.type].replace('$arg$', this.arg)); 
 
     }
+}
+
+class TargetModule extends module{
+	constructor(position, target, id, next = null, prev = null) {
+		
+		this.target = target;
+		this.executed = false;
+		super(position, "target", id, next, prev);
+		
+	}
+	
+	run(){
+		if (!this.executed){
+			codestr ="";
+			for (key in target.parameters){
+				codestr = codestr+" var exe_"+key+"="+target.parameters[key]";\n";
+			}
+			console.log(codestr);
+			eval(codestr);
+			this.executed = true;
+		}
+	}
+	
 }
 
 class ModuleManager {
@@ -335,6 +369,8 @@ class ModuleManager {
 		});
 	}
 }
+
+
 
 /**
  * Removes element from array

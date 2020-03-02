@@ -17,10 +17,22 @@ function isHover(x, y) {
     return false;
 }
 
-function createModule (type, position, target, arg) {
+function createModule (codetType, position, target=null, arg=null,moduleType = "basic" ) {
 
     var id = Date.now();
-    var mod = new ArgModule(position, type, target , id, arg);
+	var mod;
+	switch (moduleType){
+		case 'arg':
+			mod = new ArgModule(position, codeType, target , id, arg);
+			break;
+		case 'target':
+			mod = new TargetModule(position, target , id);
+			break;
+		default:
+			mod = new Module(position, codeType, target , id);
+			break;
+	}
+    
 	module_manager.add_module(mod);
 
 	var newModule = {};
@@ -30,7 +42,7 @@ function createModule (type, position, target, arg) {
 	newModule.after = null;
 	newModule.before = null;
 	newModule.target = target;
-	newModule.moduleType = type;
+	newModule.moduleType = codeType;
 	newModule.arg = arg;
 
     connection.send(JSON.stringify(newModule));
