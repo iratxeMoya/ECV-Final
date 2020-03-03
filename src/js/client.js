@@ -127,9 +127,6 @@ function update() {
 
 	paintInCanvas(wb_w, wb_h, wb_ctx, img, true, mouseX, mouseY);
 	paintInCanvas(gs_w, gs_h, gs_ctx, img, false);
-	
-
-	element.draw(gs_ctx);
 
 	module_manager.draw(wb_ctx);
 }
