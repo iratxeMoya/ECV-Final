@@ -153,7 +153,7 @@ wss.on('connection', function(ws) {
             info.id = jsonData.id;
             info.position = jsonData.position;
 
-            fs.readFile('src/data/elements.json', 'utf8', (err, jsonString) => {
+            /*fs.readFile('src/data/elements.json', 'utf8', (err, jsonString) => {
                 if (err) {
                     console.log("File read failed:", err)
                     return;
@@ -171,7 +171,7 @@ wss.on('connection', function(ws) {
                 
                     console.log("The file was saved! ", jsonStr);
                 });
-            })
+            })*/
 
             
 
