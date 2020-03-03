@@ -54,6 +54,7 @@ function clickDropDownElement () {
 	console.log('targetModule clicked ', this);
 	var t = element_manager.getElementById(this.id)
 	mod = new TargetModule(position, t , id);
+	module_manager.add_module(mod);
 }
 
 function createModule (codeType, position, target = null, arg = null, moduleType = "basic" ) {
@@ -74,7 +75,7 @@ function createModule (codeType, position, target = null, arg = null, moduleType
 			break;
 	}
     
-	module_manager.add_module(mod);
+	mod ? module_manager.add_module(mod) : null;
 
 	var newModule = {};
 	newModule.type = 'createModule';
