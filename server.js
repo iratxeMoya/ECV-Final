@@ -150,10 +150,10 @@ wss.on('connection', function(ws) {
 
                 console.log('relate: ', jsonData, jsonString);
                 var json = JSON.parse(jsonString);
-                json[jsonData.id].prev_id = jsonData.before;
-                json[jsonData.id].next_id = jsonData.after;
-                jsonData.before !== null ? json[jsonData.before].next_id = jsonData.id : json[jsonData.before].next_id = null;
-                jsonData.after !== null ? json[jsonData.after].prev_id = jsonData.id : json[jsonData.after].prev_id = null;
+                json[jsonData.id.toString()].prev_id = jsonData.before;
+                json[jsonData.id.toString()].next_id = jsonData.after;
+                jsonData.before !== null ? json[jsonData.before.toString()].next_id = jsonData.id : json[jsonData.before.toString()].next_id = null;
+                jsonData.after !== null ? json[jsonData.after.toString()].prev_id = jsonData.id : json[jsonData.after.toString()].prev_id = null;
                 jsonStr = JSON.stringify(json);
 
 
