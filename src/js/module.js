@@ -183,7 +183,8 @@ class Module {
 	}
 	
 	getTarget(){
-		
+        
+        console.log('getting target ', this)
 		return this.prev ? this.prev.getTarget() : (this.type === "target" ? this.target : null);
 	}
 
@@ -386,7 +387,7 @@ class ModuleManager {
 	draw(wb_ctx) {
 
 		this.modules.forEach(module => {
-            
+
             module.draw(wb_ctx);
             
 		});
