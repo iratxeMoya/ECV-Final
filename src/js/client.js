@@ -86,6 +86,7 @@ function release(event) {
 	if (remove) {
 		deletingModuleIds.forEach(id => {
 			var module = (module_manager.getModuleByID(id));
+			console.log(module)
 			var element = {};
 			element.id = id;
 			element.prev = module.prev ? module.prev.id : null;
