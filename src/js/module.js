@@ -44,6 +44,8 @@ class ElementManager {
 
     getElementById (id) {
 
+        console.log('elements: ', this.elements)
+
         return this.elements.filter(ele => ele.id === id);
 
     }
