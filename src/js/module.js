@@ -48,7 +48,7 @@ class ElementManager {
 
     }
 
-    drawElements (gs_ctx) {
+    draw (gs_ctx) {
         this.elements.forEach(element => {
             element.draw(gs_ctx);
         })

@@ -129,6 +129,7 @@ function update() {
 	paintInCanvas(gs_w, gs_h, gs_ctx, img, false);
 
 	module_manager.draw(wb_ctx);
+	element_manager.draw(gs_ctx);
 }
 
 export{

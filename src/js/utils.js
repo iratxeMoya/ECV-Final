@@ -36,9 +36,16 @@ function createElement (position) {
 
 	var dropdownElement = document.createElement("span");
 	dropdownElement.id = id;
-	dropdownElement.innerText = id; //Esto estaria bien tener un nombre para el element
-	dropdownElement.addEventListener("click", clickDropDownElement)
-	dropdownContainer.appendChild(dropdownElement);
+
+	var elementsWithId = document.getElementById(id);
+    if (elementsWithId.length === 0) {
+
+		dropdownElement.innerText = id; //Esto estaria bien tener un nombre para el element
+		dropdownElement.addEventListener("click", clickDropDownElement)
+		dropdownContainer.appendChild(dropdownElement);
+		
+	}
+	
 
 }
 
