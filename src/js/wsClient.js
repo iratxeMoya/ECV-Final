@@ -62,7 +62,7 @@ connection.onmessage = (event) => {
 
         if (!elementsWithId) {
 
-            dropdownElement.innerText = id; //Esto estaria bien tener un nombre para el element
+            dropdownElement.innerText = jsonData.id; //Esto estaria bien tener un nombre para el element
             dropdownElement.addEventListener("click", clickDropDownElement)
             dropdownContainer.appendChild(dropdownElement);
 
