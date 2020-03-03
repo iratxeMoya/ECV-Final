@@ -141,6 +141,7 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'relateModules') {
 
+            console.log('in relate ', jsonData);
             fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
                 if (err) {
                     console.log("File read failed:", err)
