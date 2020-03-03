@@ -54,7 +54,7 @@ function clickDropDownElement () {
 
 	console.log('targetModule clicked ', this);
 	var t = element_manager.getElementById(this.id)
-	mod = new TargetModule(targetModulePos, t , this.id);
+	var mod = new TargetModule(targetModulePos, t , this.id);
 	module_manager.add_module(mod);
 	dropdownContainer.classList.toggle("show");
 }
