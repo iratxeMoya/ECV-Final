@@ -1,6 +1,8 @@
-import { Module, ArgModule, TargetModule, } from './module.js';
-import { module_manager } from './client.js';
+import { Module, ArgModule, TargetModule, Element } from './module.js';
+import { module_manager, element_manager } from './client.js';
 import { connection } from './init.js';
+import { dropdownContainer } from './DOMAccess.js';
+
 
 /**
  * Is x, y position hovering the trash icon?
@@ -17,6 +19,34 @@ function isHover(x, y) {
     return false;
 }
 
+function createElement (position) {
+
+	var id = Date.now();
+
+	var element = new Element(id, position);
+	element_manager.add_element(element);
+
+	var newElement = {};
+
+	newElement.type = 'createElement';
+	newElement.id = id;
+	newElement.position = position;
+
+	connection.send(JSON.stringify(newModule));
+
+	var dropdownElement = document.createElement("span");
+	dropdownElement.id = id;
+	dropdownElement.innerText = id; //Esto estaria bien tener un nombre para el element
+	dropdownElement.addEventListener("click", clickDropDownElement)
+	dropdownContainer.appendChild(dropdownElement);
+
+}
+
+function clickDropDownElement () {
+	var t = element_manager.getElementById(this.id)
+	mod = new TargetModule(position, t , id);
+}
+
 function createModule (codeType, position, target = null, arg = null, moduleType = "basic" ) {
  
     var id = Date.now();
@@ -26,7 +56,7 @@ function createModule (codeType, position, target = null, arg = null, moduleType
 			mod = new ArgModule(position, codeType, target , id, arg);
 			break;
 		case 'target':
-			mod = new TargetModule(position, target , id);
+			dropdownContainer.classList.toggle("show");
 			break;
 		default:
 			mod = new Module(position, codeType, id);
@@ -63,5 +93,6 @@ function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash) {
 export {
     isHover,
 	createModule,
+	createElement,
 	paintInCanvas
 }

@@ -145,10 +145,38 @@ wss.on('connection', function(ws) {
             broadcastMsg(data, connectedUsers, ws);
             
         }
-        else if (jsonData.type === 'relateModules') {
+        else if (jsonData.type === 'createElement') {
 
-            console.log('in relate ', jsonData);
+            console.log('create Element: ', jsonData);
 
+            var info = {};
+            info.id = jsonData.id;
+            info.position = jsonData.position;
+
+            fs.readFile('src/data/elements.json', 'utf8', (err, jsonString) => {
+                if (err) {
+                    console.log("File read failed:", err)
+                    return;
+                }
+
+                var json = JSON.parse(jsonString);
+                json[info.id.toString()] = info;
+                jsonStr = JSON.stringify(json);
+
+
+                fs.writeFile("src/data/elements.json", jsonStr, 'utf8', function (err) {
+                    if (err) {
+                        return console.log('error: ', err);
+                    }
+                
+                    console.log("The file was saved! ", jsonStr);
+                });
+            })
+
+            
+
+            broadcastMsg(data, connectedUsers, ws);
+            
         }
 
     });

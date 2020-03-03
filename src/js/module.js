@@ -10,19 +10,51 @@ const MODULESIZE =25;
 
 class Element {
 	
-	constructor (id,position, avatar = null) {
+	constructor (id, position, avatar = null) {
 		
 		this.parameters={'posx':position.x,'posy':position.y,'sizex':MODULESIZE,'sizey':MODULESIZE}
 		this.id = id;
 		
-		
-	}
+    }
 	
 	draw(gs_ctx){
 		gs_ctx.fillStyle = '#00FF00';
         gs_ctx.fillRect(this.parameters.posx-this.parameters.sizex/2,this.parameters.posy-this.parameters.sizey/2, this.parameters.sizex,this.parameters.sizey);
 	}
 	
+}
+
+class ElementManager {
+
+    constructor () {
+        this.elements = [];
+    }
+
+    add_element (element) {
+
+        this.elements.push(element);
+
+    }
+
+    delete_element (element) {
+
+        this.elements.remove(element);
+        
+    }
+
+    getElementById (id) {
+
+        return this.elements.filter(ele => ele.id === id);
+
+    }
+
+    drawElements (gs_ctx) {
+        this.elements.forEach(element => {
+            element.draw(gs_ctx);
+        })
+    }
+
+    
 }
 
 class Module {
@@ -142,18 +174,6 @@ class Module {
 			module.prev = this;
 
         }
-
-        var jsonData = {};
-        jsonData.type = 'relateModules';
-        jsonData.id = this.id;
-        jsonData.position = this.position;
-        jsonData.code = this.code;
-        jsonData.before = this.prev ? this.prev.id : null;
-        jsonData.after = this.next ? this.next.id : null;
-
-        console.log('relating: ', jsonData);
-        
-        connection.send(JSON.stringify(jsonData));
 
     }
 	getMasterPos () {
@@ -333,7 +353,7 @@ class ModuleManager {
     getModuleByID (id) {
 
         return this.modules.filter(mod => mod.id === id);
-        
+
     }
     
     /**
@@ -415,5 +435,6 @@ export {
     ModuleManager,
     activeModuleIds,
     deletingModuleIds,
-	Element
+    Element, 
+    ElementManager
 }

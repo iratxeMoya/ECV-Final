@@ -4,11 +4,10 @@
 
 ### Module:
 
-#### constructor (position, type, target, id, next, prev)
+#### constructor (position, type, id, next, prev)
 
     position: {x, y}
     type: String
-    target: String
     next: Module
     prev: Module
 
@@ -18,9 +17,9 @@
 
 #### disable_moving()
 
-#### draw(ctx) 
+#### draw(wb_ctx)
 
-    ctx: Canvas context
+    wb_ctx: Canvas context
 
 #### isNear(module)
 
@@ -35,11 +34,10 @@
 
 ### ArgModule extends Module
 
-#### costructor(position, type, target, id, arg, next, prev)
+#### costructor(position, type, id, arg, next, prev)
 
     position: {x, y}
     type: String
-    target: String
     next: Module
     prev: Module
     arg: String
@@ -47,6 +45,18 @@
 #### set_arg(arg)
 
     arg: String
+
+#### run()
+
+### TargetModule
+
+#### constructor(position, target, id, next?, prev?)
+
+    position: {x, y}
+    target: Element
+    id: int
+    next: Module
+    prev: Module
 
 #### run()
 
@@ -72,11 +82,46 @@
     posx: int
     posy: int
 
-#### draw(ctx)
+#### draw(wb_ctx)
 
-    ctx: canvas context
+    wb_ctx: canvas context
 
 #### run_modules()
+
+#### getElementById(id)
+
+    id: int
+
+### Element:
+
+#### constructor(id, position, avatar?)
+
+    id: int
+    position: {x, y}
+
+#### draw(gs_ctx):
+
+    gs_gtx: canvas context
+
+### ElementManager:
+
+#### constructor()
+
+#### add_element(element)
+
+    element: Element
+
+#### delete_element(element)
+
+    element: Element
+
+#### getElementById(id)
+
+    id: int
+
+#### drawElements(gs_ctx)
+
+    gs_ctx: canvas context
 
 ## Server:
 
@@ -97,7 +142,7 @@
     moveModule
     clickModule
     releaseModule
-    relateModules (no implemented)
+    createElement
 
 ### Files:
 
@@ -117,4 +162,16 @@ Data template:
         type: String,
         arg: String
 
+    }
+
+#### elements.json
+
+Data template:
+
+    {
+        id: int,
+        position: {
+            x: int,
+            y: int
+        }
     }
