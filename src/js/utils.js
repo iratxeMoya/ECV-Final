@@ -52,11 +52,24 @@ function createElement (position) {
 
 function clickDropDownElement () {
 
-	console.log('targetModule clicked ', this);
+	var id = Date.now();
+	
 	var t = element_manager.getElementById(this.id)
-	var mod = new TargetModule(targetModulePos, t , this.id);
+	var mod = new TargetModule(targetModulePos, t , id);
 	module_manager.add_module(mod);
 	dropdownContainer.classList.toggle("show");
+
+	var newModule = {};
+	newModule.type = 'createModule';
+	newModule.moduleId = id;
+	newModule.position = targetModulePos;
+	newModule.after = null;
+	newModule.before = null;
+	newModule.target = t;
+	newModule.moduleType = 'target';
+	newModule.arg = null;
+
+	connection.send(JSON.stringify(newModule));
 }
 
 function createModule (codeType, position, target = null, arg = null, moduleType = "basic" ) {
@@ -76,20 +89,23 @@ function createModule (codeType, position, target = null, arg = null, moduleType
 			mod = new Module(position, codeType, id);
 			break;
 	}
-    
-	mod ? module_manager.add_module(mod) : null;
+    if (mod) {
 
-	var newModule = {};
-	newModule.type = 'createModule';
-	newModule.moduleId = id;
-	newModule.position = position;
-	newModule.after = null;
-	newModule.before = null;
-	newModule.target = target;
-	newModule.moduleType = codeType;
-	newModule.arg = arg;
+		module_manager.add_module(mod);
 
-    connection.send(JSON.stringify(newModule));
+		var newModule = {};
+		newModule.type = 'createModule';
+		newModule.moduleId = id;
+		newModule.position = position;
+		newModule.after = null;
+		newModule.before = null;
+		newModule.target = target;
+		newModule.moduleType = codeType;
+		newModule.arg = arg;
+
+		connection.send(JSON.stringify(newModule));
+	}
+	
     
 }
 
