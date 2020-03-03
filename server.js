@@ -150,8 +150,8 @@ wss.on('connection', function(ws) {
                 var json = JSON.parse(jsonString);
                 json[jsonData.id].before = jsonData.before;
                 json[jsonData.id].after = jsonData.after;
-                jsonData.before ? json[jsonData.before].after = jsonData.id : json[jsonData.before].after = null;
-                jsonData.after ? json[jsonData.after].before = jsonData.id : json[jsonData.after].before = null;
+                jsonData.before !== null ? json[jsonData.before].after = jsonData.id : json[jsonData.before].after = null;
+                jsonData.after !== null ? json[jsonData.after].before = jsonData.id : json[jsonData.after].before = null;
                 jsonStr = JSON.stringify(json);
 
 
