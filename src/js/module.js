@@ -48,7 +48,7 @@ class ElementManager {
             console.log(element.id, id);
         })
 
-        return this.elements.filter(ele => ele.id === id);
+        return this.elements.filter(ele => ele.id.toString() === id);
 
     }
 
