@@ -108,7 +108,7 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'releaseModule') {
 
-            console.log('in release ', jsonData.modules);
+            console.log('in release ', jsonData);
 
             jsonData.modules.forEach(module => {
                 fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
@@ -116,7 +116,7 @@ wss.on('connection', function(ws) {
                         console.log("File read failed:", err)
                         return
                     }
-    
+                    
                     var json = JSON.parse(jsonString);
                     json[module.id.toString()].position = jsonData.position;
 
