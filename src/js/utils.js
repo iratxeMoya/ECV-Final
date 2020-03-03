@@ -3,6 +3,7 @@ import { module_manager, element_manager } from './client.js';
 import { connection } from './init.js';
 import { dropdownContainer } from './DOMAccess.js';
 
+var targetModulePos = null;
 
 /**
  * Is x, y position hovering the trash icon?
@@ -53,7 +54,7 @@ function clickDropDownElement () {
 
 	console.log('targetModule clicked ', this);
 	var t = element_manager.getElementById(this.id)
-	mod = new TargetModule(position, t , id);
+	mod = new TargetModule(targetModulePos, t , id);
 	module_manager.add_module(mod);
 }
 
@@ -66,8 +67,8 @@ function createModule (codeType, position, target = null, arg = null, moduleType
 			mod = new ArgModule(position, codeType, target , id, arg);
 			break;
 		case 'target':
-
-		console.log('is target');
+			console.log('is target');
+			targetModulePos = position;
 			dropdownContainer.classList.toggle("show");
 			break;
 		default:
