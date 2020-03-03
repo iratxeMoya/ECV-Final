@@ -86,23 +86,23 @@ function release(event) {
 	if (remove) {
 		deletingModuleIds.forEach(id => {
 			var module = (module_manager.getModuleByID(id));
-			console.log(module)
 			var element = {};
 			element.id = id;
 			element.prev = module.prev ? module.prev.id : null;
 			element.next = module.next ? module.next.id : null;
+			console.log(element)
 
 			modules.push(element);
 		})
 	} else {
 		activeModuleIds.forEach(id => {
 			var module = (module_manager.getModuleByID(id));
-			console.log(module)
 			var element = {};
 			element.id = id;
 			element.prev = module.prev ? module.prev.id : null;
 			element.next = module.next ? module.next.id : null;
-
+			console.log(element)
+			
 			modules.push(element);
 		})
 	}
