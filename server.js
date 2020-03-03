@@ -64,6 +64,7 @@ wss.on('connection', function(ws) {
 
             var info = {};
             info.id = jsonData.moduleId;
+            info.objType = 'module'; 
             info.prev_id = jsonData.before ? jsonData.before.id : null;
             info.next_id = jsonData.after ? jsonData.after.id : null;
             info.position = jsonData.position;
@@ -152,8 +153,9 @@ wss.on('connection', function(ws) {
             var info = {};
             info.id = jsonData.id;
             info.position = jsonData.position;
+            info.objType = 'element';
 
-            fs.readFile('src/data/elements.json', 'utf8', (err, jsonString) => {
+            fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
                 if (err) {
                     console.log("File read failed:", err)
                     return;
@@ -164,7 +166,7 @@ wss.on('connection', function(ws) {
                 jsonStr = JSON.stringify(json);
 
 
-                fs.writeFile("src/data/elements.json", jsonStr, 'utf8', function (err) {
+                fs.writeFile("src/data/modules.json", jsonStr, 'utf8', function (err) {
                     if (err) {
                         return console.log('error: ', err);
                     }
