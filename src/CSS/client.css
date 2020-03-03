@@ -45,7 +45,33 @@
 	width:100px;
 	height:100px;
 	z-index:2;
+	left: 50px;
+    top: 50px;
 }
+
+span#targetModule {
+    top: 290px;
+}
+
+span#argModule {
+    top: 170px;
+}
+
+.target {
+    position: absolute;
+    background-color: #e5ff1e;
+    width: 100px;
+    height: 100px;
+    z-index: 2;
+    left: 50px;
+    top: 50px;
+}
+
+span#element {
+    top: 410px;
+}
+
+
 
 .run_code{
 	position:absolute;

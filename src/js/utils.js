@@ -43,6 +43,8 @@ function createElement (position) {
 }
 
 function clickDropDownElement () {
+
+	console.log('targetModule clicked ', this);
 	var t = element_manager.getElementById(this.id)
 	mod = new TargetModule(position, t , id);
 }
@@ -56,6 +58,8 @@ function createModule (codeType, position, target = null, arg = null, moduleType
 			mod = new ArgModule(position, codeType, target , id, arg);
 			break;
 		case 'target':
+
+		console.log('is target');
 			dropdownContainer.classList.toggle("show");
 			break;
 		default:
@@ -85,18 +89,12 @@ function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash, mouseX, mouseY) {
 	wb_ctx.fillRect(0, 0, wb_w, wb_h);
 
 	if (trash){
-		//nose si esto fuciona (es para el hover de la basura)
+
 		wb_ctx.fillStyle = "#FFFFFF";
 		wb_ctx.drawImage(img, 5, 5, 25, 25);
-
-		/*wb_ctx.globalCompositeOperation = "source-in";
-
-		wb_ctx.fillStyle = wb_ctx.isPointInPath(mouseX, mouseY) ? "red" : "black";
-		wb_ctx.fillRect(0, 0, wb_w, wb_h);*/
 		
 	}
 
-	// wb_ctx.globalCompositeOperation = "source-over";
 }
 
 export {
