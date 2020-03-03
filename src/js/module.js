@@ -145,7 +145,7 @@ class Module {
 
         var jsonData = {};
         jsonData.type = 'relateModules';
-        jsonData.moduleId = this.id;
+        jsonData.id = this.id;
         jsonData.position = this.position;
         jsonData.code = this.code;
         jsonData.before = this.before ? this.before.id : null;
