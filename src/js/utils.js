@@ -73,7 +73,7 @@ function clickDropDownElement () {
 	connection.send(JSON.stringify(newModule));
 }
 
-function createModule (codeType, position, target = null, arg = null, moduleType = "basic" ) {
+function createModule (coclickDropDownElementeType, position, target = null, arg = null, moduleType = "basic" ) {
  
     var id = Date.now();
 	var mod;
@@ -128,5 +128,6 @@ export {
     isHover,
 	createModule,
 	createElement,
-	paintInCanvas
+	paintInCanvas,
+	clickDropDownElement,
 }

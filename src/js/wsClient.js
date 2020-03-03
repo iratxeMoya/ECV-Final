@@ -1,6 +1,8 @@
 import { connection } from './init.js';
 import { module_manager, element_manager } from './client.js'
 import { ArgModule, Element } from './module.js';
+import { dropdownContainer } from './DOMAccess.js';
+import { clickDropDownElement } from './utils.js';
 
 connection.onopen = event => {
 	console.log('connection is open');
@@ -52,5 +54,18 @@ connection.onmessage = (event) => {
         var newElement = new Element(jsonData.id, jsonData.position);
 
         element_manager.add_element(newElement);
+
+        var dropdownElement = document.createElement("span");
+        dropdownElement.id = jsonData.id;
+
+        var elementsWithId = document.getElementById(jsonData.id);
+
+        if (!elementsWithId) {
+
+            dropdownElement.innerText = id; //Esto estaria bien tener un nombre para el element
+            dropdownElement.addEventListener("click", clickDropDownElement)
+            dropdownContainer.appendChild(dropdownElement);
+
+        }
     }
 }
