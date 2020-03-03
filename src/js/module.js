@@ -126,7 +126,6 @@ class Module {
      */
 	draw(wb_ctx) {
 
-        console.log(this.type, styles[this.type]);
 		wb_ctx.fillStyle = styles[this.type];
         wb_ctx.fillRect(this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2, MODULESIZE,MODULESIZE);
         
@@ -387,8 +386,7 @@ class ModuleManager {
 	draw(wb_ctx) {
 
 		this.modules.forEach(module => {
-
-            console.log('drawing: ', module)
+            
             module.draw(wb_ctx);
             
 		});
