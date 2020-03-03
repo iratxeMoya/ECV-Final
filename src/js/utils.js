@@ -38,12 +38,12 @@ function createElement (position) {
 	dropdownElement.id = id;
 
 	var elementsWithId = document.getElementById(id);
-    if (elementsWithId.length === 0) {
+    if (elementsWithId) {
 
 		dropdownElement.innerText = id; //Esto estaria bien tener un nombre para el element
 		dropdownElement.addEventListener("click", clickDropDownElement)
 		dropdownContainer.appendChild(dropdownElement);
-		
+
 	}
 	
 
