@@ -150,6 +150,8 @@ class Module {
         jsonData.code = this.code;
         jsonData.before = this.before ? this.before.id : null;
         jsonData.after = this.after ? this.after.id : null;
+
+        console.log('relating: ', jsonData);
         
         connection.send(JSON.stringify(jsonData));
 

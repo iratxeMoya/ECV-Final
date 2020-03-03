@@ -17,8 +17,8 @@ function isHover(x, y) {
     return false;
 }
 
-function createModule (codeType, position, target=null, arg=null,moduleType = "basic" ) {
-
+function createModule (codeType, position, target = null, arg = null, moduleType = "basic" ) {
+ 
     var id = Date.now();
 	var mod;
 	switch (moduleType){
@@ -49,7 +49,7 @@ function createModule (codeType, position, target=null, arg=null,moduleType = "b
     
 }
 
-function paintInCanvas (wb_w, wb_h, wb_ctx, mouseX, mouseY, img,trash) {
+function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash) {
 
 	wb_ctx.fillStyle = "#FFFFFF";
 	wb_ctx.fillRect(0, 0, wb_w, wb_h);

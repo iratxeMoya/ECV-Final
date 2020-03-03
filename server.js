@@ -16,7 +16,7 @@ var wss = new WebSocket.Server({server});
 var connectedUsers = [];
 
 //MySQL connection
-/*ar connection = mysql.createConnection({
+/*var connection = mysql.createConnection({
     host : "localhost",
     user : "ecv-user",
     password : "ecv-upf-2019",
@@ -119,12 +119,12 @@ wss.on('connection', function(ws) {
     
                     var json = JSON.parse(jsonString);
                     json[module.toString()].position = jsonData.position;
+
                     if (jsonData.remove) {
                         delete json[module.toString()];
                     }
-                    var jsonStr = JSON.stringify(json);
 
-                    console.log(json);
+                    var jsonStr = JSON.stringify(json);
     
                     fs.writeFile("src/data/modules.json", jsonStr, 'utf8', function (err) {
                         if (err) {
@@ -141,7 +141,28 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'relateModules') {
 
-            console.log('relate modules: ', jsonData);
+            fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
+                if (err) {
+                    console.log("File read failed:", err)
+                    return;
+                }
+
+                var json = JSON.parse(jsonString);
+                json[jsonData.id].before = jsonData.before;
+                json[jsonData.id].after = jsonData.after;
+                jsonData.before ? json[jsonData.before].after = jsonData.id : json[jsonData.before].after = null;
+                jsonData.after ? json[jsonData.after].before = jsonData.id : json[jsonData.after].before = null;
+                jsonStr = JSON.stringify(json);
+
+
+                fs.writeFile("src/data/modules.json", jsonStr, 'utf8', function (err) {
+                    if (err) {
+                        return console.log('error: ', err);
+                    }
+                
+                    console.log("The file was saved! ", jsonStr);
+                });
+            })
 
         }
 

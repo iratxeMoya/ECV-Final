@@ -98,8 +98,8 @@ function update() {
 	gs_cvs.height = gs_h;
 	gs_cvs.width = gs_w;
 
-	paintInCanvas(wb_w, wb_h, wb_ctx, mouseX, mouseY, img,true);
-	paintInCanvas(gs_w, gs_h, gs_ctx, mouseX, mouseY, img,false);
+	paintInCanvas(wb_w, wb_h, wb_ctx, img, true);
+	paintInCanvas(gs_w, gs_h, gs_ctx, img, false);
 	
 
 	element.draw(gs_ctx);
