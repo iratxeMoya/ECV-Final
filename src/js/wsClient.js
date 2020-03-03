@@ -1,6 +1,6 @@
 import { connection } from './init.js';
-import { module_manager } from './client.js'
-import { ArgModule } from './module.js';
+import { module_manager, element_manager } from './client.js'
+import { ArgModule, Element } from './module.js';
 
 connection.onopen = event => {
 	console.log('connection is open');
@@ -44,5 +44,13 @@ connection.onmessage = (event) => {
         var newModule = new ArgModule(jsonData.position, jsonData.moduleType, jsonData.target, jsonData.moduleId, jsonData.arg, jsonData.next, jsonData.prev);
 
         module_manager.add_module(newModule);
+    }
+    else if (jsonData.type === 'createElement') {
+
+        console.log('in client: ', jsonData);
+
+        var newElement = new Element(jsonData.id, jsonData.position);
+
+        element_manager.add_element(newElement);
     }
 }
