@@ -86,16 +86,17 @@ function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash, mouseX, mouseY) {
 
 	if (trash){
 		//nose si esto fuciona (es para el hover de la basura)
+		wb_ctx.fillStyle = "#FFFFFF";
 		wb_ctx.drawImage(img, 5, 5, 25, 25);
 
-		wb_ctx.globalCompositeOperation = "source-in";
+		/*wb_ctx.globalCompositeOperation = "source-in";
 
 		wb_ctx.fillStyle = wb_ctx.isPointInPath(mouseX, mouseY) ? "red" : "black";
-		wb_ctx.fillRect(0, 0, wb_w, wb_h);
+		wb_ctx.fillRect(0, 0, wb_w, wb_h);*/
 		
 	}
 
-	wb_ctx.globalCompositeOperation = "source-over";
+	// wb_ctx.globalCompositeOperation = "source-over";
 }
 
 export {
