@@ -263,6 +263,8 @@ class ModuleManager {
      */
 	add_module(newModule) {
 
+        console.log(newModule)
+
 		this.modules.push(newModule)
     }
     
@@ -385,6 +387,7 @@ class ModuleManager {
 
 		this.modules.forEach(module => {
 
+            console.log('drawing: ', module)
             module.draw(wb_ctx);
             
 		});
