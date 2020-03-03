@@ -53,7 +53,7 @@ function createElement (position) {
 function clickDropDownElement () {
 
 	var id = Date.now();
-	
+
 	var t = element_manager.getElementById(this.id)
 	var mod = new TargetModule(targetModulePos, t , id);
 	module_manager.add_module(mod);
@@ -78,7 +78,7 @@ function createModule (codeType, position, target = null, arg = null, moduleType
 	var mod;
 	switch (moduleType){
 		case 'arg':
-			mod = new ArgModule(position, codeType, target , id, arg);
+			mod = new ArgModule(position, codeType, id, arg);
 			break;
 		case 'target':
 			console.log('is target');
