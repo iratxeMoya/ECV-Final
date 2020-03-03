@@ -126,8 +126,8 @@ wss.on('connection', function(ws) {
 
                     json[module.id.toString()].prev_id = module.prev;
                     json[module.id.toString()].next_id = module.next;
-                    module.prev !== null ? json[module.prev.toString()].next_id = module.id : json[module.prev.toString()].next_id = null;
-                    module.next !== null ? json[module.next.toString()].prev_id = module.id : json[module.next.toString()].prev_id = null;
+                    module.prev !== null ? json[module.prev.toString()].next_id = module.id :  null;
+                    module.next !== null ? json[module.next.toString()].prev_id = module.id :  null;
                     jsonStr = JSON.stringify(json);
 
                     var jsonStr = JSON.stringify(json);
