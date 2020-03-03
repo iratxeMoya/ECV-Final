@@ -147,7 +147,7 @@ wss.on('connection', function(ws) {
                     return;
                 }
 
-                console.log(jsonData, json);
+                console.log('relate: ', jsonData, json);
                 var json = JSON.parse(jsonString);
                 json[jsonData.id].before = jsonData.before;
                 json[jsonData.id].after = jsonData.after;
