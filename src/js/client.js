@@ -85,7 +85,7 @@ function release(event) {
 
 	if (remove) {
 		deletingModuleIds.forEach(id => {
-			var module = (module_manager.getModuleByID(id));
+			var module = module_manager.getModuleByID(id)[0];
 			var element = {};
 			element.id = id;
 			element.prev = module.prev ? module.prev.id : null;
@@ -96,7 +96,7 @@ function release(event) {
 		})
 	} else {
 		activeModuleIds.forEach(id => {
-			var module = (module_manager.getModuleByID(id));
+			var module = module_manager.getModuleByID(id)[0];
 			console.log(module)
 			var element = {};
 			element.id = id;
