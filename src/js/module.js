@@ -126,7 +126,8 @@ class Module {
      */
 	draw(wb_ctx) {
 
-		wb_ctx.fillStyle = styles[this.type]
+        console.log(this.type, styles[this.type]);
+		wb_ctx.fillStyle = styles[this.type];
         wb_ctx.fillRect(this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2, MODULESIZE,MODULESIZE);
         
 	}
