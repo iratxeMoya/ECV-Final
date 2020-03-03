@@ -118,11 +118,17 @@ wss.on('connection', function(ws) {
                     }
     
                     var json = JSON.parse(jsonString);
-                    json[module.toString()].position = jsonData.position;
+                    json[module.id.toString()].position = jsonData.position;
 
                     if (jsonData.remove) {
-                        delete json[module.toString()];
+                        delete json[module.id.toString()];
                     }
+
+                    json[module.id.toString()].prev_id = module.prev;
+                    json[module.id.toString()].next_id = module.next;
+                    module.prev !== null ? json[module.prev.toString()].next_id = module.id : json[module.prev.toString()].next_id = null;
+                    module.next !== null ? json[module.next.toString()].prev_id = module.id : json[module.next.toString()].prev_id = null;
+                    jsonStr = JSON.stringify(json);
 
                     var jsonStr = JSON.stringify(json);
     
@@ -142,29 +148,6 @@ wss.on('connection', function(ws) {
         else if (jsonData.type === 'relateModules') {
 
             console.log('in relate ', jsonData);
-            fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
-                if (err) {
-                    console.log("File read failed:", err)
-                    return;
-                }
-
-                console.log('relate: ', jsonData, jsonString);
-                var json = JSON.parse(jsonString);
-                json[jsonData.id.toString()].prev_id = jsonData.before;
-                json[jsonData.id.toString()].next_id = jsonData.after;
-                jsonData.before !== null ? json[jsonData.before.toString()].next_id = jsonData.id : json[jsonData.before.toString()].next_id = null;
-                jsonData.after !== null ? json[jsonData.after.toString()].prev_id = jsonData.id : json[jsonData.after.toString()].prev_id = null;
-                jsonStr = JSON.stringify(json);
-
-
-                fs.writeFile("src/data/modules.json", jsonStr, 'utf8', function (err) {
-                    if (err) {
-                        return console.log('error: ', err);
-                    }
-                
-                    console.log("The file was saved! ", jsonStr);
-                });
-            })
 
         }
 

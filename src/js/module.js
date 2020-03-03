@@ -301,8 +301,6 @@ class ModuleManager {
 	release_modules() {
 
         activeModuleIds = [];
-		
-		console.log('in release ', this.modules)
 
 		this.modules.forEach(module => {
 
@@ -330,7 +328,13 @@ class ModuleManager {
             
         });
         
-	}
+    }
+    
+    getModuleByID (id) {
+
+        return this.modules.filter(mod => mod.id === id);
+        
+    }
     
     /**
      * Moves all modules that are enabled to move to posx, posy position.

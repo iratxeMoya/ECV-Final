@@ -81,7 +81,32 @@ function release(event) {
 
 	module_manager.release_modules();
 
-	connection.send(JSON.stringify({type: 'releaseModule', position: {x: event.offsetX, y: event.offsetY}, remove: remove, modules: remove ? deletingModuleIds : activeModuleIds}));
+	var modules = [];
+
+	if (remove) {
+		deletingModuleIds.forEach(id => {
+			var module = (module_manager.getModuleByID(id));
+			var element = {};
+			element.id = id;
+			element.prev = module.prev ? module.prev.id : null;
+			element.next = module.next ? module.next.id : null;
+
+			modules.push(element);
+		})
+	} else {
+		activeModuleIds.forEach(id => {
+			var module = (module_manager.getModuleByID(id));
+			var element = {};
+			element.id = id;
+			element.prev = module.prev ? module.prev.id : null;
+			element.next = module.next ? module.next.id : null;
+
+			modules.push(element);
+		})
+	}
+
+
+	connection.send(JSON.stringify({type: 'releaseModule', position: {x: event.offsetX, y: event.offsetY}, remove: remove, modules: modules}));
 
 }
 
