@@ -148,8 +148,8 @@ class Module {
         jsonData.id = this.id;
         jsonData.position = this.position;
         jsonData.code = this.code;
-        jsonData.before = this.before ? this.before.id : null;
-        jsonData.after = this.after ? this.after.id : null;
+        jsonData.before = this.prev ? this.prev.id : null;
+        jsonData.after = this.next ? this.next.id : null;
 
         console.log('relating: ', jsonData);
         
