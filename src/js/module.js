@@ -44,7 +44,9 @@ class ElementManager {
 
     getElementById (id) {
 
-        console.log('elements: ', this.elements)
+        this.elements.forEach(element => {
+            console.log(element.id, id);
+        })
 
         return this.elements.filter(ele => ele.id === id);
 
