@@ -32,7 +32,7 @@ function createElement (position) {
 	newElement.id = id;
 	newElement.position = position;
 
-	connection.send(JSON.stringify(newModule));
+	connection.send(JSON.stringify(newElement));
 
 	var dropdownElement = document.createElement("span");
 	dropdownElement.id = id;
