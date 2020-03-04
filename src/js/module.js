@@ -146,7 +146,7 @@ class Module {
 	}
 	
 	disassemble(){
-		this.siblings[this.relative.dir].siblings[this.oposite(this.relative.dir)].node=null;
+		this.siblings[this.relative.dir].node.siblings[this.oposite(this.relative.dir)].node=null;
 		this.siblings[this.relative.dir].node = null;
 		this.relative.dir=null;
 		this.relative.offset.x=0;
