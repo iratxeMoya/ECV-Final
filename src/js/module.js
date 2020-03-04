@@ -432,17 +432,25 @@ class ModuleManager {
      */
 	release_modules() {
 		if(this.selectedGroup){
-			
+	
 			var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
-			console.log(nearModule);
+			
 			if (nearModule){
-				
-				this.selectedGroup.assemble(nearModule,'north',true);
-				this.selectedGroup=null;
-				
-			}else{
-				this.selectedGroup=null;
+				if(Math.abs(nearModule.position.x-selectedGroup.position.x)>MODULESIZE){
+					if(nearModule.position.x>selectedGroup.position.x){
+						this.selectedGroup.assemble(nearModule,'east',true);
+					}else {
+						this.selectedGroup.assemble(nearModule,'west',true);
+					}
+				}else 
+					if(nearModule.position.y>selectedGroup.position.y){
+						this.selectedGroup.assemble(nearModule,'south',true);
+					}else{
+						this.selectedGroup.assemble(nearModule,'north',true);
+					}
+				}
 			}
+			this.selectedGroup=null;
 		}
         // activeModuleIds = [];
 
