@@ -415,17 +415,18 @@ class ModuleManager {
      * Disables mooving any module that has been released. If 2 modules are near, locates one module below the other (related) 
      */
 	release_modules() {
-
-		var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
-		
-		if (nearModule){
+		if(this.selectedGroup){
 			
-			this.selectedGroup.assemble(nearModule,'north',true);
-			
-		}else{
-			this.selectedGroup=null;
+			var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
+			console.log(nearModule);
+			if (nearModule){
+				
+				this.selectedGroup.assemble(nearModule,'north',true);
+				
+			}else{
+				this.selectedGroup=null;
+			}
 		}
-
         // activeModuleIds = [];
 
 		// this.modules.forEach(module => {
