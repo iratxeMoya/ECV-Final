@@ -90,11 +90,12 @@ class Module {
 	
 	get_offset(){
 		if (!this.relative.dir){
-			return 0;
+			return {x:0,y:0};
 		}else{
 			var offset = this.siblings[this.relative.dir].get_offset();
 			offset.x +=this.relative.offset.x;
 			offset.y +=this.relative.offset.y;
+			console.log(offset);
 			return offset; 
 		}
 	}
