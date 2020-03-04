@@ -113,32 +113,32 @@ class Module {
 			case 'north':
 				this.siblings.north.node = node;
 				this.siblings.north.type = type;
-				node.south.node = this;
-				node.south.type = !type;
+				node.siblings.south.node = this;
+				node.siblings.south.type = !type;
 				this.relative.offset.x=0;
 				this.relative.offset.y=MODULESIZE;
 				break;			
 			case 'east':
 				this.siblings.east.node = node;
 				this.siblings.east.type = type;
-				node.west.node = this;
-				node.west.type = !type;
+				node.siblings.west.node = this;
+				node.siblings.west.type = !type;
 				this.relative.offset.x=-MODULESIZE;
 				this.relative.offset.y=0;
 				break;
 			case 'west':
 				this.siblings.west.node = node;
 				this.siblings.west.type = type;
-				node.east.node = this;
-				node.east.type = !type;
+				node.siblings.east.node = this;
+				node.siblings.east.type = !type;
 				this.relative.offset.x=MODULESIZE;
 				this.relative.offset.y=0;
 				break;
 			default:
 				this.siblings.south.node = node;
 				this.siblings.south.type = type;
-				node.north.node = this;
-				node.north.type = !type;
+				node.siblings.north.node = this;
+				node.siblings.north.type = !type;
 				this.relative.offset.x=0;
 				this.relative.offset.y=-MODULESIZE;
 				break;
@@ -146,7 +146,7 @@ class Module {
 	}
 	
 	disassemble(){
-		this.siblings[this.relative.dir][this.oposite(this.relative.dir)].node=null;
+		this.siblings[this.relative.dir].siblings[this.oposite(this.relative.dir)].node=null;
 		this.siblings[this.relative.dir].node = null;
 		this.relative.dir=null;
 		this.relative.offset.x=0;
