@@ -151,7 +151,8 @@ class Module {
 				this.relative.offset.y=-MODULESIZE;
 				break;
 		}
-		this.move(this.siblings[this.relative.dir].node.position.x ,this.siblings[this.relative.dir].node.position.y);
+		let mp = this.getMasterPos();
+		this.move(mp.x ,mp.y);
 		
 		
 	}
@@ -191,7 +192,6 @@ class Module {
 	
 	move(x,y){
 		let offset =this.get_offset();
-		console.log(offset);
 		this.position.x=x+offset.x;
 		this.position.y=y+offset.y;
 		for(let dir in this.siblings){
@@ -278,7 +278,7 @@ class Module {
     }
 	getMasterPos () {
 		
-		return this.prev ? this.prev.getMasterPos() : this.position;
+		return this.relative.dir ? this.siblings[this.relative.dir].node.getMasterPos() : this.position;
 		
 	}
 	
