@@ -144,8 +144,8 @@ class Module {
 				this.relative.offset.y=-MODULESIZE;
 				break;
 		}
-		this.position.x = this.siblings[this.relative.dir].position.x + this.relative.offset.x;
-		this.position.y = this.siblings[this.relative.dir].position.y + this.relative.offset.y;
+		this.position.x = this.siblings[this.relative.dir].node.position.x + this.relative.offset.x;
+		this.position.y = this.siblings[this.relative.dir].node.position.y + this.relative.offset.y;
 	}
 	
 	disassemble(){
