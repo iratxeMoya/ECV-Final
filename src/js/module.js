@@ -274,7 +274,7 @@ class Module {
 	getTarget(){
         
         console.log('getting target ', this)
-		return this.prev ? this.prev.getTarget() : (this.type === "target" ? this.target : null);
+		return this.relative.dir ? this.siblings[this.relative.dir].node.getTarget() : (this.type === "target" ? this.target : null);
 	}
 
     /**
