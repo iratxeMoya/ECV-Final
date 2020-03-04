@@ -386,7 +386,7 @@ class ModuleManager {
 	}
     
 	closest_node(x,y,radius){
-		minModule={position:{x:1000,y:1000}};
+		var minModule={position:{x:1000,y:1000}};
 		this.modules.forEach(module => {
 			let nval =Math.abs(x-module.position.x)+Math.abs(y-module.position.y);
 			let pval =Math.abs(x-minModule.position.x)+Math.abs(y-minModule.position.y);
@@ -400,7 +400,7 @@ class ModuleManager {
      */
 	release_modules() {
 
-		nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
+		var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
 		
 		if (nearModule){
 			
