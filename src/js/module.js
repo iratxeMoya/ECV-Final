@@ -92,6 +92,21 @@ class Module {
 		this.relative.dir ? this.siblings[this.relative.dir].get_offset() + this.relative.offset : 0;
 	}
 	
+	oposite(dir){
+		switch(dir){
+				case 'north':
+					return 'south';
+				case 'south':
+					return 'north';
+				case 'east':
+					return 'west';
+				case 'west':
+					return 'east';
+				default:
+					return null;
+			}
+	}
+	
 	assemble(node,direction,type){
 		this.relative.dir = direction;
 		switch(direction){
@@ -131,7 +146,7 @@ class Module {
 	}
 	
 	disassemble(){
-		this.siblings[this.relative.dir][oposite(this.relative.dir)].node=null;
+		this.siblings[this.relative.dir][this.oposite(this.relative.dir)].node=null;
 		this.siblings[this.relative.dir].node = null;
 		this.relative.dir=null;
 		this.relative.offset.x=0;
