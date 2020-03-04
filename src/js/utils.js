@@ -25,7 +25,7 @@ function createElement (id, position, send = true) {
 
 	var element = new Element(id, position);
 	element_manager.add_element(element);
-
+	console.log(element);
 	if (send) {
 		sendElementInfo(element);
 	}
