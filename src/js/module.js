@@ -89,7 +89,14 @@ class Module {
     }
 	
 	get_offset(){
-		return this.relative.dir ? this.siblings[this.relative.dir].get_offset() + this.relative.offset : 0;
+		if (!this.relative.dir){
+			return 0;
+		else{
+			var offset = this.siblings[this.relative.dir].get_offset();
+			offset.x +=this.relative.offset.x;
+			offset.y +=this.relative.offset.y;
+			return offset; 
+		}
 	}
 	
 	oposite(dir){
