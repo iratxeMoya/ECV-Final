@@ -151,7 +151,7 @@ class Module {
 				this.relative.offset.y=-MODULESIZE;
 				break;
 		}
-		this.move(this.siblings[this.relative.dir].node.position.x + this.relative.offset.x,this.siblings[this.relative.dir].node.position.y + this.relative.offset.y);
+		this.move(this.siblings[this.relative.dir].node.position.x ,this.siblings[this.relative.dir].node.position.y);
 		
 		
 	}
