@@ -126,11 +126,7 @@ function sendElementInfo (element) {
 
 	newElement.type = 'createElement';
 	newElement.id = element.id;
-	newElement.posx = element.position.x;
-	newElement.posy = element.position.y;
-	newElement.moduleType = null;
-	newElement.codeType = null;
-	newElement.arg = null;
+	newElement.parameters = element.parameters;
 
 	connection.send(JSON.stringify(newElement));
 
