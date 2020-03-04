@@ -166,7 +166,7 @@ class Module {
 	move(x,y){
 		this.position.x=x+this.relative.offset.x;
 		this.position.y=y+this.relative.offset.x;
-		for(dir in this.siblings){
+		for(let dir in this.siblings){
 			if (dir !== this.relative.dir && dir.node){
 				dir.node.move(x,y);
 			}
