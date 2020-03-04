@@ -92,7 +92,7 @@ class Module {
 		if (!this.relative.dir){
 			return {x:0,y:0};
 		}else{
-			var offset = this.siblings[this.relative.dir].get_offset();
+			var offset = this.siblings[this.relative.dir].node.get_offset();
 			offset.x +=this.relative.offset.x;
 			offset.y +=this.relative.offset.y;
 			console.log(offset);
