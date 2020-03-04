@@ -436,8 +436,8 @@ class ModuleManager {
 			var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
 			
 			if (nearModule){
-				if(Math.abs(nearModule.position.x-selectedGroup.position.x)>MODULESIZE){
-					if(nearModule.position.x>selectedGroup.position.x){
+				if(Math.abs(nearModule.position.x-this.selectedGroup.position.x)>MODULESIZE){
+					if(nearModule.position.x>this.selectedGroup.position.x){
 						this.selectedGroup.assemble(nearModule,'east',true);
 					}else {
 						this.selectedGroup.assemble(nearModule,'west',true);
