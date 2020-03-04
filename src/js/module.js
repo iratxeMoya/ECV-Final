@@ -117,6 +117,7 @@ class Module {
 				node.siblings.south.type = !type;
 				this.relative.offset.x=0;
 				this.relative.offset.y=MODULESIZE;
+	
 				break;			
 			case 'east':
 				this.siblings.east.node = node;
@@ -143,6 +144,8 @@ class Module {
 				this.relative.offset.y=-MODULESIZE;
 				break;
 		}
+		this.position.x = this.siblings[this.relative.dir].position.x + this.relative.offset.x;
+		this.position.y = this.siblings[this.relative.dir].position.y + this.relative.offset.y;
 	}
 	
 	disassemble(){
