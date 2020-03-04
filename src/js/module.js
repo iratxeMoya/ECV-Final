@@ -400,7 +400,7 @@ class ModuleManager {
      */
 	release_modules() {
 
-		nearModule = closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
+		nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
 		
 		if (nearModule){
 			
