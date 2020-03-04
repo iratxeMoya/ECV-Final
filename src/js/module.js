@@ -442,7 +442,7 @@ class ModuleManager {
 					}else {
 						this.selectedGroup.assemble(nearModule,'west',true);
 					}
-				}else 
+				}else {
 					if(nearModule.position.y>selectedGroup.position.y){
 						this.selectedGroup.assemble(nearModule,'south',true);
 					}else{
