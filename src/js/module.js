@@ -95,7 +95,6 @@ class Module {
 			var offset = this.siblings[this.relative.dir].node.get_offset();
 			offset.x +=this.relative.offset.x;
 			offset.y +=this.relative.offset.y;
-			console.log(offset);
 			return offset; 
 		}
 	}
@@ -152,8 +151,9 @@ class Module {
 				this.relative.offset.y=-MODULESIZE;
 				break;
 		}
-		this.position.x = this.siblings[this.relative.dir].node.position.x + this.relative.offset.x;
-		this.position.y = this.siblings[this.relative.dir].node.position.y + this.relative.offset.y;
+		this.move(this.siblings[this.relative.dir].node.position.x + this.relative.offset.x,this.siblings[this.relative.dir].node.position.y + this.relative.offset.y);
+		
+		
 	}
 	
 	disassemble(){
