@@ -425,6 +425,7 @@ class ModuleManager {
 			if (nearModule){
 				
 				this.selectedGroup.assemble(nearModule,'north',true);
+				this.selectedGroup=null;
 				
 			}else{
 				this.selectedGroup=null;
