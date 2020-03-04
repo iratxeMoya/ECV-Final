@@ -378,6 +378,7 @@ class ModuleManager {
 					module.disassemble();
 				}
 				this.selectedGroup=module;
+				console.log(this.selectedGroup);
 				return;
             }
 
