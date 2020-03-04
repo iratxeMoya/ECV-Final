@@ -61,6 +61,21 @@ function clickDropDownElement () {
 
 }
 
+function oposite(dir){
+	switch(dir){
+			case 'north':
+				return 'south';
+			case 'south':
+				return 'north';
+			case 'east':
+				return 'west';
+			case 'west':
+				return 'east';
+			default:
+				return null;
+		}
+}
+
 function createModule (id, codeType, position, target = null, arg = null, moduleType = "basic", send = true, nextID = null, prevID = null ) {
 
 	var mod, next = null, prev = null;
