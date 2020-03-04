@@ -186,6 +186,7 @@ class Module {
 		this.position.y=y+this.relative.offset.x;
 		for(let dir in this.siblings){
 			if (dir !== this.relative.dir && dir.node){
+				console.log("MIASU");
 				dir.node.move(x,y);
 			}
 		}
@@ -274,16 +275,18 @@ class Module {
 	getTarget(){
         
         console.log('getting target ', this)
-		return this.relative.dir ? this.siblings[this.relative.dir].node.getTarget() : (this.type === "target" ? this.target : null);
+		var ret =this.relative.dir ? this.siblings[this.relative.dir].node.getTarget() : (this.type === "target" ? this.target : null);
+		console.log(ret);
+		return ret;
 	}
 
     /**
      * Runs code of the module
      */
     run () {
-
-        eval(codes[this.type]);
-    
+		if(this.getTarget()){
+			eval(codes[this.type]);
+		}
     }
 }
 
