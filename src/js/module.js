@@ -182,8 +182,8 @@ class Module {
     }
 	
 	move(x,y){
-		this.position.x=x+this.gtet_offset().x;
-		this.position.y=y+this.gtet_offset().y;
+		this.position.x=x+this.get_offset().x;
+		this.position.y=y+this.get_offset().y;
 		for(let dir in this.siblings){
 			if (dir !== this.relative.dir && this.siblings[dir].node){
 				console.log("MIASU");
