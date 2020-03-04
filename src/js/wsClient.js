@@ -1,8 +1,6 @@
 import { connection } from './init.js';
-import { module_manager, element_manager } from './client.js'
-import { ArgModule, Element } from './module.js';
-import { dropdownContainer } from './DOMAccess.js';
-import { clickDropDownElement } from './utils.js';
+import { module_manager } from './client.js'
+import { createModule, createElement } from './utils.js';
 
 connection.onopen = event => {
 	console.log('connection is open');
@@ -25,6 +23,19 @@ connection.onmessage = (event) => {
 
         module_manager.move_modules(jsonData.newPosition.x, jsonData.newPosition.y);
     }
+    else if (jsonData.type === 'reciveInfo') {
+
+        if (jsonData.objectType === 'module') {
+
+            createModule(jsonData.id, jsonData.codeType, {x: jsonData.posx, y: jsonData.posy}, jsonData.target, jsonData.arg, jsonData.moduleType, false, jsonData.next, jsonData.prev)
+
+        }
+        else if (jsonData.objectType === 'element') {
+
+            createElement(jsonData.id, {x: jsonData.posx, y: jsonData.posy}, false)
+
+        }
+    }
     else if (jsonData.type === 'clickModule') {
 
         module_manager.click_modules(jsonData.newPosition.x, jsonData.newPosition.y);
@@ -41,31 +52,12 @@ connection.onmessage = (event) => {
     }
     else if (jsonData.type === 'createModule') {
 
-        console.log('in client: ', jsonData.position);
+        createModule(jsonData.id, jsonData.codeType, {x: jsonData.posx, y: jsonData.posy}, jsonData.target, jsonData.arg, jsonData.moduleType, false, jsonData.next, jsonData.prev);
 
-        var newModule = new ArgModule(jsonData.position, jsonData.moduleType, jsonData.target, jsonData.moduleId, jsonData.arg, jsonData.next, jsonData.prev);
-
-        module_manager.add_module(newModule);
     }
     else if (jsonData.type === 'createElement') {
 
-        console.log('in client: ', jsonData);
+        createElement(jsonData.id, {x: jsonData.posx, y: jsonData.posy}, false);
 
-        var newElement = new Element(jsonData.id, jsonData.position);
-
-        element_manager.add_element(newElement);
-
-        var dropdownElement = document.createElement("span");
-        dropdownElement.id = jsonData.id;
-
-        var elementsWithId = document.getElementById(jsonData.id);
-
-        if (!elementsWithId) {
-
-            dropdownElement.innerText = jsonData.id; //Esto estaria bien tener un nombre para el element
-            dropdownElement.addEventListener("click", clickDropDownElement)
-            dropdownContainer.appendChild(dropdownElement);
-
-        }
     }
 }

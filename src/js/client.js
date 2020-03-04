@@ -19,10 +19,10 @@ var img = new Image();
 
 img.src = "icons/basura.svg";
 
-basicModule.addEventListener("click", function(){createModule('log2', {x: 100, y: 100})});
-argModule.addEventListener("click", function(){createModule('log1',{x: 100, y: 200}, null, "Hola", "arg")});
-targetModule.addEventListener("click", function(){createModule(null,{x: 100, y: 200}, null, null,"target")});
-element.addEventListener("click", function() {createElement({x: 100, y:100})});
+basicModule.addEventListener("click", function(){createModule(Date.now(), 'log2', {x: 100, y: 100})});
+argModule.addEventListener("click", function(){createModule(Date.now(), 'log1',{x: 100, y: 200}, null, "Hola", "arg")});
+targetModule.addEventListener("click", function(){createModule(Date.now(), null,{x: 100, y: 200}, null, null,"target")});
+element.addEventListener("click", function() {createElement(Date.now(), {x: 100, y:100})});
 
 run_button.addEventListener("click", run);
 wb_cvs.addEventListener("mousemove", move);
@@ -108,7 +108,7 @@ function release(event) {
 	}
 
 
-	connection.send(JSON.stringify({type: 'releaseModule', position: {x: event.offsetX, y: event.offsetY}, remove: remove, modules: modules}));
+	connection.send(JSON.stringify({type: 'releaseModule', posx: event.offsetX, posy: event.offsetY, remove: remove, modules: modules}));
 
 }
 

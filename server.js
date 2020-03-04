@@ -15,21 +15,24 @@ var wss = new WebSocket.Server({server});
 //users ws
 var connectedUsers = [];
 
-//MySQL connection
-/*var connection = mysql.createConnection({
-    host : "localhost",
-    user : "ecv-user",
-    password : "ecv-upf-2019",
-    database : "ecv-2019"
-});
+//modules
 
-var db = wrapper.wrap(connection);
-var dbUsers, dbModules;
+var modules = {};
 
-db.ready(function() {jsonData
-    dbUsers = db.tabljsonData
-    dbModules = db.tajsonData
-});*/ 
+/*
+DATA EXAMPLE IN MODULES:
+    ID:{
+        id: X,
+        objectType: X,
+        prev: X,
+        next: X,
+        posx: X,
+        target: X,
+        codeType: X,
+        moduleType: X,
+        arg: X
+    }
+*/
 
 wss.on('connection', function(ws) {
 
@@ -60,39 +63,19 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'createModule') {
 
-            console.log('create Module: ', jsonData);
-
             var info = {};
-            info.id = jsonData.moduleId;
-            info.objType = 'module'; 
-            info.prev_id = jsonData.before ? jsonData.before.id : null;
-            info.next_id = jsonData.after ? jsonData.after.id : null;
-            info.position = jsonData.position;
-            info.target_id = jsonData.target ? jsonData.target.id : null;
-            info.type = jsonData.moduleType;
+            info.id = jsonData.id;
+            info.objectType = 'module'; 
+            info.prev = jsonData.prev ? jsonData.prev.id : null;
+            info.next = jsonData.next ? jsonData.next.id : null;
+            info.posx = jsonData.posx;
+            info.posy = jsonData.posy;
+            info.target = jsonData.target ? jsonData.target.id : null;
+            info.codeType = jsonData.codeType;
+            info.moduleType = jsonData.moduleType;
             info.arg = jsonData.arg;
 
-            fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
-                if (err) {
-                    console.log("File read failed:", err)
-                    return;
-                }
-
-                var json = JSON.parse(jsonString);
-                json[info.id.toString()] = info;
-                jsonStr = JSON.stringify(json);
-
-
-                fs.writeFile("src/data/modules.json", jsonStr, 'utf8', function (err) {
-                    if (err) {
-                        return console.log('error: ', err);
-                    }
-                
-                    console.log("The file was saved! ", jsonStr);
-                });
-            })
-
-            
+            modules[jsonData.id.toString()] = info;
 
             broadcastMsg(data, connectedUsers, ws);
             
@@ -111,35 +94,19 @@ wss.on('connection', function(ws) {
 
             console.log('in release ', jsonData);
             jsonData.modules.forEach(module => {
-                fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
-                    if (err) {
-                        console.log("File read failed:", err)
-                        return
-                    }
-                    
-                    var json = JSON.parse(jsonString);
-                    json[module.id.toString()].position = jsonData.position;
 
-                    if (jsonData.remove) {
-                        delete json[module.id.toString()];
-                    }
+                modules[module.id.toString()].posx = jsonData.posx;
+                modules[module.id.toString()].posy = jsonData.posy;
 
-                    json[module.id.toString()].prev_id = module.prev;
-                    json[module.id.toString()].next_id = module.next;
-                    module.prev !== null ? json[module.prev.toString()].next_id = module.id :  null;
-                    module.next !== null ? json[module.next.toString()].prev_id = module.id :  null;
-                    jsonStr = JSON.stringify(json);
+                if (jsonData.remove) {
+                    delete modules[module.id.toString()];
+                }
 
-                    var jsonStr = JSON.stringify(json);
-    
-                    fs.writeFile("src/data/modules.json", jsonStr, 'utf8', function (err) {
-                        if (err) {
-                            return console.log(err);
-                        }
-                    
-                        console.log("The file was saved! ", jsonStr);
-                    });
-                })
+                modules[module.id.toString()].prev = module.prev;
+                modules[module.id.toString()].next = module.next;
+                module.prev !== null ? modules[module.prev.toString()].next = module.id :  null;
+                module.next !== null ? modules[module.next.toString()].prev = module.id :  null;
+
             })
 
             broadcastMsg(data, connectedUsers, ws);
@@ -147,34 +114,20 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'createElement') {
 
-            console.log('create Element: ', jsonData);
-
             var info = {};
+
             info.id = jsonData.id;
-            info.position = jsonData.position;
-            info.objType = 'element';
+            info.objectType = 'element'; 
+            info.prev = null;
+            info.next = null;
+            info.posx = jsonData.posx;
+            info.posy = jsonData.posy;
+            info.target = null;
+            info.codeType = jsonData.codeType;
+            info.moduleType = jsonData.moduleType;
+            info.arg = jsonData.arg;
 
-            fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
-                if (err) {
-                    console.log("File read failed:", err)
-                    return;
-                }
-
-                var json = JSON.parse(jsonString);
-                json[info.id.toString()] = info;
-                jsonStr = JSON.stringify(json);
-
-
-                fs.writeFile("src/data/modules.json", jsonStr, 'utf8', function (err) {
-                    if (err) {
-                        return console.log('error: ', err);
-                    }
-                
-                    console.log("The file was saved! ", jsonStr);
-                });
-            })
-
-            
+            modules[jsonData.id.toString()] = info; 
 
             broadcastMsg(data, connectedUsers, ws);
             
@@ -189,8 +142,26 @@ wss.on('connection', function(ws) {
 
         connectedUsers.delete(user);
 
+        saveDatabaseToDisk();
+
 	});
 })
+
+function saveDatabaseToDisk()
+{
+
+    fs.writeFileSync('src/data/modules.json', JSON.serialize(modules) );
+    
+}
+
+function loadDatabaseFromDisk()
+{
+
+	var str = fs.readFileSync('src/data/modules.json').toString();
+    modules = JSON.parse( str );
+    
+}
+
 
 function broadcastMsg(data, usersToSend, ws) {
 
@@ -203,6 +174,32 @@ function broadcastMsg(data, usersToSend, ws) {
         }
 			
 	});
+}
+
+function init (ws) {
+
+    loadDatabaseFromDisk ();
+
+    for (id in modules) {
+
+        var module = modules[id];
+
+        var data = {};
+        data.type = 'reciveInfo';
+        data.posx = module.posx;
+        data.posy = module.posy;
+        data.codeType = module.codeType;
+        data.arg = module.arg;
+        data.target = module.target;
+        data.id = module.id;
+        data.next = module.next;
+        data.prev = module.prev;
+        data.objectType = module.objectType;
+
+        ws.send(JSON.stringify(data));
+
+    }
+
 }
 
 server.listen(9027, function() {
@@ -224,34 +221,3 @@ Array.prototype.delete = function() {
     }
     return this;
 };
-
-function init (ws) {
-
-    fs.readFile('src/data/modules.json', 'utf8', (err, jsonString) => {
-        if (err) {
-            console.log("File read failed:", err)
-            return
-        }
-
-        var json = JSON.parse(jsonString);
-
-        console.log('in init: ', json);
-        for (moduleId in json) {
-            var module = json[moduleId];
-            var data = {};
-            data.type = 'createModule';
-            data.position = module.position;
-            data.moduleType = module.type;
-            data.arg = module.arg;
-            data.target = module.target;
-            data.moduleId = module.id;
-            data.next = module.next_id;
-            data.prev = module.prev_id;
-
-            ws.send(JSON.stringify(data));
-
-        }
-
-    })
-
-}

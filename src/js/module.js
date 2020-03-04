@@ -3,7 +3,6 @@ import { codes, styles } from './codes.js';
 
 var activeModuleIds = [];
 var deletingModuleIds = [];
-var exe_parameters={};
 
 const MODULESIZE =25;
 
@@ -52,6 +51,22 @@ class ElementManager {
         this.elements.forEach(element => {
             element.draw(gs_ctx);
         })
+    }
+
+    getInfoJson () {
+
+        var json = {};
+
+        this.elements.forEach(element => {
+            json[element.id.toString()] = {
+                id: element.id,
+                posx: element.position.x,
+                posy: element.position.y,
+                objectType: 'element'
+            };
+        });
+
+        return json;
     }
 
     
@@ -403,7 +418,28 @@ class ModuleManager {
             module.run(this.codedata);
 
 		});
-	}
+    }
+    
+    getInfoJson () {
+
+        var json = {};
+
+        this.modules.forEach(module => {
+            json[module.id.toString()] = {
+                id: module.id,
+                type: module.type,
+                prev: module.prev ? module.prev.id : null,
+                next: module.next ? module.next.id : null,
+                posx: module.position.x,
+                posy: module.position.y,
+                objectType: 'module',
+            };
+        });
+
+        return json;
+
+    }
+
 }
 
 

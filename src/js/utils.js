@@ -20,21 +20,16 @@ function isHover(x, y) {
     return false;
 }
 
-function createElement (position) {
+function createElement (id, position, send = true) {
 
-	var id = Date.now();
 
 	var element = new Element(id, position);
 	element_manager.add_element(element);
 
-	var newElement = {};
-
-	newElement.type = 'createElement';
-	newElement.id = id;
-	newElement.position = position;
-
-	connection.send(JSON.stringify(newElement));
-
+	if (send) {
+		sendElementInfo(element);
+	}
+	
 	var dropdownElement = document.createElement("span");
 	dropdownElement.id = id;
 
@@ -55,59 +50,90 @@ function clickDropDownElement () {
 	var id = Date.now();
 
 	var t = element_manager.getElementById(this.id)
-	console.log('target: ', t, this.id)
+
 	var mod = new TargetModule(targetModulePos, t , id);
+
 	module_manager.add_module(mod);
+
 	dropdownContainer.classList.toggle("show");
 
-	var newModule = {};
-	newModule.type = 'createModule';
-	newModule.moduleId = id;
-	newModule.position = targetModulePos;
-	newModule.after = null;
-	newModule.before = null;
-	newModule.target = t;
-	newModule.moduleType = 'target';
-	newModule.arg = null;
+	sendModuleInfo(mod, 'target', 'target', null);
 
-	connection.send(JSON.stringify(newModule));
 }
 
-function createModule (codeType, position, target = null, arg = null, moduleType = "basic" ) {
- 
-    var id = Date.now();
-	var mod;
+function createModule (id, codeType, position, target = null, arg = null, moduleType = "basic", send = true, nextID = null, prevID = null ) {
+
+	var mod, next = null, prev = null;
+	if (nextID) {
+		next = module_manager.getModuleByID(nextID)[0];
+	}
+	if (prevID) {
+		prev = module_manager.getModuleByID(prevID)[0];
+	}
 	switch (moduleType){
 		case 'arg':
-			mod = new ArgModule(position, codeType, id, arg);
+			mod = new ArgModule(position, codeType, id, arg, next, prev);
 			break;
 		case 'target':
-			console.log('is target');
-			targetModulePos = position;
-			dropdownContainer.classList.toggle("show");
+			if (send){
+				targetModulePos = position;
+				dropdownContainer.classList.toggle("show");
+			} else {
+				mod = new TargetModule(position, target, id, next, prev);
+			}
 			break;
 		default:
-			mod = new Module(position, codeType, id);
+			mod = new Module(position, codeType, id, next, prev);
 			break;
 	}
     if (mod) {
 
 		module_manager.add_module(mod);
 
-		var newModule = {};
-		newModule.type = 'createModule';
-		newModule.moduleId = id;
-		newModule.position = position;
-		newModule.after = null;
-		newModule.before = null;
-		newModule.target = target;
-		newModule.moduleType = codeType;
-		newModule.arg = arg;
+		if(send) {
 
-		connection.send(JSON.stringify(newModule));
+			sendModuleInfo(mod, codeType, moduleType, arg);
+
+		}
+		
+
 	}
 	
     
+}
+
+function sendModuleInfo (module, codeType, moduleType, arg) {
+
+	var newModule = {};
+	newModule.type = 'createModule';
+	newModule.id = module.id;
+	newModule.posx = module.position.x;
+	newModule.posy = module.position.y;
+	newModule.next = null;
+	newModule.prev = null;
+	newModule.target = module.target;
+	newModule.codeType = codeType;
+	newModule.moduleType = moduleType;
+	newModule.arg = arg;
+
+	connection.send(JSON.stringify(newModule));
+
+}
+
+function sendElementInfo (element) {
+
+	var newElement = {};
+
+	newElement.type = 'createElement';
+	newElement.id = element.id;
+	newElement.posx = element.position.x;
+	newElement.posy = element.position.y;
+	newElement.moduleType = null;
+	newElement.codeType = null;
+	newElement.arg = null;
+
+	connection.send(JSON.stringify(newElement));
+
 }
 
 function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash, mouseX, mouseY) {
