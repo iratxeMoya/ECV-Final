@@ -89,7 +89,7 @@ class Module {
     }
 	
 	get_offset(){
-		this.relative.dir ? this.siblings[this.relative.dir].get_offset() + this.relative.offset : 0;
+		return this.relative.dir ? this.siblings[this.relative.dir].get_offset() + this.relative.offset : 0;
 	}
 	
 	oposite(dir){
