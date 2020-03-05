@@ -388,7 +388,7 @@ class ArgModule extends Module {
 		this.arg = arg;
 	}
 	
-	run(target) {
+	run(target = null) {
 		target = target ? target:this.getTarget();
         eval(codes[this.type].replace('$arg$', this.arg)); 
 		this.run_children(target);
@@ -406,7 +406,7 @@ class TargetModule extends Module{
 		
 	}
 	
-	run(){
+	run(target = null){
 		this.run_children(this.target);
 	}
 	
@@ -419,7 +419,7 @@ class ConditionModule extends Module{
 		this.value = value;
 	}
 	
-	run(){
+	run(target = null){
 		console.log("running condition");
 		target = target ? target:this.getTarget();
 			if(target){
