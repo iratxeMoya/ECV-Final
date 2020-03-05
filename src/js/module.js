@@ -232,7 +232,6 @@ class Module {
 
 			if (dir !== this.relative.dir && this.siblings[dir].node) {
 
-				console.log("MIASU");
                 this.siblings[dir].node.move(x, y);
                 
 			}
