@@ -61,6 +61,7 @@ function clickDropDownElement () {
 
 }
 
+//Esta mal porque ya no hay prev y next asiqeu
 function createModule (id, codeType, position, target = null, arg = null, moduleType = "basic", send = true, nextID = null, prevID = null ) {
 
 	var mod, next = null, prev = null;
