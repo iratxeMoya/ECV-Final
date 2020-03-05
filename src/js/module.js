@@ -632,7 +632,7 @@ class ModuleManager {
 
 		this.modules.forEach(module => {
 			
-            module.relative.dir ? null : module.run();
+            module.relative.dir ? console.log("not running") : module.run();
 
 		});
     }
