@@ -426,6 +426,7 @@ class ConditionModule extends Module{
 				this.change_gate('east',false);
 				this.change_gate('west',true);
 			}
+			console.log(this.siblings);
 			this.run_children();	
 		}
 	}
