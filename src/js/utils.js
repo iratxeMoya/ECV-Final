@@ -132,7 +132,7 @@ function sendElementInfo (element) {
 
 }
 
-function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash, mouseX, mouseY) {
+function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash) {
 
 	wb_ctx.fillStyle = "#FFFFFF";
 	wb_ctx.fillRect(0, 0, wb_w, wb_h);

@@ -1,4 +1,3 @@
-import { connection } from './init.js';
 import { codes, styles } from './codes.js';
 
 var activeModuleIds = [];
@@ -78,97 +77,124 @@ class Module {
         this.position = position;
 		this.type = type;
         this.id = id;
-        this.siblings ={
-			 'north':{'node':null,'type':false},
-			 'south':{'node':null,'type':false},
-			 'east' :{'node':null,'type':false},
-			 'west' :{'node':null,'type':false},
+        this.siblings = {
+			 'north': {'node': null, 'type': false},
+			 'south': {'node': null, 'type': false},
+			 'east' : {'node': null, 'type': false},
+			 'west' : {'node': null, 'type': false},
 		};
-        this.relative={dir:null,offset:{x:0,y:0}};
+        this.relative={dir: null, offset: {x: 0, y: 0}};
 
     }
 	
 	get_offset(){
-		if (!this.relative.dir){
-			return {x:0,y:0};
-		}else{
+		if (!this.relative.dir) {
+
+            return {x: 0, y: 0};
+            
+        }
+        else {
 			var offset = this.siblings[this.relative.dir].node.get_offset();
-			offset.x +=this.relative.offset.x;
-			offset.y +=this.relative.offset.y;
+			offset.x += this.relative.offset.x;
+			offset.y += this.relative.offset.y;
 			return offset; 
 		}
 	}
 	
-	oposite(dir){
-		switch(dir){
+	oposite(dir) {
+
+		switch(dir) {
+
 				case 'north':
-					return 'south';
+                    
+                    return 'south';
+                    
 				case 'south':
-					return 'north';
+
+                    return 'north';
+                    
 				case 'east':
-					return 'west';
+
+                    return 'west';
+                    
 				case 'west':
-					return 'east';
+
+                    return 'east';
+                    
 				default:
-					return null;
+
+                    return null;
+                    
 			}
 	}
 	
-	assemble(node,direction,type){
-		this.relative.dir = direction;
-		switch(direction){
+	assemble(node, direction, type) {
+
+        this.relative.dir = direction;
+        
+		switch(direction) {
+
 			case 'north':
+
 				this.siblings.north.node = node;
 				this.siblings.north.type = type;
 				node.siblings.south.node = this;
 				node.siblings.south.type = !type;
-				this.relative.offset.x=0;
-				this.relative.offset.y=MODULESIZE;
+				this.relative.offset.x = 0;
+				this.relative.offset.y = MODULESIZE;
 	
-				break;			
+                break;
+                			
 			case 'east':
+
 				this.siblings.east.node = node;
 				this.siblings.east.type = type;
 				node.siblings.west.node = this;
 				node.siblings.west.type = !type;
-				this.relative.offset.x=-MODULESIZE;
-				this.relative.offset.y=0;
-				break;
+				this.relative.offset.x = -MODULESIZE;
+				this.relative.offset.y = 0;
+                break;
+                
 			case 'west':
+
 				this.siblings.west.node = node;
 				this.siblings.west.type = type;
 				node.siblings.east.node = this;
 				node.siblings.east.type = !type;
-				this.relative.offset.x=MODULESIZE;
-				this.relative.offset.y=0;
-				break;
+				this.relative.offset.x = MODULESIZE;
+				this.relative.offset.y = 0;
+                break;
+                
 			default:
+
 				this.siblings.south.node = node;
 				this.siblings.south.type = type;
 				node.siblings.north.node = this;
 				node.siblings.north.type = !type;
-				this.relative.offset.x=0;
-				this.relative.offset.y=-MODULESIZE;
+				this.relative.offset.x = 0;
+				this.relative.offset.y = -MODULESIZE;
 				break;
-		}
+        }
+        
 		let mp = this.getMasterPos();
-		this.move(mp.x ,mp.y);
+		this.move(mp.x, mp.y);
 		
 		
 	}
 	
-	disassemble(){
-		this.siblings[this.relative.dir].node.siblings[this.oposite(this.relative.dir)].node=null;
+	disassemble() {
+        
+		this.siblings[this.relative.dir].node.siblings[this.oposite(this.relative.dir)].node = null;
 		this.siblings[this.relative.dir].node = null;
-		this.relative.dir=null;
-		this.relative.offset.x=0;
-		this.relative.offset.y=0;
+		this.relative.dir = null;
+		this.relative.offset.x = 0;
+		this.relative.offset.y = 0;
 	}
 
     /**
      * Update the ofset to locate related modules properly
      */
-    update_offset(){
+    update_offset() {
 		
 		
 		
@@ -185,19 +211,26 @@ class Module {
         }
 		
 		if (this.next) {
-			this.next.update_offset()
+
+            this.next.update_offset();
+            
 		}
 
     }
 	
-	move(x,y){
-		let offset =this.get_offset();
-		this.position.x=x+offset.x;
-		this.position.y=y+offset.y;
-		for(let dir in this.siblings){
-			if (dir !== this.relative.dir && this.siblings[dir].node){
+	move(x, y) {
+
+		let offset = this.get_offset();
+		this.position.x = x + offset.x;
+        this.position.y = y + offset.y;
+        
+		for(let dir in this.siblings) {
+
+			if (dir !== this.relative.dir && this.siblings[dir].node) {
+
 				console.log("MIASU");
-				this.siblings[dir].node.move(x,y);
+                this.siblings[dir].node.move(x, y);
+                
 			}
 		}
 	}
@@ -334,9 +367,10 @@ class ArgModule extends Module {
 }
 
 class TargetModule extends Module{
+
 	constructor(position, target, id, next = null, prev = null) {
+        
 		super(position, "target", id, next, prev);
-		console.log('in target module ', id);
 
 		this.target = target;
 		this.executed = false;
@@ -357,7 +391,7 @@ class ModuleManager {
 
 		this.modules = [];
 		this.count = 0;
-		this.selectedGroup=null;
+		this.selectedGroup = null;
     }
     
     /**
@@ -366,8 +400,6 @@ class ModuleManager {
      * @param {Module} newModule 
      */
 	add_module(newModule) {
-
-        console.log(newModule)
 
 		this.modules.push(newModule)
     }
@@ -403,13 +435,16 @@ class ModuleManager {
 
 			let pos = module.position;
 
-			if (Math.abs(posx-pos.x) < MODULESIZE / 2 && Math.abs(posy-pos.y) < MODULESIZE / 2 ){
+			if (Math.abs(posx-pos.x) < MODULESIZE / 2 && Math.abs(posy-pos.y) < MODULESIZE / 2 ) {
                 
 				if (module.relative.dir){
-					module.disassemble();
-				}
-				this.selectedGroup=module;
-				console.log(this.selectedGroup);
+
+                    module.disassemble();
+                    
+                }
+                
+				this.selectedGroup = module;
+
 				return;
             }
 
@@ -417,40 +452,63 @@ class ModuleManager {
 
 	}
     
-	closest_node(x,y,radius){
-		var minModule={position:{x:1000,y:1000}};
+	closest_node(x, y, radius) {
+
+        var minModule = {position: {x: 1000, y: 1000}};
+        
 		this.modules.forEach(module => {
-			let nval =Math.abs(x-module.position.x)+Math.abs(y-module.position.y);
-			let pval =Math.abs(x-minModule.position.x)+Math.abs(y-minModule.position.y);
-			minModule = nval<pval && module.position.x!==x && module.position.y !==y ? module : minModule;
-		});
-		return Math.abs(x-minModule.position.x)+Math.abs(y-minModule.position.y) <=radius ? minModule : null;
+
+			let nval = Math.abs(x - module.position.x) + Math.abs(y - module.position.y);
+            let pval = Math.abs(x - minModule.position.x) + Math.abs(y - minModule.position.y);
+            
+            minModule = nval < pval && module.position.x !== x && module.position.y !== y ? module : minModule;
+            
+        });
+        
+        return Math.abs(x - minModule.position.x) + Math.abs(y - minModule.position.y) <= radius ? minModule : null;
+        
 	}
 	
     /**
      * Disables mooving any module that has been released. If 2 modules are near, locates one module below the other (related) 
      */
 	release_modules() {
-		if(this.selectedGroup){
+
+		if(this.selectedGroup) {
 	
 			var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
 			
-			if (nearModule){
-				if(Math.abs(nearModule.position.x-this.selectedGroup.position.x)>MODULESIZE){
-					if(nearModule.position.x>this.selectedGroup.position.x){
-						this.selectedGroup.assemble(nearModule,'east',true);
-					}else {
-						this.selectedGroup.assemble(nearModule,'west',true);
+			if (nearModule) {
+
+				if (Math.abs(nearModule.position.x - this.selectedGroup.position.x) > MODULESIZE){
+
+					if (nearModule.position.x > this.selectedGroup.position.x) {
+
+                        this.selectedGroup.assemble(nearModule, 'east', true);
+                        
+                    }
+                    else {
+
+                        this.selectedGroup.assemble(nearModule, 'west', true);
+                        
 					}
-				}else {
-					if(nearModule.position.y>this.selectedGroup.position.y){
-						this.selectedGroup.assemble(nearModule,'south',true);
-					}else{
-						this.selectedGroup.assemble(nearModule,'north',true);
+                }
+                else {
+
+					if (nearModule.position.y > this.selectedGroup.position.y) {
+
+                        this.selectedGroup.assemble(nearModule, 'south', true);
+                        
+                    }
+                    else {
+
+                        this.selectedGroup.assemble(nearModule, 'north', true);
+                        
 					}
 				}
-			}
-			this.selectedGroup=null;
+            }
+            
+			this.selectedGroup = null;
 		}
         // activeModuleIds = [];
 
@@ -496,7 +554,7 @@ class ModuleManager {
      */
 	move_modules(posx, posy) {
 
-		this.selectedGroup ? this.selectedGroup.move(posx,posy) : null;
+		this.selectedGroup ? this.selectedGroup.move(posx, posy) : null;
        
 	}
     
