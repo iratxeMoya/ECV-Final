@@ -423,14 +423,14 @@ class ConditionModule extends Module{
 		console.log("running condition");
 		target = target ? target:this.getTarget();
 			if(target){
-			if(eval(codes[this.type].replace('$val$',this.value))){
-				this.change_gate('east',true);
-				this.change_gate('west',false);
-			}else{
-				this.change_gate('east',false);
-				this.change_gate('west',true);
-			}
-			console.log(this.siblings);
+				if(eval(codes[this.type].replace('$val$',this.value))){
+					this.change_gate('east',true);
+					this.change_gate('west',false);
+				}else{
+					this.change_gate('east',false);
+					this.change_gate('west',true);
+				}
+				console.log(this.siblings);
 			this.run_children();	
 		}
 	}

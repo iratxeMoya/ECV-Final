@@ -1,4 +1,4 @@
-import { Module, ArgModule, TargetModule, Element } from './module.js';
+import { Module,ConditionModule, ArgModule, TargetModule, Element } from './module.js';
 import { module_manager, element_manager } from './client.js';
 import { connection } from './init.js';
 import { dropdownContainer } from './DOMAccess.js';
@@ -82,6 +82,9 @@ function createModule (id, codeType, position, target = null, arg = null, module
 			} else {
 				mod = new TargetModule(position, target, id, next, prev);
 			}
+			break;
+		case 'condition':
+			mod = new ConditionModule(position,codeType,id);
 			break;
 		default:
 			mod = new Module(position, codeType, id, next, prev);
