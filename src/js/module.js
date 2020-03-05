@@ -372,7 +372,7 @@ class ArgModule extends Module {
      */
 	constructor (position, type, id, arg) {
 
-		super(position, type, id, next, prev);
+		super(position, type, id);
         this.arg = arg;
         
     }
