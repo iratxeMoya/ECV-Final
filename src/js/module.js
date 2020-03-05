@@ -343,9 +343,8 @@ class Module {
 	
 	getTarget(){
         
-        console.log('getting target ', this)
+        console.log('getting target ', this.type)
 		var ret =this.relative.dir ? this.siblings[this.relative.dir].node.getTarget() : (this.type === "target" ? this.target : null);
-		console.log(ret);
 		return ret;
 	}
 
