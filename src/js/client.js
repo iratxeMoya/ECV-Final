@@ -100,7 +100,7 @@ function release(event) {
 		activeModuleIds.forEach(id => {
 			console.log('active module: ', id);
 			
-			var module = module_manager.getModuleByID(id)[0];
+			var module = module_manager.getModuleByID(id);
 			var element = {};
 			element.id = id;
 			element.prev = module.prev ? module.prev.id : null;

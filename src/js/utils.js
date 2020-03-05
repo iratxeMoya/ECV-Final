@@ -49,7 +49,7 @@ function clickDropDownElement () {
 
 	var id = Date.now();
 
-	var t = element_manager.getElementById(this.id)
+	var t = element_manager.getElementById(this.id)[0]
 
 	var mod = new TargetModule(targetModulePos, t , id);
 

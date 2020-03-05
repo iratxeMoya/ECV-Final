@@ -353,7 +353,7 @@ class Module {
      */
     run (target = null) {
 		console.log(target);
-		target = target ? target:this.getTarget()[0];
+		target = target ? target:this.getTarget();
 		console.log(target);
 		if(target){
 			eval(codes[this.type]);
@@ -389,7 +389,7 @@ class ArgModule extends Module {
 	}
 	
 	run(target) {
-		target = target ? target:this.getTarget()[0];
+		target = target ? target:this.getTarget();
         eval(codes[this.type].replace('$arg$', this.arg)); 
 		this.run_children(target);
     }
@@ -421,8 +421,8 @@ class ConditionModule extends Module{
 	
 	run(){
 		console.log("running condition");
-		target = target ? target:this.getTarget()[0];
-		if(target){
+		target = target ? target:this.getTarget();
+			if(target){
 			if(eval(codes[this.type].replace('$val$',this.value))){
 				this.change_gate('east',true);
 				this.change_gate('west',false);
