@@ -533,12 +533,12 @@ class ModuleManager {
 
 					if (nearModule.position.x > this.selectedGroup.position.x) {
 
-                        this.selectedGroup.assemble(nearModule, 'east', true);
+                        this.selectedGroup.assemble(nearModule, 'east', false);
                         
                     }
                     else {
 
-                        this.selectedGroup.assemble(nearModule, 'west', true);
+                        this.selectedGroup.assemble(nearModule, 'west', false);
                         
 					}
                 }
@@ -546,12 +546,12 @@ class ModuleManager {
 
 					if (nearModule.position.y > this.selectedGroup.position.y) {
 
-                        this.selectedGroup.assemble(nearModule, 'south', true);
+                        this.selectedGroup.assemble(nearModule, 'south', false);
                         
                     }
                     else {
 
-                        this.selectedGroup.assemble(nearModule, 'north', true);
+                        this.selectedGroup.assemble(nearModule, 'north', false);
                         
 					}
 				}
