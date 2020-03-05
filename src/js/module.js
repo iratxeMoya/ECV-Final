@@ -72,7 +72,7 @@ class Module {
      * @param {Module} target ???? 
      * @param {Int} id Unique ??????? no se como hacer esto
      */
-    constructor (position, type, id,) {
+    constructor (position, type, id) {
 
         this.position = position;
 		this.type = type;
@@ -190,6 +190,10 @@ class Module {
 		this.relative.offset.x = 0;
 		this.relative.offset.y = 0;
 	}
+	
+	change_gate(dir,type = !this.siblings[dir].type){
+		this.siblings[dir].type=type;
+	}
 
     /**
      * Update the ofset to locate related modules properly
@@ -290,6 +294,14 @@ class Module {
         return Math.abs(module.position.x - this.position.x) < MODULESIZE * 2 && Math.abs(module.position.y - this.position.y) < MODULESIZE * 2;  
     }
 	
+	run_children(){
+		for (dir in this.siblings){
+			if(this.siblings[dir].node && this.siblings[dir].type){
+				this.siblings[dir].node.run();
+			}				
+		}
+	}
+	
 	isChild(module) {
 		
 		return this.id === module.id ? true : (this.next ? this.next.isChild(module) : false) ;
@@ -345,6 +357,7 @@ class Module {
 		if(this.getTarget()){
 			eval(codes[this.type]);
 		}
+		this.run_children();
     }
 }
 
@@ -357,7 +370,7 @@ class ArgModule extends Module {
      * @param {Int} id Unique ??????? no se como hacer esto
      * @param {String} argument to pass	
      */
-	constructor (position, type, id, arg, next = null, prev = null) {
+	constructor (position, type, id, arg) {
 
 		super(position, type, id, next, prev);
         this.arg = arg;
@@ -377,15 +390,15 @@ class ArgModule extends Module {
 	run() {
 
         eval(codes[this.type].replace('$arg$', this.arg)); 
-
+		this.run_children();
     }
 }
 
 class TargetModule extends Module{
 
-	constructor(position, target, id, next = null, prev = null) {
+	constructor(position, target, id) {
         
-		super(position, "target", id, next, prev);
+		super(position, "target", id);
 
 		this.target = target;
 		this.executed = false;
@@ -393,11 +406,30 @@ class TargetModule extends Module{
 	}
 	
 	run(){
+		this.run_children();
 	}
 	
 }
 
-
+class ConditionModule extends Module{
+	
+	constructor(position,type,id,value=null){
+		super(position,type,id);
+		this.value = value;
+	}
+	
+	run(){
+		if(eval(codes[this.type].replace('$val$',this.value))){
+			this.change_gate('east',true);
+			this.change_gate('west',false);
+		}else{
+			this.change_gate('east',false);
+			this.change_gate('west',true);
+		}
+		this.run_children();	
+	}
+	
+}
 
 class ModuleManager {
 
@@ -596,8 +628,8 @@ class ModuleManager {
 	run_modules() {
 
 		this.modules.forEach(module => {
-
-            module.run(this.codedata);
+			
+            module.relative.dir ? null : module.run();
 
 		});
     }

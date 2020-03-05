@@ -41,7 +41,7 @@
 
 .module{
 	position:absolute;
-	background-color:black;
+	background-color:red;
 	width:100px;
 	height:100px;
 	z-index:2;
@@ -49,12 +49,24 @@
     top: 50px;
 }
 
-span#targetModule {
-    top: 290px;
+span#conditionModule {
+    top: 170px;
+	background-color:white;
 }
 
 span#argModule {
-    top: 170px;
+    top: 290px;
+	background-color:black;
+}
+
+
+span#targetModule {
+    top: 410px;
+	background-color:green;
+}
+
+span#element {
+    top: 530px;
 }
 
 .target {
@@ -67,9 +79,6 @@ span#argModule {
     top: 50px;
 }
 
-span#element {
-    top: 410px;
-}
 
 
 
