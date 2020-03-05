@@ -352,7 +352,9 @@ class Module {
      * Runs code of the module
      */
     run (target = null) {
+		console.log(target);
 		target = target ? target:this.getTarget();
+		console.log(target);
 		if(target){
 			eval(codes[this.type]);
 		}
