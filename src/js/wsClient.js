@@ -53,7 +53,7 @@ connection.onmessage = (event) => {
     else if (jsonData.type === 'createModule') {
 
         createModule(jsonData.id, jsonData.codeType, {x: jsonData.posx, y: jsonData.posy}, jsonData.target, jsonData.arg, jsonData.moduleType, false, jsonData.next, jsonData.prev);
-
+		
     }
     else if (jsonData.type === 'createElement') {
 

@@ -152,7 +152,7 @@ wss.on('connection', function(ws) {
 function saveDatabaseToDisk()
 {
 
-    fs.writeFileSync('src/data/modules.json', JSON.serialize(modules) );
+    //fs.writeFileSync('src/data/modules.json', JSON.serialize(modules) );
     
 }
 

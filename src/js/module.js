@@ -72,7 +72,7 @@ class Module {
      * @param {Module} target ???? 
      * @param {Int} id Unique ??????? no se como hacer esto
      */
-    constructor (position, type, id) {
+    constructor (position, type, id,) {
 
         this.position = position;
 		this.type = type;
@@ -396,6 +396,8 @@ class TargetModule extends Module{
 	}
 	
 }
+
+
 
 class ModuleManager {
 
