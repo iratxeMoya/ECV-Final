@@ -352,7 +352,7 @@ class Module {
      * Runs code of the module
      */
     run (target = null) {
-		target = target==null ? this.getTarget() : target;
+		target = target ?  target this.getTarget();
 		if(target){
 			eval(codes[this.type]);
 		}
@@ -387,7 +387,7 @@ class ArgModule extends Module {
 	}
 	
 	run(target) {
-		target = target==null ? this.getTarget() : target;
+		target = target ?  target this.getTarget();
         eval(codes[this.type].replace('$arg$', this.arg)); 
 		this.run_children(target);
     }
@@ -419,7 +419,7 @@ class ConditionModule extends Module{
 	
 	run(){
 		console.log("running condition");
-		target = target==null ? this.getTarget() : target;
+		target = target ?  target this.getTarget();
 		if(target){
 			if(eval(codes[this.type].replace('$val$',this.value))){
 				this.change_gate('east',true);
