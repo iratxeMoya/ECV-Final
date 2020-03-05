@@ -25,7 +25,7 @@ function createElement (id, position, send = true) {
 
 	var element = new Element(id, position);
 	element_manager.add_element(element);
-	console.log(element);
+	
 	if (send) {
 		sendElementInfo(element);
 	}
@@ -126,7 +126,8 @@ function sendElementInfo (element) {
 
 	newElement.type = 'createElement';
 	newElement.id = element.id;
-	newElement.parameters = element.parameters;
+	newElement.posx = element.position.x;
+	newElement.posy = element.position.y;
 
 	connection.send(JSON.stringify(newElement));
 

@@ -10,7 +10,7 @@ class Element {
 	
 	constructor (id, position, avatar = null) {
 		
-		this.parameters={'posx':position.x,'posy':position.y,'sizex':MODULESIZE,'sizey':MODULESIZE}
+		this.parameters = {'posx':position.x,'posy':position.y,'sizex':MODULESIZE,'sizey':MODULESIZE}
 		this.id = id;
 		
     }
@@ -233,7 +233,22 @@ class Module {
                 
 			}
 		}
-	}
+    }
+    
+    isActive() {
+
+        activeModuleIds = [];
+
+        for(let dir in this.siblings) {
+
+			if (dir !== this.relative.dir && this.siblings[dir].node) {
+
+				activeModuleIds.push(this.siblings[dir].node.id);
+                
+			}
+        }
+        
+    }
 
     /**
      * Enable module to move
@@ -476,7 +491,8 @@ class ModuleManager {
 
 		if(this.selectedGroup) {
 	
-			var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
+            var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
+            this.selectedGroup.isActive();
 			
 			if (nearModule) {
 

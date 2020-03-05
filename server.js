@@ -30,7 +30,8 @@ DATA EXAMPLE IN MODULES:
         target: X,
         codeType: X,
         moduleType: X,
-        arg: X
+        arg: X,
+        parameters: X,
     }
 */
 
@@ -74,6 +75,7 @@ wss.on('connection', function(ws) {
             info.codeType = jsonData.codeType;
             info.moduleType = jsonData.moduleType;
             info.arg = jsonData.arg;
+
 
             modules[jsonData.id.toString()] = info;
 
@@ -123,8 +125,8 @@ wss.on('connection', function(ws) {
             info.posx = jsonData.posx;
             info.posy = jsonData.posy;
             info.target = null;
-            info.codeType = jsonData.codeType;
-            info.moduleType = jsonData.moduleType;
+            info.codeType = null;
+            info.moduleType = null;
             info.arg = jsonData.arg;
 
             modules[jsonData.id.toString()] = info; 

@@ -97,6 +97,8 @@ function release(event) {
 		})
 	} else {
 		activeModuleIds.forEach(id => {
+			console.log('active module: ', id);
+			
 			var module = module_manager.getModuleByID(id)[0];
 			var element = {};
 			element.id = id;
