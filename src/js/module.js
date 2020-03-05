@@ -386,10 +386,10 @@ class ArgModule extends Module {
 		this.arg = arg;
 	}
 	
-	run() {
-
+	run(target) {
+		target = target==null ? this.getTarget() : target;
         eval(codes[this.type].replace('$arg$', this.arg)); 
-		this.run_children();
+		this.run_children(target);
     }
 }
 
@@ -405,7 +405,7 @@ class TargetModule extends Module{
 	}
 	
 	run(){
-		this.run_children();
+		this.run_children(this.target);
 	}
 	
 }
@@ -419,7 +419,8 @@ class ConditionModule extends Module{
 	
 	run(){
 		console.log("running condition");
-		if(this.getTarget()){
+		target = target==null ? this.getTarget() : target;
+		if(target){
 			if(eval(codes[this.type].replace('$val$',this.value))){
 				this.change_gate('east',true);
 				this.change_gate('west',false);
