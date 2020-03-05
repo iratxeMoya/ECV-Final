@@ -689,6 +689,7 @@ Array.prototype.remove = function() {
 
 export {
 	Module,
+	ConditionModule,
 	ArgModule,
 	TargetModule,
     ModuleManager,
