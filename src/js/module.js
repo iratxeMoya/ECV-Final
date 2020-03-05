@@ -293,10 +293,10 @@ class Module {
         return Math.abs(module.position.x - this.position.x) < MODULESIZE * 2 && Math.abs(module.position.y - this.position.y) < MODULESIZE * 2;  
     }
 	
-	run_children(){
+	run_children(target=null){
 		for (let dir in this.siblings){
 			if(this.siblings[dir].node && this.siblings[dir].type){
-				this.siblings[dir].node.run();
+				this.siblings[dir].node.run(target);
 			}				
 		}
 	}
@@ -351,11 +351,12 @@ class Module {
     /**
      * Runs code of the module
      */
-    run () {
-		if(this.getTarget()){
+    run (target = null) {
+		target = target==null ? this.getTarget() : target;
+		if(target){
 			eval(codes[this.type]);
 		}
-		this.run_children();
+		this.run_children(target);
     }
 }
 
