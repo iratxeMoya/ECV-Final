@@ -418,6 +418,7 @@ class ConditionModule extends Module{
 	}
 	
 	run(){
+		console.log("running condition");
 		if(this.getTarget()){
 			if(eval(codes[this.type].replace('$val$',this.value))){
 				this.change_gate('east',true);
