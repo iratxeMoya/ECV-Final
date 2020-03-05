@@ -99,16 +99,6 @@ span#element {
 	border:10px solid blue;
 }
 
-#module1{
-	top:20px;
-	left:50px;
-}
-
-#module2{
-	top:140px;
-	left:50px;
-}
-
 .module:hover{
 	background-color:grey;
 }

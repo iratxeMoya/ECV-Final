@@ -21,6 +21,7 @@ export {
 	game_screen,
     run_button,
     basicModule,
+	conditionModule,
     argModule,
     targetModule,
     element,
