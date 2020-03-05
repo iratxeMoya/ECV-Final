@@ -294,7 +294,7 @@ class Module {
     }
 	
 	run_children(){
-		for (dir in this.siblings){
+		for (let dir in this.siblings){
 			if(this.siblings[dir].node && this.siblings[dir].type){
 				this.siblings[dir].node.run();
 			}				
