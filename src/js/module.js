@@ -418,14 +418,16 @@ class ConditionModule extends Module{
 	}
 	
 	run(){
-		if(eval(codes[this.type].replace('$val$',this.value))){
-			this.change_gate('east',true);
-			this.change_gate('west',false);
-		}else{
-			this.change_gate('east',false);
-			this.change_gate('west',true);
+		if(this.getTarget()){
+			if(eval(codes[this.type].replace('$val$',this.value))){
+				this.change_gate('east',true);
+				this.change_gate('west',false);
+			}else{
+				this.change_gate('east',false);
+				this.change_gate('west',true);
+			}
+			this.run_children();	
 		}
-		this.run_children();	
 	}
 	
 }
