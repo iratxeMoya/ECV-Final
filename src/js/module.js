@@ -46,20 +46,6 @@ class ElementManager {
         })
     }
 
-    getInfoJson () {
-        var json = {};
-
-        this.elements.forEach(element => {
-            json[element.id.toString()] = {
-                id: element.id,
-                posx: element.position.x,
-                posy: element.position.y,
-                objectType: 'element'
-            };
-        });
-        return json;
-    }
-
     
 }
 
