@@ -368,7 +368,7 @@ class ArgModule extends Module {
 
 class TargetModule extends Module{
 
-	constructor(position, target, id, , north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}) {
+	constructor(position, target, id, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}) {
         
 		super(position, "target", id, north, west, east, south);
 
@@ -385,7 +385,7 @@ class TargetModule extends Module{
 
 class ConditionModule extends Module{
 	
-	constructor(position, type, id, value=null, , north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}){
+	constructor(position, type, id, value=null, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}){
 		super(position, type, id, north, west, east, south);
 		this.value = value;
 	}
