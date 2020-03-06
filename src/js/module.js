@@ -3,7 +3,7 @@ import { codes, styles } from './codes.js';
 var activeModuleIds = [];
 var deletingModuleIds = [];
 
-const MODULESIZE =25;
+const MODULESIZE = 25;
 
 
 class Element {
@@ -65,23 +65,17 @@ class ElementManager {
 
 class Module {
 
-    /**
-     * 
-     * @param {Object} position {x, y}
-     * @param {String} code 
-     * @param {Module} target ???? 
-     * @param {Int} id Unique ??????? no se como hacer esto
-     */
-    constructor (position, type, id) {
+    
+    constructor (position, type, id, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}) {
 
         this.position = position;
 		this.type = type;
         this.id = id;
         this.siblings = {
-			 'north': {'node': null, 'type': false},
-			 'south': {'node': null, 'type': false},
-			 'east' : {'node': null, 'type': false},
-			 'west' : {'node': null, 'type': false},
+			 'north': north,
+			 'south': south,
+			 'east' : east,
+			 'west' : west,
 		};
         this.relative={dir: null, offset: {x: 0, y: 0}};
 
@@ -200,9 +194,7 @@ class Module {
      */
     update_offset() {
 		
-		
-		
-        if(typeof this.prev === 'undefined' || this.prev === null) {
+        if (typeof this.prev === 'undefined' || this.prev === null) {
 
             this.offset.x = 0;
             this.offset.y = 0;
@@ -312,29 +304,7 @@ class Module {
 		return this.id === module.id ? true : (this.prev ? this.prev.isParent(module) : false) ;
 	
 	}
-
-    /**
-     * 
-     * @param {Module} module 
-     * @param {String} position before / after
-     */
-    relate(module, position) {
-
-        if (position === 'before') {
-			
-			this.prev = module;
-			module.next = this;
-			
-
-        } 
-        else {
-
-            this.next = module;
-			module.prev = this;
-
-        }
-
-    }
+   
 	getMasterPos () {
 		
 		return this.relative.dir ? this.siblings[this.relative.dir].node.getMasterPos() : this.position;
@@ -343,8 +313,7 @@ class Module {
 	
 	getTarget(){
         
-        console.log('getting target ', this.type)
-		var ret =this.relative.dir ? this.siblings[this.relative.dir].node.getTarget() : (this.type === "target" ? this.target : null);
+		var ret = this.relative.dir ? this.siblings[this.relative.dir].node.getTarget() : (this.type === "target" ? this.target : null);
 		return ret;
 	}
 
@@ -371,9 +340,9 @@ class ArgModule extends Module {
      * @param {Int} id Unique ??????? no se como hacer esto
      * @param {String} argument to pass	
      */
-	constructor (position, type, id, arg) {
+	constructor (position, type, id, arg, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}) {
 
-		super(position, type, id);
+		super(position, type, id, north, west, east, south);
         this.arg = arg;
         
     }
@@ -389,17 +358,19 @@ class ArgModule extends Module {
 	}
 	
 	run(target = null) {
+
 		target = target ? target:this.getTarget();
         eval(codes[this.type].replace('$arg$', this.arg)); 
-		this.run_children(target);
+        this.run_children(target);
+        
     }
 }
 
 class TargetModule extends Module{
 
-	constructor(position, target, id) {
+	constructor(position, target, id, , north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}) {
         
-		super(position, "target", id);
+		super(position, "target", id, north, west, east, south);
 
 		this.target = target;
 		this.executed = false;
@@ -414,23 +385,30 @@ class TargetModule extends Module{
 
 class ConditionModule extends Module{
 	
-	constructor(position,type,id,value=null){
-		super(position,type,id);
+	constructor(position, type, id, value=null, , north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}){
+		super(position, type, id, north, west, east, south);
 		this.value = value;
 	}
 	
 	run(target = null){
-		console.log("running condition");
-		target = target ? target:this.getTarget();
-			if(target){
-				if(eval(codes[this.type].replace('$val$',this.value))){
-					this.change_gate('east',true);
-					this.change_gate('west',false);
-				}else{
-					this.change_gate('east',false);
-					this.change_gate('west',true);
+		
+        target = target ? target:this.getTarget();
+        
+			if (target) {
+
+				if (eval(codes[this.type].replace('$val$', this.value))) {
+
+					this.change_gate('east', true);
+                    this.change_gate('west', false);
+                    
+                }
+                else {
+
+					this.change_gate('east', false);
+                    this.change_gate('west', true);
+                    
 				}
-				console.log(this.siblings);
+
 			this.run_children();	
 		}
 	}

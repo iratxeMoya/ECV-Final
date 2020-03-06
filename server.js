@@ -21,17 +21,19 @@ var modules = {};
 
 /*
 DATA EXAMPLE IN MODULES:
-    ID:{
+    id:{
         id: X,
-        objectType: X,
-        prev: X,
-        next: X,
+        objectType: X, (module / element)
+        north: {nodeID: X, type: X},
+        south: {nodeID: X, type: X},
+        east: {nodeID: X, type: X},
+        west: {nodeID: X, type: X},
         posx: X,
-        target: X,
+        posy: X,
+        target: X, (es la id)
         codeType: X,
         moduleType: X,
         arg: X,
-        parameters: X,
     }
 */
 
@@ -67,8 +69,10 @@ wss.on('connection', function(ws) {
             var info = {};
             info.id = jsonData.id;
             info.objectType = 'module'; 
-            info.prev = jsonData.prev ? jsonData.prev.id : null;
-            info.next = jsonData.next ? jsonData.next.id : null;
+            info.north = {nodeId: jsonData.north.node ? jsonData.north.node.id : null, type: jsonData.north ? jsonData.north.type : false};
+            info.south = {nodeId: jsonData.south.node ? jsonData.south.node.id : null, type: jsonData.south ? jsonData.south.type : false};
+            info.east = {nodeId: jsonData.east.node ? jsonData.east.node.id : null, type: jsonData.east ? jsonData.east.type : false};
+            info.west = {nodeId: jsonData.west.node ? jsonData.west.node.id : null, type: jsonData.west ? jsonData.west.type : false};
             info.posx = jsonData.posx;
             info.posy = jsonData.posy;
             info.target = jsonData.target ? jsonData.target.id : null;
@@ -104,10 +108,11 @@ wss.on('connection', function(ws) {
                     delete modules[module.id.toString()];
                 }
 
-                modules[module.id.toString()].prev = module.prev;
-                modules[module.id.toString()].next = module.next;
-                module.prev !== null ? modules[module.prev.toString()].next = module.id :  null;
-                module.next !== null ? modules[module.next.toString()].prev = module.id :  null;
+                //en jsonData.modules ya viene el north, south, east y west en el formato correcto
+                modules[module.id.toString()].north = module.north;
+                modules[module.id.toString()].south = module.south;
+                modules[module.id.toString()].east = module.east;
+                modules[module.id.toString()].west = module.west;
 
             })
 
@@ -120,8 +125,10 @@ wss.on('connection', function(ws) {
 
             info.id = jsonData.id;
             info.objectType = 'element'; 
-            info.prev = null;
-            info.next = null;
+            info.north = {nodeId: null, type: false};
+            info.south = {nodeId: null, type: false};
+            info.east = {nodeId: null, type: false};
+            info.west = {nodeId: null, type: false};
             info.posx = jsonData.posx;
             info.posy = jsonData.posy;
             info.target = null;
@@ -152,7 +159,7 @@ wss.on('connection', function(ws) {
 function saveDatabaseToDisk()
 {
 
-    //fs.writeFileSync('src/data/modules.json', JSON.serialize(modules) );
+    fs.writeFileSync('src/data/modules.json', JSON.serialize(modules) );
     
 }
 
@@ -194,8 +201,10 @@ function init (ws) {
         data.arg = module.arg;
         data.target = module.target;
         data.id = module.id;
-        data.next = module.next;
-        data.prev = module.prev;
+        data.north = module.north;
+        data.south = module.south;
+        data.east = module.east;
+        data.west = module.west;
         data.objectType = module.objectType;
 
         ws.send(JSON.stringify(data));

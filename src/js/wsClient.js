@@ -27,7 +27,7 @@ connection.onmessage = (event) => {
 
         if (jsonData.objectType === 'module') {
 
-            createModule(jsonData.id, jsonData.codeType, {x: jsonData.posx, y: jsonData.posy}, jsonData.target, jsonData.arg, jsonData.moduleType, false, jsonData.next, jsonData.prev)
+            createModule(jsonData.id, jsonData.codeType, {x: jsonData.posx, y: jsonData.posy}, jsonData.target, jsonData.arg, jsonData.moduleType, false, jsonData.north, jsonData.west, jsonData.east, jsonData.south)
 
         }
         else if (jsonData.objectType === 'element') {
@@ -43,7 +43,6 @@ connection.onmessage = (event) => {
     else if (jsonData.type === 'releaseModule') {
 
         if (jsonData.remove) {
-            
             module_manager.delete_module();
         }
 
@@ -52,7 +51,7 @@ connection.onmessage = (event) => {
     }
     else if (jsonData.type === 'createModule') {
 
-        createModule(jsonData.id, jsonData.codeType, {x: jsonData.posx, y: jsonData.posy}, jsonData.target, jsonData.arg, jsonData.moduleType, false, jsonData.next, jsonData.prev);
+        createModule(jsonData.id, jsonData.codeType, {x: jsonData.posx, y: jsonData.posy}, jsonData.target, jsonData.arg, jsonData.moduleType, false, jsonData.north, jsonData.west, jsonData.east, jsonData.south);
 		
     }
     else if (jsonData.type === 'createElement') {

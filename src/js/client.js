@@ -91,20 +91,23 @@ function release(event) {
 			var module = module_manager.getModuleByID(id)[0];
 			var element = {};
 			element.id = id;
-			element.prev = module.prev ? module.prev.id : null;
-			element.next = module.next ? module.next.id : null;
+			element.north = {nodeId: module.siblings.north.node ? module.siblings.north.node.id : null, type: module.siblings.north.type};
+			element.south = {nodeId: module.siblings.south.node ? module.siblings.south.node.id : null, type: module.siblings.south.type};
+			element.east = {nodeId: module.siblings.east.node ? module.siblings.east.node.id : null, type: module.siblings.east.type};
+			element.west = {nodeId: module.siblings.west.node ? module.siblings.west.node.id : null, type: module.siblings.west.type};
 
 			modules.push(element);
 		})
 	} else {
 		activeModuleIds.forEach(id => {
-			console.log('active module: ', id);
 			
 			var module = module_manager.getModuleByID(id);
 			var element = {};
 			element.id = id;
-			element.prev = module.prev ? module.prev.id : null;
-			element.next = module.next ? module.next.id : null;
+			element.north = {nodeId: module.siblings.north.node ? module.siblings.north.node.id : null, type: module.siblings.north.type};
+			element.south = {nodeId: module.siblings.south.node ? module.siblings.south.node.id : null, type: module.siblings.south.type};
+			element.east = {nodeId: module.siblings.east.node ? module.siblings.east.node.id : null, type: module.siblings.east.type};
+			element.west = {nodeId: module.siblings.west.node ? module.siblings.west.node.id : null, type: module.siblings.west.type};
 
 			modules.push(element);
 		})
