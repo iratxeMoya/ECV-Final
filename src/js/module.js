@@ -544,33 +544,6 @@ class ModuleManager {
             
 			this.selectedGroup = null;
 		}
-        // activeModuleIds = [];
-
-		// this.modules.forEach(module => {
-
-            // if (module.moving) {
-
-                // this.modules.forEach(nearModule => {
-
-                    // if (module.isNear(nearModule) && !module.isParent(nearModule) && !module.isChild(nearModule)) {
-
-                        // module.relate(nearModule, "before");
-                        // module.update_offset();
-                        // module.position.x = nearModule.getMasterPos().x;
-                        // module.position.y = nearModule.getMasterPos().y + module.offset;
-                        // return;
-
-                    // }
-
-                // });
-				
-                // activeModuleIds.push(module.id);
-
-            // }
-            
-            // module.disable_moving();
-            
-        // });
         
     }
     
@@ -616,26 +589,6 @@ class ModuleManager {
             module.relative.dir ? console.log("not running") : module.run();
 
 		});
-    }
-    
-    getInfoJson () {
-
-        var json = {};
-
-        this.modules.forEach(module => {
-            json[module.id.toString()] = {
-                id: module.id,
-                type: module.type,
-                prev: module.prev ? module.prev.id : null,
-                next: module.next ? module.next.id : null,
-                posx: module.position.x,
-                posy: module.position.y,
-                objectType: 'module',
-            };
-        });
-
-        return json;
-
     }
 
 }
