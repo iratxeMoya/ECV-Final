@@ -596,7 +596,7 @@ class ModuleManager {
      */
 	run_modules() {
 		console.log(this.running);
-		if this.running{
+		if (this.running){
 			this.modules.forEach(module => {
 				
 				module.type === "target" ? module.run() : null;
