@@ -1,4 +1,5 @@
 import { ModuleManager, activeModuleIds, deletingModuleIds, Element, ElementManager } from './module.js';
+import { Map } from './map.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
 import { isHover, createModule, paintInCanvas, createElement } from './utils.js';
@@ -14,6 +15,7 @@ var mouseDown = false;
 var mouseX;
 var mouseY;
 
+var map = new Map(10,10);
 var module_manager = new ModuleManager(codes);
 var element_manager = new ElementManager();
 var img = new Image();
@@ -149,6 +151,7 @@ function update_gs() {
 	
 	module_manager.run_modules();
 	paintInCanvas(gs_w, gs_h, gs_ctx, img, false);
+	map.draw();
 	element_manager.draw(gs_ctx);
 }
 

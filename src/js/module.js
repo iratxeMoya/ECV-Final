@@ -3,14 +3,14 @@ import { codes, styles } from './codes.js';
 var activeModuleIds = [];
 var deletingModuleIds = [];
 
-const MODULESIZE = 25;
-
 
 class Element {
 	
 	constructor (id, position, avatar = null) {
 		
-		this.parameters = {'posx':position.x,'posy':position.y,'sizex':MODULESIZE,'sizey':MODULESIZE}
+		this.position.x=position.x;
+		this.position.y=position.y;
+		
 		this.id = id;
 		this.dir = 0;
 		
@@ -19,16 +19,16 @@ class Element {
 	forward(){
 		switch(this.dir){
 			case 0:
-				this.parameters.posx+=MODULESIZE;
+				this.position.x+=1;
 				break;
 			case 1:
-				this.parameters.posy+=MODULESIZE;
+				this.position.y+=1;
 				break;
 			case 2:
-				this.parameters.posx-=MODULESIZE;
+				this.position.x-=1;
 				break;
 			default:
-				this.parameters.posy-=MODULESIZE;
+				this.position.y-=1;
 		}
 	}
 	
@@ -45,27 +45,27 @@ class Element {
 	}
 	
 	next_pos(){
-		var nposx=this.parameters.posx;
-		var nposy=this.parameters.posy;
+		var nposx=this.position.x;
+		var nposy=this.position.y;
 		switch(this.dir){
 			case 0:
-				nposx+=MODULESIZE;
+				nposx+=1;
 				break;
 			case 1:
-				nposy+=MODULESIZE;
+				nposy+=1;
 				break;
 			case 2:
-				nposx-=MODULESIZE;
+				nposx-=1;
 				break;
 			default:
-				nposy-=MODULESIZE;
+				nposy-=1;
 		}
 		return {x:nposx,y:nposy};
 	}
 	
 	draw(gs_ctx){
 		gs_ctx.fillStyle = '#FF6DC9';
-        gs_ctx.fillRect(this.parameters.posx-this.parameters.sizex/2,this.parameters.posy-this.parameters.sizey/2, this.parameters.sizex,this.parameters.sizey);
+        gs_ctx.fillRect((this.position.x-0.5)*MODULESIZE,(this.position.y-0.5)*MODULESIZE, MODULESIZE,MODULESIZE);
 	}
 	
 }

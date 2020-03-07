@@ -146,8 +146,8 @@ function sendElementInfo (element) {
 
 	newElement.type = 'createElement';
 	newElement.id = element.id;
-	newElement.posx = element.parameters.posx;
-	newElement.posy = element.parameters.posy;
+	newElement.posx = element.position.x;
+	newElement.posy = element.position.y;
 
 	connection.send(JSON.stringify(newElement));
 

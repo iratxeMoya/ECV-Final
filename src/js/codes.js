@@ -2,7 +2,10 @@ var codes ={"ifwall":"!(target.in_range(target.next_pos(),100,400,100,400))","lo
 
 var styles = {"log":"#0000FF","ifwall":"#999999","move":"#FF0000", 'target': '#00FF00','turn':'#0000FF'}
 
+const MODULESIZE = 25;
+
 export{
 	codes,
-	styles
+	styles,
+	MODULESIZE
 }
