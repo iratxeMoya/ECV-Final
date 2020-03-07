@@ -196,9 +196,11 @@ wss.on('connection', function(ws) {
 
         console.log('Connection closed');
         var user = connectedUsers.findByField('ws', ws);
-        console.log(user);
+        console.log(connectedUsers);
 
         connectedUsers.delete(user);
+
+        console.log(connectedUsers);
 
         saveDatabaseToDisk();
 
