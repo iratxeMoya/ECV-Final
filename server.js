@@ -40,6 +40,8 @@ DATA EXAMPLE IN MODULES:
 
 wss.on('connection', function(ws) {
 
+    loadDatabaseFromDisk ();
+
     ws.on('message', function (data) {
 
         jsonData = JSON.parse(data);
@@ -47,7 +49,6 @@ wss.on('connection', function(ws) {
         
         if (jsonData.type === 'login') {
             
-            loadDatabaseFromDisk ();
             var foundUser = registeredUsers.find(user => user.username === jsonData.username);
 
             if (foundUser && passwordHash.verify(jsonData.password, foundUser.hashedPassword)) {
@@ -80,8 +81,6 @@ wss.on('connection', function(ws) {
 
             var foundClient = registeredUsers.find(user => user.username === jsonData.username);
 			if (!foundClient) {
-
-                loadDatabaseFromDisk ();
 
                 var sendData = {};
                 sendData.type = 'connectionResponse';
