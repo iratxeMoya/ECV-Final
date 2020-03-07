@@ -194,13 +194,10 @@ wss.on('connection', function(ws) {
 
     ws.on('close', function (event) {
 
-        console.log('Connection closed');
+        console.log('Connection closed: ', registeredUsers);
         var user = connectedUsers.findByField('ws', ws);
-        console.log(connectedUsers);
 
         connectedUsers.delete(user);
-
-        console.log(connectedUsers);
 
         saveDatabaseToDisk();
 
@@ -218,7 +215,7 @@ function saveDatabaseToDisk()
         delete user.ws;
     });
 
-    var registeredUsersJson = arrayToJson(registeredUsers); 
+    var registeredUsersJson = arrayToJson(registeredUsers, 'username'); 
     fs.writeFileSync('src/data/users.json', JSON.stringify(registeredUsersJson));
     
 }
@@ -324,6 +321,8 @@ function jsonToArray (json) {
 function arrayToJson (array, keyField) {
 
     var json = {};
+
+    console.log(array, keyField);
 
     array.forEach(element => {
         json[element[keyField]] = element;
