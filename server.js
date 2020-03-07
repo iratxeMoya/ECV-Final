@@ -306,10 +306,12 @@ Object.prototype.findByField = function (field, value) {
 function jsonToArray (json) {
 
     var array = [];
+    console.log(json)
     for (key in json) {
+        console.log(json[key])
         array.push(json[key]);
     }
-
+    console.log(array)
     return array;
 
 }
