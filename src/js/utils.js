@@ -140,10 +140,6 @@ function sendModuleInfo (module, codeType, moduleType, arg) {
 
 }
 
-function in_range(pos,xi,xf,yi,yf){
-	return (pos.x>xi && pos.x<xf && pos.y>yi && pos.y<yf);
-}
-
 function sendElementInfo (element) {
 
 	var newElement = {};
@@ -173,7 +169,6 @@ function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash) {
 
 export {
     isHover,
-	in_range,
 	createModule,
 	createElement,
 	paintInCanvas,

@@ -32,6 +32,10 @@ class Element {
 		}
 	}
 	
+	in_range(pos,xi,xf,yi,yf){
+		return (pos.x>xi && pos.x<xf && pos.y>yi && pos.y<yf);
+	}
+	
 	turn_clock(){
 		this.dir = (this.dir+1)%4;
 	}
