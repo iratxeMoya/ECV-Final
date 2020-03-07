@@ -239,12 +239,12 @@ function loadDatabaseFromDisk()
 }
 
 
-function broadcastMsg(data, usersToSend, ws) {
+function broadcastMsg(data, usersToSend, connection) {
 
     for (key in usersToSend) {
 
-        console.log(usersToSend[key])
-        if(usersToSend[key].ws !== ws) {
+        console.log(usersToSend[key].ws)
+        if(usersToSend[key].ws !== connection) {
             usersToSend[key].ws.send(data);
         }
     }
