@@ -62,6 +62,8 @@ wss.on('connection', function(ws) {
                 sendData.status = 'OK';
                 sendData.connectionType = 'login';
 
+                foundUser.ws = ws;
+
                 connectedUsers.push(foundUser);
                 init();
 
@@ -209,7 +211,12 @@ function saveDatabaseToDisk()
 {
 
     fs.writeFileSync('src/data/modules.json', JSON.stringify(modules) );
-    fs.writeFileSync('src/data/users.json', JSON.stringify(registeredUsers) );
+    var usersInfo = {};
+    registeredUsers.forEach(user => {
+        usersInfo.username = user.username;
+        usersInfo.hashedPassword = user.hashedPassword;
+    });
+    fs.writeFileSync('src/data/users.json', JSON.stringify(usersInfo) );
     
 }
 
