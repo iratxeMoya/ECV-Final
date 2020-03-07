@@ -16,14 +16,14 @@ var dropdownContainer = document.querySelector(".dropdown-content");
 
 //Login Page
 var loginPage = document.querySelector("#loginPage");
-var goToReg = document.querySelector("#formLogToReg");
+var goToReg = document.querySelector("#fromLogToReg");
 var loginUser = document.querySelector("#loginUser");
 var loginPass = document.querySelector("#loginPass");
 var loginSend = document.querySelector("#loginSend"); 
 
 //Register Page
 var regPage = document.querySelector("#regPage");
-var goToLog = document.querySelector("#formRegToLog");
+var goToLog = document.querySelector("#fromRegToLog");
 var regUser = document.querySelector("#regUser");
 var regPass = document.querySelector("#regPass");
 var regSend = document.querySelector("#regSend"); 
