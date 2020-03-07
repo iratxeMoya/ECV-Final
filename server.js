@@ -308,7 +308,7 @@ function jsonToArray (json) {
     var array = [];
     console.log(json)
     for (key in json) {
-        console.log(json[key])
+        console.log(json[key], key)
         array.push(json[key]);
     }
     console.log(array)
