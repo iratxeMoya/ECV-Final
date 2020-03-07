@@ -47,6 +47,7 @@ wss.on('connection', function(ws) {
         
         if (jsonData.type === 'login') {
             
+            loadDatabaseFromDisk ();
             var foundUser = registeredUsers.find(user => user.username === jsonData.username);
 
             if (foundUser && passwordHash.verify(jsonData.password, foundUser.hashedPassword)) {
@@ -56,7 +57,6 @@ wss.on('connection', function(ws) {
                 sendData.connectionType = 'login';
 
                 foundUser.ws = ws;
-                init(ws);
 
                 connectedUsers.push(foundUser);
 
@@ -81,6 +81,8 @@ wss.on('connection', function(ws) {
             var foundClient = registeredUsers.find(user => user.username === jsonData.username);
 			if (!foundClient) {
 
+                loadDatabaseFromDisk ();
+
                 var sendData = {};
                 sendData.type = 'connectionResponse';
                 sendData.status = 'OK';
@@ -90,7 +92,6 @@ wss.on('connection', function(ws) {
                 newUser.username = jsonData.username;
                 newUser.hashedPassword = passwordHash.generate(jsonData.password);
                 newUser.ws = ws;
-                init(ws);
 
                 connectedUsers.push(newUser);
                 registeredUsers.push(newUser);
@@ -247,7 +248,6 @@ function broadcastMsg(data, usersToSend, connection) {
 
 function init (ws) {
 
-    loadDatabaseFromDisk ();
 
     for (id in modules) {
 

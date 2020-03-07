@@ -70,7 +70,7 @@ connection.onmessage = (event) => {
                 ? loginPage.classList.toggle("show")
                 : regPage.classList.toggle("show");
 
-            //connection.send(JSON.stringify({type: 'infoRequest'}))
+            connection.send(JSON.stringify({type: 'infoRequest'}))
         }
     }
 }
