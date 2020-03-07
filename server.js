@@ -216,9 +216,9 @@ function saveDatabaseToDisk()
 
     console.log(registeredUsers);
 
-    registeredUsers.forEach(user => {
+    /*registeredUsers.forEach(user => {
         delete user.ws;
-    });
+    });*/
 
     console.log(registeredUsers);
 
