@@ -53,10 +53,20 @@ wss.on('connection', function(ws) {
 
             console.log('login: ', jsonData);
 
+            var sendData = {};
+            sendData.type = 'connectionResponse';
+            sendData.status = 'OK';
+            sendData.connectionType = 'login';
+
         }
         else if (jsonData.type === 'register') {
 
             console.log('register: ', jsonData);
+
+            var sendData = {};
+            sendData.type = 'connectionResponse';
+            sendData.status = 'OK';
+            sendData.connectionType = 'register';
 
         }
         else if (jsonData.type === 'logout') {

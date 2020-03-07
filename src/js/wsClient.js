@@ -1,6 +1,7 @@
 import { connection } from './init.js';
 import { module_manager } from './client.js'
 import { createModule, createElement } from './utils.js';
+import { codeEditorPage, loginPage, regPage } from './DOMAccess.js';
 
 connection.onopen = event => {
 	console.log('connection is open');
@@ -58,5 +59,16 @@ connection.onmessage = (event) => {
 
         createElement(jsonData.id, {x: jsonData.posx, y: jsonData.posy}, false);
 
+    }
+    else if (jsonData.type === 'connectionResponse') {
+
+        if(jsonData.status === 'OK') {
+
+            codeEditorPage.classList.toggle("show");
+            
+            jsonData.connectionType === 'login'
+                ? loginPage.classList.toggle("show")
+                : regPage.classList.toggle("show");
+        }
     }
 }

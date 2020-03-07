@@ -1,3 +1,5 @@
+// Code editor Page
+var codeEditorPage = document.querySelector("#codeEditorPage");
 var wb_cvs = document.getElementById("wb_canvas");
 var wb_ctx = wb_cvs.getContext("2d");
 var gs_cvs = document.getElementById("gs_canvas");
@@ -12,6 +14,20 @@ var targetModule = document.querySelector("#targetModule");
 var element = document.querySelector("#element");
 var dropdownContainer = document.querySelector(".dropdown-content");
 
+//Login Page
+var loginPage = document.querySelector("#loginPage");
+var goToReg = document.querySelector("#formLogToReg");
+var loginUser = document.querySelector("#loginUser");
+var loginPass = document.querySelector("#loginPass");
+var loginSend = document.querySelector("#loginSend"); 
+
+//Register Page
+var regPage = document.querySelector("#regPage");
+var goToLog = document.querySelector("#formRegToLog");
+var loginUser = document.querySelector("#regUser");
+var loginPass = document.querySelector("#regPass");
+var loginSend = document.querySelector("#regSend"); 
+
 export {
     wb_cvs,
     wb_ctx,
@@ -25,5 +41,16 @@ export {
     argModule,
     targetModule,
     element,
-    dropdownContainer
+    dropdownContainer,
+    codeEditorPage, 
+    loginPage,
+    loginPass,
+    loginSend,
+    loginUser,
+    regPage,
+    regPass,
+    regSend,
+    regUser,
+    goToLog,
+    goToReg
 }

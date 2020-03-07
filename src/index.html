@@ -5,33 +5,51 @@
     </head>
     
     <body>
-		<div class="workbench">
-			<div class = "module_shelf">
-				<span class="module" id="basicModule">
-				</span>
-				<span class="module" id="conditionModule">
-				</span>
-				<span class="module" id="argModule">
-				</span>
-				<span class="module" id="targetModule">
-				</span>
-				<div  id="myDropdown" class="dropdown-content">
-					
+		<div id="codeEditorPage">
+			<div class="workbench">
+				<div class = "module_shelf">
+					<span class="module" id="basicModule">
+					</span>
+					<span class="module" id="conditionModule">
+					</span>
+					<span class="module" id="argModule">
+					</span>
+					<span class="module" id="targetModule">
+					</span>
+					<div  id="myDropdown" class="dropdown-content">
+						
+					</div>
+					<span class="target" id="element">
+					</span>
 				</div>
-				<span class="target" id="element">
-				</span>
+				<div class = "user_screen">
+					<canvas class="canvas" id="wb_canvas">
+					</canvas>
+					<span class = "run_code">
+					</span>
+				</div>
 			</div>
-			<div class = "user_screen">
-				<canvas class="canvas" id="wb_canvas">
-				</canvas>
-				<span class = "run_code">
-				</span>
+			<div class = "game_display">
+				<div class = "game_screen">
+					<canvas class="canvas" id="gs_canvas">
+					</canvas>
+				</div>
 			</div>
 		</div>
-		<div class = "game_display">
-			<div class = "game_screen">
-				<canvas class="canvas" id="gs_canvas">
-				</canvas>
+		<div id="loginPage" class="show">
+			<button id="fromLogToReg">Go to register</button>
+			<div>
+				<input type="text" id="loginUser">
+				<input type="password" id="loginPass">
+				<button id="loginSend">Login</button>
+			</div>
+		</div>
+		<div id="regPage">
+			<button id="fromRegToLog">Go to login</button>
+			<div>
+				<input type="text" id="regUser">
+				<input type="password" id="regPass">
+				<button id="regSend">Register</button>
 			</div>
 		</div>
     </body> 
