@@ -43,10 +43,9 @@ wss.on('connection', function(ws) {
     ws.on('message', function (data) {
 
         jsonData = JSON.parse(data);
+        console.log(jsonData, registeredUsers);
         
         if (jsonData.type === 'login') {
-
-            console.log('login: ', jsonData);
             
             var foundUser = registeredUsers.find(user => user.username === jsonData.username);
 
@@ -77,8 +76,6 @@ wss.on('connection', function(ws) {
             init(ws);
         }
         else if (jsonData.type === 'register') {
-
-            console.log('register: ', jsonData);
 
             var foundClient = registeredUsers.find(user => user.username === jsonData.username);
 			if (!foundClient) {
@@ -197,7 +194,7 @@ wss.on('connection', function(ws) {
 
     ws.on('close', function (event) {
 
-        console.log('Connection closed: ', registeredUsers);
+        console.log('Connection closed');
         var user = connectedUsers.findByField('ws', ws);
 
         connectedUsers.delete(user);
