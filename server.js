@@ -95,6 +95,7 @@ wss.on('connection', function(ws) {
 
                 connectedUsers.push(newUser);
                 registeredUsers.push(newUser);
+                console.log('new user: ', newUser, registeredUsers);
 
                 ws.send(JSON.stringify(sendData));
 
