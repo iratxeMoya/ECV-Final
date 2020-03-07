@@ -309,7 +309,7 @@ Object.prototype.findByField = function (field, value) {
 function jsonToArray (json) {
 
     var array = [];
-    console.log('json: ', json);
+    console.log('json: ', typeof json, Object.keys(json).length);
     if (json === {}) {
         return [];
     }
