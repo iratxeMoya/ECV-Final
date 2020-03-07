@@ -45,7 +45,7 @@ wss.on('connection', function(ws) {
     ws.on('message', function (data) {
 
         jsonData = JSON.parse(data);
-        console.log(jsonData, registeredUsers);
+        console.log(jsonData)
         
         if (jsonData.type === 'login') {
             
@@ -171,7 +171,6 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'createElement') {
 
-            console.log('create element: ', jsonData)
             var info = {};
 
             info.id = jsonData.id;
@@ -197,7 +196,7 @@ wss.on('connection', function(ws) {
 
     ws.on('close', function (event) {
 
-        console.log('Connection closed: ', registeredUsers);
+        console.log('Connection closed');
         var user = connectedUsers.findByField('ws', ws);
 
         connectedUsers.delete(user);
@@ -232,7 +231,6 @@ function loadDatabaseFromDisk()
     var str2 = fs.readFileSync('src/data/users.json').toString();
     var registeredUsersJson = JSON.parse( str2 );
     registeredUsers = jsonToArray(registeredUsersJson);
-    console.log('in load db: ', registeredUsers, registeredUsersJson, str2);
     
 }
 
@@ -311,9 +309,8 @@ Object.prototype.findByField = function (field, value) {
 function jsonToArray (json) {
 
     var array = [];
-    //console.log('json: ', typeof json, Object.keys(json).length);
+
     if (Object.keys(json).length === 0) {
-        console.log('in if');
         return [];
     }
     for (key in json) {
@@ -326,8 +323,6 @@ function jsonToArray (json) {
 function arrayToJson (array, keyField) {
 
     var json = {};
-
-    console.log(array, keyField);
 
     array.forEach(element => {
         json[element[keyField]] = element;
