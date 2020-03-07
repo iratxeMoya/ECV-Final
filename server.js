@@ -197,7 +197,7 @@ wss.on('connection', function(ws) {
 
     ws.on('close', function (event) {
 
-        console.log('Connection closed');
+        console.log('Connection closed: ', registeredUsers);
         var user = connectedUsers.findByField('ws', ws);
 
         connectedUsers.delete(user);
