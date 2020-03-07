@@ -2,7 +2,7 @@ import { ModuleManager, activeModuleIds, deletingModuleIds, Element, ElementMana
 import { codes } from './codes.js';
 import { connection } from './init.js';
 import { isHover, createModule, paintInCanvas, createElement } from './utils.js';
-import { wb_cvs, wb_ctx,gs_cvs, gs_ctx,conditionModule, basicModule, argModule, targetModule, element, workbench,game_screen, run_button } from './DOMAccess.js';
+import { wb_cvs, wb_ctx,gs_cvs, gs_ctx,conditionModule, basicModule, argModule, targetModule, element, workbench,game_screen, run_button,stop_button } from './DOMAccess.js';
 
 var wb_h = workbench.style.height;
 var wb_w = workbench.style.width;

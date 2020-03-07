@@ -37,6 +37,7 @@ export {
     workbench,
 	game_screen,
     run_button,
+    stop_button,
     basicModule,
 	conditionModule,
     argModule,
