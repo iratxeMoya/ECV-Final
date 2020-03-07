@@ -1,5 +1,6 @@
 import { codes, styles,MODULESIZE } from './codes.js';
 import { Map } from './map.js';
+import { isHover } from './utils.js'
 
 var activeModuleIds = [];
 var deletingModuleIds = [];
@@ -480,24 +481,14 @@ class ModuleManager {
     /**
      * Deletes a module from de manager
      */
-    delete_module () {
+    delete_module (x, y) {
 
 		deletingModuleIds = [];
-		console.log(this)
-		
-		for(let dir in this.siblings) {
-
-			console.log(this.siblings[dir].node);
-
-			if (dir !== this.relative.dir && this.siblings[dir].node) {
-
-				console.log(this.siblings[dir].node);
-
-				this.modules.remove(this.siblings[dir].node);
-				deletingModuleIds.push(this.siblings[dir].node);
-                
+		this.modules.forEach(module => {
+			if (isHover(x, y)) {
+				this.modules.remove(module);
 			}
-		}
+		})
 
     }
     
