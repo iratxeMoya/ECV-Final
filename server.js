@@ -171,6 +171,7 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'createElement') {
 
+            console.log('create element: ', jsonData)
             var info = {};
 
             info.id = jsonData.id;
