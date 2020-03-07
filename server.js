@@ -237,6 +237,8 @@ function loadDatabaseFromDisk()
 
 function broadcastMsg(data, usersToSend, connection) {
 
+    console.log(usersToSend);
+
     usersToSend.forEach(user => {
         if(user.ws !== connection) {
             user.ws.send(data);
