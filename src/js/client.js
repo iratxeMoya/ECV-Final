@@ -34,12 +34,11 @@ wb_cvs.addEventListener("mouseup", release);
 // FUNCTIONS
 function run() {
 
-	module_manager.run_modules();
-
+	module_manager.running = true;
 }
 
 function stop(){
-	module_manager.abort = true;
+	module_manager.running = false;
 	console.log(module_manager.abort);
 }
 
@@ -126,6 +125,8 @@ function release(event) {
 
 //LOOP
 function update() {
+
+	module_manager.run_modules();
 
 	wb_h = workbench.clientHeight;
 	wb_w = workbench.clientWidth;

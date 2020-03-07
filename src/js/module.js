@@ -436,7 +436,7 @@ class ModuleManager {
 		this.modules = [];
 		this.count = 0;
 		this.selectedGroup = null;
-		this.abort = false;
+		this.running = false;
     }
     
     /**
@@ -595,14 +595,13 @@ class ModuleManager {
      * Runs the code of all the modules in the manager
      */
 	run_modules() {
-		while(!this.abort){
+		if this.running{
 			this.modules.forEach(module => {
 				
 				module.type === "target" ? module.run() : null;
 
 			});
 		}
-		this.abort = false;
 	}
 }
 
