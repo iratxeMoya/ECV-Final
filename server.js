@@ -237,15 +237,11 @@ function loadDatabaseFromDisk()
 
 function broadcastMsg(data, usersToSend, ws) {
 
-	usersToSend.forEach(user => {
-
-        if(user.ws !== ws) {
-
-            user.ws.send(data);
-
+    for (key in usersToSend) {
+        if(usersToSend[key].ws !== ws) {
+            usersToSend[key].ws.send(data);
         }
-			
-	});
+    }
 }
 
 function init (ws) {
