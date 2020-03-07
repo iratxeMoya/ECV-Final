@@ -248,7 +248,7 @@ function broadcastMsg(data, usersToSend, connection) {
 
 function init (ws) {
 
-
+    console.log(modules);
     for (id in modules) {
 
         var module = modules[id];
