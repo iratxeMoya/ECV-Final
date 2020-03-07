@@ -92,7 +92,11 @@ wss.on('connection', function(ws) {
                 sendData.status = 'OK';
                 sendData.connectionType = 'register';
 
-                var newUser = new User(jsonData.username, passwordHash.generate(jsonData.password), ws);
+                var newUser = {};
+                newUser.username = jsonData.username;
+                newUser.hashedPassword = passwordHash.generate(jsonData.password);
+                newUser.ws = ws;
+                
                 connectedUsers[newUser.username] = newUser;
                 init(ws);
                 registeredUsers[newUser.username] = newUser;
