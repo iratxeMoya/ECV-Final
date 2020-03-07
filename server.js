@@ -16,12 +16,6 @@ var wss = new WebSocket.Server({server});
 var connectedUsers = [];
 var registeredUsers = [];
 
-function User (username, hashedPassword, ws) {
-    this.username = username;
-    this.hashedPassword = hashedPassword;
-    this.ws = ws;
-}
-
 //modules
 
 var modules = {};
@@ -80,6 +74,9 @@ wss.on('connection', function(ws) {
             
 
         }
+        else if(jsonData.type === 'infoRequest') {
+            init();
+        }
         else if (jsonData.type === 'register') {
 
             console.log('register: ', jsonData);
@@ -98,7 +95,6 @@ wss.on('connection', function(ws) {
                 newUser.ws = ws;
 
                 connectedUsers.push(newUser);
-                init(ws);
                 registeredUsers.push(newUser);
 
                 ws.send(JSON.stringify(sendData));
