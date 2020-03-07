@@ -227,7 +227,8 @@ function loadDatabaseFromDisk()
     modules = JSON.parse( str );
 
     var str2 = fs.readFileSync('src/data/users.json').toString();
-    registeredUsers = jsonToArray(JSON.parse( str2 ));
+    var registeredUsersJson = JSON.parse( str2 );
+    registeredUsers = jsonToArray(registeredUsersJson);
     console.log('in load db: ', registeredUsers)
     
 }
@@ -310,7 +311,6 @@ function jsonToArray (json) {
     var array = [];
     console.log(json)
     for (key in json) {
-        console.log(json[key], key)
         array.push(json[key]);
     }
     console.log(array)
