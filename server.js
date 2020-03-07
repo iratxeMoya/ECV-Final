@@ -310,6 +310,7 @@ function jsonToArray (json) {
 
     var array = [];
     if (json === {}) {
+        console.log('in if')
         return [];
     }
     for (key in json) {
