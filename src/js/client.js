@@ -26,7 +26,7 @@ targetModule.addEventListener("click", function(){createModule(Date.now(), null,
 element.addEventListener("click", function() {createElement(Date.now(), {x: 100, y:100})});
 
 run_button.addEventListener("click", run);
-run_button.addEventListener("click", stop);
+stop_button.addEventListener("click", stop);
 wb_cvs.addEventListener("mousemove", move);
 wb_cvs.addEventListener("mousedown", click);
 wb_cvs.addEventListener("mouseup", release);
