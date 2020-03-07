@@ -173,6 +173,7 @@ function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash) {
 
 export {
     isHover,
+	in_range,
 	createModule,
 	createElement,
 	paintInCanvas,
