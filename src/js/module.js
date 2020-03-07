@@ -40,6 +40,25 @@ class Element {
 		this.dir = (this.dir-1)%4;
 	}
 	
+	next_pos(){
+		var nposx=this.parameters.posx;
+		var nposy=this.parameters.posy;
+		switch(this.dir){
+			case 0:
+				nposx+=MODULESIZE;
+				break;
+			case 1:
+				nposy+=MODULESIZE;
+				break;
+			case 2:
+				nposx-=MODULESIZE;
+				break;
+			default:
+				nposy-=MODULESIZE;
+		}
+		return {x:nposx,y:nposy};
+	}
+	
 	draw(gs_ctx){
 		gs_ctx.fillStyle = '#FF6DC9';
         gs_ctx.fillRect(this.parameters.posx-this.parameters.sizex/2,this.parameters.posy-this.parameters.sizey/2, this.parameters.sizex,this.parameters.sizey);

@@ -140,6 +140,10 @@ function sendModuleInfo (module, codeType, moduleType, arg) {
 
 }
 
+function in_range(pos,xi,xf,yi,yf){
+	return (pos.x>xi && pos.x<xf && pos.y>yi && pos.y<yf);
+}
+
 function sendElementInfo (element) {
 
 	var newElement = {};

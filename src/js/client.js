@@ -21,8 +21,9 @@ var img = new Image();
 img.src = "icons/basura.svg";
 
 basicModule.addEventListener("click", function(){createModule(Date.now(), 'move', {x: 100, y: 100})});
+argModule.addEventListener("click", function(){createModule(Date.now(), 'turn', {x: 100, y: 100})});
 conditionModule.addEventListener("click", function(){createModule(Date.now(), 'ifwall', {x: 100, y: 100},null,null,"condition")});
-argModule.addEventListener("click", function(){createModule(Date.now(), 'log',{x: 100, y: 200}, null, "Hola", "arg")});
+// argModule.addEventListener("click", function(){createModule(Date.now(), 'log',{x: 100, y: 200}, null, "Hola", "arg")});
 targetModule.addEventListener("click", function(){createModule(Date.now(), null,{x: 100, y: 200}, null, null, "target")});
 element.addEventListener("click", function() {createElement(Date.now(), {x: 100, y:100})});
 
@@ -139,7 +140,6 @@ function update_workbench() {
 	gs_cvs.width = gs_w;
 
 	paintInCanvas(wb_w, wb_h, wb_ctx, img, true, mouseX, mouseY);
-	paintInCanvas(gs_w, gs_h, gs_ctx, img, false);
 
 	module_manager.draw(wb_ctx);
 	
@@ -148,6 +148,7 @@ function update_workbench() {
 function update_gs() {
 	
 	module_manager.run_modules();
+	paintInCanvas(gs_w, gs_h, gs_ctx, img, false);
 	element_manager.draw(gs_ctx);
 }
 
