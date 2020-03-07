@@ -94,9 +94,8 @@ wss.on('connection', function(ws) {
 
                 var newUser = new User(jsonData.username, passwordHash.generate(jsonData.password), ws);
                 connectedUsers.push(newUser);
-                registeredUsers.push(newUser);
-
                 init();
+                registeredUsers.push(newUser);
 
                 ws.send(JSON.stringify(sendData));
 
