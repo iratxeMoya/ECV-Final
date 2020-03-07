@@ -13,8 +13,8 @@ var fs = require('fs');
 var wss = new WebSocket.Server({server});
 
 //users ws
-var connectedUsers = [];
-var registeredUsers = [];
+var connectedUsers = {};
+var registeredUsers = {};
 
 function User (username, hashedPassword, ws) {
     this.username = username;
@@ -54,7 +54,7 @@ wss.on('connection', function(ws) {
 
             console.log('login: ', jsonData);
             
-            var foundUser = registeredUsers.find(user => user.username === jsonData.username);
+            var foundUser = registeredUsers[jsonData.username];
 
             if (foundUser && passwordHash.verify(jsonData.password, foundUser.hashedPassword)) {
                 var sendData = {};
@@ -64,7 +64,7 @@ wss.on('connection', function(ws) {
 
                 foundUser.ws = ws;
 
-                connectedUsers.push(foundUser);
+                connectedUsers[foundUser.username] = foundUser;
                 init();
 
                 ws.send(JSON.stringify(sendData));
@@ -84,7 +84,7 @@ wss.on('connection', function(ws) {
 
             console.log('register: ', jsonData);
 
-            var foundClient = registeredUsers.find(user => user.username === jsonData.username);
+            var foundClient = registeredUsers[jsonData.username];
 			if (!foundClient) {
 
                 var sendData = {};
@@ -93,9 +93,9 @@ wss.on('connection', function(ws) {
                 sendData.connectionType = 'register';
 
                 var newUser = new User(jsonData.username, passwordHash.generate(jsonData.password), ws);
-                connectedUsers.push(newUser);
+                connectedUsers[newUser.username] = newUser;
                 init();
-                registeredUsers.push(newUser);
+                registeredUsers[newUser.username] = newUser;
 
                 ws.send(JSON.stringify(sendData));
 
@@ -199,7 +199,9 @@ wss.on('connection', function(ws) {
     ws.on('close', function (event) {
 
         console.log('Connection closed');
-        var user = connectedUsers.find(user => user.ws === ws);
+        var user = connectedUsers.findByField('ws', ws);
+
+        console.log(user);
 
         connectedUsers.delete(user);
 
@@ -207,6 +209,8 @@ wss.on('connection', function(ws) {
 
 	});
 })
+
+
 
 function saveDatabaseToDisk()
 {
@@ -292,4 +296,12 @@ Array.prototype.delete = function() {
         }
     }
     return this;
+};
+
+Object.prototype.findByField = function (field, value) {
+    for (var key in this) {
+        if (this[key][field] === value) {
+            return this[key];
+        }
+    }
 };
