@@ -13,8 +13,8 @@ var fs = require('fs');
 var wss = new WebSocket.Server({server});
 
 //users ws
-var connectedUsers = {};
-var registeredUsers = {};
+var connectedUsers = [];
+var registeredUsers = [];
 
 function User (username, hashedPassword, ws) {
     this.username = username;
@@ -54,7 +54,7 @@ wss.on('connection', function(ws) {
 
             console.log('login: ', jsonData);
             
-            var foundUser = registeredUsers[jsonData.username];
+            var foundUser = registeredUsers.find(user => user.username === jsonData.username);
 
             if (foundUser && passwordHash.verify(jsonData.password, foundUser.hashedPassword)) {
                 var sendData = {};
@@ -64,7 +64,7 @@ wss.on('connection', function(ws) {
 
                 foundUser.ws = ws;
 
-                connectedUsers[foundUser.username] = foundUser;
+                connectedUsers.push(foundUser);
                 init(ws);
 
                 ws.send(JSON.stringify(sendData));
@@ -84,7 +84,7 @@ wss.on('connection', function(ws) {
 
             console.log('register: ', jsonData);
 
-            var foundClient = registeredUsers[jsonData.username];
+            var foundClient = registeredUsers.find(user => user.username === jsonData.username);
 			if (!foundClient) {
 
                 var sendData = {};
@@ -97,9 +97,9 @@ wss.on('connection', function(ws) {
                 newUser.hashedPassword = passwordHash.generate(jsonData.password);
                 newUser.ws = ws;
 
-                connectedUsers[newUser.username] = newUser;
+                connectedUsers.push(newUser);
                 init(ws);
-                registeredUsers[newUser.username] = newUser;
+                registeredUsers.push(newUser);
 
                 ws.send(JSON.stringify(sendData));
 
@@ -223,7 +223,8 @@ function saveDatabaseToDisk()
     for (key in registeredUsers) {
         delete registeredUsers[key].ws;
     }
-    fs.writeFileSync('src/data/users.json', JSON.stringify(registeredUsers) );
+    var registeredUsersJson = arrayToJson(registeredUsers); 
+    fs.writeFileSync('src/data/users.json', JSON.stringify(registeredUsersJson) );
     
 }
 
@@ -234,7 +235,7 @@ function loadDatabaseFromDisk()
     modules = JSON.parse( str );
 
     var str2 = fs.readFileSync('src/data/users.json').toString();
-    registeredUsers = JSON.parse( str2 );
+    registeredUsers = jsonToArray(JSON.parse( str2 ));
     
 }
 
@@ -243,13 +244,11 @@ function broadcastMsg(data, usersToSend, connection) {
 
     console.log(usersToSend)
 
-    for (key in usersToSend) {
-
-        console.log(usersToSend[key].ws)
-        if(usersToSend[key].ws !== connection) {
-            usersToSend[key].ws.send(data);
+    usersToSend.forEach(user => {
+        if(user.ws !== connection) {
+            user.ws.send(data);
         }
-    }
+    })
 }
 
 function init (ws) {
@@ -307,3 +306,25 @@ Object.prototype.findByField = function (field, value) {
         }
     }
 };
+
+function jsonToArray (json) {
+
+    var array = [];
+    for (key in json) {
+        array.push(json[key]);
+    }
+
+    return array;
+
+}
+
+function arrayToJson (array, keyField) {
+
+    var json = {};
+
+    array.forEach(element => {
+        json[element[keyField]] = element;
+    });
+
+    return json;
+}
