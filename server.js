@@ -196,6 +196,7 @@ wss.on('connection', function(ws) {
 
         console.log('Connection closed');
         var user = connectedUsers.findByField('ws', ws);
+        console.log(user);
 
         connectedUsers.delete(user);
 
@@ -297,7 +298,6 @@ Object.prototype.findByField = function (field, value) {
 
         if (this[key][field] === value) {
 
-            console.log('in findByField: ', this[key], key);
             return this[key];
 
         }
