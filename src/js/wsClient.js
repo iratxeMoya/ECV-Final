@@ -62,7 +62,6 @@ connection.onmessage = (event) => {
     }
     else if (jsonData.type === 'connectionResponse') {
 
-        console.log(jsonData);
         if(jsonData.status === 'OK') {
 
             codeEditorPage.classList.toggle("show");

@@ -14,6 +14,13 @@ var wss = new WebSocket.Server({server});
 
 //users ws
 var connectedUsers = [];
+var registeredUsers = [];
+
+function User (username, hashedPassword, ws) {
+    this.username = username;
+    this.hashedPassword = hashedPassword;
+    this.ws = ws;
+}
 
 //modules
 
@@ -39,12 +46,6 @@ DATA EXAMPLE IN MODULES:
 
 wss.on('connection', function(ws) {
 
-    connectedUsers.push({
-        ws: ws,
-    });
-
-    init(ws);
-
     ws.on('message', function (data) {
 
         jsonData = JSON.parse(data);
@@ -52,26 +53,60 @@ wss.on('connection', function(ws) {
         if (jsonData.type === 'login') {
 
             console.log('login: ', jsonData);
+            
+            var foundUser = registeredUsers.find(user => user.username === jsonData.username);
 
-            var sendData = {};
-            sendData.type = 'connectionResponse';
-            sendData.status = 'OK';
-            sendData.connectionType = 'login';
+            if (foundUser && passwordHash.verify(jsonData.password, foundClient.hashedPassword)) {
+                var sendData = {};
+                sendData.type = 'connectionResponse';
+                sendData.status = 'OK';
+                sendData.connectionType = 'login';
 
-            ws.send(JSON.stringify(sendData));
+                connectedUsers.push(foundUser);
+                init();
+
+                ws.send(JSON.stringify(sendData));
+            }
+            else { //esto en el cliente no esta implementado aun
+                var sendData = {};
+                sendData.type = 'connectionResponse';
+                sendData.status = 'notOK';
+                sendData.connectionType = 'login';
+
+                ws.send(JSON.stringify(sendData));
+            }
+            
 
         }
         else if (jsonData.type === 'register') {
 
             console.log('register: ', jsonData);
 
-            var sendData = {};
-            sendData.type = 'connectionResponse';
-            sendData.status = 'OK';
-            sendData.connectionType = 'register';
+            var foundClient = registeredUsers.find(user => user.username === jsonData.username);
+			if (!foundClient) {
 
-            ws.send(JSON.stringify(sendData));
+                var sendData = {};
+                sendData.type = 'connectionResponse';
+                sendData.status = 'OK';
+                sendData.connectionType = 'register';
 
+                var newUser = new User(jsonData.username, passwordHash.generate(jsonData.password), ws);
+                connectedUsers.push(newUser);
+                registeredUsers.push(newUser);
+
+                ws.send(JSON.stringify(sendData));
+
+            } 
+            else { //esto no esta implementado aun en el cliente
+                var sendData = {};
+                sendData.type = 'connectionResponse';
+                sendData.status = 'notOK';
+                sendData.connectionType = 'register';
+
+                ws.send(JSON.stringify(sendData));
+
+            }
+            
         }
         else if (jsonData.type === 'logout') {
 
@@ -161,7 +196,7 @@ wss.on('connection', function(ws) {
     ws.on('close', function (event) {
 
         console.log('Connection closed');
-        var user = { ws: ws };
+        var user = connectedUsers.find(user => user.ws === ws);
 
         connectedUsers.delete(user);
 
