@@ -12,8 +12,33 @@ class Element {
 		
 		this.parameters = {'posx':position.x,'posy':position.y,'sizex':MODULESIZE,'sizey':MODULESIZE}
 		this.id = id;
+		this.dir = 0;
 		
     }
+	
+	forward(){
+		switch(this.dir){
+			case 0:
+				this.parameters.posx+=MODULESIZE:
+				break;
+			case 1:
+				this.parameters.posy+=MODULESIZE:
+				break;
+			case 2:
+				this.parameters.posx-=MODULESIZE:
+				break;
+			default:
+				this.parameters.posy-=MODULESIZE:
+		}
+	}
+	
+	turn_clock(){
+		this.dir = (this.dir+1)%4;
+	}
+	
+	turn_counter(){
+		this.dir = (this.dir-1)%4;
+	}
 	
 	draw(gs_ctx){
 		gs_ctx.fillStyle = '#FF6DC9';
