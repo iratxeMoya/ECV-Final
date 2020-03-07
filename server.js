@@ -59,7 +59,6 @@ wss.on('connection', function(ws) {
                 foundUser.ws = ws;
 
                 connectedUsers.push(foundUser);
-                init(ws);
 
                 ws.send(JSON.stringify(sendData));
             }
@@ -201,8 +200,6 @@ wss.on('connection', function(ws) {
         console.log('Connection closed');
         var user = connectedUsers.findByField('ws', ws);
 
-        console.log(user);
-
         connectedUsers.delete(user);
 
         saveDatabaseToDisk();
@@ -216,11 +213,17 @@ function saveDatabaseToDisk()
 {
 
     fs.writeFileSync('src/data/modules.json', JSON.stringify(modules) );
+
+    console.log(registeredUsers);
+
     for (key in registeredUsers) {
         delete registeredUsers[key].ws;
     }
+
+    console.log(registeredUsers);
+
     var registeredUsersJson = arrayToJson(registeredUsers); 
-    fs.writeFileSync('src/data/users.json', JSON.stringify(registeredUsersJson) );
+    fs.writeFileSync('src/data/users.json', JSON.stringify(registeredUsersJson));
     
 }
 

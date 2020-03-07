@@ -1,6 +1,6 @@
-import { codes, styles,MODULESIZE } from './codes.js';
+import { codes, styles, MODULESIZE } from './codes.js';
 
-class Map{
+class Map {
 	constructor(sizex,sizey){
 		this.sizex=sizex;
 		this.sizey=sizey;
