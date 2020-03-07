@@ -241,7 +241,7 @@ function loadDatabaseFromDisk()
 
 function broadcastMsg(data, usersToSend, connection) {
 
-    console.log(usersToSend.length())
+    console.log(usersToSend)
 
     for (key in usersToSend) {
 
