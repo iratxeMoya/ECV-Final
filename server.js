@@ -237,6 +237,7 @@ function loadDatabaseFromDisk()
 
 function broadcastMsg(data, usersToSend, ws) {
 
+    console.log('usersToSend: ', usersToSend);
     for (key in usersToSend) {
         if(usersToSend[key].ws !== ws) {
             usersToSend[key].ws.send(data);
