@@ -56,6 +56,7 @@ wss.on('connection', function(ws) {
                 sendData.connectionType = 'login';
 
                 foundUser.ws = ws;
+                init(ws);
 
                 connectedUsers.push(foundUser);
 
@@ -89,6 +90,7 @@ wss.on('connection', function(ws) {
                 newUser.username = jsonData.username;
                 newUser.hashedPassword = passwordHash.generate(jsonData.password);
                 newUser.ws = ws;
+                init(ws);
 
                 connectedUsers.push(newUser);
                 registeredUsers.push(newUser);
