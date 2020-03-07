@@ -95,7 +95,6 @@ wss.on('connection', function(ws) {
 
                 connectedUsers.push(newUser);
                 registeredUsers.push(newUser);
-                console.log('new user: ', newUser, registeredUsers);
 
                 ws.send(JSON.stringify(sendData));
 
@@ -241,8 +240,6 @@ function loadDatabaseFromDisk()
 
 
 function broadcastMsg(data, usersToSend, connection) {
-
-    console.log(usersToSend)
 
     usersToSend.forEach(user => {
         if(user.ws !== connection) {
