@@ -195,7 +195,6 @@ wss.on('connection', function(ws) {
     ws.on('close', function (event) {
 
         console.log('Connection closed');
-        console.log(connectedUsers, registeredUsers, modules);
         var user = connectedUsers.findByField('ws', ws);
 
         connectedUsers.delete(user);
@@ -212,13 +211,9 @@ function saveDatabaseToDisk()
 
     fs.writeFileSync('src/data/modules.json', JSON.stringify(modules) );
 
-    console.log(registeredUsers);
-
     registeredUsers.forEach(user => {
         delete user.ws;
     });
-
-    console.log(registeredUsers);
 
     var registeredUsersJson = arrayToJson(registeredUsers); 
     fs.writeFileSync('src/data/users.json', JSON.stringify(registeredUsersJson));
@@ -296,9 +291,15 @@ Array.prototype.delete = function() {
 };
 
 Object.prototype.findByField = function (field, value) {
+
+    console.log('in findByField: ', this);
+
     for (var key in this) {
+
         if (this[key][field] === value) {
+
             return this[key];
+
         }
     }
 };
