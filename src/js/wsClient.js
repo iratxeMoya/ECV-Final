@@ -57,7 +57,7 @@ connection.onmessage = (event) => {
     }
     else if (jsonData.type === 'createElement') {
 
-        createElement(jsonData.id, {x: jsonData.posx, y: jsonData.posy}, false);
+        createElement(jsonData.id, {x: jsonData.posx, y: jsonData.posy}, null, false);
 
     }
     else if (jsonData.type === 'connectionResponse') {
