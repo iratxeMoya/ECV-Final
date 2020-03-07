@@ -19,7 +19,7 @@ class Map {
 	}
 	
 	is_valid(x,y){
-		return this.matrix[y][x]>0;
+		return this.matrix[y][x]>=0;
 	}
 	
 	draw(ctx){
