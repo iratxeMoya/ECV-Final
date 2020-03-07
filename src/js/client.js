@@ -27,7 +27,7 @@ argModule.addEventListener("click", function(){createModule(Date.now(), 'turn', 
 conditionModule.addEventListener("click", function(){createModule(Date.now(), 'ifwall', {x: 100, y: 100},null,null,"condition")});
 // argModule.addEventListener("click", function(){createModule(Date.now(), 'log',{x: 100, y: 200}, null, "Hola", "arg")});
 targetModule.addEventListener("click", function(){createModule(Date.now(), null,{x: 100, y: 200}, null, null, "target")});
-element.addEventListener("click", function() {createElement(Date.now(), {x: 2, y:2})});
+element.addEventListener("click", function() {createElement(Date.now(), {x: 2, y:2},null,map)});
 
 run_button.addEventListener("click", run);
 stop_button.addEventListener("click", stop);

@@ -1,4 +1,5 @@
 import { codes, styles,MODULESIZE } from './codes.js';
+import { Map } from './map.js';
 
 var activeModuleIds = [];
 var deletingModuleIds = [];
@@ -6,10 +7,10 @@ var deletingModuleIds = [];
 
 class Element {
 	
-	constructor (id, position, avatar = null) {
+	constructor (id, position, avatar = null,map) {
 		console.log(position);
 		this.position={x:position.x,y:position.y};
-		
+		this.map=map;
 		this.id = id;
 		this.dir = 0;
 		
@@ -64,7 +65,12 @@ class Element {
 	
 	draw(gs_ctx){
 		gs_ctx.fillStyle = '#FF6DC9';
-        gs_ctx.fillRect((this.position.x-0.5)*MODULESIZE,(this.position.y-0.5)*MODULESIZE, MODULESIZE,MODULESIZE);
+        gs_ctx.fillRect((this.position.x)*MODULESIZE,(this.position.y)*MODULESIZE, MODULESIZE,MODULESIZE);
+	}
+	
+	colision(){
+		let npos = this.next_pos();
+		return !this.map.is_valid(npos.x,npos.y);
 	}
 	
 }
@@ -454,7 +460,6 @@ class ModuleManager {
      * Creates a module manager object
      */
 	constructor() {
-
 		this.modules = [];
 		this.count = 0;
 		this.selectedGroup = null;
