@@ -151,7 +151,7 @@ function update_gs() {
 	
 	module_manager.run_modules();
 	paintInCanvas(gs_w, gs_h, gs_ctx, img, false);
-	map.draw();
+	map.draw(gs_ctx);
 	element_manager.draw(gs_ctx);
 }
 
