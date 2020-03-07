@@ -216,12 +216,10 @@ function saveDatabaseToDisk()
 {
 
     fs.writeFileSync('src/data/modules.json', JSON.stringify(modules) );
-    var usersInfo = {};
-    registeredUsers.forEach(user => {
-        usersInfo.username = user.username;
-        usersInfo.hashedPassword = user.hashedPassword;
-    });
-    fs.writeFileSync('src/data/users.json', JSON.stringify(usersInfo) );
+    for (key in registeredUsers) {
+        delete registeredUsers[key].ws;
+    }
+    fs.writeFileSync('src/data/users.json', JSON.stringify(registeredUsers) );
     
 }
 
