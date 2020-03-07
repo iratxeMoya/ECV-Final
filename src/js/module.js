@@ -7,7 +7,7 @@ var deletingModuleIds = [];
 class Element {
 	
 	constructor (id, position, avatar = null) {
-		
+		console.log(position);
 		this.position.x=position.x;
 		this.position.y=position.y;
 		
