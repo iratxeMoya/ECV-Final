@@ -65,7 +65,7 @@ wss.on('connection', function(ws) {
                 foundUser.ws = ws;
 
                 connectedUsers[foundUser.username] = foundUser;
-                init();
+                init(ws);
 
                 ws.send(JSON.stringify(sendData));
             }
@@ -94,7 +94,7 @@ wss.on('connection', function(ws) {
 
                 var newUser = new User(jsonData.username, passwordHash.generate(jsonData.password), ws);
                 connectedUsers[newUser.username] = newUser;
-                init();
+                init(ws);
                 registeredUsers[newUser.username] = newUser;
 
                 ws.send(JSON.stringify(sendData));
