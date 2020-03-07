@@ -1,4 +1,4 @@
-import { codes, styles } from './codes.js';
+import { codes, styles,MODULESIZE } from './codes.js';
 
 var activeModuleIds = [];
 var deletingModuleIds = [];
