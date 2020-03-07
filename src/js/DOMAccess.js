@@ -7,6 +7,7 @@ var gs_ctx = gs_cvs.getContext("2d");
 var workbench = document.getElementsByClassName("user_screen")[0];
 var game_screen = document.getElementsByClassName("game_screen")[0];
 var run_button = document.getElementsByClassName("run_code")[0];
+var stop_button = document.getElementsByClassName("stop_code")[0];
 var basicModule = document.querySelector("#basicModule");
 var conditionModule = document.querySelector("#conditionModule");
 var argModule = document.querySelector("#argModule");
