@@ -33,7 +33,7 @@ connection.onmessage = (event) => {
         }
         else if (jsonData.objectType === 'element') {
 
-            createElement(jsonData.id, {x: jsonData.posx, y: jsonData.posy}, false)
+            createElement(jsonData.id, {x: jsonData.posx, y: jsonData.posy}, null, false)
 
         }
     }
