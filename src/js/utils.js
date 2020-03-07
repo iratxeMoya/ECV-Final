@@ -14,9 +14,8 @@ var targetModulePos = null;
  */
 function isHover(x, y) {
 
-	console.log(x, y);
-
     if (x < 290 && x > 260 && y < 130 && y > 105) {
+		console.log(x, y);
         return true;
     }
     return false;

@@ -482,17 +482,19 @@ class ModuleManager {
      */
     delete_module () {
 
-        deletingModuleIds = [];
+		deletingModuleIds = [];
+		
+		for(let dir in this.siblings) {
 
-        this.modules.forEach(module => {
+			if (dir !== this.relative.dir && this.siblings[dir].node) {
 
-			if (module.moving) {
+				console.log(this.siblings[dir].node);
 
-                deletingModuleIds.push(module.id);
-                this.modules.remove(module);
-                 
+				this.modules.remove(this.siblings[dir].node);
+				deletingModuleIds.push(this.siblings[dir].node);
+                
 			}
-        });
+		}
 
     }
     
