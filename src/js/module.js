@@ -614,7 +614,6 @@ class ModuleManager {
      * Runs the code of all the modules in the manager
      */
 	run_modules() {
-		console.log(this.running);
 		if (this.running){
 			this.modules.forEach(module => {
 				

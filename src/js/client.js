@@ -133,11 +133,6 @@ function update_workbench() {
 	wb_w = workbench.clientWidth;
 	wb_cvs.height = wb_h;
 	wb_cvs.width = wb_w;
-	
-	gs_h = game_screen.clientHeight;
-	gs_w = game_screen.clientWidth;
-	gs_cvs.height = gs_h;
-	gs_cvs.width = gs_w;
 
 	paintInCanvas(wb_w, wb_h, wb_ctx, img, true, mouseX, mouseY);
 
@@ -146,6 +141,11 @@ function update_workbench() {
 }
 
 function update_gs() {
+	
+	gs_h = game_screen.clientHeight;
+	gs_w = game_screen.clientWidth;
+	gs_cvs.height = gs_h;
+	gs_cvs.width = gs_w;
 	
 	module_manager.run_modules();
 	paintInCanvas(gs_w, gs_h, gs_ctx, img, false);
