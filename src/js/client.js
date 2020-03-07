@@ -40,6 +40,7 @@ function run() {
 
 function stop(){
 	module_manager.abort = true;
+	console.log(module_manager.abort);
 }
 
 function move(event) {
