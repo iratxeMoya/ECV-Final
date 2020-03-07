@@ -149,7 +149,7 @@ function update_gs() {
 	gs_cvs.height = gs_h;
 	gs_cvs.width = gs_w;
 	
-	module_manager.run_modules();arr[j].push(-1);
+	module_manager.run_modules();
 	paintInCanvas(gs_w, gs_h, gs_ctx, img, false);
 	map.draw(gs_ctx);
 	element_manager.draw(gs_ctx);
