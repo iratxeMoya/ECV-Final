@@ -58,7 +58,7 @@ wss.on('connection', function(ws) {
             sendData.status = 'OK';
             sendData.connectionType = 'login';
 
-            broadcastMsg(JSON.stringify(sendData), connectedUsers, ws);
+            ws.send(JSON.stringify(sendData));
 
         }
         else if (jsonData.type === 'register') {
@@ -70,7 +70,7 @@ wss.on('connection', function(ws) {
             sendData.status = 'OK';
             sendData.connectionType = 'register';
 
-            broadcastMsg(JSON.stringify(sendData), connectedUsers, ws);
+            ws.send(JSON.stringify(sendData));
 
         }
         else if (jsonData.type === 'logout') {
