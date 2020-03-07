@@ -292,16 +292,18 @@ Array.prototype.delete = function() {
 
 Object.prototype.findByField = function (field, value) {
 
-    console.log('in findByField: ', this);
 
     for (var key in this) {
 
         if (this[key][field] === value) {
 
+            console.log('in findByField: ', this[key], key);
             return this[key];
 
         }
     }
+
+    return null;
 };
 
 function jsonToArray (json) {
