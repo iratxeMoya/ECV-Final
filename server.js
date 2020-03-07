@@ -209,6 +209,7 @@ function saveDatabaseToDisk()
 {
 
     fs.writeFileSync('src/data/modules.json', JSON.stringify(modules) );
+    fs.writeFileSync('src/data/users.json', JSON.stringify(registeredUsers) );
     
 }
 
@@ -217,6 +218,9 @@ function loadDatabaseFromDisk()
 
 	var str = fs.readFileSync('src/data/modules.json').toString();
     modules = JSON.parse( str );
+
+    var str2 = fs.readFileSync('src/data/users.json').toString();
+    registeredUsers = JSON.parse( str2 );
     
 }
 
