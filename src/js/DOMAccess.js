@@ -24,9 +24,9 @@ var loginSend = document.querySelector("#loginSend");
 //Register Page
 var regPage = document.querySelector("#regPage");
 var goToLog = document.querySelector("#formRegToLog");
-var loginUser = document.querySelector("#regUser");
-var loginPass = document.querySelector("#regPass");
-var loginSend = document.querySelector("#regSend"); 
+var regUser = document.querySelector("#regUser");
+var regPass = document.querySelector("#regPass");
+var regSend = document.querySelector("#regSend"); 
 
 export {
     wb_cvs,
