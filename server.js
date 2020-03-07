@@ -56,7 +56,7 @@ wss.on('connection', function(ws) {
             
             var foundUser = registeredUsers.find(user => user.username === jsonData.username);
 
-            if (foundUser && passwordHash.verify(jsonData.password, foundClient.hashedPassword)) {
+            if (foundUser && passwordHash.verify(jsonData.password, foundUser.hashedPassword)) {
                 var sendData = {};
                 sendData.type = 'connectionResponse';
                 sendData.status = 'OK';
