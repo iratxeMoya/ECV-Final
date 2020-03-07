@@ -6,14 +6,15 @@ class Map{
 		this.sizey=sizey;
 		this.matrix = [];
 		for(var i =0;i<this.sizey;i++){
+			let arr =[]
 			for(var j =0;j<this.sizex;j++){
 				if(i==0||i==sizey || j==0||j==sizex){
-				this.matrix[i][j]=-1;
-			}else{
-				this.matrix[i][j]=0;
-				
+					arr[j].push(-1);
+				}else{
+					arr[j].push(0);
+				}
 			}
-			}
+			this.matrix[i].push(arr);
 		}
 	}
 	
