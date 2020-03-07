@@ -483,6 +483,7 @@ class ModuleManager {
     delete_module () {
 
 		deletingModuleIds = [];
+		console.log(this)
 		
 		for(let dir in this.siblings) {
 
