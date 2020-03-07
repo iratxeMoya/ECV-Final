@@ -40,6 +40,7 @@ DATA EXAMPLE IN MODULES:
 
 wss.on('connection', function(ws) {
 
+    saveDatabaseToDisk();
     loadDatabaseFromDisk ();
 
     ws.on('message', function (data) {
