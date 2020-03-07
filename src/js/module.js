@@ -486,6 +486,8 @@ class ModuleManager {
 		
 		for(let dir in this.siblings) {
 
+			console.log(this.siblings[dir].node);
+
 			if (dir !== this.relative.dir && this.siblings[dir].node) {
 
 				console.log(this.siblings[dir].node);
