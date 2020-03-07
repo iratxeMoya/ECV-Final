@@ -25,8 +25,8 @@ class Map{
 	draw(ctx){
 		for(var i =0;i<this.sizey;i++){
 			for(var j =0;j<this.sizex;j++){
-				gs_ctx.fillStyle = (i+j)%2==0 ? '#AAAAAA' : '#DDDDDD';
-				gs_ctx.fillRect(j*MODULESIZE,i*MODULESIZE, MODULESIZE,MODULESIZE);
+				ctx.fillStyle = (i+j)%2==0 ? '#AAAAAA' : '#DDDDDD';
+				ctx.fillRect(j*MODULESIZE,i*MODULESIZE, MODULESIZE,MODULESIZE);
 			}
 		}
 	}
