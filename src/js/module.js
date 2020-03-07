@@ -17,18 +17,18 @@ class Element {
     }
 	
 	forward(){
-		switch(""+this.dir){
-			case "0":
-				this.parameters.posx+=MODULESIZE:
+		switch(this.dir){
+			case 0:
+				this.parameters.posx+=MODULESIZE;
 				break;
-			case "1":
-				this.parameters.posy+=MODULESIZE:
+			case 1:
+				this.parameters.posy+=MODULESIZE;
 				break;
-			case "2":
-				this.parameters.posx-=MODULESIZE:
+			case 2:
+				this.parameters.posx-=MODULESIZE;
 				break;
 			default:
-				this.parameters.posy-=MODULESIZE:
+				this.parameters.posy-=MODULESIZE;
 		}
 	}
 	
