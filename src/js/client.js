@@ -9,7 +9,7 @@ var wb_w = workbench.style.width;
 var gs_h = game_screen.style.height;
 var gs_w = game_screen.style.width;
 var updater = setInterval(update_workbench, 0.5);
-var gs_updater = setInterval(update_gs, 2);
+var gs_updater = setInterval(update_gs, 100);
 var mouseDown = false;
 var mouseX;
 var mouseY;
