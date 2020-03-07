@@ -5,13 +5,14 @@ class Map{
 		this.sizex=sizex;
 		this.sizey=sizey;
 		this.matrix = [];
-		for (var i = 0; i < sizey; ++i){
-			this.matrix.push(zeros(sizex));
-			if(i==0||i==sizey){
-				this.matrix[i].fill(-1);
+		for(var i =0;i<this.sizey;i++){
+			for(var j =0;j<this.sizex;j++){
+				if(i==0||i==sizey || j==0||j==sizex){
+				this.matrix[i][j]=-1;
 			}else{
-				this.matrix[i][0]=-1;
-				this.matrix[i][sizex-1]=-1;
+				this.matrix[i][j]=0;
+				
+			}
 			}
 		}
 	}
