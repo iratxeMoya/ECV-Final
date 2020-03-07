@@ -23,8 +23,8 @@ function sendLogin () {
 function sendRegister () {
     var jsonData = {};
     jsonData.type = 'register';
-    jsonData.username = loginUser.value;
-    jsonData.password = loginPass.value;
+    jsonData.username = regUser.value;
+    jsonData.password = regPass.value;
 
     connection.send(JSON.stringify(jsonData));
 }
