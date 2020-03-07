@@ -56,9 +56,6 @@ wss.on('connection', function(ws) {
             
             var foundUser = registeredUsers.find(user => user.username === jsonData.username);
 
-            console.log(foundUser);
-            console.log(passwordHash.generate(jsonData.password))
-
             if (foundUser && passwordHash.verify(jsonData.password, foundUser.hashedPassword)) {
                 var sendData = {};
                 sendData.type = 'connectionResponse';
@@ -98,6 +95,8 @@ wss.on('connection', function(ws) {
                 var newUser = new User(jsonData.username, passwordHash.generate(jsonData.password), ws);
                 connectedUsers.push(newUser);
                 registeredUsers.push(newUser);
+
+                init();
 
                 ws.send(JSON.stringify(sendData));
 
