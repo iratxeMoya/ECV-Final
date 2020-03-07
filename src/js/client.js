@@ -8,7 +8,8 @@ var wb_h = workbench.style.height;
 var wb_w = workbench.style.width;
 var gs_h = game_screen.style.height;
 var gs_w = game_screen.style.width;
-var updater = setInterval(update, 0.5);
+var updater = setInterval(update_workbench, 0.5);
+var gs_updater = setInterval(update_gs, 2);
 var mouseDown = false;
 var mouseX;
 var mouseY;
@@ -124,9 +125,8 @@ function release(event) {
 }
 
 //LOOP
-function update() {
+function update_workbench() {
 
-	module_manager.run_modules();
 
 	wb_h = workbench.clientHeight;
 	wb_w = workbench.clientWidth;
@@ -142,6 +142,12 @@ function update() {
 	paintInCanvas(gs_w, gs_h, gs_ctx, img, false);
 
 	module_manager.draw(wb_ctx);
+	
+}
+
+function update_gs() {
+	
+	module_manager.run_modules();
 	element_manager.draw(gs_ctx);
 }
 
