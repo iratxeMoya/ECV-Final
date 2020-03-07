@@ -14,7 +14,7 @@ class Map{
 					arr.push(0);
 				}
 			}
-			this.matrix[i].push(arr);
+			this.matrix.push(arr);
 		}
 	}
 	
