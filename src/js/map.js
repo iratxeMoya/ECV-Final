@@ -9,9 +9,9 @@ class Map{
 			let arr =[]
 			for(var j =0;j<this.sizex;j++){
 				if(i==0||i==sizey || j==0||j==sizex){
-					arr[j].push(-1);
+					arr.push(-1);
 				}else{
-					arr[j].push(0);
+					arr.push(0);
 				}
 			}
 			this.matrix[i].push(arr);
