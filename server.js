@@ -96,7 +96,7 @@ wss.on('connection', function(ws) {
                 newUser.username = jsonData.username;
                 newUser.hashedPassword = passwordHash.generate(jsonData.password);
                 newUser.ws = ws;
-                
+
                 connectedUsers[newUser.username] = newUser;
                 init(ws);
                 registeredUsers[newUser.username] = newUser;
@@ -241,8 +241,9 @@ function loadDatabaseFromDisk()
 
 function broadcastMsg(data, usersToSend, ws) {
 
-    console.log('usersToSend: ', usersToSend);
     for (key in usersToSend) {
+
+        console.log(usersToSend[key])
         if(usersToSend[key].ws !== ws) {
             usersToSend[key].ws.send(data);
         }
