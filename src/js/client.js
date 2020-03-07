@@ -86,6 +86,8 @@ function release(event) {
 
 	if (isHover(event.screenX, event.screenY)) {
 
+		console.log('is hover')
+
 		module_manager.delete_module();
 		remove = true;
 
