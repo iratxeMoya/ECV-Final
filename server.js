@@ -75,7 +75,7 @@ wss.on('connection', function(ws) {
 
         }
         else if(jsonData.type === 'infoRequest') {
-            init();
+            init(ws);
         }
         else if (jsonData.type === 'register') {
 
