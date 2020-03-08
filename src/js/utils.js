@@ -163,7 +163,7 @@ function createModule (id, codeType, position,map = null, target = null, arg = n
 			mod = new ArgModule(position, moduleType, codeType, id, arg, north, west, east, south);
 			break;
 		case 'target':
-			mod = new TargetModule(position, moduleType, target, id, north, west, east, south);
+			mod = new TargetModule(position, moduleType,codeType, target, id, north, west, east, south);
 			break;
 		case 'condition':
 			mod = new ConditionModule(position, moduleType, codeType, id,map, north, west, east, south);
