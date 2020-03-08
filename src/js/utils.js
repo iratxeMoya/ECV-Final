@@ -170,8 +170,8 @@ function createModule (id, codeType, position,map = null, target = null, arg = n
 	
     if (mod) {
 
-		console.log('inif ', mod)
 		module_manager.add_module(mod);
+		console.log(module_manager.modules, mod);
 
 	}
 	
