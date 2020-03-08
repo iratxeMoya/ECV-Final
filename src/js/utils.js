@@ -62,17 +62,17 @@ function clickDropDownElement () {
 
 }
 
-function fillModuleDropDown(dropdown,json){
+function fillModuleDropDown(dropdown,json,type){
 	for (let codeType in json){
 		let dropdownElement = document.createElement("span");
 
 		dropdownElement.innerText = codeType; //Esto estaria bien tener un nombre para el element
-		dropdownElement.addEventListener("click", clickDropDownModule)
+		dropdownElement.addEventListener("click", function(){clickDropDownModule(type);})
 		dropdown.appendChild(dropdownElement);
 	}
 }
 
-function clickDropDownModule () {
+function clickDropDownModule (moduleType) {
 
 	var mod;
 	var id = Date.now();

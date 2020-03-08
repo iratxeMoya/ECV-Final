@@ -36,9 +36,9 @@ wb_cvs.addEventListener("mousemove", move);
 wb_cvs.addEventListener("mousedown", click);
 wb_cvs.addEventListener("mouseup", release);
 
-fillModuleDropDown(dropdownMovement,codes.movement);
-fillModuleDropDown(dropdownControl,codes.control);
-fillModuleDropDown(dropdownCondition,codes.condition);
+fillModuleDropDown(dropdownMovement,codes.movement,"movement");
+fillModuleDropDown(dropdownControl,codes.control,"control");
+fillModuleDropDown(dropdownCondition,codes.condition,"condition");
 
 // FUNCTIONS
 function run() {
