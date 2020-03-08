@@ -120,10 +120,11 @@ class ElementManager {
 class Module {
 
     
-    constructor (position, type, id, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}) {
+    constructor (position, moduleType,codeType, id, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}) {
 
         this.position = position;
-		this.type = type;
+		this.moduleType = moduleType;
+		this.codeType
         this.id = id;
         this.siblings = {
 			 'north': north,
@@ -324,8 +325,7 @@ class Module {
      * @param {Canvas context} wb_ctx 
      */
 	draw(wb_ctx) {
-
-		wb_ctx.fillStyle = styles[this.type];
+		wb_ctx.fillStyle = styles[this.moduleType];
         wb_ctx.fillRect(this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2, MODULESIZE,MODULESIZE);
         
 	}
@@ -379,7 +379,7 @@ class Module {
 		target = target ? target:this.getTarget();
 		console.log(target);
 		if(target){
-			eval(codes["movement"][this.type]);
+			eval(codes[this.moduleType][this.codeType]);
 		}
 		this.run_children(target);
     }
@@ -414,7 +414,7 @@ class ArgModule extends Module {
 	run(target = null) {
 
 		target = target ? target:this.getTarget();
-        eval(codes["control"][this.type].replace('$arg$', this.arg)); 
+        eval(codes[this.moduleType][this.codeType].replace('$arg$', this.arg)); 
         this.run_children(target);
         
     }
@@ -451,7 +451,7 @@ class ConditionModule extends Module {
         
 			if (target) {
 
-				if (eval(codes["condition"][this.type].replace('$val$', this.value))) {
+				if (eval(codes[this.moduleType][this.codeType].replace('$val$', this.value))) {
 
 					this.change_gate('east', true);
                     this.change_gate('west', false);

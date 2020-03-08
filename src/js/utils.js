@@ -79,21 +79,25 @@ function clickDropDownModule (moduleType,codeType) {
 	switch (moduleType){
 		case 'arg':
 			mod = new ArgModule({x:100,y:100}, codeType, id,null);
+			dropdownControl.classList.toggle("show");
 			break;
 		case 'target':	
 			mod = new TargetModule({x:100,y:100}, "target", id);
+			dropdownContainer.classList.toggle("show");
 			break;
 		case 'condition':
 			mod = new ConditionModule({x:100,y:100}, codeType, id,map);
+			dropdownCondition.classList.toggle("show");
 			break;
 		default:
 			mod = new Module({x:100,y:100}, codeType, id);
+			dropdownMovement.classList.toggle("show");
 			break;
 	}
 
 	module_manager.add_module(mod);
 
-	dropdownContainer.classList.toggle("show");
+	
 
 	//FALTA AÑADIR SERVER
 }
