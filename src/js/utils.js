@@ -97,7 +97,18 @@ function clickDropDownModule (moduleType,codeType) {
 
 	module_manager.add_module(mod);
 
-	
+	if (mod) {
+
+		module_manager.add_module(mod);
+
+		if(send) {
+
+			sendModuleInfo(mod, codeType, moduleType, arg);
+
+		}
+		
+
+	}
 
 	//FALTA AÑADIR SERVER
 }
