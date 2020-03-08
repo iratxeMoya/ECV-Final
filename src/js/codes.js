@@ -10,7 +10,8 @@ var codes ={
 		"nopdistless":"this.map.dist_nop(target.position.x,target.position.y)<$val$"
 	},
 	"control":{
-		"log":"console.log('$arg$');"
+		"log":"console.log('$arg$');",
+		"empty":""
 	}
 }
 
