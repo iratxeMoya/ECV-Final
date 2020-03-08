@@ -157,7 +157,11 @@ function update_gs() {
 	module_manager.run_modules();
 	
 	element_manager.elements.forEach(element => {
-		!map.is_valid(element.position.x,element.position.y) ? element.dead = true : null;
+		if(map.is_valid(element.position.x,element.position.y)){
+			map.matrix[element.position.y][element.position.x]=1;
+		}else{
+			element.dead = true;
+		}
 	});
 	
 	!element_manager.any_alive ? module_manager.abort=true : null;

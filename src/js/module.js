@@ -451,6 +451,7 @@ class ConditionModule extends Module {
         console.log("COND");
 		console.log(target);
 		console.log(this);
+		this.value=5;//DEBUGGING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		if (target) {
 
 			if (eval(codes[this.moduleType][this.codeType].replace('$val$', this.value))) {

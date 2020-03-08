@@ -22,6 +22,53 @@ class Map {
 		return this.matrix[y][x]>=0;
 	}
 	
+	nearest_op(x,y){
+		var found = false;
+		var i =x;
+		var j =y;
+		var depth=0;
+		var cnt=0;
+		var round =4;
+		var movex=-1;
+		var movey=0;
+		var ret = -1;
+		while (!found || depth<8){
+			found = this.matrix[j][i]>0;
+			found ? return {"x":i,"y":j} : null;
+			if(cnt==depth && round>3){
+				i++;
+				j++;
+				cnt=0;
+				depth+=2;
+			}else if(cnt==depth){
+				movey = (-1)*ret -movey;
+				movex = (-1)*ret +movex;
+				ret = movex-movey;
+				round++;
+			}
+			i+=movex;
+			j+=movey;
+			cnt++;
+		}
+		return null;
+	}
+	
+	dist_nop(x,y){
+		var op=nearest_op(x,y);
+		if(op){
+			return Math.floor(Math.sqrt((x-op.x)*(x-op.x) + (y-op.y)*(y-op.y)));
+		}
+		return null;
+	}
+	
+	face_nop(x,y){
+		var op=nearest_op(x,y);
+		if(op){
+			return (Math.abs(x-op.x)>Math.abs(y-op.y) ? (x>op.x ? 2 : 0) : (y>op.y ? 3 :1));
+		}
+		return null;
+	}
+	
 	draw(ctx){
 		for(var i =1;i<this.sizey-1;i++){
 			for(var j =1;j<this.sizex-1;j++){
