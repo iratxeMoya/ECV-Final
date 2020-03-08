@@ -124,7 +124,7 @@ class Module {
 
         this.position = position;
 		this.moduleType = moduleType;
-		this.codeType
+		this.codeType=codeType;
         this.id = id;
         this.siblings = {
 			 'north': north,
