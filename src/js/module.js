@@ -377,7 +377,7 @@ class Module {
     run (target = null) {
 		console.log(target);
 		target = target ? target:this.getTarget();
-		console.log(target);
+		console.log(moduleType+" "+codeType);
 		if(target){
 			eval(codes[this.moduleType][this.codeType]);
 		}
