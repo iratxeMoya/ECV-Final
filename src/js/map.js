@@ -43,11 +43,12 @@ class Map {
 				j++;
 				cnt=0;
 				depth+=2;
-			}else if(cnt==depth){
+			}else if(cnt==depth || i==0 || j==0 || i==this.sizex || j==this.sizey){
 				movey = (-1)*ret -movey;
 				movex = (-1)*ret +movex;
 				ret = movex-movey;
 				round++;
+				cnt=0;
 			}
 			i+=movex;
 			j+=movey;
