@@ -101,18 +101,18 @@ function clickDropDownModule () {
 function showModuleList(moduleType){
 	switch (moduleType){
 		case 'control':
-				targetModulePos = position;
+
 				dropdownControl.classList.toggle("show");
 		case 'target':
-				targetModulePos = position;
+
 				dropdownContainer.classList.toggle("show");
 			break;
 		case 'condition':
-				targetModulePos = position;
+
 				dropdownCondition.classList.toggle("show");
 			break;
 		default:
-				targetModulePos = position;
+
 				dropdownMovement.classList.toggle("show");
 			break;
 	}
