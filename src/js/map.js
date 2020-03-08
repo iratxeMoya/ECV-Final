@@ -33,7 +33,7 @@ class Map {
 		var movey=0;
 		var ret = -1;
 		while (depth<this.sizex-1){
-			if(i>=0 && j>=0 &&i<sizex && j<sizey){
+			if(i>=0 && j>=0 &&i<this.sizex && j<this.sizey){
 				found = this.matrix[j][i]>0 && x!==i && y!==j;
 			}
 			if(found){
