@@ -52,7 +52,7 @@ function clickDropDownElement () {
 
 	var t = element_manager.getElementById(this.id)[0]
 
-	var mod = new TargetModule(targetModulePos, t , id);
+	var mod = new TargetModule(targetModulePos,"target","target", t , id);
 
 	module_manager.add_module(mod);
 
