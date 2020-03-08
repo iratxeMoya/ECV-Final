@@ -15,6 +15,8 @@ var mouseDown = false;
 var mouseX;
 var mouseY;
 
+console.log(Math.floor(gs_w/25)+1);
+console.log(Math.floor(gs_h/25)+1);
 var map = new Map(Math.floor(gs_w/25)+1,Math.floor(gs_h/25)+1);
 console.log(map);
 var module_manager = new ModuleManager(codes);
