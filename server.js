@@ -219,7 +219,7 @@ function loadInformation () {
     var diskData = loadDatabaseFromDisk();
     var diskDate = diskData[0]['lastSaveDate'];
 
-    console.log('in load info: ', serverDate, diskDate);
+    console.log('in load info: ', serverDate, diskDate, diskData[0], diskData[1]);
 
     if (typeof diskDate === 'undefined') {
         modules = modules;
