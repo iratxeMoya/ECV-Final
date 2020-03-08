@@ -71,7 +71,7 @@ class Element {
 	colision(map){
 		console.log(map);
 		let npos = this.next_pos();
-		return !this.map.is_valid(npos.x,npos.y);
+		return !map.is_valid(npos.x,npos.y);
 	}
 	
 }
