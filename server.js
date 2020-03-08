@@ -219,6 +219,8 @@ function loadInformation () {
     var diskData = loadDatabaseFromDisk();
     var diskDate = diskData[0]['lastSaveDate'];
 
+    console.log('in load info: ', serverDate, diskDate);
+
     if (typeof diskDate === 'undefined') {
         modules = modules;
         registeredUsers = registeredUsers;
