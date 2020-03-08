@@ -134,7 +134,7 @@ function showModuleList(moduleType){
 }
 
 //Esta mal porque ya no hay prev y next asiqeu
-function createModule (id, moduleType, codeType, position,map = null, target = null, arg = null, moduleType = "basic", send = true, northID = {nodeId: null, type: false}, westID = {nodeId: null, type: false}, eastID = {nodeId: null, type: false}, southID = {nodeId: null, type: false} ) {
+function createModule (id, moduleType = "basic", codeType, position,map = null, target = null, arg = null, send = true, northID = {nodeId: null, type: false}, westID = {nodeId: null, type: false}, eastID = {nodeId: null, type: false}, southID = {nodeId: null, type: false} ) {
 
 	var mod, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false};
 	var dropdownElement = document.createElement("span");
