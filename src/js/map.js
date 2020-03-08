@@ -56,7 +56,7 @@ class Map {
 	}
 	
 	dist_nop(x,y){
-		var op=nearest_op(x,y);
+		var op=this.nearest_op(x,y);
 		if(op){
 			return Math.floor(Math.sqrt((x-op.x)*(x-op.x) + (y-op.y)*(y-op.y)));
 		}
@@ -64,7 +64,7 @@ class Map {
 	}
 	
 	face_nop(x,y){
-		var op=nearest_op(x,y);
+		var op=this.nearest_op(x,y);
 		if(op){
 			return (Math.abs(x-op.x)>Math.abs(y-op.y) ? (x>op.x ? 2 : 0) : (y>op.y ? 3 :1));
 		}
