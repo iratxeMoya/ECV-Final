@@ -77,7 +77,7 @@ function clickDropDownModule (moduleType,codeType) {
 	var mod;
 	var id = Date.now();
 	switch (moduleType){
-		case 'arg':
+		case 'control':
 			mod = new ArgModule({x:100,y:100}, moduleType, codeType, id,null);
 			dropdownControl.classList.toggle("show");
 			break;
