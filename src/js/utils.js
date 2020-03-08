@@ -1,7 +1,7 @@
 import { Module,ConditionModule, ArgModule, TargetModule, Element } from './module.js';
 import { module_manager, element_manager, map } from './client.js';
 import { connection } from './init.js';
-import { dropdownContainer } from './DOMAccess.js';
+import { dropdownContainer,dropdownMovement, dropdownControl, dropdownCondition } from './DOMAccess.js';
 
 var targetModulePos = null;
 
