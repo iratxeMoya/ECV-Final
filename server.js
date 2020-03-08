@@ -222,6 +222,17 @@ function loadInformation () {
 
     console.log(serverDate, diskDate, serverDate && serverDate > diskDate, diskData);
 
+    if (typeof diskDate === 'undefined') {
+        modules = modules;
+        registeredUsers = registeredUsers;
+        return;
+    }
+    if (typeof serverDate === 'undefined') {
+        modules = diskData[0];
+        registeredUsers = diskData[1];
+        return;
+    }
+
     modules = serverDate && serverDate > diskDate ? modules : diskData[0];
     registeredUsers = serverDate && serverDate > diskDate ? modules : diskData[1];
 
