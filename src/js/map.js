@@ -50,6 +50,7 @@ class Map {
 				round++;
 				cnt=0;
 			}
+			console.log(i+" "+j);
 			i+=movex;
 			j+=movey;
 			cnt++;
