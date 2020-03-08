@@ -220,6 +220,8 @@ function loadInformation () {
     var diskData = loadDatabaseFromDisk();
     var diskDate = diskData[0]['lastSaveDate'];
 
+    console.log(serverDate, diskDate);
+
     modules = serverDate && serverDate > diskDate ? modules : diskData[0];
     registeredUsers = serverDate && serverDate > diskDate ? modules : diskData[1];
 
