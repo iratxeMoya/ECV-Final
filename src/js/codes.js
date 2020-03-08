@@ -1,6 +1,6 @@
 var codes ={
 	"movement":{
-		"rndir":"target.dir=Math.random()%4;",
+		"rndir":"target.dir=Math.floor(Math.random()*100)%4;",
 		"move":"target.forward();",
 		"turn":"target.turn_clock();"
 	},
