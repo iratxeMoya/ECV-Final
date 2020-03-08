@@ -34,7 +34,9 @@ class Map {
 		var ret = -1;
 		while (!found || depth<8){
 			found = this.matrix[j][i]>0;
-			found ? return {"x":i,"y":j} : null;
+			if(found){
+				return {"x":i,"y":j};
+			}
 			if(cnt==depth && round>3){
 				i++;
 				j++;
