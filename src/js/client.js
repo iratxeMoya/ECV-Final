@@ -154,7 +154,7 @@ function update_gs() {
 	
 	element_manager.elements.forEach(element => {
 		!map.is_valid(element.position.x,element.position.y) ? element.dead = true;
-	}
+	});
 	
 	!element_manager.any_alive ? module_manager.abort=true : null;
 	
