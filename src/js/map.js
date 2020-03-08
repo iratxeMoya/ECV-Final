@@ -8,7 +8,7 @@ class Map {
 		for(var i =0;i<this.sizey;i++){
 			let arr =[]
 			for(var j =0;j<this.sizex;j++){
-				if(i==0||i==sizey || j==0||j==sizex){
+				if(i==0||i==sizey-1 || j==0||j==sizex-1){
 					arr.push(-1);
 				}else{
 					arr.push(0);
@@ -19,8 +19,6 @@ class Map {
 	}
 	
 	is_valid(x,y){
-		console.log(x+" "+y);
-		console.log(this.matrix[x][y]);
 		return this.matrix[y][x]>=0;
 	}
 	
