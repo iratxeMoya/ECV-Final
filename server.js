@@ -19,6 +19,7 @@ var registeredUsers = [];
 //modules
 
 var modules = {};
+//contiene un elemento con key "lastSaveDate" que contiene la ultima vez que se hizo el save.
 
 /*
 DATA EXAMPLE IN MODULES:
@@ -40,8 +41,7 @@ DATA EXAMPLE IN MODULES:
 
 wss.on('connection', function(ws) {
 
-    saveDatabaseToDisk();
-    loadDatabaseFromDisk ();
+    loadInformation();
 
     ws.on('message', function (data) {
 
@@ -96,6 +96,8 @@ wss.on('connection', function(ws) {
                 connectedUsers.push(newUser);
                 registeredUsers.push(newUser);
 
+                modules['lastSaveDate'] = Date.now();
+
                 ws.send(JSON.stringify(sendData));
 
             } 
@@ -116,7 +118,7 @@ wss.on('connection', function(ws) {
 
         }
         else if (jsonData.type === 'createModule') {
-			console.log(jsonData);
+
             var info = {};
             info.id = jsonData.id;
             info.objectType = 'module'; 
@@ -133,6 +135,7 @@ wss.on('connection', function(ws) {
 
 
             modules[jsonData.id.toString()] = info;
+            modules['lastSaveDate'] = Date.now();
 
             broadcastMsg(data, connectedUsers, ws);
             
@@ -167,6 +170,8 @@ wss.on('connection', function(ws) {
 
             })
 
+            modules['lastSaveDate'] = Date.now();
+
             broadcastMsg(data, connectedUsers, ws);
             
         }
@@ -187,7 +192,8 @@ wss.on('connection', function(ws) {
             info.moduleType = null;
             info.arg = jsonData.arg;
 
-            modules[jsonData.id.toString()] = info; 
+            modules[jsonData.id.toString()] = info;
+            modules['lastSaveDate'] = Date.now();
 
             broadcastMsg(data, connectedUsers, ws);
             
@@ -208,15 +214,27 @@ wss.on('connection', function(ws) {
 })
 
 
+function loadInformation () {
+
+    var serverDate = modules['lastSaveDate'];
+    var diskData = loadDatabaseFromDisk();
+    var diskDate = diskData[0]['lastSaveDate'];
+
+    modules = serverDate && serverDate > diskDate ? modules : diskData[0];
+    registeredUsers = serverDate && serverDate > diskDate ? modules : diskData[1];
+
+}
 
 function saveDatabaseToDisk()
 {
+    modules['lastSaveDate'] = Date.now(); 
 
     fs.writeFileSync('src/data/modules.json', JSON.stringify(modules) );
 
     registeredUsers.forEach(user => {
         delete user.ws;
     });
+
 
     var registeredUsersJson = arrayToJson(registeredUsers, 'username'); 
     fs.writeFileSync('src/data/users.json', JSON.stringify(registeredUsersJson));
@@ -227,11 +245,13 @@ function loadDatabaseFromDisk()
 {
 
 	var str = fs.readFileSync('src/data/modules.json').toString();
-    modules = JSON.parse( str );
+    ret1 = JSON.parse( str );
 
     var str2 = fs.readFileSync('src/data/users.json').toString();
     var registeredUsersJson = JSON.parse( str2 );
-    registeredUsers = jsonToArray(registeredUsersJson);
+    var ret2 = jsonToArray(registeredUsersJson);
+
+    return [ret1, ret2];
     
 }
 
