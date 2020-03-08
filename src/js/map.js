@@ -19,6 +19,8 @@ class Map {
 	}
 	
 	is_valid(x,y){
+		console.log(x+" "+y);
+		console.log(this.matrix[x][y]);
 		return this.matrix[y][x]>=0;
 	}
 	
