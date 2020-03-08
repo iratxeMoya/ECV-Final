@@ -66,6 +66,8 @@ class Map {
 	face_nop(x,y){
 		var op=this.nearest_op(x,y);
 		if(op){
+			console.log(op);
+			console.log(Math.abs(x-op.x)>Math.abs(y-op.y) ? (x>op.x ? 2 : 0) : (y>op.y ? 3 :1));
 			return (Math.abs(x-op.x)>Math.abs(y-op.y) ? (x>op.x ? 2 : 0) : (y>op.y ? 3 :1));
 		}
 		return null;
