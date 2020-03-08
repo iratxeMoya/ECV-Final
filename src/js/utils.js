@@ -205,7 +205,7 @@ function sendModuleInfo (module, codeType, moduleType, arg) {
 	newModule.moduleType = moduleType;
 	newModule.arg = arg;
 
-	console.log(JSON.stringify(newModule));
+	console.log(newModule);
 	
 	connection.send(JSON.stringify(newModule));
 
