@@ -32,7 +32,7 @@ class Map {
 		var movex=-1;
 		var movey=0;
 		var ret = -1;
-		while (!found || depth<8){
+		while (!found || depth<this.sizex;){
 			found = this.matrix[j][i]>0;
 			if(found){
 				return {"x":i,"y":j};
@@ -70,7 +70,7 @@ class Map {
 			console.log(Math.abs(x-op.x)>Math.abs(y-op.y) ? (x>op.x ? 2 : 0) : (y>op.y ? 3 :1));
 			return (Math.abs(x-op.x)>Math.abs(y-op.y) ? (x>op.x ? 2 : 0) : (y>op.y ? 3 :1));
 		}
-		return null;
+		return 0;
 	}
 	
 	draw(ctx){
