@@ -21,7 +21,7 @@ function isHover(x, y) {
     return false;
 }
 
-function createElement (id, position, map = null, send = true) {
+function createElement (id, position, send = true) {
 
 
 	var element = new Element(id, position);

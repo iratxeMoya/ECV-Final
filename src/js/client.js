@@ -25,10 +25,10 @@ img.src = "icons/basura.svg";
 
 basicModule.addEventListener("click", function(){createModule(Date.now(), 'move', {x: 100, y: 100})});
 argModule.addEventListener("click", function(){createModule(Date.now(), 'turn', {x: 100, y: 100})});
-conditionModule.addEventListener("click", function(){createModule(Date.now(), 'ifwall', {x: 100, y: 100},map,null,null,"condition")});
+conditionModule.addEventListener("click", function(){createModule(Date.now(), 'ifwall', {x: 100, y: 100},map,moduleType="condition")});
 // argModule.addEventListener("click", function(){createModule(Date.now(), 'log',{x: 100, y: 200}, null, "Hola", "arg")});
-targetModule.addEventListener("click", function(){createModule(Date.now(), null,{x: 100, y: 200}, null, null, "target")});
-element.addEventListener("click", function() {createElement(Date.now(), {x: 2, y:2},null,map)});
+targetModule.addEventListener("click", function(){createModule(Date.now(), null,{x: 100, y: 200}, moduleType= "target")});
+element.addEventListener("click", function() {createElement(Date.now(), {x: 2, y:2})});
 
 run_button.addEventListener("click", run);
 stop_button.addEventListener("click", stop);
