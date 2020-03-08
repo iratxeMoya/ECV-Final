@@ -69,8 +69,9 @@ connection.onmessage = (event) => {
             jsonData.connectionType === 'login'
                 ? loginPage.classList.toggle("show")
                 : regPage.classList.toggle("show");
+            
+            
 
-            connection.send(JSON.stringify({type: 'infoRequest'}))
         }
     }
 }

@@ -63,6 +63,8 @@ wss.on('connection', function(ws) {
                 connectedUsers.push(foundUser);
 
                 ws.send(JSON.stringify(sendData));
+
+                init(ws);
             }
             else { //esto en el cliente no esta implementado aun
                 var sendData = {};
@@ -99,6 +101,8 @@ wss.on('connection', function(ws) {
                 modules['lastSaveDate'] = Date.now();
 
                 ws.send(JSON.stringify(sendData));
+
+                init(ws);
 
             } 
             else { //esto no esta implementado aun en el cliente
