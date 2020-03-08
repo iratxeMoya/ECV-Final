@@ -14,6 +14,10 @@ var argModule = document.querySelector("#argModule");
 var targetModule = document.querySelector("#targetModule");
 var element = document.querySelector("#element");
 var dropdownContainer = document.querySelector(".dropdown-content");
+var dropdownMovement = document.querySelector(".dropdown-move");
+var dropdownControl = document.querySelector(".dropdown-cont");
+var dropdownCondition = document.querySelector(".dropdown-cond");
+
 
 //Login Page
 var loginPage = document.querySelector("#loginPage");
@@ -44,6 +48,9 @@ export {
     targetModule,
     element,
     dropdownContainer,
+	dropdownMovement,
+	dropdownControl,
+	dropdownCondition,
     codeEditorPage, 
     loginPage,
     loginPass,

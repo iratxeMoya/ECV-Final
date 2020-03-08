@@ -2,8 +2,8 @@ import { ModuleManager, activeModuleIds, deletingModuleIds, Element, ElementMana
 import { Map } from './map.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
-import { isHover, createModule, paintInCanvas, createElement } from './utils.js';
-import { wb_cvs, wb_ctx,gs_cvs, gs_ctx,conditionModule, basicModule, argModule, targetModule, element, workbench,game_screen, run_button,stop_button } from './DOMAccess.js';
+import { isHover, createModule, paintInCanvas, createElement, fillModuleDropDown,showModuleList} from './utils.js';
+import { wb_cvs, wb_ctx,gs_cvs, gs_ctx,conditionModule, basicModule, argModule, targetModule, element, workbench,game_screen, run_button,stop_button, dropdownMovement, dropdownControl, dropdownCondition} from './DOMAccess.js';
 
 var wb_h = workbench.style.height;
 var wb_w = workbench.style.width;
@@ -23,11 +23,11 @@ var img = new Image();
 
 img.src = "icons/basura.svg";
 
-basicModule.addEventListener("click", function(){createModule(Date.now(), 'move', {x: 100, y: 100})});
-argModule.addEventListener("click", function(){createModule(Date.now(), 'turn', {x: 100, y: 100})});
-conditionModule.addEventListener("click", function(){createModule(Date.now(), 'ifwall', {x: 100, y: 100},map,null,null,"condition")});
+basicModule.addEventListener("click", function(){showModuleList("movement")});
+argModule.addEventListener("click", function(){showModuleList("control")});
+conditionModule.addEventListener("click", function(){showModuleList("condition")});
 // argModule.addEventListener("click", function(){createModule(Date.now(), 'log',{x: 100, y: 200}, null, "Hola", "arg")});
-targetModule.addEventListener("click", function(){createModule(Date.now(), null,{x: 100, y: 200},null,null,null,"target")});
+targetModule.addEventListener("click", function(){showModuleList("target")});
 element.addEventListener("click", function() {createElement(Date.now(), {x: 2, y:2})});
 
 run_button.addEventListener("click", run);
@@ -35,6 +35,10 @@ stop_button.addEventListener("click", stop);
 wb_cvs.addEventListener("mousemove", move);
 wb_cvs.addEventListener("mousedown", click);
 wb_cvs.addEventListener("mouseup", release);
+
+fillModuleDropDown(dropdownMovement,codes.movement);
+fillModuleDropDown(dropdownControl,codes.control);
+fillModuleDropDown(dropdownCondition,codes.condition);
 
 // FUNCTIONS
 function run() {
@@ -165,5 +169,6 @@ function update_gs() {
 
 export{
 	module_manager,
-	element_manager
+	element_manager,
+	map
 }

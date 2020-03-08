@@ -1,5 +1,5 @@
 import { Module,ConditionModule, ArgModule, TargetModule, Element } from './module.js';
-import { module_manager, element_manager } from './client.js';
+import { module_manager, element_manager, map } from './client.js';
 import { connection } from './init.js';
 import { dropdownContainer } from './DOMAccess.js';
 
@@ -62,10 +62,67 @@ function clickDropDownElement () {
 
 }
 
+function fillModuleDropDown(dropdown,json){
+	for (let codeType in json){
+		let dropdownElement = document.createElement("span");
+
+		dropdownElement.innerText = codeType; //Esto estaria bien tener un nombre para el element
+		dropdownElement.addEventListener("click", clickDropDownModule)
+		dropdown.appendChild(dropdownElement);
+	}
+}
+
+function clickDropDownModule () {
+
+	var mod;
+	var id = Date.now();
+	switch (moduleType){
+		case 'arg':
+			mod = new ArgModule({x:100,y:100}, this.innerText, id,null);
+			break;
+		case 'target':	
+			mod = new TargetModule({x:100,y:100}, "target", id);
+			break;
+		case 'condition':
+			mod = new ConditionModule({x:100,y:100}, this.innerText, id,map);
+			break;
+		default:
+			mod = new Module({x:100,y:100}, this.innerText, id);
+			break;
+	}
+
+	module_manager.add_module(mod);
+
+	dropdownContainer.classList.toggle("show");
+
+	//FALTA AÑADIR SERVER
+}
+
+function showModuleList(moduleType){
+	switch (moduleType){
+		case 'control':
+				targetModulePos = position;
+				dropdownControl.classList.toggle("show");
+		case 'target':
+				targetModulePos = position;
+				dropdownContainer.classList.toggle("show");
+			break;
+		case 'condition':
+				targetModulePos = position;
+				dropdownCondition.classList.toggle("show");
+			break;
+		default:
+				targetModulePos = position;
+				dropdownMovement.classList.toggle("show");
+			break;
+	}
+}
+
 //Esta mal porque ya no hay prev y next asiqeu
 function createModule (id, codeType, position,map = null, target = null, arg = null, moduleType = "basic", send = true, northID = {nodeId: null, type: false}, westID = {nodeId: null, type: false}, eastID = {nodeId: null, type: false}, southID = {nodeId: null, type: false} ) {
 
 	var mod, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false};
+	var dropdownElement = document.createElement("span");
 	if (northID) {
 		var northMod = module_manager.getModuleByID(northID.nodeId)[0];
 		north.node = northMod;
@@ -87,16 +144,11 @@ function createModule (id, codeType, position,map = null, target = null, arg = n
 		south.type = southID.type;
 	}
 	switch (moduleType){
-		case 'arg':
+		case 'control':
 			mod = new ArgModule(position, codeType, id, arg, north, west, east, south);
 			break;
 		case 'target':
-			if (send){
-				targetModulePos = position;
-				dropdownContainer.classList.toggle("show");
-			} else {
-				mod = new TargetModule(position, target, id, north, west, east, south);
-			}
+			mod = new TargetModule(position, target, id, north, west, east, south);
 			break;
 		case 'condition':
 			mod = new ConditionModule(position, codeType, id,map, north, west, east, south);
@@ -105,6 +157,7 @@ function createModule (id, codeType, position,map = null, target = null, arg = n
 			mod = new Module(position, codeType, id, north, west, east, south);
 			break;
 	}
+	
     if (mod) {
 
 		module_manager.add_module(mod);
@@ -174,4 +227,6 @@ export {
 	createElement,
 	paintInCanvas,
 	clickDropDownElement,
+	showModuleList,
+	fillModuleDropDown
 }
