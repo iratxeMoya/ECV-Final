@@ -131,7 +131,7 @@ function showModuleList(moduleType){
 function createModule (id, codeType, position,map = null, target = null, arg = null, moduleType = "basic", send = false, northID = {nodeId: null, type: false}, westID = {nodeId: null, type: false}, eastID = {nodeId: null, type: false}, southID = {nodeId: null, type: false} ) {
 
 	var mod, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false};
-	console.log(id, codeType, position, moduleType);
+
 	if (northID) {
 		var northMod = module_manager.getModuleByID(northID.nodeId)[0];
 		north.node = northMod;
@@ -163,6 +163,7 @@ function createModule (id, codeType, position,map = null, target = null, arg = n
 			mod = new ConditionModule(position, moduleType, codeType, id,map, north, west, east, south);
 			break;
 		default:
+			console.log('is default');
 			mod = new Module(position, moduleType, codeType, id, north, west, east, south);
 			break;
 	}
