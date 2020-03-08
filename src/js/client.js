@@ -16,6 +16,7 @@ var mouseX;
 var mouseY;
 
 var map = new Map(10,10);
+console.log(map);
 var module_manager = new ModuleManager(codes);
 var element_manager = new ElementManager();
 var img = new Image();
