@@ -152,7 +152,6 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'releaseModule') {
 
-            console.log('in release ', jsonData);
             jsonData.modules.forEach(module => {
 
                 modules[module.id.toString()].posx = jsonData.posx;
@@ -220,8 +219,6 @@ function loadInformation () {
     var diskData = loadDatabaseFromDisk();
     var diskDate = diskData[0]['lastSaveDate'];
 
-    console.log(serverDate, diskDate, serverDate && serverDate > diskDate, diskData);
-
     if (typeof diskDate === 'undefined') {
         modules = modules;
         registeredUsers = registeredUsers;
@@ -273,8 +270,6 @@ function loadDatabaseFromDisk()
 
 function broadcastMsg(data, usersToSend, connection) {
 
-    console.log(usersToSend);
-
     usersToSend.forEach(user => {
         if(user.ws !== connection) {
             user.ws.send(data);
@@ -284,7 +279,6 @@ function broadcastMsg(data, usersToSend, connection) {
 
 function init (ws) {
 
-    console.log(modules);
     for (id in modules) {
 
         var module = modules[id];
