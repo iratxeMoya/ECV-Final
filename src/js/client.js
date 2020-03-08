@@ -38,7 +38,7 @@ wb_cvs.addEventListener("mouseup", release);
 
 // FUNCTIONS
 function run() {
-
+	element_manager.refresh();
 	module_manager.running = true;
 }
 
@@ -151,6 +151,13 @@ function update_gs() {
 	gs_cvs.width = gs_w;
 	
 	module_manager.run_modules();
+	
+	element_manager.elements.forEach(element => {
+		!map.is_valid(element.position.x,element.position.y) ? element.dead = true;
+	}
+	
+	!element_manager.any_alive ? module_manager.abort=true : null;
+	
 	paintInCanvas(gs_w, gs_h, gs_ctx, img, false);
 	map.draw(gs_ctx);
 	element_manager.draw(gs_ctx);

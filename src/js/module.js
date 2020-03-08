@@ -13,6 +13,7 @@ class Element {
 		this.position={x:position.x,y:position.y};
 		this.id = id;
 		this.dir = 0;
+		this.dead=false;
 		
     }
 	
@@ -93,6 +94,19 @@ class ElementManager {
     getElementById (id) {
         return this.elements.filter(ele => ele.id.toString() === id);
     }
+	
+	refresh(){
+		this.elements.forEach(element => {
+			element.dead=false;
+		});
+	}
+	
+	any_alive(){
+		var ret=true;
+		this.elements.forEach(element => {
+			ret = ret && !element.dead;
+		});
+	}
 
     draw (gs_ctx) {
         this.elements.forEach(element => {
@@ -622,7 +636,7 @@ class ModuleManager {
 		if (this.running){
 			this.modules.forEach(module => {
 				
-				module.type === "target" ? module.run() : null;
+				module.type === "target" ? (!this.target.dead ? module.run():null) : null;
 
 			});
 		}
