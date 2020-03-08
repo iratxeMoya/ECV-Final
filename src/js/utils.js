@@ -67,27 +67,27 @@ function fillModuleDropDown(dropdown,json,type){
 		let dropdownElement = document.createElement("span");
 
 		dropdownElement.innerText = codeType; //Esto estaria bien tener un nombre para el element
-		dropdownElement.addEventListener("click", function(){clickDropDownModule(type);})
+		dropdownElement.addEventListener("click", function(){clickDropDownModule(type,codeType);})
 		dropdown.appendChild(dropdownElement);
 	}
 }
 
-function clickDropDownModule (moduleType) {
+function clickDropDownModule (moduleType,codeType) {
 
 	var mod;
 	var id = Date.now();
 	switch (moduleType){
 		case 'arg':
-			mod = new ArgModule({x:100,y:100}, this.innerText, id,null);
+			mod = new ArgModule({x:100,y:100}, codeType, id,null);
 			break;
 		case 'target':	
 			mod = new TargetModule({x:100,y:100}, "target", id);
 			break;
 		case 'condition':
-			mod = new ConditionModule({x:100,y:100}, this.innerText, id,map);
+			mod = new ConditionModule({x:100,y:100}, codeType, id,map);
 			break;
 		default:
-			mod = new Module({x:100,y:100}, this.innerText, id);
+			mod = new Module({x:100,y:100}, codeType, id);
 			break;
 	}
 
