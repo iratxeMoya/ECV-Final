@@ -6,8 +6,8 @@ var codes ={
 	},
 	"condition":{
 		"ifwall":"target.colision(this.map);",
-		"facenop":"target.dir==map.dir_nop(target.position.x,target.position.y)",
-		"nopdistless":"map.dist_nop(target.position.x,target.position.y)<$val$"
+		"facenop":"target.dir==this.map.dir_nop(target.position.x,target.position.y)",
+		"nopdistless":"this.map.dist_nop(target.position.x,target.position.y)<$val$"
 	},
 	"control":{
 		"log":"console.log('$arg$');"
