@@ -66,7 +66,7 @@ class Element {
 	
 	draw(gs_ctx){
 		gs_ctx.fillStyle = '#FF6DC9';
-        gs_ctx.fillRect((this.position.x)*MODULESIZE,(this.position.y)*MODULESIZE, MODULESIZE,MODULESIZE);
+        gs_ctx.fillRect((this.position.x-1)*MODULESIZE,(this.position.y-1)*MODULESIZE, MODULESIZE,MODULESIZE);
 	}
 	
 	colision(map){
