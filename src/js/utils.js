@@ -82,7 +82,7 @@ function clickDropDownModule (moduleType,codeType) {
 			dropdownControl.classList.toggle("show");
 			break;
 		case 'target':	
-			mod = new TargetModule({x:100,y:100}, moduleType, "target", id);
+			mod = new TargetModule({x:100,y:100}, moduleType, "target",null, id);
 			dropdownContainer.classList.toggle("show");
 			break;
 		case 'condition':
