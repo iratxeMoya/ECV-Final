@@ -627,8 +627,6 @@ class ModuleManager {
 
 		this.modules.forEach(module => {
 
-			console.log(module);
-
             module.draw(wb_ctx);
             
 		});
