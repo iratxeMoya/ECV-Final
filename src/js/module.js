@@ -466,7 +466,7 @@ class ConditionModule extends Module {
 				
 			}
 
-			this.run_children();	
+			this.run_children(target);	
 		}
 	}
 	
