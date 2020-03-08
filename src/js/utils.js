@@ -178,7 +178,7 @@ function createModule (id, codeType, position,map = null, target = null, arg = n
 		module_manager.add_module(mod);
 
 		if(send) {
-
+			
 			sendModuleInfo(mod, codeType, moduleType, arg);
 
 		}

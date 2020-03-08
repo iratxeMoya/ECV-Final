@@ -116,7 +116,7 @@ wss.on('connection', function(ws) {
 
         }
         else if (jsonData.type === 'createModule') {
-
+			console.log(sonData);
             var info = {};
             info.id = jsonData.id;
             info.objectType = 'module'; 
