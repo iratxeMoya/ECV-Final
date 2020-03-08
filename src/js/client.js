@@ -153,7 +153,7 @@ function update_gs() {
 	module_manager.run_modules();
 	
 	element_manager.elements.forEach(element => {
-		!map.is_valid(element.position.x,element.position.y) ? element.dead = true;
+		!map.is_valid(element.position.x,element.position.y) ? element.dead = true : null;
 	});
 	
 	!element_manager.any_alive ? module_manager.abort=true : null;
