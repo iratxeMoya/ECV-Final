@@ -635,7 +635,7 @@ class ModuleManager {
 	run_modules() {
 		if (this.running){
 			this.modules.forEach(module => {
-				module.type === "target" ? (!module.target.dead ? module.run(module.target):null) : null;
+				module.moduleType === "target" ? (!module.target.dead ? module.run():null) : null;
 
 			});
 		}
