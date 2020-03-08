@@ -63,7 +63,7 @@ function clickDropDownElement () {
 }
 
 //Esta mal porque ya no hay prev y next asiqeu
-function createModule (id, codeType, position, target = null, arg = null, moduleType = "basic", send = true, northID = {nodeId: null, type: false}, westID = {nodeId: null, type: false}, eastID = {nodeId: null, type: false}, southID = {nodeId: null, type: false} ) {
+function createModule (id, codeType, position,map = null target = null, arg = null, moduleType = "basic", send = true, northID = {nodeId: null, type: false}, westID = {nodeId: null, type: false}, eastID = {nodeId: null, type: false}, southID = {nodeId: null, type: false} ) {
 
 	var mod, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false};
 	if (northID) {
@@ -99,7 +99,7 @@ function createModule (id, codeType, position, target = null, arg = null, module
 			}
 			break;
 		case 'condition':
-			mod = new ConditionModule(position, codeType, id, north, west, east, south);
+			mod = new ConditionModule(position, codeType, id,map, north, west, east, south);
 			break;
 		default:
 			mod = new Module(position, codeType, id, north, west, east, south);

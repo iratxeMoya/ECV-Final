@@ -428,6 +428,7 @@ class ConditionModule extends Module {
 	constructor(position, type, id,map, value=null, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}){
 		super(position, type, id, north, west, east, south);
 		this.value = value;
+		this.map = map;
 	}
 	
 	run(target = null){
