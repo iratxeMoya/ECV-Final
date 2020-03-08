@@ -3,10 +3,10 @@ var codes ={
 		"rndir":"target.dir=Math.floor(Math.random()*100)%4;",
 		"move":"target.forward();",
 		"turn":"target.turn_clock();",
-		"facenop":"map.dir_nop(target.position.x,target.position.y)"
 	},
 	"condition":{
 		"ifwall":"target.colision(this.map);",
+		"facenop":"target.dir==map.dir_nop(target.position.x,target.position.y)",
 		"nopdistless":"map.dist_nop(target.position.x,target.position.y)<$val$"
 	},
 	"control":{
