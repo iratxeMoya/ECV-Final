@@ -100,7 +100,7 @@ function clickDropDownModule (moduleType,codeType) {
 	if (mod) {
 
 		module_manager.add_module(mod);
-		sendModuleInfo(mod, codeType, moduleType, arg);
+		sendModuleInfo(mod, codeType, moduleType, null);
 
 	}
 
