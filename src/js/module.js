@@ -8,10 +8,9 @@ var deletingModuleIds = [];
 
 class Element {
 	
-	constructor (id, position, avatar = null,map) {
+	constructor (id, position, avatar = null) {
 		console.log(position);
 		this.position={x:position.x,y:position.y};
-		this.map=map;
 		this.id = id;
 		this.dir = 0;
 		
@@ -69,7 +68,7 @@ class Element {
         gs_ctx.fillRect((this.position.x)*MODULESIZE,(this.position.y)*MODULESIZE, MODULESIZE,MODULESIZE);
 	}
 	
-	colision(){
+	colision(map){
 		console.log(map);
 		let npos = this.next_pos();
 		return !this.map.is_valid(npos.x,npos.y);
@@ -426,7 +425,7 @@ class TargetModule extends Module{
 
 class ConditionModule extends Module {
 	
-	constructor(position, type, id, value=null, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}){
+	constructor(position, type, id,map, value=null, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}){
 		super(position, type, id, north, west, east, south);
 		this.value = value;
 	}
