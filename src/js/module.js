@@ -448,21 +448,23 @@ class ConditionModule extends Module {
 	run(target = null){
 		
         target = target ? target:this.getTarget();
-        
-			if (target) {
+        console.log("COND");
+		console.log(target);
+		console.log(this);
+		if (target) {
 
-				if (eval(codes[this.moduleType][this.codeType].replace('$val$', this.value))) {
+			if (eval(codes[this.moduleType][this.codeType].replace('$val$', this.value))) {
 
-					this.change_gate('east', true);
-                    this.change_gate('west', false);
-                    
-                }
-                else {
+				this.change_gate('east', true);
+				this.change_gate('west', false);
+				
+			}
+			else {
 
-					this.change_gate('east', false);
-                    this.change_gate('west', true);
-                    
-				}
+				this.change_gate('east', false);
+				this.change_gate('west', true);
+				
+			}
 
 			this.run_children();	
 		}
