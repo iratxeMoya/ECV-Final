@@ -233,7 +233,7 @@ function loadInformation () {
     }
 
     modules = serverDate && serverDate > diskDate ? modules : diskData[0];
-    registeredUsers = serverDate && serverDate > diskDate ? modules : diskData[1];
+    registeredUsers = serverDate && serverDate > diskDate ? registeredUsers : diskData[1];
 
     console.log(modules, registeredUsers, serverDate && serverDate > diskDate);
 
