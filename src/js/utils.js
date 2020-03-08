@@ -21,7 +21,7 @@ function isHover(x, y) {
     return false;
 }
 
-function createElement (id, position, send = true) {
+function createElement (id, position, send = false) {
 
 
 	var element = new Element(id, position);
@@ -72,7 +72,7 @@ function fillModuleDropDown(dropdown,json,type){
 	}
 }
 
-function clickDropDownModule (moduleType,codeType) {
+function clickDropDownModule (moduleType, codeType) {
 
 	var mod;
 	var id = Date.now();
@@ -86,7 +86,7 @@ function clickDropDownModule (moduleType,codeType) {
 			dropdownContainer.classList.toggle("show");
 			break;
 		case 'condition':
-			mod = new ConditionModule({x:100,y:100}, moduleType, codeType, id,map);
+			mod = new ConditionModule({x:100,y:100}, moduleType, codeType, id, map);
 			dropdownCondition.classList.toggle("show");
 			break;
 		default:
@@ -127,8 +127,8 @@ function showModuleList(moduleType){
 	}
 }
 
-//Esta mal porque ya no hay prev y next asiqeu
-function createModule (id, codeType, position,map = null, target = null, arg = null, moduleType = "basic", send = true, northID = {nodeId: null, type: false}, westID = {nodeId: null, type: false}, eastID = {nodeId: null, type: false}, southID = {nodeId: null, type: false} ) {
+
+function createModule (id, codeType, position,map = null, target = null, arg = null, moduleType = "basic", send = false, northID = {nodeId: null, type: false}, westID = {nodeId: null, type: false}, eastID = {nodeId: null, type: false}, southID = {nodeId: null, type: false} ) {
 
 	var mod, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false};
 	var dropdownElement = document.createElement("span");
@@ -170,13 +170,6 @@ function createModule (id, codeType, position,map = null, target = null, arg = n
     if (mod) {
 
 		module_manager.add_module(mod);
-
-		if(send) {
-			
-			sendModuleInfo(mod, codeType, moduleType, arg);
-
-		}
-		
 
 	}
 	
