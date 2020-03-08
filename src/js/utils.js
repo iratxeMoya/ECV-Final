@@ -134,7 +134,7 @@ function showModuleList(moduleType){
 }
 
 //Esta mal porque ya no hay prev y next asiqeu
-function createModule (id, codeType, position,map = null, target = null, arg = null, moduleType = "basic", send = true, northID = {nodeId: null, type: false}, westID = {nodeId: null, type: false}, eastID = {nodeId: null, type: false}, southID = {nodeId: null, type: false} ) {
+function createModule (id, moduleType, codeType, position,map = null, target = null, arg = null, moduleType = "basic", send = true, northID = {nodeId: null, type: false}, westID = {nodeId: null, type: false}, eastID = {nodeId: null, type: false}, southID = {nodeId: null, type: false} ) {
 
 	var mod, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false};
 	var dropdownElement = document.createElement("span");
@@ -160,16 +160,16 @@ function createModule (id, codeType, position,map = null, target = null, arg = n
 	}
 	switch (moduleType){
 		case 'control':
-			mod = new ArgModule(position, codeType, id, arg, north, west, east, south);
+			mod = new ArgModule(position, moduleType, codeType, id, arg, north, west, east, south);
 			break;
 		case 'target':
-			mod = new TargetModule(position, target, id, north, west, east, south);
+			mod = new TargetModule(position, moduleType, target, id, north, west, east, south);
 			break;
 		case 'condition':
-			mod = new ConditionModule(position, codeType, id,map, north, west, east, south);
+			mod = new ConditionModule(position, moduleType, codeType, id,map, north, west, east, south);
 			break;
 		default:
-			mod = new Module(position, codeType, id, north, west, east, south);
+			mod = new Module(position, moduleType, codeType, id, north, west, east, south);
 			break;
 	}
 	

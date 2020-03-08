@@ -424,7 +424,7 @@ class TargetModule extends Module{
 
 	constructor(position, moduleType,codeType, target, id, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}) {
         
-		super(position, moduleType, "target", id, north, west, east, south);
+		super(position, moduleType, codeType, id, north, west, east, south);
 
 		this.target = target;
 		this.executed = false;
