@@ -78,19 +78,19 @@ function clickDropDownModule (moduleType,codeType) {
 	var id = Date.now();
 	switch (moduleType){
 		case 'arg':
-			mod = new ArgModule({x:100,y:100}, codeType, id,null);
+			mod = new ArgModule({x:100,y:100}, moduleType, codeType, id,null);
 			dropdownControl.classList.toggle("show");
 			break;
 		case 'target':	
-			mod = new TargetModule({x:100,y:100}, "target", id);
+			mod = new TargetModule({x:100,y:100}, moduleType, "target", id);
 			dropdownContainer.classList.toggle("show");
 			break;
 		case 'condition':
-			mod = new ConditionModule({x:100,y:100}, codeType, id,map);
+			mod = new ConditionModule({x:100,y:100}, moduleType, codeType, id,map);
 			dropdownCondition.classList.toggle("show");
 			break;
 		default:
-			mod = new Module({x:100,y:100}, codeType, id);
+			mod = new Module({x:100,y:100}, moduleType, codeType, id);
 			dropdownMovement.classList.toggle("show");
 			break;
 	}

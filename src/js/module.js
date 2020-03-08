@@ -394,9 +394,9 @@ class ArgModule extends Module {
      * @param {Int} id Unique ??????? no se como hacer esto
      * @param {String} argument to pass	
      */
-	constructor (position, type, id, arg, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}) {
+	constructor (position, moduleType, type, id, arg, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}) {
 
-		super(position, type, id, north, west, east, south);
+		super(position, moduleType, type, id, north, west, east, south);
         this.arg = arg;
         
     }
@@ -422,9 +422,9 @@ class ArgModule extends Module {
 
 class TargetModule extends Module{
 
-	constructor(position, target, id, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}) {
+	constructor(position, moduleType, target, id, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}) {
         
-		super(position, "target", id, north, west, east, south);
+		super(position, moduleType, "target", id, north, west, east, south);
 
 		this.target = target;
 		this.executed = false;
@@ -439,8 +439,8 @@ class TargetModule extends Module{
 
 class ConditionModule extends Module {
 	
-	constructor(position, type, id,map, value=null, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}){
-		super(position, type, id, north, west, east, south);
+	constructor(position, moduleType, type, id,map, value=null, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}){
+		super(position, moduleType, type, id, north, west, east, south);
 		this.value = value;
 		this.map = map;
 	}
