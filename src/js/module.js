@@ -290,7 +290,7 @@ class Module {
 		activeModuleIds = [];
 		console.log('isActive: ', this)
 
-		activeModuleIds.push(this)
+		activeModuleIds.push(this.id)
 
         for(let dir in this.siblings) {
 
