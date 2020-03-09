@@ -532,7 +532,7 @@ class ModuleManager {
 	
 	remove_modules(module){
 		let ids=[];
-		this.module.get_children_ids(ids);
+		module.get_children_ids(ids);
 		
 		ids.forEach(id =>{
 			this.modules.remove(this.getModuleByID(id));
