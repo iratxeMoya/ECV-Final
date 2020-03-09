@@ -123,7 +123,7 @@ function release(event) {
 
 	console.log('in release: ', modules);
 
-	connection.send(JSON.stringify({type: 'releaseModule', posx: event.offsetX, posy: event.offsetY, remove: remove, modules: modules, screenX: event.screenX, screenY: event.screenY}));
+	connection.send(JSON.stringify({type: 'releaseModule', posx: event.offsetX, posy: event.offsetY, 'remove': remove, modules: modules, screenX: event.screenX, screenY: event.screenY}));
 
 }
 

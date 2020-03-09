@@ -216,7 +216,7 @@ wss.on('connection', function(ws) {
 
                 modules[module.id.toString()].posx = jsonData.posx;
                 modules[module.id.toString()].posy = jsonData.posy;
-
+				console.log(jsonData);
                 if (jsonData.remove) {
 					console.log("AAAAAAAAAAAAAAAAAAAAAA "+module.id.toString())
                     delete modules[module.id.toString()];
