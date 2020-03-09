@@ -375,12 +375,12 @@ class Module {
 	}
 	
 	get_children_ids(ids){
+		ids.push(this.id);
 		for (let dir in this.siblings){
 			if(this.siblings[dir].node && dir !== this.relative.dir){
 				this.siblings[dir].node.get_children_ids(ids);
 			}
 		}
-		ids.push(this.id);
 	}
 	
 	destroy(){
