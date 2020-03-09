@@ -219,6 +219,8 @@ wss.on('connection', function(ws) {
 
 function loadInformation () {
 
+    console.log('loading info');
+
     var serverDate = modules['lastSaveDate'];
     var diskData = loadDatabaseFromDisk();
     var diskDate = diskData[0]['lastSaveDate'];
