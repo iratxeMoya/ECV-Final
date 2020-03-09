@@ -326,7 +326,7 @@ class Module {
      */
 	draw(wb_ctx) {
 
-		console.log('drawing with style: ', styles[this.moduleType]);
+		console.log('drawing with style: ', styles, this.moduleType);
 		wb_ctx.fillStyle = styles[this.moduleType];
         wb_ctx.fillRect(this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2, MODULESIZE,MODULESIZE);
         
