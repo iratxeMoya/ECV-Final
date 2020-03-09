@@ -90,13 +90,12 @@ function release(event) {
 	var remove = false;
 
 	if (isHover(event.screenX, event.screenY)) {
-
 		remove = true;
-		module_manager.delete_module(event.screenX, event.screenY);
-
+		module_manager.selectedGroup.destroy();
+		delete module_manager.selectedGroup;
 	}
 
-	module_manager.release_modules();
+	
 
 	var modules = [];
 
@@ -114,6 +113,7 @@ function release(event) {
 		})
 	} 
 	else {
+		module_manager.release_modules();
 		activeModuleIds.forEach(id => {
 			
 			var module = module_manager.getModuleByID(id)[0];

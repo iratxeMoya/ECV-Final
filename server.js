@@ -19,7 +19,7 @@ var registeredUsers = [];
 var projects = [];
 
 /*
-UN PROJECTO (como una room):
+UN PROYECTO (como una room):
 
     {
         name: X, unique!
