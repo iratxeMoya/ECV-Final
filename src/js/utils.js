@@ -133,22 +133,22 @@ function createModule (id, codeType, position,map = null, target = null, arg = n
 	var mod, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false};
 
 	if (northID) {
-		var northMod = module_manager.getModuleByID(northID.nodeId)[0];
+		var northMod = module_manager.getModuleByID(northID.nodeId);
 		north.node = northMod;
 		north.type = northID.type;
 	}
 	if (westID) {
-		var westMod = module_manager.getModuleByID(westID.nodeId)[0];
+		var westMod = module_manager.getModuleByID(westID.nodeId);
 		west.node = westMod;
 		west.type = westID.type;
 	}
 	if (eastID) {
-		var eastMod = module_manager.getModuleByID(eastID.nodeId)[0];
+		var eastMod = module_manager.getModuleByID(eastID.nodeId);
 		east.node = eastMod;
 		east.type = eastID.type;
 	}
 	if (southID) {
-		var southMod = module_manager.getModuleByID(southID.nodeId)[0];
+		var southMod = module_manager.getModuleByID(southID.nodeId);
 		south.node = southMod;
 		south.type = southID.type;
 	}

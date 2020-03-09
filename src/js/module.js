@@ -535,7 +535,7 @@ class ModuleManager {
 		module.get_children_ids(ids);
 		console.log(ids);
 		ids.forEach(id =>{
-			this.modules.remove(this.getModuleByID(id)[0]);
+			this.modules.remove(this.getModuleByID(id));
 		});
 		return ids;
 	}
