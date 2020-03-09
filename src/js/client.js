@@ -94,7 +94,7 @@ function release(event) {
 		var deletingModuleIds = module_manager.remove_modules(module_manager.selectedGroup);
 		module_manager.selectedGroup=null;
 		remove=true;
-		
+		console.log(deletingModuleIds);
 		deletingModuleIds.forEach(id => {
 			var element = {};
 			element.id = id;
@@ -106,7 +106,7 @@ function release(event) {
 		var activeModuleIds=[];
 		module_manager.selectedGroup.get_children_ids(activeModuleIds)
 		module_manager.release_modules();
-		
+		console.log(activeModuleIds);
 		activeModuleIds.forEach(id => {
 			
 			var module = module_manager.getModuleByID(id)[0];
