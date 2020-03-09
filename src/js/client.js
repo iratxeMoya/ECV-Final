@@ -89,27 +89,27 @@ function release(event) {
 	mouseDown = false;
 	var remove = false;
 
-	if (isHover(event.screenX, event.screenY)) {
-		module_manager.remove_modules(module_manager.selectedGroup);
-		module_manager.selectedGroup=null;
+	if () {
+		
 	}
 
 	
 
 	var modules = [];
 
-	if (remove) {
+	if (isHover(event.screenX, event.screenY)) {
+		var deletingModuleIds = module_manager.remove_modules(module_manager.selectedGroup);
+		module_manager.selectedGroup=null;
+		
 		deletingModuleIds.forEach(id => {
 			var module = module_manager.getModuleByID(id)[0];
 			var element = {};
 			element.id = id;
-			element.north = {nodeId: module.siblings.north.node ? module.siblings.north.node.id : null, type: module.siblings.north.type};
-			element.south = {nodeId: module.siblings.south.node ? module.siblings.south.node.id : null, type: module.siblings.south.type};
-			element.east = {nodeId: module.siblings.east.node ? module.siblings.east.node.id : null, type: module.siblings.east.type};
-			element.west = {nodeId: module.siblings.west.node ? module.siblings.west.node.id : null, type: module.siblings.west.type};
 
-			modules.push(element);
+			modules push(element);
 		})
+		module_manager.remove_modules(module_manager.selectedGroup);
+		module_manager.selectedGroup=null;
 	} 
 	else {
 		module_manager.release_modules();

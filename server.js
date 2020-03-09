@@ -219,14 +219,13 @@ wss.on('connection', function(ws) {
 
                 if (jsonData.remove) {
                     delete modules[module.id.toString()];
-                }
-
-                //en jsonData.modules ya viene el north, south, east y west en el formato correcto
-                modules[module.id.toString()].north = module.north;
-                modules[module.id.toString()].south = module.south;
-                modules[module.id.toString()].east = module.east;
-                modules[module.id.toString()].west = module.west;
-
+                }else{
+					//en jsonData.modules ya viene el north, south, east y west en el formato correcto
+					modules[module.id.toString()].north = module.north;
+					modules[module.id.toString()].south = module.south;
+					modules[module.id.toString()].east = module.east;
+					modules[module.id.toString()].west = module.west;
+				}
             })
 
             modules['lastSaveDate'] = Date.now();
