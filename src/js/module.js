@@ -625,6 +625,8 @@ class ModuleManager {
      */
 	draw(wb_ctx) {
 
+		console.log('in draw: ',this.modules)
+
 		this.modules.forEach(module => {
 
             module.draw(wb_ctx);
