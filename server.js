@@ -294,6 +294,7 @@ function init (ws) {
         data.posx = module.posx;
         data.posy = module.posy;
         data.codeType = module.codeType;
+        data.moduleType = module.moduleType;
         data.arg = module.arg;
         data.target = module.target;
         data.id = module.id;
