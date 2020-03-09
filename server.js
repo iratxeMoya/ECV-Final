@@ -315,7 +315,6 @@ function init (ws) {
 
 server.listen(9027, function() {
     console.log('app listening on port 9027');
-    loadInformation();
 });
 
 //all html files in src folder
