@@ -287,7 +287,8 @@ class Module {
     
     isActive() {
 
-        activeModuleIds = [];
+		activeModuleIds = [];
+		console.log('isActive: ', this)
 
         for(let dir in this.siblings) {
 

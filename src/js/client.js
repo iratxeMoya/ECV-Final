@@ -100,6 +100,8 @@ function release(event) {
 
 	var modules = [];
 
+	console.log('in release: ', activeModuleIds);
+
 	if (remove) {
 		deletingModuleIds.forEach(id => {
 			var module = module_manager.getModuleByID(id)[0];
@@ -112,7 +114,8 @@ function release(event) {
 
 			modules.push(element);
 		})
-	} else {
+	} 
+	else {
 		activeModuleIds.forEach(id => {
 			
 			var module = module_manager.getModuleByID(id);
