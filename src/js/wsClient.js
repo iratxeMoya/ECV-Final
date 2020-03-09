@@ -44,8 +44,7 @@ connection.onmessage = (event) => {
     else if (jsonData.type === 'releaseModule') {
 
         if (jsonData.remove) {
-			module_manager.remove_modules(module_manager.getElementById(jsonData.modules[0].id))
-            module_manager.delete_module(jsonData.screenX, jsonData.screenY);
+			module_manager.remove_modules(module_manager.getModuleByID(jsonData.modules[0].id))
         }
 
         module_manager.release_modules();

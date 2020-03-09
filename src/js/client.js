@@ -109,7 +109,7 @@ function release(event) {
 		console.log(activeModuleIds);
 		activeModuleIds.forEach(id => {
 			
-			var module = module_manager.getModuleByID(id)[0];
+			var module = module_manager.getModuleByID(id);
 			var element = {};
 			element.id = id;
 			element.north = {nodeId: module.siblings.north.node ? module.siblings.north.node.id : null, type: module.siblings.north.type};

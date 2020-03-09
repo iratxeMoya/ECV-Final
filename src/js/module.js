@@ -635,7 +635,7 @@ class ModuleManager {
     
     getModuleByID (id) {
 
-        return this.modules.filter(mod => mod.id === id);
+        return this.modules.filter(mod => mod.id === id)[0];
 
     }
     
