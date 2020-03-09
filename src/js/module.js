@@ -290,11 +290,13 @@ class Module {
 		activeModuleIds = [];
 		console.log('isActive: ', this)
 
+		activeModuleIds.push(this)
+
         for(let dir in this.siblings) {
 
 			if (dir !== this.relative.dir && this.siblings[dir].node) {
 
-				activeModuleIds.push(this.siblings[dir].node.id);
+				this.siblings[dir].node.isActive();
                 
 			}
         }
