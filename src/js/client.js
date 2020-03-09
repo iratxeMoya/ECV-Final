@@ -90,9 +90,8 @@ function release(event) {
 	var remove = false;
 
 	if (isHover(event.screenX, event.screenY)) {
-		remove = true;
-		module_manager.selectedGroup.destroy();
-		delete module_manager.selectedGroup;
+		module_manager.remove_modules(module_manager.selectedGroup);
+		module_manager.selectedGroup=null;
 	}
 
 	

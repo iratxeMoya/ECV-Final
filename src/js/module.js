@@ -374,6 +374,15 @@ class Module {
 		return ret;
 	}
 	
+	get_children_ids(ids){
+		for (let dir in this.siblings){
+			if(this.siblings[dir].node && dir !== this.relative.dir){
+				this.siblings[dir].node.get_children_ids(ids);
+			}
+		}
+		ids.push(this.id);
+	}
+	
 	destroy(){
 		for (let dir in this.siblings){
 			if(this.siblings[dir].node && dir !== this.relative.dir){
@@ -520,6 +529,15 @@ class ModuleManager {
 		})
 
     }
+	
+	remove_modules(module){
+		let ids=[];
+		this.module.get_children_ids(ids);
+		
+		ids.forEach(id =>{
+			this.modules.remove(this.getModuleByID(id));
+		});
+	}
     
     /**
      * Enables moving any module that has been clicked
