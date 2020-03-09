@@ -228,11 +228,13 @@ function loadInformation () {
     if (typeof diskDate === 'undefined') {
         modules = modules;
         registeredUsers = registeredUsers;
+        console.log('loaded diskDate is undefined: ', modules, registeredUsers);
         return;
     }
     if (typeof serverDate === 'undefined') {
         modules = diskData[0];
         registeredUsers = diskData[1];
+        console.log('loaded serverDate is undefined: ', modules, registeredUsers);
         return;
     }
 
