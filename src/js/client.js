@@ -99,7 +99,7 @@ function release(event) {
 			var element = {};
 			element.id = id;
 
-			modules push(element);
+			modules.push(element);
 		})
 		module_manager.remove_modules(module_manager.selectedGroup);
 		module_manager.selectedGroup=null;
