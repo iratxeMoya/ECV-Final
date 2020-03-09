@@ -373,7 +373,16 @@ class Module {
 		var ret = this.relative.dir ? this.siblings[this.relative.dir].node.getTarget() : (this.type === "target" ? this.target : null);
 		return ret;
 	}
-
+	
+	destroy(){
+		for (let dir in this.siblings){
+			if(this.siblings[dir].node && dir !== this.relative.dir){
+				this.siblings[dir].node.destroy();
+				delete this.siblings[dir].node;
+			}
+		}
+	}
+	
     /**
      * Runs code of the module
      */
