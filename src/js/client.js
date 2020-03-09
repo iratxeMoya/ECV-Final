@@ -87,13 +87,6 @@ function click(event) {
 function release(event) {
 
 	mouseDown = false;
-	var remove = false;
-
-	if () {
-		
-	}
-
-	
 
 	var modules = [];
 
