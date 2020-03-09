@@ -564,7 +564,8 @@ class ModuleManager {
 
 		if(this.selectedGroup) {
 	
-            var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
+			var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
+			console.log(this.selectedGroup);
             this.selectedGroup.isActive();
 			
 			if (nearModule) {
