@@ -218,6 +218,7 @@ wss.on('connection', function(ws) {
                 modules[module.id.toString()].posy = jsonData.posy;
 
                 if (jsonData.remove) {
+					console.log(module.id.toString())
                     delete modules[module.id.toString()];
                 }else{
 					//en jsonData.modules ya viene el north, south, east y west en el formato correcto
