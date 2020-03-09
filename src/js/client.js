@@ -103,7 +103,10 @@ function release(event) {
 		})
 	} 
 	else {
+		var activeModuleIds=[];
+		module_manager.selectedGroup.get_children_ids(activeModuleIds)
 		module_manager.release_modules();
+		
 		activeModuleIds.forEach(id => {
 			
 			var module = module_manager.getModuleByID(id)[0];
