@@ -95,14 +95,11 @@ function release(event) {
 		module_manager.selectedGroup=null;
 		
 		deletingModuleIds.forEach(id => {
-			var module = module_manager.getModuleByID(id)[0];
 			var element = {};
 			element.id = id;
 
 			modules.push(element);
 		})
-		module_manager.remove_modules(module_manager.selectedGroup);
-		module_manager.selectedGroup=null;
 	} 
 	else {
 		module_manager.release_modules();
