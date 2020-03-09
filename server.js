@@ -158,8 +158,6 @@ wss.on('connection', function(ws) {
 
             jsonData.modules.forEach(module => {
 
-                console.log(module)
-
                 modules[module.id.toString()].posx = jsonData.posx;
                 modules[module.id.toString()].posy = jsonData.posy;
 
@@ -238,6 +236,8 @@ function loadInformation () {
 
     modules = serverDate && serverDate > diskDate ? modules : diskData[0];
     registeredUsers = serverDate && serverDate > diskDate ? registeredUsers : diskData[1];
+
+    console.log('loaded: ', modules, registeredUsers);
 
 
 }
