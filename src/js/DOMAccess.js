@@ -9,7 +9,6 @@ var game_screen = document.getElementsByClassName("game_screen")[0];
 
 var run_button = document.getElementsByClassName("run_code")[0];
 var stop_button = document.getElementsByClassName("stop_code")[0];
-var delete_button = document.getElementsByClassName("del_module")[0];
 
 var basicModule = document.querySelector("#basicModule");
 var conditionModule = document.querySelector("#conditionModule");
