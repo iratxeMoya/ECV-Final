@@ -87,12 +87,13 @@ function click(event) {
 function release(event) {
 
 	mouseDown = false;
-
+    var remove = false;
 	var modules = [];
 
 	if (isHover(event.screenX, event.screenY)) {
 		var deletingModuleIds = module_manager.remove_modules(module_manager.selectedGroup);
 		module_manager.selectedGroup=null;
+		remove=true;
 		
 		deletingModuleIds.forEach(id => {
 			var element = {};
