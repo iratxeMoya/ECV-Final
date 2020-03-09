@@ -287,7 +287,6 @@ class Module {
     
     isActive() {
 
-		activeModuleIds = [];
 		console.log('isActive: ', this)
 
 		activeModuleIds.push(this.id)
@@ -568,6 +567,7 @@ class ModuleManager {
 	
 			var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
 			console.log(this.selectedGroup);
+			activeModuleIds = [];
             this.selectedGroup.isActive();
 			
 			if (nearModule) {
