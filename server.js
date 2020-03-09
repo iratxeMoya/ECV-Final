@@ -158,6 +158,8 @@ wss.on('connection', function(ws) {
 
             jsonData.modules.forEach(module => {
 
+                console.log(module)
+
                 modules[module.id.toString()].posx = jsonData.posx;
                 modules[module.id.toString()].posy = jsonData.posy;
 
