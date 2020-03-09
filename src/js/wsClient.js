@@ -70,8 +70,13 @@ connection.onmessage = (event) => {
                 ? loginPage.classList.toggle("show")
                 : regPage.classList.toggle("show");
             
-            
+        
+        }
+        else {
 
+            jsonData.connectionType === 'login'
+                ? alert('incorrect user or password')
+                : alert('Username already exists');
         }
     }
 }

@@ -100,8 +100,6 @@ function release(event) {
 
 	var modules = [];
 
-	console.log('in release: ', activeModuleIds);
-
 	if (remove) {
 		deletingModuleIds.forEach(id => {
 			var module = module_manager.getModuleByID(id)[0];
@@ -130,6 +128,7 @@ function release(event) {
 		})
 	}
 
+	console.log('in release: ', modules);
 
 	connection.send(JSON.stringify({type: 'releaseModule', posx: event.offsetX, posy: event.offsetY, remove: remove, modules: modules, screenX: event.screenX, screenY: event.screenY}));
 
@@ -160,10 +159,16 @@ function update_gs() {
 	module_manager.run_modules();
 	
 	element_manager.elements.forEach(element => {
-		if(map.is_valid(element.position.x,element.position.y)){
-			map.matrix[element.position.y][element.position.x]=1;
-		}else{
+
+		if (map.is_valid(element.position.x, element.position.y)) {
+
+			map.matrix[element.position.y][element.position.x] = 1;
+
+		}
+		else {
+
 			element.dead = true;
+
 		}
 	});
 	

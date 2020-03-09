@@ -16,6 +16,21 @@ var wss = new WebSocket.Server({server});
 var connectedUsers = [];
 var registeredUsers = [];
 
+var projects = [];
+
+/*
+UN PROJECTO (como una room):
+
+    {
+        name: X, unique!
+        users: [{
+            id: X,
+            role: X (admin, writer, viewer) ? esto mas adelante, por ahora todos write
+        }]
+    }
+
+*/
+
 //modules
 
 var modules = {};
@@ -66,7 +81,7 @@ wss.on('connection', function(ws) {
 
                 init(ws);
             }
-            else { //esto en el cliente no esta implementado aun
+            else {
                 var sendData = {};
                 sendData.type = 'connectionResponse';
                 sendData.status = 'notOK';
@@ -76,9 +91,6 @@ wss.on('connection', function(ws) {
             }
             
 
-        }
-        else if(jsonData.type === 'infoRequest') {
-            init(ws);
         }
         else if (jsonData.type === 'register') {
 
@@ -94,6 +106,7 @@ wss.on('connection', function(ws) {
                 newUser.username = jsonData.username;
                 newUser.hashedPassword = passwordHash.generate(jsonData.password);
                 newUser.ws = ws;
+                // newUser.actualProject = null; para cuando hagamos rooms / projects
 
                 connectedUsers.push(newUser);
                 registeredUsers.push(newUser);
@@ -105,7 +118,7 @@ wss.on('connection', function(ws) {
                 init(ws);
 
             } 
-            else { //esto no esta implementado aun en el cliente
+            else {
                 var sendData = {};
                 sendData.type = 'connectionResponse';
                 sendData.status = 'notOK';
@@ -120,6 +133,49 @@ wss.on('connection', function(ws) {
 
             console.log('logout: ', jsonData);
 
+        }
+        else if (jsonData.type === 'createProject') {
+
+            var newProj = {};
+            newProj.name = jsonData.name;
+            
+            var creator = connectedUsers.find(user => user.ws === ws);
+            var projUser = {};
+            projUser.id = creator.id;
+            projUser.role = 'admin';
+            newProj.users = [].push(projUser);
+
+            projects.push(newProj);
+
+            //esto creo que no hay que broadcastearlo ya que es algo que solo le importa al server
+        }
+        else if (jsonData.type === 'inviteToProj') { 
+            // con este invite ya se añade al projecto directamente
+            // en el futuro igual estaria bien que esto solo mande un mensaje al
+            // user en cuestion y solo cuando el user acepte se añada
+            // pero para el mvp ya esta bien asi 
+
+            var invited = registeredUsers.find(user => user.username === jsonData.username);
+            var projUser = {};
+            projUser.id = invited.id;
+            projUser.role = jsonData.role;
+
+            var projIndex = projects.findIndex(proj => proj.name === jsonData.projName);
+            projects[projIndex].users.push(projUser);
+
+            //esto creo que no hay que broadcastearlo ya que es algo que solo le importa al server
+
+        }
+        else if (jsonData.type === 'deleteFromProj') {
+            
+            var found = registeredUsers.find(user => user.username === jsonData.username);
+
+            var projIndex = projects.findIndex(proj => proj.name === jsonData.projName);
+
+            var user = projects[projIndex].users.find(user => user.id === found.id);
+            projects[projIndex].users.remove(user);
+
+            //esto creo que no hay que broadcastearlo ya que es algo que solo le importa al server
         }
         else if (jsonData.type === 'createModule') {
 
