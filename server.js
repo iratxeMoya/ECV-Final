@@ -147,6 +147,8 @@ wss.on('connection', function(ws) {
             creator.projects.push(newProj.name);
 
             projects.push(newProj);
+            
+            modules[requester.actualProject] = {};
 
             modules['lastSaveDate'] = Date.now();
 
