@@ -203,6 +203,9 @@ wss.on('connection', function(ws) {
             ws.send(JSON.stringify(info));
         }
         else if (jsonData.type === 'requestProjInfo') {
+
+            console.log(projects)
+
             var project = projects.find(proj => proj.name === jsonData.project);
 
             var info = {};
