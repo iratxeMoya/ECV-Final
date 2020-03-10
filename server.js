@@ -403,6 +403,9 @@ function saveDatabaseToDisk()
 
     var registeredUsersJson = arrayToJson(registeredUsers, 'username'); 
     fs.writeFileSync('src/data/users.json', JSON.stringify(registeredUsersJson));
+
+    var projectsJson = arrayToJson(projects, 'name'); 
+    fs.writeFileSync('src/data/projects.json', JSON.stringify(projectsJson));
     
 }
 
