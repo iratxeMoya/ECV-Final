@@ -54,7 +54,7 @@ function addUserToProj () {
 
     var element = document.createElement("span");
     element.innerText = newUser.value;
-    element.addEventListener('click', deleteUser); //funcion no creada aun
+    //element.addEventListener('click', deleteUser); //funcion no creada aun
 
     projInfoContainer.appendChild(element);
 }
