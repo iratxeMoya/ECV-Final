@@ -94,7 +94,7 @@ connection.onmessage = (event) => {
 
         jsonData.project.forEach(user => {
             var element = document.createElement("span");
-            element.innerText = user.username;
+            element.innerText = user;
             //element.addEventListener('click', deleteUser); //funcion no creada aun
 
             projInfoContainer.appendChild(element);
