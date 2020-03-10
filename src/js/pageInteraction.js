@@ -69,6 +69,7 @@ function createProject () {
     var element = document.createElement("span");
     element.innerText = projName.value;
     element.addEventListener("click", requestProjInfo);
+    requestProjInfo.classList.toggle("show");
 
     projListContainer.appendChild(element);
 }
