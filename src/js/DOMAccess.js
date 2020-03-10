@@ -37,6 +37,16 @@ var regUser = document.querySelector("#regUser");
 var regPass = document.querySelector("#regPass");
 var regSend = document.querySelector("#regSend"); 
 
+//project creation page
+var projSelectPage = document.querySelector("#projSelectPage");
+var projName = document.querySelector("#projName");
+var createProj = document.querySelector("#createProj");
+var projListContainer = document.querySelector("#projListContainer");
+var projInfoContainer = document.querySelector("#projInfoContainer");
+var enterProj = document.querySelector("#enterProj");
+var newUser = document.querySelector("#newUser");
+var addUser = document.querySelector("#addUser");
+
 export {
     wb_cvs,
     wb_ctx,
@@ -65,5 +75,13 @@ export {
     regSend,
     regUser,
     goToLog,
-    goToReg
+    goToReg,
+    projSelectPage,
+    projInfoContainer,
+    projListContainer,
+    projName,
+    createProj,
+    enterProj,
+    newUser,
+    addUser
 }

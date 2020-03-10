@@ -1,7 +1,7 @@
 import { connection } from './init.js';
 import { module_manager } from './client.js'
-import { createModule, createElement } from './utils.js';
-import { codeEditorPage, loginPage, regPage } from './DOMAccess.js';
+import { createModule, createElement, requestProjInfo } from './utils.js';
+import { codeEditorPage, loginPage, regPage, projSelectPage, projListContainer, projInfoContainer } from './DOMAccess.js';
 
 connection.onopen = event => {
 	console.log('connection is open');
@@ -64,12 +64,13 @@ connection.onmessage = (event) => {
 
         if(jsonData.status === 'OK') {
 
-            codeEditorPage.classList.toggle("show");
+            projSelectPage.classList.toggle("show");
 
             jsonData.connectionType === 'login'
                 ? loginPage.classList.toggle("show")
                 : regPage.classList.toggle("show");
             
+            connection.send(JSON.stringify({type: 'getProjList'}))
         
         }
         else {
@@ -78,5 +79,25 @@ connection.onmessage = (event) => {
                 ? alert('incorrect user or password')
                 : alert('Username already exists');
         }
+    }
+    else if (jsonData.type === 'getProjList') {
+
+        jsonData.projects.forEach(proj => {
+            var element = document.createElement("span");
+            element.innerText = proj;
+            element.addEventListener("click", requestProjInfo);
+
+            projListContainer.appendChild(element);
+        })
+    }
+    else if (jsonData.type === 'projInfo') {
+
+        jsonData.project.forEach(user => {
+            var element = document.createElement("span");
+            element.innerText = user.username;
+            element.addEventListener('click', deleteUser); //funcion no creada aun
+
+            projInfoContainer.appendChild(element);
+        })
     }
 }

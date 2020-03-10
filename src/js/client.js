@@ -1,4 +1,4 @@
-import { ModuleManager, activeModuleIds, deletingModuleIds, Element, ElementManager } from './module.js';
+import { ModuleManager, Element, ElementManager } from './module.js';
 import { Map } from './map.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
@@ -92,13 +92,12 @@ function release(event) {
 
 	if (isHover(event.screenX, event.screenY) && module_manager.selectedGroup) {
 		var deletingModuleIds = module_manager.remove_modules(module_manager.selectedGroup);
-		module_manager.selectedGroup=null;
-		remove=true;
+		module_manager.selectedGroup = null;
+		remove = true;
 		console.log(deletingModuleIds);
 		deletingModuleIds.forEach(id => {
 			var element = {};
 			element.id = id;
-
 			modules.push(element);
 		})
 	} 

@@ -2,9 +2,6 @@ import { codes, styles,MODULESIZE } from './codes.js';
 import { Map } from './map.js';
 import { isHover } from './utils.js'
 
-var activeModuleIds = [];
-var deletingModuleIds = [];
-
 
 class Element {
 	
@@ -284,23 +281,6 @@ class Module {
 			}
 		}
     }
-    
-    isActive() {
-
-		console.log('isActive: ', this)
-
-		activeModuleIds.push(this.id)
-
-        for(let dir in this.siblings) {
-
-			if (dir !== this.relative.dir && this.siblings[dir].node) {
-
-				this.siblings[dir].node.isActive();
-                
-			}
-        }
-        
-    }
 
     /**
      * Enable module to move
@@ -521,7 +501,6 @@ class ModuleManager {
      */
     delete_module (x, y) {
 
-		deletingModuleIds = [];
 		this.modules.forEach(module => {
 			if (isHover(x, y)) {
 				this.modules.remove(module);
@@ -594,9 +573,6 @@ class ModuleManager {
 		if(this.selectedGroup) {
 	
 			var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
-			console.log(this.selectedGroup);
-			// activeModuleIds = [];
-            this.selectedGroup.isActive();
 			
 			if (nearModule) {
 
@@ -710,8 +686,6 @@ export {
 	ArgModule,
 	TargetModule,
     ModuleManager,
-    activeModuleIds,
-    deletingModuleIds,
     Element, 
     ElementManager
 }

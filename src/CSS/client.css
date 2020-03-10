@@ -206,7 +206,10 @@ display: block;
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-cond a:hover {background-color: #ddd}
+.dropdown-cond a:hover {
+	background-color: #ddd;
+	cursor: pointer;
+}
 
 .show {
 	display: block !important;
@@ -219,5 +222,11 @@ display: block;
 	display: none;
 }
 #regPage {
+	display: none;
+}
+#projSelectPage{
+	display: none;
+}
+#projInfoContainer {
 	display: none;
 }

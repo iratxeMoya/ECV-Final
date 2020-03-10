@@ -1,7 +1,7 @@
 import { Module,ConditionModule, ArgModule, TargetModule, Element } from './module.js';
 import { module_manager, element_manager, map } from './client.js';
 import { connection } from './init.js';
-import { dropdownContainer,dropdownMovement, dropdownControl, dropdownCondition } from './DOMAccess.js';
+import { dropdownContainer,dropdownMovement, dropdownControl, dropdownCondition, projInfoContainer } from './DOMAccess.js';
 
 var targetModulePos = null;
 
@@ -229,6 +229,21 @@ function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash) {
 
 }
 
+var actualProject = null;
+
+function requestProjInfo () {
+
+	var jsonData = {};
+	jsonData.type = 'requestProjInfo';
+	jsonData.project = this.innerText;
+
+	actualProject = this.innerText;
+
+	projInfoContainer.classList.toggle("show");
+
+	connection.send(JSON.stringify(jsonData));
+}
+
 export {
     isHover,
 	createModule,
@@ -236,5 +251,7 @@ export {
 	paintInCanvas,
 	clickDropDownElement,
 	showModuleList,
-	fillModuleDropDown
+	fillModuleDropDown,
+	requestProjInfo,
+	actualProject
 }

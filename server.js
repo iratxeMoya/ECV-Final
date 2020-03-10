@@ -74,12 +74,13 @@ wss.on('connection', function(ws) {
                 sendData.connectionType = 'login';
 
                 foundUser.ws = ws;
+                foundUser.actualProject = null;
 
                 connectedUsers.push(foundUser);
 
                 ws.send(JSON.stringify(sendData));
 
-                init(ws);
+                //init(ws);
             }
             else {
                 var sendData = {};
@@ -89,7 +90,6 @@ wss.on('connection', function(ws) {
 
                 ws.send(JSON.stringify(sendData));
             }
-            
 
         }
         else if (jsonData.type === 'register') {
@@ -106,7 +106,8 @@ wss.on('connection', function(ws) {
                 newUser.username = jsonData.username;
                 newUser.hashedPassword = passwordHash.generate(jsonData.password);
                 newUser.ws = ws;
-                // newUser.actualProject = null; para cuando hagamos rooms / projects
+                newUser.actualProject = null;
+                newUser.projects = [];
 
                 connectedUsers.push(newUser);
                 registeredUsers.push(newUser);
@@ -115,7 +116,7 @@ wss.on('connection', function(ws) {
 
                 ws.send(JSON.stringify(sendData));
 
-                init(ws);
+                //init(ws);
 
             } 
             else {
@@ -134,6 +135,9 @@ wss.on('connection', function(ws) {
             console.log('logout: ', jsonData);
 
         }
+        else if (jsonData.type === 'requestInfo') {
+            init(ws);
+        }
         else if (jsonData.type === 'createProject') {
 
             var newProj = {};
@@ -141,9 +145,11 @@ wss.on('connection', function(ws) {
             
             var creator = connectedUsers.find(user => user.ws === ws);
             var projUser = {};
-            projUser.id = creator.id;
+            projUser.username = creator.username;
             projUser.role = 'admin';
             newProj.users = [].push(projUser);
+
+            creator.projects.push(newProj.name);
 
             projects.push(newProj);
 
@@ -163,6 +169,8 @@ wss.on('connection', function(ws) {
             var projIndex = projects.findIndex(proj => proj.name === jsonData.projName);
             projects[projIndex].users.push(projUser);
 
+            invited.projects.push(projects[projIndex].name);
+
             //esto creo que no hay que broadcastearlo ya que es algo que solo le importa al server
 
         }
@@ -176,6 +184,31 @@ wss.on('connection', function(ws) {
             projects[projIndex].users.remove(user);
 
             //esto creo que no hay que broadcastearlo ya que es algo que solo le importa al server
+        }
+        else if (jsonData.type === 'enterProj') {
+
+            var requester = connectedUsers.find(user => user.ws === ws);
+            requester.actualProject = requester.projects.find(proj => proj === jsonData.project);
+
+        }
+        else if (jsonData.type === 'getProjList') {
+            var requester = connectedUsers.find(user => user.ws === ws);
+            var projects = requester.projects;
+
+            var info = {};
+            info.type = 'getProjList';
+            info.porjects = projects;
+
+            ws.send(JSON.stringify(info));
+        }
+        else if (jsonData.type === 'requestProjInfo') {
+            var project = projects.find(proj => proj.name === jsonData.project);
+
+            var info = {};
+            info.type = 'projInfo';
+            info.project = project.users;
+
+            ws.send(JSON.stringify(info));
         }
         else if (jsonData.type === 'createModule') {
 
@@ -197,17 +230,48 @@ wss.on('connection', function(ws) {
             modules[jsonData.id.toString()] = info;
             modules['lastSaveDate'] = Date.now();
 
-            broadcastMsg(data, connectedUsers, ws);
+            var users = [];
+            var creator = connectedUsers.find(user => user.ws === ws);
+            var project = projects.find(proj => proj.name === creator.actualProject);
+
+            project.users.forEach(user => {
+                var u = connectedUsers.find(u => u.username === user.username);
+                if (u) {
+                    users.push(u);
+                }
+            })
+
+            broadcastMsg(data, users, ws);
             
         }
         else if (jsonData.type === 'moveModule') {
             
-            broadcastMsg(data, connectedUsers, ws);
+            var creator = connectedUsers.find(user => user.ws === ws);
+            var project = projects.find(proj => proj.name === creator.actualProject);
+
+            project.users.forEach(user => {
+                var u = connectedUsers.find(u => u.username === user.username);
+                if (u) {
+                    users.push(u);
+                }
+            })
+
+            broadcastMsg(data, users, ws);
 
         }
         else if (jsonData.type === 'clickModule') {
 
-            broadcastMsg(data, connectedUsers, ws);
+            var creator = connectedUsers.find(user => user.ws === ws);
+            var project = projects.find(proj => proj.name === creator.actualProject);
+
+            project.users.forEach(user => {
+                var u = connectedUsers.find(u => u.username === user.username);
+                if (u) {
+                    users.push(u);
+                }
+            })
+
+            broadcastMsg(data, users, ws);
             
         }
         else if (jsonData.type === 'releaseModule') {
@@ -218,7 +282,6 @@ wss.on('connection', function(ws) {
                 modules[module.id.toString()].posy = jsonData.posy;
 				console.log(jsonData);
                 if (jsonData.remove) {
-					console.log("AAAAAAAAAAAAAAAAAAAAAA "+module.id.toString())
                     delete modules[module.id.toString()];
                 }else{
 					//en jsonData.modules ya viene el north, south, east y west en el formato correcto
@@ -231,7 +294,17 @@ wss.on('connection', function(ws) {
 
             modules['lastSaveDate'] = Date.now();
 
-            broadcastMsg(data, connectedUsers, ws);
+            var creator = connectedUsers.find(user => user.ws === ws);
+            var project = projects.find(proj => proj.name === creator.actualProject);
+
+            project.users.forEach(user => {
+                var u = connectedUsers.find(u => u.username === user.username);
+                if (u) {
+                    users.push(u);
+                }
+            })
+
+            broadcastMsg(data, users, ws);
             
         }
         else if (jsonData.type === 'createElement') {
@@ -254,7 +327,17 @@ wss.on('connection', function(ws) {
             modules[jsonData.id.toString()] = info;
             modules['lastSaveDate'] = Date.now();
 
-            broadcastMsg(data, connectedUsers, ws);
+            var creator = connectedUsers.find(user => user.ws === ws);
+            var project = projects.find(proj => proj.name === creator.actualProject);
+
+            project.users.forEach(user => {
+                var u = connectedUsers.find(u => u.username === user.username);
+                if (u) {
+                    users.push(u);
+                }
+            })
+
+            broadcastMsg(data, users, ws);
             
         }
 
