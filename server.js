@@ -149,6 +149,8 @@ wss.on('connection', function(ws) {
             projUser.role = 'admin';
             newProj.users = [].push(projUser);
 
+            console.log('createProject ', creator);
+
             creator.projects.push(newProj.name);
 
             projects.push(newProj);
