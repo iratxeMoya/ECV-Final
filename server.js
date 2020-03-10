@@ -138,6 +138,8 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'createProject') {
 
+            var requester = connectedUsers.find(user => user.ws === ws);
+
             var newProj = {};
             newProj.name = jsonData.name;
             
