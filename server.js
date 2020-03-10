@@ -149,7 +149,7 @@ wss.on('connection', function(ws) {
 
             projects.push(newProj);
             
-            modules[requester.actualProject] = {};
+            modules[jsonData.name] = {};
             console.log('en create proj: ', modules);
 
             modules['lastSaveDate'] = Date.now();
