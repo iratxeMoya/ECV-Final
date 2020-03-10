@@ -194,11 +194,11 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'getProjList') {
             var requester = connectedUsers.find(user => user.ws === ws);
-            var userProjects = requester.projects;
+            var userProjects = requester.projects ? requester.projects : [];
 
             var info = {};
             info.type = 'getProjList';
-            info.porjects = userProjects;
+            info.projects = userProjects;
 
             ws.send(JSON.stringify(info));
         }

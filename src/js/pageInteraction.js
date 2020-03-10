@@ -20,7 +20,7 @@ import {
     codeEditorPage
 } from './DOMAccess.js';
 import {connection} from './init.js';
-import { actualProject } from './utils.js';
+import { actualProject, requestProjInfo } from './utils.js';
 
 goToLog.addEventListener("click", toggleLogReg);
 goToReg.addEventListener("click", toggleLogReg);
@@ -67,9 +67,9 @@ function createProject () {
     connection.send(JSON.stringify(jsonData));
 
     var element = document.createElement("span");
+    console.log(projName.value)
     element.innerText = projName.value;
     element.addEventListener("click", requestProjInfo);
-    requestProjInfo.classList.toggle("show");
 
     projListContainer.appendChild(element);
 }
