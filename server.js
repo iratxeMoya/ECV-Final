@@ -286,8 +286,8 @@ wss.on('connection', function(ws) {
 
             jsonData.modules.forEach(module => {
 
-                modules[module.id.toString()].posx = jsonData.posx;
-                modules[module.id.toString()].posy = jsonData.posy;
+                modules[requester.actualProject][module.id.toString()].posx = jsonData.posx;
+                modules[requester.actualProject][module.id.toString()].posy = jsonData.posy;
 				console.log(jsonData);
                 if (jsonData.remove) {
                     delete modules[requester.actualProject][module.id.toString()];
