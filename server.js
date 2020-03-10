@@ -81,7 +81,6 @@ wss.on('connection', function(ws) {
 
                 ws.send(JSON.stringify(sendData));
 
-                //init(ws);
             }
             else {
                 var sendData = {};
@@ -117,8 +116,6 @@ wss.on('connection', function(ws) {
 
                 ws.send(JSON.stringify(sendData));
 
-                //init(ws);
-
             } 
             else {
                 var sendData = {};
@@ -151,9 +148,12 @@ wss.on('connection', function(ws) {
 
             projects.push(newProj);
 
+            modules['lastSaveDate'] = Date.now();
+
             //esto creo que no hay que broadcastearlo ya que es algo que solo le importa al server
         }
         else if (jsonData.type === 'inviteToProj') { 
+            
             // con este invite ya se añade al projecto directamente
             // en el futuro igual estaria bien que esto solo mande un mensaje al
             // user en cuestion y solo cuando el user acepte se añada
@@ -166,12 +166,16 @@ wss.on('connection', function(ws) {
 
             invited.projects.push(projects[projIndex].name);
 
+            modules['lastSaveDate'] = Date.now();
+
             //esto creo que no hay que broadcastearlo ya que es algo que solo le importa al server
 
         }
         else if (jsonData.type === 'deleteFromProj') {
             
             projects[projIndex].users.remove(jsonData.username);
+
+            modules['lastSaveDate'] = Date.now();
 
             //esto creo que no hay que broadcastearlo ya que es algo que solo le importa al server
         }
