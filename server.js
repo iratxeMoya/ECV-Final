@@ -15,7 +15,6 @@ var wss = new WebSocket.Server({server});
 //users ws
 var connectedUsers = [];
 var registeredUsers = [];
-
 var projects = [];
 
 /*
@@ -195,11 +194,11 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'getProjList') {
             var requester = connectedUsers.find(user => user.ws === ws);
-            var projects = requester.projects;
+            var userProjects = requester.projects;
 
             var info = {};
             info.type = 'getProjList';
-            info.porjects = projects;
+            info.porjects = userProjects;
 
             ws.send(JSON.stringify(info));
         }
