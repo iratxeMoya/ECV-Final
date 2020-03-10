@@ -253,6 +253,7 @@ wss.on('connection', function(ws) {
             var creator = connectedUsers.find(user => user.ws === ws);
             var project = projects.find(proj => proj.name === creator.actualProject);
 
+            var users = [];
             project.users.forEach(user => {
                 var u = connectedUsers.find(u => u.username === user);
                 if (u) {
@@ -268,6 +269,7 @@ wss.on('connection', function(ws) {
             var creator = connectedUsers.find(user => user.ws === ws);
             var project = projects.find(proj => proj.name === creator.actualProject);
 
+            var users = [];
             project.users.forEach(user => {
                 var u = connectedUsers.find(u => u.username === user);
                 if (u) {
@@ -302,6 +304,7 @@ wss.on('connection', function(ws) {
 
             var project = projects.find(proj => proj.name === requester.actualProject);
 
+            var users = [];
             project.users.forEach(user => {
                 var u = connectedUsers.find(u => u.username === user);
                 if (u) {
@@ -336,6 +339,7 @@ wss.on('connection', function(ws) {
 
             var project = projects.find(proj => proj.name === requester.actualProject);
 
+            var users = [];
             project.users.forEach(user => {
                 var u = connectedUsers.find(u => u.username === user);
                 if (u) {
