@@ -449,7 +449,7 @@ function init (ws) {
 
         if (requester.actualProject === project) {
             console.log(project);
-            for(id in project) {
+            for(id in modules[project]) {
 
                 var module = modules[project][id];
 
