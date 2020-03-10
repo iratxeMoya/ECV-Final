@@ -37,19 +37,21 @@ var modules = {};
 
 /*
 DATA EXAMPLE IN MODULES:
-    id:{
-        id: X,
-        objectType: X, (module / element)
-        north: {nodeID: X, type: X},
-        south: {nodeID: X, type: X},
-        east: {nodeID: X, type: X},
-        west: {nodeID: X, type: X},
-        posx: X,
-        posy: X,
-        target: X, (es la id)
-        codeType: X,
-        moduleType: X,
-        arg: X,
+    projName: {
+        id:{
+            id: X,
+            objectType: X, (module / element)
+            north: {nodeID: X, type: X},
+            south: {nodeID: X, type: X},
+            east: {nodeID: X, type: X},
+            west: {nodeID: X, type: X},
+            posx: X,
+            posy: X,
+            target: X, (es la id)
+            codeType: X,
+            moduleType: X,
+            arg: X,
+        }
     }
 */
 
@@ -178,6 +180,8 @@ wss.on('connection', function(ws) {
             var requester = connectedUsers.find(user => user.ws === ws);
             requester.actualProject = requester.projects.find(proj => proj === jsonData.project);
 
+            ws.send(JSON.stringify({type: 'enterOK'}));
+
         }
         else if (jsonData.type === 'getProjList') {
             var requester = connectedUsers.find(user => user.ws === ws);
@@ -203,6 +207,8 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'createModule') {
 
+            var requester = connectedUsers.find(user => user.ws === ws);
+
             var info = {};
             info.id = jsonData.id;
             info.objectType = 'module'; 
@@ -218,12 +224,11 @@ wss.on('connection', function(ws) {
             info.arg = jsonData.arg;
 
 
-            modules[jsonData.id.toString()] = info;
+            modules[requester.actualProject][jsonData.id.toString()] = info;
             modules['lastSaveDate'] = Date.now();
 
             var users = [];
-            var creator = connectedUsers.find(user => user.ws === ws);
-            var project = projects.find(proj => proj.name === creator.actualProject);
+            var project = projects.find(proj => proj.name === requester.actualProject);
 
             project.users.forEach(user => {
                 var u = connectedUsers.find(u => u.username === user);
@@ -267,26 +272,27 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'releaseModule') {
 
+            var requester = connectedUsers.find(user => user.ws === ws);
+
             jsonData.modules.forEach(module => {
 
                 modules[module.id.toString()].posx = jsonData.posx;
                 modules[module.id.toString()].posy = jsonData.posy;
 				console.log(jsonData);
                 if (jsonData.remove) {
-                    delete modules[module.id.toString()];
+                    delete modules[requester.actualProject][module.id.toString()];
                 }else{
 					//en jsonData.modules ya viene el north, south, east y west en el formato correcto
-					modules[module.id.toString()].north = module.north;
-					modules[module.id.toString()].south = module.south;
-					modules[module.id.toString()].east = module.east;
-					modules[module.id.toString()].west = module.west;
+					modules[requester.actualProject][module.id.toString()].north = module.north;
+					modules[requester.actualProject][module.id.toString()].south = module.south;
+					modules[requester.actualProject][module.id.toString()].east = module.east;
+					modules[requester.actualProject][module.id.toString()].west = module.west;
 				}
             })
 
             modules['lastSaveDate'] = Date.now();
 
-            var creator = connectedUsers.find(user => user.ws === ws);
-            var project = projects.find(proj => proj.name === creator.actualProject);
+            var project = projects.find(proj => proj.name === requester.actualProject);
 
             project.users.forEach(user => {
                 var u = connectedUsers.find(u => u.username === user);
@@ -299,6 +305,8 @@ wss.on('connection', function(ws) {
             
         }
         else if (jsonData.type === 'createElement') {
+
+            var requester = connectedUsers.find(user => user.ws === ws);
 
             var info = {};
 
@@ -315,11 +323,10 @@ wss.on('connection', function(ws) {
             info.moduleType = null;
             info.arg = jsonData.arg;
 
-            modules[jsonData.id.toString()] = info;
+            modules[requester.actualProject][jsonData.id.toString()] = info;
             modules['lastSaveDate'] = Date.now();
 
-            var creator = connectedUsers.find(user => user.ws === ws);
-            var project = projects.find(proj => proj.name === creator.actualProject);
+            var project = projects.find(proj => proj.name === requester.actualProject);
 
             project.users.forEach(user => {
                 var u = connectedUsers.find(u => u.username === user);
@@ -358,18 +365,21 @@ function loadInformation () {
     if (typeof diskDate === 'undefined') {
         modules = modules;
         registeredUsers = registeredUsers;
-        console.log('loaded diskDate is undefined: ', modules, registeredUsers);
+        projects = projects;
+        console.log('loaded diskDate is undefined: ', modules, registeredUsers, projects);
         return;
     }
     if (typeof serverDate === 'undefined') {
         modules = diskData[0];
         registeredUsers = diskData[1];
-        console.log('loaded serverDate is undefined: ', modules, registeredUsers);
+        projects = diskData[2]
+        console.log('loaded serverDate is undefined: ', modules, registeredUsers, projects);
         return;
     }
 
     modules = serverDate && serverDate > diskDate ? modules : diskData[0];
     registeredUsers = serverDate && serverDate > diskDate ? registeredUsers : diskData[1];
+    projects = serverDate && serverDate > diskDate ? projects : diskData[2];
 
     console.log('loaded: ', modules, registeredUsers);
 
@@ -402,7 +412,11 @@ function loadDatabaseFromDisk()
     var registeredUsersJson = JSON.parse( str2 );
     var ret2 = jsonToArray(registeredUsersJson);
 
-    return [ret1, ret2];
+    var str3 = fs.readFileSync('src/data/projects.json').toString();
+    var projectsJson = JSON.parse( str3 );
+    var ret3 = jsonToArray(projectsJson);
+
+    return [ret1, ret2, ret3];
     
 }
 
@@ -418,26 +432,34 @@ function broadcastMsg(data, usersToSend, connection) {
 
 function init (ws) {
 
-    for (id in modules) {
+    var requester = connectedUsers.find(user => user.ws === ws);
 
-        var module = modules[id];
+    for (project in modules) {
 
-        var data = {};
-        data.type = 'reciveInfo';
-        data.posx = module.posx;
-        data.posy = module.posy;
-        data.codeType = module.codeType;
-        data.moduleType = module.moduleType;
-        data.arg = module.arg;
-        data.target = module.target;
-        data.id = module.id;
-        data.north = module.north;
-        data.south = module.south;
-        data.east = module.east;
-        data.west = module.west;
-        data.objectType = module.objectType;
+        if (requester.actualProject === project) {
+            for(id in project) {
 
-        ws.send(JSON.stringify(data));
+                var module = modules[id];
+
+                var data = {};
+                data.type = 'reciveInfo';
+                data.posx = module.posx;
+                data.posy = module.posy;
+                data.codeType = module.codeType;
+                data.moduleType = module.moduleType;
+                data.arg = module.arg;
+                data.target = module.target;
+                data.id = module.id;
+                data.north = module.north;
+                data.south = module.south;
+                data.east = module.east;
+                data.west = module.west;
+                data.objectType = module.objectType;
+        
+                ws.send(JSON.stringify(data));
+
+            }
+        }
 
     }
 

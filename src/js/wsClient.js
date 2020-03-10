@@ -100,4 +100,7 @@ connection.onmessage = (event) => {
             projInfoContainer.appendChild(element);
         })
     }
+    else if (jsonData.type === 'enterOK') {
+        connection.send(JSON.stringify({type: 'requestInfo'}));
+    }
 }
