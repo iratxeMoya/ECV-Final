@@ -143,14 +143,14 @@ wss.on('connection', function(ws) {
             var newProj = {};
             newProj.name = jsonData.name;
             
-            var creator = connectedUsers.find(user => user.ws === ws);
-            newProj.users = [creator.username];
+            newProj.users = [requester.username];
 
-            creator.projects.push(newProj.name);
+            requester.projects.push(newProj.name);
 
             projects.push(newProj);
             
             modules[requester.actualProject] = {};
+            console.log('en create proj: ', modules);
 
             modules['lastSaveDate'] = Date.now();
 
@@ -231,7 +231,7 @@ wss.on('connection', function(ws) {
             info.moduleType = jsonData.moduleType;
             info.arg = jsonData.arg;
 
-
+            console.log('en create proj: ', modules);
             modules[requester.actualProject][jsonData.id.toString()] = info;
             modules['lastSaveDate'] = Date.now();
 
