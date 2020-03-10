@@ -145,8 +145,6 @@ wss.on('connection', function(ws) {
             var creator = connectedUsers.find(user => user.ws === ws);
             newProj.users = [creator.username];
 
-            console.log('createProject ', projUser);
-
             creator.projects.push(newProj.name);
 
             projects.push(newProj);
