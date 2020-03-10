@@ -445,14 +445,15 @@ function init (ws) {
 
     var requester = connectedUsers.find(user => user.ws === ws);
 
-    console.log(modules, requester.actualProject);
-
     for (project in modules) {
 
         if (requester.actualProject === project) {
+            console.log(project);
             for(id in project) {
 
                 var module = modules[project][id];
+
+                console.log(id);
 
                 var data = {};
                 data.type = 'reciveInfo';
