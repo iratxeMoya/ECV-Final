@@ -143,10 +143,7 @@ wss.on('connection', function(ws) {
             newProj.name = jsonData.name;
             
             var creator = connectedUsers.find(user => user.ws === ws);
-            var projUser = {};
-            projUser.username = creator.username;
-            projUser.role = 'admin';
-            newProj.users = [projUser];
+            newProj.users = [creator.username];
 
             console.log('createProject ', projUser);
 
@@ -163,12 +160,9 @@ wss.on('connection', function(ws) {
             // pero para el mvp ya esta bien asi 
 
             var invited = registeredUsers.find(user => user.username === jsonData.username);
-            var projUser = {};
-            projUser.id = invited.id;
-            projUser.role = jsonData.role;
 
             var projIndex = projects.findIndex(proj => proj.name === jsonData.projName);
-            projects[projIndex].users.push(projUser);
+            projects[projIndex].users.push(invited.username);
 
             invited.projects.push(projects[projIndex].name);
 
@@ -177,12 +171,7 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'deleteFromProj') {
             
-            var found = registeredUsers.find(user => user.username === jsonData.username);
-
-            var projIndex = projects.findIndex(proj => proj.name === jsonData.projName);
-
-            var user = projects[projIndex].users.find(user => user.id === found.id);
-            projects[projIndex].users.remove(user);
+            projects[projIndex].users.remove(jsonData.username);
 
             //esto creo que no hay que broadcastearlo ya que es algo que solo le importa al server
         }
@@ -239,7 +228,7 @@ wss.on('connection', function(ws) {
             var project = projects.find(proj => proj.name === creator.actualProject);
 
             project.users.forEach(user => {
-                var u = connectedUsers.find(u => u.username === user.username);
+                var u = connectedUsers.find(u => u.username === user);
                 if (u) {
                     users.push(u);
                 }
@@ -254,7 +243,7 @@ wss.on('connection', function(ws) {
             var project = projects.find(proj => proj.name === creator.actualProject);
 
             project.users.forEach(user => {
-                var u = connectedUsers.find(u => u.username === user.username);
+                var u = connectedUsers.find(u => u.username === user);
                 if (u) {
                     users.push(u);
                 }
@@ -269,7 +258,7 @@ wss.on('connection', function(ws) {
             var project = projects.find(proj => proj.name === creator.actualProject);
 
             project.users.forEach(user => {
-                var u = connectedUsers.find(u => u.username === user.username);
+                var u = connectedUsers.find(u => u.username === user);
                 if (u) {
                     users.push(u);
                 }
@@ -302,7 +291,7 @@ wss.on('connection', function(ws) {
             var project = projects.find(proj => proj.name === creator.actualProject);
 
             project.users.forEach(user => {
-                var u = connectedUsers.find(u => u.username === user.username);
+                var u = connectedUsers.find(u => u.username === user);
                 if (u) {
                     users.push(u);
                 }
@@ -335,7 +324,7 @@ wss.on('connection', function(ws) {
             var project = projects.find(proj => proj.name === creator.actualProject);
 
             project.users.forEach(user => {
-                var u = connectedUsers.find(u => u.username === user.username);
+                var u = connectedUsers.find(u => u.username === user);
                 if (u) {
                     users.push(u);
                 }
