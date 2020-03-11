@@ -215,7 +215,7 @@ display: block;
 	display: block !important;
 }
 .showGrid {
-	display: grid;
+	display: grid !important;
 }
 
 #codeEditorPage {
