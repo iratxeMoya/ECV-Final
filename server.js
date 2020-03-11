@@ -241,7 +241,6 @@ wss.on('connection', function(ws) {
             project.users.forEach(user => {
                 var u = connectedUsers.find(u => u.username === user);
                 if (u) {
-                    console.log(u);
                     users.push(u);
                 }
             })
@@ -267,13 +266,14 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'clickModule') {
 
-            var creator = connectedUsers.find(user => user.ws === ws);
+            var creator = connectedUsers.find(us => us.ws === ws);
             var project = projects.find(proj => proj.name === creator.actualProject);
 
             var users = [];
             project.users.forEach(user => {
                 var u = connectedUsers.find(u => u.username === user);
                 if (u) {
+                    console.log(u);
                     users.push(u);
                 }
             })
