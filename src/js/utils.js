@@ -230,6 +230,7 @@ function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash) {
 }
 
 var actualProject = null;
+var isSelected = false;
 
 function requestProjInfo () {
 
@@ -239,9 +240,29 @@ function requestProjInfo () {
 
 	actualProject = this.innerText;
 
-	projInfoContainer.classList.toggle("showGrid");
-
 	focusElement(this, projListContainer);
+
+	if (!isSelected) {
+		for (var i = 0; j < projInfoContainer.classList.length; j++) {
+			var className = projInfoContainer.classList[i];
+			if (className === 'showGrid') {
+				projInfoContainer.classList.toggle('showGrid');
+			}
+		}
+	}
+	else {
+
+		var showing = false;
+		for (var i = 0; j < projInfoContainer.classList.length; j++) {
+			var className = projInfoContainer.classList[i];
+			if (className === 'showGrid') {
+				showing = true;
+			}
+		}
+		if(!showing) {
+			projInfoContainer.classList.toggle('showGrid');
+		}
+	}
 
 	connection.send(JSON.stringify(jsonData));
 }
@@ -256,8 +277,8 @@ function deleteUser () {
 
 function focusElement (elem, par) {
 
-	
 	var children = par.children;
+	var isElem = false;
 
 	for (var i = 0; i < children.length; i++) {
 		var child = children[i];
@@ -266,12 +287,20 @@ function focusElement (elem, par) {
 
 			var className = child.classList[j];
 			if (className === 'clicked') {
+				if(child === elem) {
+					isSelected = false;
+					isElem = true;
+				}
 				child.classList.toggle('clicked');
 			}
 		}
 	}
 
-	elem.classList.toggle('clicked');
+	if (!isElem) {
+		isSelected = true;
+		elem.classList.toggle('clicked');
+	}
+	
 
 }
 
