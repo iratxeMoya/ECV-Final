@@ -259,11 +259,11 @@ display: block;
     align-self: center;
 }
 #projName {
-	height: 60%;
+	height: 45px;
     width: calc(100% - 76px );
 }
 #createProj {
-	height: 60%;
+	height: 45px;
 	width: 70px;
 }
 #projects {
@@ -332,11 +332,11 @@ display: block;
     align-self: center;
 }
 #newUser {
-	height: 48%;
+	height: 45px;
     width: calc( 100% - 76px );
 }
 #addUser {
-	height: 48%;
+	height: 45px;
     width: 70px;
 }
 span.list {
