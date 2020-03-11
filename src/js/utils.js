@@ -56,7 +56,7 @@ function clickDropDownElement () {
 
 	module_manager.add_module(mod);
 
-	dropdownContainer.classList.toggle("show");
+	dropdownContainer.classList.toggle("showBlock");
 
 	sendModuleInfo(mod, 'target', 'target', null);
 
@@ -79,19 +79,19 @@ function clickDropDownModule (moduleType, codeType) {
 	switch (moduleType){
 		case 'control':
 			mod = new ArgModule({x:100,y:100}, moduleType, codeType, id,null);
-			dropdownControl.classList.toggle("show");
+			dropdownControl.classList.toggle("showBlock");
 			break;
 		case 'target':	
 			mod = new TargetModule({x:100,y:100}, moduleType, "target",null, id);
-			dropdownContainer.classList.toggle("show");
+			dropdownContainer.classList.toggle("showBlock");
 			break;
 		case 'condition':
 			mod = new ConditionModule({x:100,y:100}, moduleType, codeType, id, map);
-			dropdownCondition.classList.toggle("show");
+			dropdownCondition.classList.toggle("showBlock");
 			break;
 		default:
 			mod = new Module({x:100,y:100}, moduleType, codeType, id);
-			dropdownMovement.classList.toggle("show");
+			dropdownMovement.classList.toggle("showBlock");
 			break;
 	}
 
@@ -111,18 +111,18 @@ function showModuleList(moduleType){
 	switch (moduleType){
 		case 'control':
 				targetModulePos = {x:100,y:100};
-				dropdownControl.classList.toggle("show");
+				dropdownControl.classList.toggle("showBlock");
 		case 'target':
 				targetModulePos = {x:100,y:100};
-				dropdownContainer.classList.toggle("show");
+				dropdownContainer.classList.toggle("showBlock");
 			break;
 		case 'condition':
 				targetModulePos = {x:100,y:100};
-				dropdownCondition.classList.toggle("show");
+				dropdownCondition.classList.toggle("showBlock");
 			break;
 		default:
 				targetModulePos = {x:100,y:100};
-				dropdownMovement.classList.toggle("show");
+				dropdownMovement.classList.toggle("showBlock");
 			break;
 	}
 }
@@ -239,7 +239,7 @@ function requestProjInfo () {
 
 	actualProject = this.innerText;
 
-	projInfoContainer.classList.toggle("show");
+	projInfoContainer.classList.toggle("showBlock");
 
 	connection.send(JSON.stringify(jsonData));
 }
