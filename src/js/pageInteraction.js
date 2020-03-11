@@ -14,13 +14,14 @@ import {
     newUser,
     addUser,
     projInfoContainer,
+    projUserContainer,
     projListContainer,
     enterProj,
     projSelectPage,
     codeEditorPage
 } from './DOMAccess.js';
 import {connection} from './init.js';
-import { actualProject, requestProjInfo } from './utils.js';
+import { actualProject, requestProjInfo, deleteUser } from './utils.js';
 
 goToLog.addEventListener("click", toggleLogReg);
 goToReg.addEventListener("click", toggleLogReg);
@@ -54,9 +55,9 @@ function addUserToProj () {
 
     var element = document.createElement("span");
     element.innerText = newUser.value;
-    //element.addEventListener('click', deleteUser); //funcion no creada aun
+    element.addEventListener('click', deleteUser);
 
-    projInfoContainer.appendChild(element);
+    projUserContainer.appendChild(element);
 }
 
 function createProject () {
@@ -69,6 +70,7 @@ function createProject () {
     var element = document.createElement("span");
     console.log(projName.value)
     element.innerText = projName.value;
+    element.classList.add("list");
     element.addEventListener("click", requestProjInfo);
 
     projListContainer.appendChild(element);
