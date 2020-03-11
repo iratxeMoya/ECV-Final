@@ -64,11 +64,11 @@ connection.onmessage = (event) => {
 
         if(jsonData.status === 'OK') {
 
-            projSelectPage.classList.toggle("show");
+            projSelectPage.classList.toggle("showGrid");
 
             jsonData.connectionType === 'login'
-                ? loginPage.classList.toggle("show")
-                : regPage.classList.toggle("show");
+                ? loginPage.classList.toggle("showBlock")
+                : regPage.classList.toggle("showBlock");
             
             connection.send(JSON.stringify({type: 'getProjList'}))
         

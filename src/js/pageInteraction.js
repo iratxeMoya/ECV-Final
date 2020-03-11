@@ -36,8 +36,8 @@ function enterProject () {
     jsonData.type = 'enterProj';
     jsonData.project = actualProject;
 
-    projSelectPage.classList.toggle("show");
-    codeEditorPage.classList.toggle("show");
+    projSelectPage.classList.toggle("showGrid");
+    codeEditorPage.classList.toggle("showBlock");
 
     connection.send(JSON.stringify(jsonData));
 
@@ -75,8 +75,8 @@ function createProject () {
 }
 
 function toggleLogReg() {
-    regPage.classList.toggle("show");
-    loginPage.classList.toggle("show");
+    regPage.classList.toggle("showBlock");
+    loginPage.classList.toggle("showBlock");
 }
 
 function sendLogin () {
