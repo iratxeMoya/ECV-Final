@@ -239,7 +239,7 @@ function requestProjInfo () {
 
 	actualProject = this.innerText;
 
-	projInfoContainer.classList.toggle("showBlock");
+	projInfoContainer.classList.toggle("showGrid");
 
 	connection.send(JSON.stringify(jsonData));
 }

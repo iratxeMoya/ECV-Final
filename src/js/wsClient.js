@@ -1,7 +1,7 @@
 import { connection } from './init.js';
 import { module_manager } from './client.js'
 import { createModule, createElement, requestProjInfo } from './utils.js';
-import { codeEditorPage, loginPage, regPage, projSelectPage, projListContainer, projInfoContainer } from './DOMAccess.js';
+import { codeEditorPage, loginPage, regPage, projSelectPage, projListContainer, projInfoContainer, projUserContainer } from './DOMAccess.js';
 
 connection.onopen = event => {
 	console.log('connection is open');
@@ -97,7 +97,7 @@ connection.onmessage = (event) => {
             element.innerText = user;
             //element.addEventListener('click', deleteUser); //funcion no creada aun
 
-            projInfoContainer.appendChild(element);
+            projUserContainer.appendChild(element);
         })
     }
     else if (jsonData.type === 'enterOK') {

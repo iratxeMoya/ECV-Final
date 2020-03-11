@@ -239,6 +239,30 @@ display: block;
     grid-row-start: 2;
     grid-row-end: 6;
     border: 1px solid black;
+    display: grid;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    grid-template-rows: 25% 25% 25% 25%;
+}
+#newProjTitle {
+	grid-column-start: 2;
+    grid-column-end: 10;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    align-self: center;	
+}
+#addProjForm {
+	grid-column-start: 2;
+    grid-column-end: 10;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    align-self: center;
+}
+#projName {
+	height: 60%;
+    width: 84%;
+}
+#createProj {
+	height: 60%;
 }
 #projects {
 	grid-column-start: 9;
@@ -246,6 +270,30 @@ display: block;
     grid-row-start: 2;
     grid-row-end: 12;
     border: 1px solid black;
+    display: grid;
+    grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+    grid-template-rows: 16.6% 16.6% 16.6% 16.6% 16.6% 16.6%;
+}
+#projectsTitle {
+	grid-column-start: 2;
+    grid-column-end: 8;
+    align-self: center;
+}
+#projListContainer {
+	grid-column-start: 2;
+    grid-column-end: 8;
+    grid-row-start: 2;
+    grid-row-end: 6;
+    border: 1px solid black;
+    padding: 1em;
+}
+#enterProj {
+	grid-column-start: 5;
+    grid-column-end: 8;
+    grid-row-start: 6;
+    grid-row-end: 6;
+    height: 45px;
+    align-self: center;
 }
 #projInfoContainer {
 	display: none;

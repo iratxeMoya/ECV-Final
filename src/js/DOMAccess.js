@@ -46,6 +46,7 @@ var projInfoContainer = document.querySelector("#projInfoContainer");
 var enterProj = document.querySelector("#enterProj");
 var newUser = document.querySelector("#newUser");
 var addUser = document.querySelector("#addUser");
+var projUserContainer = document.querySelector("#projUsers");
 
 export {
     wb_cvs,
@@ -83,5 +84,6 @@ export {
     createProj,
     enterProj,
     newUser,
-    addUser
+    addUser,
+    projUserContainer
 }
