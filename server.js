@@ -186,6 +186,7 @@ wss.on('connection', function(ws) {
         else if (jsonData.type === 'enterProj') {
 
             var requester = connectedUsers.find(user => user.ws === ws);
+            console.log(requester, connectedUsers);
             requester.actualProject = requester.projects.find(proj => proj === jsonData.project);
 
             ws.send(JSON.stringify({type: 'enterOK'}));
