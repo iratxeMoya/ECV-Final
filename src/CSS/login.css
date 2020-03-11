@@ -96,7 +96,24 @@
     cursor: pointer;
 }
 
+#fromRegToLog {
+    border: none;
+    background: none;
+    color: #77839c;
+    font-size: medium;
+}
 #fromRegToLog:hover {
+    cursor: pointer;
+    color: #378f7b;
+}
+
+#fromLogToReg {
+    border: none;
+    background: none;
+    color: #77839c;
+    font-size: medium;
+}
+#fromLogToReg:hover {
     cursor: pointer;
     color: #378f7b;
 }
