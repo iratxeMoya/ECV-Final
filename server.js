@@ -241,6 +241,7 @@ wss.on('connection', function(ws) {
             project.users.forEach(user => {
                 var u = connectedUsers.find(u => u.username === user);
                 if (u) {
+                    console.log(u);
                     users.push(u);
                 }
             })
