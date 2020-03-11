@@ -340,4 +340,9 @@ display: block;
 }
 span.list {
 	display: block;
+	padding: 5px;
+}
+
+span.list:focus {
+	border: 1ps solid black;
 }
