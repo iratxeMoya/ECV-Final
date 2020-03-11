@@ -243,7 +243,7 @@ function requestProjInfo () {
 	focusElement(this, projListContainer);
 
 	if (!isSelected) {
-		for (var i = 0; j < projInfoContainer.classList.length; j++) {
+		for (var i = 0; i < projInfoContainer.classList.length; i++) {
 			var className = projInfoContainer.classList[i];
 			if (className === 'showGrid') {
 				projInfoContainer.classList.toggle('showGrid');
@@ -253,7 +253,7 @@ function requestProjInfo () {
 	else {
 
 		var showing = false;
-		for (var i = 0; j < projInfoContainer.classList.length; j++) {
+		for (var i = 0; i < projInfoContainer.classList.length; i++) {
 			var className = projInfoContainer.classList[i];
 			if (className === 'showGrid') {
 				showing = true;
