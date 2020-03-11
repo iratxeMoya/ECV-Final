@@ -83,7 +83,7 @@ connection.onmessage = (event) => {
     else if (jsonData.type === 'getProjList') {
 
         jsonData.projects.forEach(proj => {
-            var element = document.createElement("a");
+            var element = document.createElement("button");
             element.innerText = proj;
             element.classList.add("list");
             element.addEventListener("click", requestProjInfo);
@@ -100,7 +100,7 @@ connection.onmessage = (event) => {
         } 
 
         jsonData.project.forEach(user => {
-            var element = document.createElement("a");
+            var element = document.createElement("button");
             element.innerText = user;
             element.classList.add("list");
             //element.addEventListener('click', deleteUser); //funcion no creada aun
