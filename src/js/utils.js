@@ -257,9 +257,12 @@ function deleteUser () {
 function focusElement (elem, par) {
 
 	elem.classList.toggle('clicked');
-	var children = par.childNodes();
 
-	for (child in children) {
+	
+	var children = par.children;
+
+	for (var i = 0; i < children.length; i++) {
+		var child = children[i];
 		if (child.classList.includes('clicked')) {
 			child.classList.toggle('clicked');
 		}
