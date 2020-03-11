@@ -338,11 +338,11 @@ display: block;
 	height: 48%;
     width: 70px;
 }
-span.list {
+a.list {
 	display: block;
 	padding: 5px;
 }
 
-span.list:focus {
+a.list:focus {
 	border: 1px solid black;
 }
