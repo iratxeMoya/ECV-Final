@@ -85,6 +85,7 @@ connection.onmessage = (event) => {
         jsonData.projects.forEach(proj => {
             var element = document.createElement("span");
             element.innerText = proj;
+            element.classList.add("list");
             element.addEventListener("click", requestProjInfo);
 
             projListContainer.appendChild(element);
@@ -92,9 +93,16 @@ connection.onmessage = (event) => {
     }
     else if (jsonData.type === 'projInfo') {
 
+        var child = projUserContainer.lastElementChild;  
+        while (child) { 
+            projUserContainer.removeChild(child); 
+            child = projUserContainer.lastElementChild; 
+        } 
+
         jsonData.project.forEach(user => {
             var element = document.createElement("span");
             element.innerText = user;
+            element.classList.add("list");
             //element.addEventListener('click', deleteUser); //funcion no creada aun
 
             projUserContainer.appendChild(element);

@@ -259,10 +259,11 @@ display: block;
 }
 #projName {
 	height: 60%;
-    width: 84%;
+    width: calc(100% - 76px );
 }
 #createProj {
 	height: 60%;
+	width: 70px;
 }
 #projects {
 	grid-column-start: 9;
@@ -293,13 +294,50 @@ display: block;
     grid-row-start: 6;
     grid-row-end: 6;
     height: 45px;
-    align-self: center;
+	align-self: center;
+	width: 92px;
+    justify-self: right;
 }
 #projInfoContainer {
 	display: none;
-	grid-column-start: 2;
+    grid-column-start: 2;
     grid-column-end: 8;
     grid-row-start: 7;
     grid-row-end: 12;
     border: 1px solid black;
+    grid-template-columns: 16.6% 16.6% 16.6% 16.6% 16.6% 16.6%;
+    grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+}
+#usersTitle {
+	grid-column-start: 2;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    align-self: center;
+}
+#projUsers {
+	grid-column-start: 2;
+    grid-column-end: 6;
+    grid-row-start: 3;
+    grid-row-end: 7;
+    border: 1px solid black;
+    padding: 1em;
+}
+#newUserForm {
+	grid-column-start: 2;
+    grid-column-end: 6;
+    grid-row-start: 7;
+    grid-row-end: 9;
+    align-self: center;
+}
+#newUser {
+	height: 48%;
+    width: calc( 100% - 76px );
+}
+#addUser {
+	height: 48%;
+    width: 70px;
+}
+span.list {
+	display: block;
 }
