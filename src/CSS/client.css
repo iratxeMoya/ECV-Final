@@ -339,11 +339,11 @@ display: block;
 	height: 48%;
     width: 70px;
 }
-a.list {
+button.list {
 	display: block;
 	padding: 5px;
 }
 
-a.list:focus {
+button.list:focus {
 	border: 1px solid black;
 }
