@@ -106,6 +106,9 @@
     cursor: pointer;
     color: #378f7b;
 }
+#fromRegToLog:focus {
+    outline: none;
+}
 
 #fromLogToReg {
     border: none;
@@ -116,5 +119,8 @@
 #fromLogToReg:hover {
     cursor: pointer;
     color: #378f7b;
+}
+#fromLogToReg:focus {
+    outline: none;
 }
  
