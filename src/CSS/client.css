@@ -344,5 +344,5 @@ span.list {
 }
 
 span.list:focus {
-	border: 1ps solid black;
+	border: 1px solid black;
 }
