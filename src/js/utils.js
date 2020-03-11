@@ -264,9 +264,12 @@ function focusElement (elem, par) {
 	for (var i = 0; i < children.length; i++) {
 		var child = children[i];
 
-		console.log(child, child.classList);
-		if (child.classList.includes('clicked')) {
-			child.classList.toggle('clicked');
+		for (var j = 0; j < child.classList.length; j++) {
+
+			var className = child.classList[j];
+			if (className === 'clicked') {
+				child.classList.toggle('clicked');
+			}
 		}
 	}
 
