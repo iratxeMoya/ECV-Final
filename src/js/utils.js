@@ -256,8 +256,6 @@ function deleteUser () {
 
 function focusElement (elem, par) {
 
-	elem.classList.toggle('clicked');
-
 	
 	var children = par.children;
 
@@ -272,6 +270,8 @@ function focusElement (elem, par) {
 			}
 		}
 	}
+
+	elem.classList.toggle('clicked');
 
 }
 
