@@ -1,7 +1,7 @@
 import { Module,ConditionModule, ArgModule, TargetModule, Element } from './module.js';
 import { module_manager, element_manager, map } from './client.js';
 import { connection } from './init.js';
-import { dropdownContainer,dropdownMovement, dropdownControl, dropdownCondition, projInfoContainer } from './DOMAccess.js';
+import { dropdownContainer,dropdownMovement, dropdownControl, dropdownCondition, projInfoContainer, projUserContainer, projListContainer } from './DOMAccess.js';
 
 var targetModulePos = null;
 
@@ -241,7 +241,30 @@ function requestProjInfo () {
 
 	projInfoContainer.classList.toggle("showGrid");
 
+	focusElement(this, projListContainer);
+
 	connection.send(JSON.stringify(jsonData));
+}
+
+function deleteUser () {
+	//aqui deberia borrarse el user
+
+	focusElement(this, projUserContainer);
+
+
+}
+
+function focusElement (elem, par) {
+
+	elem.classList.toggle('clicked');
+	var children = par.childNodes();
+
+	for (child in children) {
+		if (child.classList.includes('clicked')) {
+			child.classList.toggle('clicked');
+		}
+	}
+
 }
 
 export {
@@ -253,5 +276,6 @@ export {
 	showModuleList,
 	fillModuleDropDown,
 	requestProjInfo,
-	actualProject
+	actualProject,
+	deleteUser
 }

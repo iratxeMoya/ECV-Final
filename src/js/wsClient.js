@@ -1,6 +1,6 @@
 import { connection } from './init.js';
 import { module_manager } from './client.js'
-import { createModule, createElement, requestProjInfo } from './utils.js';
+import { createModule, createElement, requestProjInfo, deleteUser } from './utils.js';
 import { codeEditorPage, loginPage, regPage, projSelectPage, projListContainer, projInfoContainer, projUserContainer } from './DOMAccess.js';
 
 connection.onopen = event => {
@@ -83,7 +83,7 @@ connection.onmessage = (event) => {
     else if (jsonData.type === 'getProjList') {
 
         jsonData.projects.forEach(proj => {
-            var element = document.createElement("button");
+            var element = document.createElement("span");
             element.innerText = proj;
             element.classList.add("list");
             element.addEventListener("click", requestProjInfo);
@@ -100,10 +100,10 @@ connection.onmessage = (event) => {
         } 
 
         jsonData.project.forEach(user => {
-            var element = document.createElement("button");
+            var element = document.createElement("span");
             element.innerText = user;
             element.classList.add("list");
-            //element.addEventListener('click', deleteUser); //funcion no creada aun
+            element.addEventListener('click', deleteUser); //funcion no creada aun
 
             projUserContainer.appendChild(element);
         })

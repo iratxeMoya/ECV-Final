@@ -339,11 +339,11 @@ display: block;
 	height: 48%;
     width: 70px;
 }
-button.list {
+span.list {
 	display: block;
 	padding: 5px;
 }
 
-button.list:focus {
+span.clicked {
 	border: 1px solid black;
 }
