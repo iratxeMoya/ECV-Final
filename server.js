@@ -174,6 +174,8 @@ wss.on('connection', function(ws) {
 
             modules['lastSaveDate'] = Date.now();
 
+            invited.ws.send(data);
+
             //esto creo que no hay que broadcastearlo ya que es algo que solo le importa al server
 
         }

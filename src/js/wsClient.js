@@ -111,4 +111,13 @@ connection.onmessage = (event) => {
     else if (jsonData.type === 'enterOK') {
         connection.send(JSON.stringify({type: 'requestInfo'}));
     }
+    else if (jsonData.type === 'inviteToProj') {
+        var element = document.createElement("span");
+
+        element.innerText = jsonData.projName;
+        element.classList.add("list");
+        element.addEventListener("click", requestProjInfo);
+
+        projListContainer.appendChild(element);
+    }
 }
