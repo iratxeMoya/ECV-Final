@@ -30,6 +30,24 @@ regSend.addEventListener("click", sendRegister);
 createProj.addEventListener("click", createProject);
 addUser.addEventListener("click", addUserToProj);
 enterProj.addEventListener("click", enterProject);
+loginPass.addEventListener("keydown", onKeyDownLog);
+regPass.addEventListener("keydown", onKeyDownReg);
+
+function onKeyDownLog (event) {
+
+    if (event.keyCode === 13) {
+        sendLogin();
+    }
+
+}
+
+function onKeyDownReg (event) {
+
+    if (event.keyCode === 13) {
+        sendRegister();
+    }
+
+}
 
 function enterProject () {
 

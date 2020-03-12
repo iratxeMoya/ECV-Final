@@ -1,0 +1,137 @@
+#projSelectPage{
+	pointer-events: all;
+	display: none;
+	height: 100%;
+	grid-template-columns: 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33%;
+    grid-template-rows: 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33% 8.33%;
+}
+#projCreation {
+    grid-column-start: 2;
+    grid-column-end: 8;
+    grid-row-start: 2;
+    grid-row-end: 6;
+    display: grid;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    grid-template-rows: 25% 25% 25% 25%;
+    box-shadow: 0 0 70px #000;
+    text-align: center;
+    padding: 4rem 2rem;
+}
+#newProjTitle {
+	grid-column-start: 2;
+    grid-column-end: 10;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    align-self: center;
+    font-size: 2.75rem;
+    font-weight: 100;
+}
+#addProjForm {
+	grid-column-start: 2;
+    grid-column-end: 10;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    align-self: center;
+}
+#projName {
+	height: 45px;
+    width: calc(100% - 76px );
+    font: inherit;
+    border: 1px solid #242c37;
+    border-radius: 999px;
+    background-color: transparent;
+    text-align: center;
+}
+#createProj {
+	height: 45px;
+    width: 70px;
+    background-image: linear-gradient(160deg, #8ceabb 0%, #378f7b 100%);
+    color: #fff;
+    border-radius: 999px;
+    border: none;
+}
+#projects {
+	grid-column-start: 9;
+    grid-column-end: 12;
+    grid-row-start: 2;
+    grid-row-end: 12;
+    display: grid;
+    grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+    grid-template-rows: 16.6% 16.6% 16.6% 16.6% 16.6% 16.6%;
+    box-shadow: 0 0 70px #000;
+    text-align: center;
+    padding: 4rem 2rem;
+}
+#projectsTitle {
+	grid-column-start: 2;
+    grid-column-end: 8;
+    align-self: center;
+}
+#projListContainer {
+	grid-column-start: 2;
+    grid-column-end: 8;
+    grid-row-start: 2;
+    grid-row-end: 6;
+    border: 1px solid black;
+    padding: 1em;
+}
+#enterProj {
+	grid-column-start: 5;
+    grid-column-end: 8;
+    grid-row-start: 6;
+    grid-row-end: 6;
+    height: 45px;
+	align-self: center;
+	width: 92px;
+    justify-self: right;
+}
+#projInfoContainer {
+	display: none;
+    grid-column-start: 2;
+    grid-column-end: 8;
+    grid-row-start: 7;
+    grid-row-end: 12;
+    grid-template-columns: 16.6% 16.6% 16.6% 16.6% 16.6% 16.6%;
+    grid-template-rows: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+    box-shadow: 0 0 70px #000;
+    text-align: center;
+    padding: 4rem 2rem;
+}
+#usersTitle {
+	grid-column-start: 2;
+    grid-column-end: 6;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    align-self: center;
+}
+#projUsers {
+	grid-column-start: 2;
+    grid-column-end: 6;
+    grid-row-start: 3;
+    grid-row-end: 7;
+    border: 1px solid black;
+    padding: 1em;
+}
+#newUserForm {
+	grid-column-start: 2;
+    grid-column-end: 6;
+    grid-row-start: 7;
+    grid-row-end: 9;
+    align-self: center;
+}
+#newUser {
+	height: 45px;
+    width: calc( 100% - 76px );
+}
+#addUser {
+	height: 45px;
+    width: 70px;
+}
+span.list {
+	display: block;
+	padding: 5px;
+}
+
+span.clicked {
+	border: 1px solid black;
+}
