@@ -361,8 +361,12 @@ wss.on('connection', function(ws) {
         else if (jsonData.type === 'requestCompetition') {
             projects.forEach(project => {
                 var admin = connectedUsers.find(user => user.username === project.admin);
-                if (admin && admin.actualProject === project.name) {
+                if (admin && admin.actualProject === project.name && admin.ws !== ws) {
                     admin.ws.send(data);
+                }
+                if (admin.ws === ws) {
+                    var project = projects.find(p => p.name === admin.actualProject);
+                    project.execute = true;
                 }
             })
         }
