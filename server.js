@@ -26,7 +26,8 @@ UN PROYECTO (como una room):
             id: X,
             role: X (admin, writer, viewer) ? esto mas adelante, por ahora todos write
         }],
-        execute: X (bool)
+        execute: X (bool),
+        admin: X,
     }
 
 */
@@ -146,6 +147,7 @@ wss.on('connection', function(ws) {
             
             newProj.users = [requester.username];
             newProj.execute = false;
+            newProj.admin = requester.username;
 
             requester.projects.push(newProj.name);
 
@@ -355,6 +357,20 @@ wss.on('connection', function(ws) {
 
             broadcastMsg(data, users, ws);
             
+        }
+        else if (jsonData.type === 'requestCompetition') {
+            projects.forEach(project => {
+                var admin = connectedUsers.find(user => user.username === project.admin);
+                if (admin && admin.actualProject === project.name) {
+                    admin.ws.send(data);
+                }
+            })
+        }
+        else if (jsonData.type === 'acceptCompetition') {
+            var admin = connectedUsers.find(user => user.ws === ws);
+            var project = projects.find(p => p.name === admin.actualProject);
+
+            project.execute = true;
         }
 
     });

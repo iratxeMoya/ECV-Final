@@ -32,6 +32,7 @@ element.addEventListener("click", function() {createElement(Date.now(), {x: 2, y
 
 run_button.addEventListener("click", run);
 stop_button.addEventListener("click", stop);
+competition_button.addEventListener("click", requestCompetition);
 wb_cvs.addEventListener("mousemove", move);
 wb_cvs.addEventListener("mousedown", click);
 wb_cvs.addEventListener("mouseup", release);
@@ -41,6 +42,12 @@ fillModuleDropDown(dropdownControl,codes.control,"control");
 fillModuleDropDown(dropdownCondition,codes.condition,"condition");
 
 // FUNCTIONS
+function requestCompetition() {
+	var jsonData = {};
+	jsonData.type = 'requestCompetition';
+
+	connection.send(JSON.stringify(jsonData));
+}
 function run() {
 	element_manager.refresh();
 	module_manager.running = true;

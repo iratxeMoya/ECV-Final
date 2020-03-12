@@ -101,6 +101,15 @@ span#element {
 	right:20px;
 	border-radius:50%;
 }
+.competition {
+	position:absolute;
+	background-color:yellow;
+	width:50px;
+	height:50px;
+	bottom:160px;
+	right:20px;
+	border-radius:50%;
+}
 
 .canvas{
 	position:absolute;

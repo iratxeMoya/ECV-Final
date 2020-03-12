@@ -9,6 +9,7 @@ var game_screen = document.getElementsByClassName("game_screen")[0];
 
 var run_button = document.getElementsByClassName("run_code")[0];
 var stop_button = document.getElementsByClassName("stop_code")[0];
+var competition_button = document.querySelector(".competition");
 
 var basicModule = document.querySelector("#basicModule");
 var conditionModule = document.querySelector("#conditionModule");
@@ -57,6 +58,7 @@ export {
 	game_screen,
     run_button,
     stop_button,
+    competition_button,
     basicModule,
 	conditionModule,
     argModule,

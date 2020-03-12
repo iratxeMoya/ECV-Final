@@ -120,4 +120,13 @@ connection.onmessage = (event) => {
 
         projListContainer.appendChild(element);
     }
+    else if (jsonData.type === 'requestCompetition') {
+        if(confirm('New Competition! Take part?')) {
+            connection.send(JSON.stringify({type: 'acceptCompetition'}));
+        }
+        //esto creo que no hace falta
+        /*else {
+            connection.send(JSON.stringify({type: 'denyCompetition'}));
+        }*/
+    }
 }
