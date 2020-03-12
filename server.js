@@ -25,7 +25,8 @@ UN PROYECTO (como una room):
         users: [{
             id: X,
             role: X (admin, writer, viewer) ? esto mas adelante, por ahora todos write
-        }]
+        }],
+        execute: X (bool)
     }
 
 */
@@ -144,6 +145,7 @@ wss.on('connection', function(ws) {
             newProj.name = jsonData.name;
             
             newProj.users = [requester.username];
+            newProj.execute = false;
 
             requester.projects.push(newProj.name);
 
