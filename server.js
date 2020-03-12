@@ -178,8 +178,6 @@ wss.on('connection', function(ws) {
 
             invited.ws.send(data);
 
-            //esto creo que no hay que broadcastearlo ya que es algo que solo le importa al server
-
         }
         else if (jsonData.type === 'deleteFromProj') {
             
@@ -364,7 +362,7 @@ wss.on('connection', function(ws) {
                 if (admin && admin.actualProject === project.name && admin.ws !== ws) {
                     admin.ws.send(data);
                 }
-                if (admin.ws === ws) {
+                if (admin && admin.ws === ws) {
                     var project = projects.find(p => p.name === admin.actualProject);
                     project.execute = true;
                 }
