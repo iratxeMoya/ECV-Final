@@ -66,24 +66,31 @@
 	grid-column-start: 2;
     grid-column-end: 8;
     align-self: center;
+    font-size: 2.75rem;
+    font-weight: 100;
 }
 #projListContainer {
-	grid-column-start: 2;
+    grid-column-start: 2;
     grid-column-end: 8;
     grid-row-start: 2;
     grid-row-end: 6;
-    border: 1px solid black;
+    border: 1px solid #242c37;
     padding: 1em;
+    border-radius: 31px;
 }
 #enterProj {
-	grid-column-start: 5;
+    grid-column-start: 5;
     grid-column-end: 8;
     grid-row-start: 6;
     grid-row-end: 6;
     height: 45px;
-	align-self: center;
-	width: 92px;
+    align-self: center;
+    width: 92px;
     justify-self: right;
+    background-image: linear-gradient(160deg, #8ceabb 0%, #378f7b 100%);
+    color: #fff;
+    border-radius: 999px;
+    border: none;
 }
 #projInfoContainer {
 	display: none;
@@ -103,14 +110,17 @@
     grid-row-start: 1;
     grid-row-end: 3;
     align-self: center;
+    font-size: 2.75rem;
+    font-weight: 100;
 }
 #projUsers {
 	grid-column-start: 2;
     grid-column-end: 6;
     grid-row-start: 3;
     grid-row-end: 7;
-    border: 1px solid black;
+    border: 1px solid #242c37;
     padding: 1em;
+    border-radius: 31px;
 }
 #newUserForm {
 	grid-column-start: 2;
@@ -122,16 +132,33 @@
 #newUser {
 	height: 45px;
     width: calc( 100% - 76px );
+    border: 1px solid #242c37;
+    border-radius: 999px;
+    background-color: transparent;
+    text-align: center;
 }
 #addUser {
 	height: 45px;
     width: 70px;
+    background-image: linear-gradient(160deg, #8ceabb 0%, #378f7b 100%);
+    color: #fff;
+    border-radius: 999px;
+    border: none;
 }
 span.list {
 	display: block;
 	padding: 5px;
 }
+span.list:hover {
+    background-color: #678ba3;
+    border-radius: 31px;
+    color: black;
+    cursor: pointer;
+}
 
 span.clicked {
-	border: 1px solid black;
+	background-color: #678ba3;
+    border-radius: 31px;
+    color: black;
+    cursor: pointer;
 }
