@@ -477,13 +477,20 @@ function compare( a, b ) {
       return 1;
     }
     return 0;
-  }
+}
+
+function sortObj (obj, )
 
 function init (ws) {
 
     var requester = connectedUsers.find(user => user.ws === ws);
 
-    modules.sort(compare);
+    const ordered = {};
+    Object.keys(modules).sort().forEach(function(key) {
+    ordered[key] = modules[key];
+    });
+
+    modules = ordered;
 
     console.log('init ', modules);
 
