@@ -241,6 +241,7 @@ wss.on('connection', function(ws) {
             modules['lastSaveDate'] = Date.now();
 
             orderModules();
+            console.log('createModule ', modules);
 
             var users = [];
             var project = projects.find(proj => proj.name === requester.actualProject);
@@ -346,6 +347,8 @@ wss.on('connection', function(ws) {
             modules['lastSaveDate'] = Date.now();
 
             orderModules();
+
+            console.log('createElement ', modules);
 
             var project = projects.find(proj => proj.name === requester.actualProject);
 
