@@ -479,8 +479,6 @@ function compare( a, b ) {
     return 0;
 }
 
-function sortObj (obj, )
-
 function init (ws) {
 
     var requester = connectedUsers.find(user => user.ws === ws);
