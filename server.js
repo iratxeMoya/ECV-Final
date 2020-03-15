@@ -469,9 +469,23 @@ function broadcastMsg(data, usersToSend, connection) {
     })
 }
 
+function compare( a, b ) {
+    if ( a.objectType < b.objectType ){
+      return -1;
+    }
+    if ( a.objectType > b.objectType ){
+      return 1;
+    }
+    return 0;
+  }
+
 function init (ws) {
 
     var requester = connectedUsers.find(user => user.ws === ws);
+
+    modules.sort(compare);
+
+    console.log(modules);
 
     for (project in modules) {
 
