@@ -485,7 +485,7 @@ function init (ws) {
 
     modules.sort(compare);
 
-    console.log(modules);
+    console.log('init ', modules);
 
     for (project in modules) {
 
