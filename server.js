@@ -240,6 +240,8 @@ wss.on('connection', function(ws) {
             modules[requester.actualProject][jsonData.id.toString()] = info;
             modules['lastSaveDate'] = Date.now();
 
+            orderModules();
+
             var users = [];
             var project = projects.find(proj => proj.name === requester.actualProject);
 
@@ -342,6 +344,8 @@ wss.on('connection', function(ws) {
 
             modules[requester.actualProject][jsonData.id.toString()] = info;
             modules['lastSaveDate'] = Date.now();
+
+            orderModules();
 
             var project = projects.find(proj => proj.name === requester.actualProject);
 
@@ -469,19 +473,7 @@ function broadcastMsg(data, usersToSend, connection) {
     })
 }
 
-function compare( a, b ) {
-    if ( a.objectType < b.objectType ){
-      return -1;
-    }
-    if ( a.objectType > b.objectType ){
-      return 1;
-    }
-    return 0;
-}
-
-function init (ws) {
-
-    var requester = connectedUsers.find(user => user.ws === ws);
+function orderModules () {
 
     const ordered = {};
     Object.keys(modules).sort().forEach(function(key) {
@@ -502,6 +494,13 @@ function init (ws) {
         }
         modules[project] = Object.assign(elem, mod);
     }
+}
+
+function init (ws) {
+
+    var requester = connectedUsers.find(user => user.ws === ws);
+
+    orderModules();
 
     console.log('init ', modules);
 
