@@ -488,11 +488,25 @@ function init (ws) {
     ordered[key] = modules[key];
     });
 
-    modules = ordered;
+    modules = ordered; 
+
+    for (project in modules) {
+        var mod = {};
+        var elem = {};
+        for (id in modules[project]) {
+            if (modules[project][id].objectType === 'module') {
+                mod[id] = modules[project][id];
+            } else {
+                elem[id] = modules[project][id];
+            }
+        }
+        modules[project] = Object.assign(elem, mod);
+    }
 
     console.log('init ', modules);
 
     for (project in modules) {
+
 
         if (requester.actualProject === project) {
             console.log(project);
