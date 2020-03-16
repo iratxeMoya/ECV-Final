@@ -314,5 +314,6 @@ export {
 	fillModuleDropDown,
 	requestProjInfo,
 	actualProject,
+	isSelected,
 	deleteUser
 }

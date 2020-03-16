@@ -21,7 +21,7 @@ import {
     codeEditorPage
 } from './DOMAccess.js';
 import {connection} from './init.js';
-import { actualProject, requestProjInfo, deleteUser } from './utils.js';
+import { actualProject, isSelected, requestProjInfo, deleteUser } from './utils.js';
 
 goToLog.addEventListener("click", toggleLogReg);
 goToReg.addEventListener("click", toggleLogReg);
@@ -71,12 +71,22 @@ function enterProject () {
 
     var jsonData = {};
     jsonData.type = 'enterProj';
-    jsonData.project = actualProject;
 
-    projSelectPage.classList.toggle("showGrid");
-    codeEditorPage.classList.toggle("showBlock");
+    if(isSelected) {
 
-    connection.send(JSON.stringify(jsonData));
+        jsonData.project = actualProject;
+
+        projSelectPage.classList.toggle("showGrid");
+        codeEditorPage.classList.toggle("showBlock");
+
+        connection.send(JSON.stringify(jsonData));
+
+    }
+    else {
+        alert('You have to select a project first');
+    }
+
+    
 
 }
 
