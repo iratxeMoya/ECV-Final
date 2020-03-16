@@ -181,12 +181,18 @@ wss.on('connection', function(ws) {
                 modules['lastSaveDate'] = Date.now();
 
                 jsonData.status = 'OK';
-                
+                ws.send(JSON.stringify(jsonData));
+
+                jsonData.type = 'invitedToProj';
                 invited.ws.send(JSON.stringify(jsonData));
+
             } 
             else {
                 jsonData.status = 'notOK';
                 ws.send(JSON.stringify(jsonData));
+
+                jsonData.type = 'invitedToProj';
+                invited.ws.send(JSON.stringify(jsonData));
             }
             
 

@@ -89,12 +89,6 @@ function addUserToProj () {
 
     connection.send(JSON.stringify(jsonData));
 
-    var element = document.createElement("span");
-    element.innerText = newUser.value;
-    element.addEventListener('click', deleteUser);
-
-    projUserContainer.appendChild(element);
-
     newUser.value = '';
 }
 

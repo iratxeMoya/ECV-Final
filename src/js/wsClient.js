@@ -111,7 +111,7 @@ connection.onmessage = (event) => {
     else if (jsonData.type === 'enterOK') {
         connection.send(JSON.stringify({type: 'requestInfo'}));
     }
-    else if (jsonData.type === 'inviteToProj') {
+    else if (jsonData.type === 'invitedToProj') {
         if(jsonData.status === 'OK') {
             var element = document.createElement("span");
 
@@ -120,6 +120,18 @@ connection.onmessage = (event) => {
             element.addEventListener("click", requestProjInfo);
 
             projListContainer.appendChild(element);
+        }
+    }
+    else if (jsonData.type = 'inviteToProj') {
+
+        if(jsonData.status === 'OK') {
+
+            var element = document.createElement("span");
+            element.innerText = jsonData.username;
+            element.addEventListener('click', deleteUser);
+        
+            projUserContainer.appendChild(element);
+        
         }
         else {
             alert('User not registered');
