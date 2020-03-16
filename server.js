@@ -173,7 +173,7 @@ wss.on('connection', function(ws) {
 
             console.log(projIndex)
 
-            if (projIndex !== -1) {
+            if (projIndex !== 0) {
                 projects[projIndex].users.push(invited.username);
 
                 invited.projects.push(projects[projIndex].name);
