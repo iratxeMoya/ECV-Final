@@ -48,7 +48,7 @@ function onKeyDownProj (event) {
     if (event.keyCode === 13) {
         createProject();
     }
-    
+
 }
 
 function onKeyDownLog (event) {
@@ -94,6 +94,8 @@ function addUserToProj () {
     element.addEventListener('click', deleteUser);
 
     projUserContainer.appendChild(element);
+
+    newUser.value = '';
 }
 
 function createProject () {
@@ -110,6 +112,8 @@ function createProject () {
     element.addEventListener("click", requestProjInfo);
 
     projListContainer.appendChild(element);
+
+    projName.value = '';
 }
 
 function toggleLogReg() {
@@ -124,6 +128,9 @@ function sendLogin () {
     jsonData.password = loginPass.value;
 
     connection.send(JSON.stringify(jsonData));
+
+    loginUser.value = '';
+    loginPass.value = '';
 }
 
 function sendRegister () {
@@ -133,4 +140,7 @@ function sendRegister () {
     jsonData.password = regPass.value;
 
     connection.send(JSON.stringify(jsonData));
+
+    regUser.value = '';
+    regPass.value = '';
 }
