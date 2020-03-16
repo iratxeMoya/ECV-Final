@@ -170,13 +170,23 @@ wss.on('connection', function(ws) {
             var invited = registeredUsers.find(user => user.username === jsonData.username);
 
             var projIndex = projects.findIndex(proj => proj.name === jsonData.projName);
-            projects[projIndex].users.push(invited.username);
 
-            invited.projects.push(projects[projIndex].name);
+            if (projIndex !== -1) {
+                projects[projIndex].users.push(invited.username);
 
-            modules['lastSaveDate'] = Date.now();
+                invited.projects.push(projects[projIndex].name);
 
-            invited.ws.send(data);
+                modules['lastSaveDate'] = Date.now();
+
+                jsonData.status = 'OK';
+                
+                invited.ws.send(JSON.stringify(jsonData));
+            } 
+            else {
+                jsonData.status = 'notOK';
+                ws.send(JSON.stringify(jsonData));
+            }
+            
 
         }
         else if (jsonData.type === 'deleteFromProj') {

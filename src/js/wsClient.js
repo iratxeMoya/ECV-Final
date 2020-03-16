@@ -112,13 +112,18 @@ connection.onmessage = (event) => {
         connection.send(JSON.stringify({type: 'requestInfo'}));
     }
     else if (jsonData.type === 'inviteToProj') {
-        var element = document.createElement("span");
+        if(jsonData.status === 'OK') {
+            var element = document.createElement("span");
 
-        element.innerText = jsonData.projName;
-        element.classList.add("list");
-        element.addEventListener("click", requestProjInfo);
+            element.innerText = jsonData.projName;
+            element.classList.add("list");
+            element.addEventListener("click", requestProjInfo);
 
-        projListContainer.appendChild(element);
+            projListContainer.appendChild(element);
+        }
+        else {
+            alert('User not registered');
+        }
     }
     else if (jsonData.type === 'requestCompetition') {
         if(confirm('New Competition! Take part?')) {
