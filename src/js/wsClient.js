@@ -128,6 +128,7 @@ connection.onmessage = (event) => {
 
             var element = document.createElement("span");
             element.innerText = jsonData.username;
+            element.classList.add('list');
             element.addEventListener('click', deleteUser);
         
             projUserContainer.appendChild(element);
