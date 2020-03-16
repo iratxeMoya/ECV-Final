@@ -28,10 +28,28 @@ goToReg.addEventListener("click", toggleLogReg);
 loginSend.addEventListener("click", sendLogin);
 regSend.addEventListener("click", sendRegister);
 createProj.addEventListener("click", createProject);
+projName.addEventListener("keydown", onKeyDownProj);
+newUser.addEventListener("keydown", onKeyDownUser);
 addUser.addEventListener("click", addUserToProj);
 enterProj.addEventListener("click", enterProject);
 loginPass.addEventListener("keydown", onKeyDownLog);
 regPass.addEventListener("keydown", onKeyDownReg);
+
+function onKeyDownUser (event) {
+
+    if(event.keyCode === 13) {
+        addUserToProj();
+    }
+
+}
+
+function onKeyDownProj (event) {
+
+    if (event.keyCode === 13) {
+        createProject();
+    }
+    
+}
 
 function onKeyDownLog (event) {
 
