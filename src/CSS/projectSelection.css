@@ -128,6 +128,7 @@
     grid-row-start: 7;
     grid-row-end: 9;
     align-self: center;
+    margin-top: 20px;
 }
 #newUser {
 	height: 45px;
