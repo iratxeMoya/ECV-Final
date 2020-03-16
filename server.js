@@ -184,6 +184,7 @@ wss.on('connection', function(ws) {
                 ws.send(JSON.stringify(jsonData));
 
                 jsonData.type = 'invitedToProj';
+                console.log(invited);
                 invited.ws.send(JSON.stringify(jsonData));
 
             } 
