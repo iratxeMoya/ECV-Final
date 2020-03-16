@@ -171,8 +171,6 @@ wss.on('connection', function(ws) {
 
             var projIndex = projects.findIndex(proj => proj.name === jsonData.projName);
 
-            console.log(projIndex)
-
             if (projIndex !== 0) {
                 projects[projIndex].users.push(invited.username);
 
@@ -184,8 +182,11 @@ wss.on('connection', function(ws) {
                 ws.send(JSON.stringify(jsonData));
 
                 jsonData.type = 'invitedToProj';
-                console.log(invited);
-                invited.ws.send(JSON.stringify(jsonData));
+
+                if(invited.ws) {
+                    invited.ws.send(JSON.stringify(jsonData));
+                }
+                
 
             } 
             else {
