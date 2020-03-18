@@ -46,6 +46,8 @@ function requestCompetition() {
 	var jsonData = {};
 	jsonData.type = 'requestCompetition';
 
+	alert("waiting for other people");
+	
 	connection.send(JSON.stringify(jsonData));
 }
 function run() {
