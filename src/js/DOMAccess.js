@@ -11,6 +11,8 @@ var run_button = document.getElementsByClassName("run_code")[0];
 var stop_button = document.getElementsByClassName("stop_code")[0];
 var competition_button = document.querySelector(".competition");
 
+var superrun_popup = document.querySelector(".competition_popup");
+
 var basicModule = document.querySelector("#basicModule");
 var conditionModule = document.querySelector("#conditionModule");
 var argModule = document.querySelector("#argModule");
@@ -61,6 +63,7 @@ export {
     competition_button,
     basicModule,
 	conditionModule,
+	superrun_popup,
     argModule,
     targetModule,
     element,
