@@ -14,7 +14,7 @@ var gs_updater = setInterval(update_gs, 100);
 var mouseDown = false;
 var mouseX;
 var mouseY;
-var everyone_ready=false;
+
 
 
 var map = new Map(30,30);
@@ -52,8 +52,8 @@ function cancel_competition(){
 }
 
 function superrun(){
-	console.log(everyone_ready);
-	if(everyone_ready){
+
+	if(module_manager.everyone_ready){
 		superrun_popup.classList.toggle("showBlock");
 		
 		jsonData.type = 'superRun';
@@ -204,6 +204,5 @@ function update_gs() {
 export{
 	module_manager,
 	element_manager,
-	everyone_ready,
 	map
 }

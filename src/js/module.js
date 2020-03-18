@@ -484,6 +484,7 @@ class ModuleManager {
 		this.count = 0;
 		this.selectedGroup = null;
 		this.running = false;
+		this.everyone_ready=false;
     }
     
     /**
