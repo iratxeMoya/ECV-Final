@@ -14,6 +14,8 @@ var gs_updater = setInterval(update_gs, 100);
 var mouseDown = false;
 var mouseX;
 var mouseY;
+var everyone_ready=false;
+
 
 var map = new Map(30,30);
 console.log(map);
@@ -50,7 +52,14 @@ function cancel_competition(){
 }
 
 function superrun(){
-	superrun_popup.classList.toggle("showBlock");
+	if(everyone_ready){
+		superrun_popup.classList.toggle("showBlock");
+		
+		jsonData.type = 'superrun';
+		
+		connection.send(JSON.stringify(jsonData));
+	}
+	
 }
 
 function requestCompetition() {
@@ -194,5 +203,6 @@ function update_gs() {
 export{
 	module_manager,
 	element_manager,
+	everyone_ready,
 	map
 }

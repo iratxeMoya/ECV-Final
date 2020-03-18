@@ -8,6 +8,8 @@ var passwordHash = require('password-hash');
 var mysql = require ('mysql');
 var wrapper = require('node-mysql-wrapper');
 var fs = require('fs');
+var ready_users =0;
+var resquester = null;
 
 //start server
 var wss = new WebSocket.Server({server});
@@ -385,18 +387,23 @@ wss.on('connection', function(ws) {
                 var admin = connectedUsers.find(user => user.username === project.admin);
                 if (admin && admin.actualProject === project.name && admin.ws !== ws) {
                     admin.ws.send(data);
+					ready_users++;
                 }
                 if (admin && admin.ws === ws) {
                     var project = projects.find(p => p.name === admin.actualProject);
                     project.execute = true;
+					requester = ws;
                 }
             })
         }
         else if (jsonData.type === 'acceptCompetition') {
             var admin = connectedUsers.find(user => user.ws === ws);
             var project = projects.find(p => p.name === admin.actualProject);
-
+			ready_users--;
             project.execute = true;
+			if (ready_users<1){
+				requester.send(JSON.stringify({type:"everyoneReady"});
+			}
         }
 
     });

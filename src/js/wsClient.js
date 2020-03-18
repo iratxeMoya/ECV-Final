@@ -1,5 +1,5 @@
 import { connection } from './init.js';
-import { module_manager } from './client.js'
+import { module_manager, everyone_ready } from './client.js'
 import { createModule, createElement, requestProjInfo, deleteUser } from './utils.js';
 import { codeEditorPage, loginPage, regPage, projSelectPage, projListContainer, projInfoContainer, projUserContainer } from './DOMAccess.js';
 
@@ -146,5 +146,7 @@ connection.onmessage = (event) => {
         /*else {
             connection.send(JSON.stringify({type: 'denyCompetition'}));
         }*/
-    }
+    }else if (jsonData.type === 'everyoneReady'){
+		everyone_ready=true;
+	}
 }
