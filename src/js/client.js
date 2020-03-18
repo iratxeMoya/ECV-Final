@@ -41,8 +41,8 @@ fillModuleDropDown(dropdownMovement,codes.movement,"movement");
 fillModuleDropDown(dropdownControl,codes.control,"control");
 fillModuleDropDown(dropdownCondition,codes.condition,"condition");
 
-superrun_cancel.onclick(cancel_competition);
-superrun_confirm.onclick(superrun);
+superrun_cancel.addEventListener("click",cancel_competition);
+superrun_confirm.addEventListener("click",superrun);
 
 // FUNCTIONS
 function cancel_competition(){
