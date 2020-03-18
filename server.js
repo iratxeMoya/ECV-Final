@@ -402,7 +402,7 @@ wss.on('connection', function(ws) {
 			ready_users--;
             project.execute = true;
 			if (ready_users<1){
-				requester.send(JSON.stringify({type:"everyoneReady"});
+				requester.send(JSON.stringify({type:"everyoneReady"}));
 			}
         }
 
