@@ -177,13 +177,14 @@ display: block;
 .competition_popup {
 	display:none;
 	position:absolute;
-	top:50vp;
-	left:50vp;
+	top:50vh;
+	left:50vw;
 	transform: translate(-50% , -50%);
 	background-color:white;
 	border: 10px solid #000;
 	height:100px;
 	width:200px;
+	z-index:4;
 }
 
 /* Change color of dropdown links on hover */
