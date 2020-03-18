@@ -122,7 +122,7 @@ connection.onmessage = (event) => {
             projListContainer.appendChild(element);
         }
     }
-    else if (jsonData.type = 'inviteToProj') {
+    else if (jsonData.type == 'inviteToProj') {
 
         if(jsonData.status === 'OK') {
 
@@ -148,6 +148,6 @@ connection.onmessage = (event) => {
         }*/
     }else if (jsonData.type === 'everyoneReady'){
 		everyone_ready=true;
-		//console.log(everyone_ready);
+		console.log(everyone_ready);
 	}
 }
