@@ -176,8 +176,8 @@ display: block;
 
 .competition_popup {
 	postiion:absolute;
-	top:50%;
-	left:50%;
+	top:50vp;
+	left:50vp;
 	transform: translate(-50% , -50%);
 	background-color:white;
 	border: 10px solid #000;
