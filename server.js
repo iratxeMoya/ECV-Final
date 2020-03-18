@@ -396,6 +396,9 @@ wss.on('connection', function(ws) {
 					requester = ws;
                 }
             })
+			if (ready_users<1){
+				requester.send(JSON.stringify({type:"everyoneReady"}));
+			}
         }
         else if (jsonData.type === 'acceptCompetition') {
             var admin = connectedUsers.find(user => user.ws === ws);
