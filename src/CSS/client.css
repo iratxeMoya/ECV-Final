@@ -175,7 +175,8 @@ display: block;
 }
 
 .competition_popup {
-	postiion:absolute;
+	display:none;
+	position:absolute;
 	top:50vp;
 	left:50vp;
 	transform: translate(-50% , -50%);
