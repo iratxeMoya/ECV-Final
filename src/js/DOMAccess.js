@@ -12,6 +12,8 @@ var stop_button = document.getElementsByClassName("stop_code")[0];
 var competition_button = document.querySelector(".competition");
 
 var superrun_popup = document.querySelector(".competition_popup");
+var superrun_confirm = document.querySelector(".superrun");
+var superrun_cancel = document.querySelector(".cancel_comp");
 
 var basicModule = document.querySelector("#basicModule");
 var conditionModule = document.querySelector("#conditionModule");
@@ -57,6 +59,8 @@ export {
 	gs_cvs,
     gs_ctx,
     workbench,
+	superrun_cancel,
+	superrun_confirm,
 	game_screen,
     run_button,
     stop_button,
