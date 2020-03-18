@@ -48,11 +48,11 @@ class Map {
 				movey = (-1)*ret -movey;
 				movex = (-1)*ret +movex;
 				ret = movex-movey;
-				console.log(movex+" "+movey+" "+ret);
+				//console.log(movex+" "+movey+" "+ret);
 				round++;
 				cnt=0;
 			}
-			console.log(i+" "+j);
+			//console.log(i+" "+j);
 			i+=movex;
 			j+=movey;
 			cnt++;
@@ -71,8 +71,8 @@ class Map {
 	face_nop(x,y){
 		var op=this.nearest_op(x,y);
 		if(op){
-			console.log(op);
-			console.log(Math.abs(x-op.x)>Math.abs(y-op.y) ? (x>op.x ? 2 : 0) : (y>op.y ? 3 :1));
+			//console.log(op);
+			//console.log(Math.abs(x-op.x)>Math.abs(y-op.y) ? (x>op.x ? 2 : 0) : (y>op.y ? 3 :1));
 			return (Math.abs(x-op.x)>Math.abs(y-op.y) ? (x>op.x ? 2 : 0) : (y>op.y ? 3 :1));
 		}
 		return 0;

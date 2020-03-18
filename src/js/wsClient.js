@@ -4,11 +4,11 @@ import { createModule, createElement, requestProjInfo, deleteUser } from './util
 import { codeEditorPage, loginPage, regPage, projSelectPage, projListContainer, projInfoContainer, projUserContainer } from './DOMAccess.js';
 
 connection.onopen = event => {
-	console.log('connection is open');
+	//console.log('connection is open');
 }
 
 connection.onclose = (event) => {
-    console.log("WebSocket is closed");
+    //console.log("WebSocket is closed");
 };
 
 connection.onerror = (event) => {
@@ -18,7 +18,7 @@ connection.onerror = (event) => {
 connection.onmessage = (event) => {
     var jsonData = JSON.parse(event.data);
 
-    console.log(jsonData);
+    //console.log(jsonData);
 
     if (jsonData.type === 'moveModule') {
 
@@ -148,6 +148,6 @@ connection.onmessage = (event) => {
         }*/
     }else if (jsonData.type === 'everyoneReady'){
 		everyone_ready=true;
-		console.log(everyone_ready);
+		//console.log(everyone_ready);
 	}
 }

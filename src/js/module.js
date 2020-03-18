@@ -6,7 +6,7 @@ import { isHover } from './utils.js'
 class Element {
 	
 	constructor (id, position, avatar = null) {
-		console.log(position);
+		//console.log(position);
 		this.position={x:position.x,y:position.y};
 		this.id = id;
 		this.dir = 0;
@@ -67,7 +67,7 @@ class Element {
 	}
 	
 	colision(map){
-		console.log(map);
+		//console.log(map);
 		let npos = this.next_pos();
 		return !map.is_valid(npos.x,npos.y);
 	}
@@ -376,9 +376,9 @@ class Module {
      * Runs code of the module
      */
     run (target = null) {
-		console.log(target);
+		//console.log(target);
 		target = target ? target:this.getTarget();
-		console.log(this.moduleType+" "+this.codeType);
+		//console.log(this.moduleType+" "+this.codeType);
 		if(target){
 			eval(codes[this.moduleType][this.codeType]);
 		}
@@ -449,9 +449,9 @@ class ConditionModule extends Module {
 	run(target = null){
 		
         target = target ? target:this.getTarget();
-        console.log("COND");
-		console.log(target);
-		console.log(this);
+        //console.log("COND");
+		//console.log(target);
+		//console.log(this);
 		this.value=5;//DEBUGGING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		if (target) {
 
@@ -512,7 +512,7 @@ class ModuleManager {
 	remove_modules(module){
 		let ids=[];
 		module.get_children_ids(ids);
-		console.log(ids);
+		//console.log(ids);
 		ids.forEach(id =>{
 			this.modules.remove(this.getModuleByID(id));
 		});

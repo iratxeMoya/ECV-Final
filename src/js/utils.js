@@ -15,7 +15,7 @@ var targetModulePos = null;
 function isHover(x, y) {
 
     if (x < 290 && x > 260 && y < 130 && y > 105) {
-		console.log(x, y);
+		//console.log(x, y);
         return true;
     }
     return false;
@@ -164,7 +164,7 @@ function createModule (id, codeType, position,map = null, target = null, arg = n
 			mod = new ConditionModule(position, moduleType, codeType, id,map, north, west, east, south);
 			break;
 		default:
-			console.log('is default');
+			//console.log('is default');
 			mod = new Module(position, moduleType, codeType, id, north, west, east, south);
 			break;
 	}
@@ -172,7 +172,7 @@ function createModule (id, codeType, position,map = null, target = null, arg = n
     if (mod) {
 
 		module_manager.add_module(mod);
-		console.log(module_manager.modules, mod);
+		//console.log(module_manager.modules, mod);
 
 	}
 	
@@ -195,8 +195,8 @@ function sendModuleInfo (module, codeType, moduleType, arg) {
 	newModule.moduleType = moduleType;
 	newModule.arg = arg;
 
-	console.log(module);
-	console.log(newModule);
+	//console.log(module);
+	//console.log(newModule);
 	
 	connection.send(JSON.stringify(newModule));
 
