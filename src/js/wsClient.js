@@ -148,5 +148,6 @@ connection.onmessage = (event) => {
         }*/
     }else if (jsonData.type === 'everyoneReady'){
 		everyone_ready=true;
+		console.log(everyone_ready);
 	}
 }

@@ -52,6 +52,7 @@ function cancel_competition(){
 }
 
 function superrun(){
+	console.log(everyone_ready);
 	if(everyone_ready){
 		superrun_popup.classList.toggle("showBlock");
 		

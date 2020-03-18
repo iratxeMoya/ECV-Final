@@ -388,6 +388,7 @@ wss.on('connection', function(ws) {
                 if (admin && admin.actualProject === project.name && admin.ws !== ws) {
                     admin.ws.send(data);
 					ready_users++;
+					console.log(ready_users);
                 }
                 if (admin && admin.ws === ws) {
                     var project = projects.find(p => p.name === admin.actualProject);
@@ -403,6 +404,7 @@ wss.on('connection', function(ws) {
             project.execute = true;
 			if (ready_users<1){
 				requester.send(JSON.stringify({type:"everyoneReady"}));
+				console.log(ready_users);
 			}
         }
 
