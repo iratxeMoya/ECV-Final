@@ -489,7 +489,7 @@ class ModuleManager {
 		this.selectedGroup = null;
 		this.running = false;
 		this.everyone_ready=false;
-		this.ret={status:-1,mod:null};
+		this.ret={status:-1,mod:null,id:null};
     }
     
     /**
@@ -654,14 +654,13 @@ class ModuleManager {
 	
 	server_run(id){
 		console.log(this.ret);
-		if (this.ret.status<0){
-			this.ret.status = 0;
+		if (!this.ret.id){
+			this.ret.id = id;
 			console.log("ID "+id);
 			this.ret.mod =this.modules.find(module=>module.moduleType === "target" && !module.target.dead && module.target.id === id);
 			this.ret.mod.run();
 			return null;	
-		}else if (this.ret.status>0){
-			this.ret.status = -1;
+		}else{
 			return {id:id,position:this.ret.mod.target.position,dir:this.ret.mod.target.dir}
 		}
 	}
