@@ -406,13 +406,14 @@ wss.on('connection', function(ws) {
                 }
             })
 			creator = requester.ws;
-			console.log("\n\nCREATOR\n\n" +" "+creator);
 			if (ready_users<1){
 				console.log(ready_users);
 				creator.send(JSON.stringify({type:"everyoneReady"}));
 			}
         }
         else if (jsonData.type === 'acceptCompetition') {
+			console.log("\n\nCREATOR\n\n");
+			console.log(creator);
             var admin = connectedUsers.find(user => user.ws === ws);
             var project = projects.find(p => p.name === admin.actualProject);
 			ready_users++;
