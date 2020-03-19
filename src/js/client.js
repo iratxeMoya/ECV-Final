@@ -203,7 +203,9 @@ function update_gs() {
 	element_manager.draw(gs_ctx);
 	
 	if(module_manager.ret.id){
-		module_manager.server_run();
+		let newData={};
+		newData.element = module_manager.server_run();
+		connection.send(JSON.stringify(newData));
 	}
 	
 }
