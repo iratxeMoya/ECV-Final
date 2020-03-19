@@ -653,6 +653,7 @@ class ModuleManager {
 	}
 	
 	server_run(id){
+		console.log(this.ret);
 		if (this.ret.status<0){
 			this.ret.status = 0;
 			console.log("ID "+id);
