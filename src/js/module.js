@@ -661,6 +661,7 @@ class ModuleManager {
 			this.ret.mod.run();
 			return null;	
 		}else{
+			this.ret.id = null;
 			return {id:id,position:this.ret.mod.target.position,dir:this.ret.mod.target.dir}
 		}
 	}
