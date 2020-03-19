@@ -390,6 +390,7 @@ wss.on('connection', function(ws) {
             
         }
         else if (jsonData.type === 'requestCompetition') {
+			var requester = connectedUsers.find(user => user.ws === ws);
 			boundaries.bottom=jsonData.mapBottom;
 			boundaries.right=jsonData.mapRight;
             projects.forEach(project => {
@@ -411,6 +412,7 @@ wss.on('connection', function(ws) {
 			}
         }
         else if (jsonData.type === 'acceptCompetition') {
+			var requester = connectedUsers.find(user => user.ws === ws);
             var admin = connectedUsers.find(user => user.ws === ws);
             var project = projects.find(p => p.name === admin.actualProject);
 			ready_users++;
