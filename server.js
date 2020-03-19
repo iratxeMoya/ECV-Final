@@ -423,6 +423,7 @@ wss.on('connection', function(ws) {
 			super_run(true)
         }else if (jsonData.type === 'superResponse') {
            ready_users++;
+		   console.log("RESPONSED");
 		   let elementidx=elements.findIndex(e=>e.id === jsonData.elementId);
 		   elements[elementidx]=jsonData.element;
 		   if(ready_users>=total_users){
