@@ -93,6 +93,8 @@ class ElementManager {
     }
 	
 	move_element (id,position){
+		console.log(id);
+		console.log(this.elements);
 		this.getElementById(id)[0].position = position;
 	}
 	
