@@ -93,7 +93,7 @@ class ElementManager {
     }
 	
 	move_element (id,position){
-		this.getElementById(id).position = position;
+		this.getElementById(id)[0].position = position;
 	}
 	
 	refresh(){

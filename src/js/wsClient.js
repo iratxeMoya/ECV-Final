@@ -162,7 +162,7 @@ connection.onmessage = (event) => {
 			});
 		}else{
 			jsonData.elements.forEach(e => {
-				element_manager.move_element(e.projectName, {x:e.posx,y:e.posy});
+				element_manager.move_element(e.id, {x:e.posx,y:e.posy});
 			});
 		}
 		module_manager.server_run(element_manager.elements[0].id);
