@@ -423,7 +423,8 @@ wss.on('connection', function(ws) {
 			super_run(true)
         }else if (jsonData.type === 'superResponse') {
            ready_users++;
-		   elements.find(e=>e.id === jsonData.elementId) = jsonData.element;
+		   let elementidx=elements.findIndex(e=>e.id === jsonData.elementId);
+		   elements[elementidx]=jsonData.element;
 		   if(ready_users>=total_users){
 				elements.forEach(e =>{
 				if (!valid_pos(e.posx,e.posy)){
