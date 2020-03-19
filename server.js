@@ -419,7 +419,9 @@ wss.on('connection', function(ws) {
 				requester.send(JSON.stringify({type:"everyoneReady"}));
 				//console.log(ready_users);
 			}
+			console.log("I'M IN "+project.name);
         }else if (jsonData.type === 'superRun') {
+			console.log("RUN");
 			super_run(true)
         }else if (jsonData.type === 'superResponse') {
            ready_users++;
