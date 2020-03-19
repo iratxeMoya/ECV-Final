@@ -463,6 +463,7 @@ function super_run(config){
 	ready_users=0;
 		projects.forEach(project => {
 			var admin = connectedUsers.find(user => user.username === project.admin);
+			console.log(admin+" "+project.name +" "+ project.execute);
 			if (admin && admin.actualProject === project.name && project.execute) {
 				let data = {
 					type:"superRun",
