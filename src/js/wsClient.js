@@ -1,5 +1,5 @@
 import { connection } from './init.js';
-import { module_manager } from './client.js'
+import { module_manager,element_manager } from './client.js'
 import { createModule, createElement, requestProjInfo, deleteUser } from './utils.js';
 import { codeEditorPage, loginPage, regPage, projSelectPage, projListContainer, projInfoContainer, projUserContainer } from './DOMAccess.js';
 
@@ -146,7 +146,23 @@ connection.onmessage = (event) => {
         /*else {
             connection.send(JSON.stringify({type: 'denyCompetition'}));
         }*/
-    }else if (jsonData.type === 'everyoneReady'){
+    }
+	else if (jsonData.type === 'everyoneReady'){
 		module_manager.everyone_ready=true;
+	}
+	else if (jsonData.type === 'superRun'){
+		if (jsonData.config){
+			jsonData.elements.forEach(e => {
+				let newElement = new Element(e.projectName, {x:e.posx,y:e.posy});
+				element_manager.add_element(newElement);
+			});
+		}else{
+			jsonData.elements.forEach(e => {
+				element_manager.move_element(e.projectName, {x:e.posx,y:e.posy});
+			});
+		}
+		let newData = module_manager.server_run(id);
+		newData.type="superResponse";
+		connection.send(JSON.stringify(newData));
 	}
 }

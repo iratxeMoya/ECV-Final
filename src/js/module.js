@@ -92,6 +92,10 @@ class ElementManager {
         return this.elements.filter(ele => ele.id.toString() === id);
     }
 	
+	move_element (id,position){
+		this.getElementById(id).position = position;
+	}
+	
 	refresh(){
 		this.elements.forEach(element => {
 			element.dead=false;
@@ -643,7 +647,15 @@ class ModuleManager {
 		});
 	}
     
-    /**
+    
+	
+	server_run(){
+		let mod =this.modules.filter(module=>module.moduleType === "target" && !module.target.dead)[0];
+		mod.run();
+		return {position:mod.target.position,dir:mod.target.dir};
+	}
+	
+	 /**
      * Runs the code of all the modules in the manager
      */
 	run_modules() {

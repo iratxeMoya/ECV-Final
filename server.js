@@ -9,7 +9,12 @@ var mysql = require ('mysql');
 var wrapper = require('node-mysql-wrapper');
 var fs = require('fs');
 var ready_users =0;
+var total_users =0;
 var resquester = null;
+var lap=0;
+
+var boundaries = {top:0,bottom:0,left:0,right:0}
+var elements = []
 
 //start server
 var wss = new WebSocket.Server({server});
@@ -150,6 +155,7 @@ wss.on('connection', function(ws) {
             newProj.users = [requester.username];
             newProj.execute = false;
             newProj.admin = requester.username;
+			newProj.lap=0;
 
             requester.projects.push(newProj.name);
 
@@ -383,11 +389,13 @@ wss.on('connection', function(ws) {
             
         }
         else if (jsonData.type === 'requestCompetition') {
+			boundaries.bottom=jsonData.mapBottom;
+			boundaries.right=jsonData.mapRight;
             projects.forEach(project => {
                 var admin = connectedUsers.find(user => user.username === project.admin);
                 if (admin && admin.actualProject === project.name && admin.ws !== ws) {
                     admin.ws.send(data);
-					ready_users++;
+					total_users++;
 					//console.log(ready_users);
                 }
                 if (admin && admin.ws === ws) {
@@ -404,11 +412,31 @@ wss.on('connection', function(ws) {
         else if (jsonData.type === 'acceptCompetition') {
             var admin = connectedUsers.find(user => user.ws === ws);
             var project = projects.find(p => p.name === admin.actualProject);
-			ready_users--;
+			ready_users++;
             project.execute = true;
-			if (ready_users<1){
+			elements.push({posx:Math.random()%boundaries.right,posy:Math.random()%boundaries.bottom,projectName:project.name})
+			if (ready_users>=total_users){
 				requester.send(JSON.stringify({type:"everyoneReady"}));
 				//console.log(ready_users);
+			}
+        }else if (jsonData.type === 'superRun') {
+			super_run()
+        }else if (jsonData.type === 'superResponse') {
+           ready_users++;
+		   /*COSAS*/
+		   if(ready_users>=total_users){
+				elements.forEach(e =>{
+				if !valid_pos(e.posx,e.posy){
+					projects.find(proj => e.projectName === proj.name).execute = false;
+					total_users--;
+					elements.remove(elements.find(er => e.projectName === er.projectName));
+				}
+				});
+				if(total_users>1){
+					super_run();
+				}else{
+				   end_game();
+				}
 			}
         }
 
@@ -426,6 +454,28 @@ wss.on('connection', function(ws) {
 	});
 })
 
+function super_run(){
+	ready_users=0;
+		projects.forEach(project => {
+			var admin = connectedUsers.find(user => user.username === project.admin);
+			if (admin && admin.actualProject === project.name && project.execute) {
+				let data = {
+					type:"superRun",
+					elements:elements,
+					config:true
+				};
+				admin.ws.send(JSON.stringify(data));
+			}
+		})
+}
+
+function end_game(){
+	
+}
+
+function valid_pos(x,y){
+	return x>boundaries.left  && x<boundaries.right && y> boundaries.top && y<boundaries.bottom;
+}
 
 function loadInformation () {
 
