@@ -10,7 +10,7 @@ var wrapper = require('node-mysql-wrapper');
 var fs = require('fs');
 var ready_users =0;
 var total_users =0;
-var creator = null;
+var run_requester = null;
 var lap=0;
 
 var boundaries = {top:0,bottom:0,left:0,right:0}
@@ -405,10 +405,10 @@ wss.on('connection', function(ws) {
                     project.execute = true;
                 }
             })
-			creator = requester.ws;
+			run_requester = requester.ws;
 			if (ready_users<1){
 				console.log(ready_users);
-				creator.send(JSON.stringify({type:"everyoneReady"}));
+				run_requester.send(JSON.stringify({type:"everyoneReady"}));
 			}
         }
         else if (jsonData.type === 'acceptCompetition') {
@@ -420,7 +420,7 @@ wss.on('connection', function(ws) {
             project.execute = true;
 			elements.push({id:jsonData.elementId,posx:Math.random()%boundaries.right,posy:Math.random()%boundaries.bottom,projectName:project.name})
 			if (ready_users>=total_users){
-				creator.send(JSON.stringify({type:"everyoneReady"}));
+				run_requester.send(JSON.stringify({type:"everyoneReady"}));
 				//console.log(ready_users);
 			}
 			console.log("I'M IN "+project.name);
