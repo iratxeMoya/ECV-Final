@@ -149,6 +149,7 @@ connection.onmessage = (event) => {
     }
 	else if (jsonData.type === 'everyoneReady'){
 		module_manager.everyone_ready=true;
+		console.log("READY");
 	}
 	else if (jsonData.type === 'superRun'){
 		let newData={};
