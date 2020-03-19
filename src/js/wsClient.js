@@ -163,7 +163,7 @@ connection.onmessage = (event) => {
 			});
 		}
 		newData.type="superResponse";
-		newData.element = module_manager.server_run(element_manager.elements[0]);
+		newData.element = module_manager.server_run(element_manager.elements[0].id);
 		connection.send(JSON.stringify(newData));
 	}
 }

@@ -650,7 +650,7 @@ class ModuleManager {
     
 	
 	server_run(id){
-		console.log(id);
+		console.log("ID "+id);
 		let mod =this.modules.find(module=>module.moduleType === "target" && !module.target.dead && module.target.id === id);
 		mod.run();
 		return {id:id,position:mod.target.position,dir:mod.target.dir};
