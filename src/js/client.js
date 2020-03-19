@@ -55,7 +55,7 @@ function superrun(){
 
 	if(module_manager.everyone_ready){
 		superrun_popup.classList.toggle("showBlock");
-		
+		let jsonData ={};
 		jsonData.type = 'superRun';
 		
 		connection.send(JSON.stringify(jsonData));
