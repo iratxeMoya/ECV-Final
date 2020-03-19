@@ -140,7 +140,7 @@ connection.onmessage = (event) => {
     }
     else if (jsonData.type === 'requestCompetition') {
         if(confirm('New Competition! Take part?')) {
-            connection.send(JSON.stringify({type: 'acceptCompetition'}));
+            connection.send(JSON.stringify({elementId:element_manager.elements[0].id,type: 'acceptCompetition'}));
         }
         //esto creo que no hace falta
         /*else {
@@ -151,6 +151,7 @@ connection.onmessage = (event) => {
 		module_manager.everyone_ready=true;
 	}
 	else if (jsonData.type === 'superRun'){
+		let newData={};
 		if (jsonData.config){
 			jsonData.elements.forEach(e => {
 				let newElement = new Element(e.projectName, {x:e.posx,y:e.posy});
@@ -161,7 +162,8 @@ connection.onmessage = (event) => {
 				element_manager.move_element(e.projectName, {x:e.posx,y:e.posy});
 			});
 		}
-		let newData = module_manager.server_run();
+		newData.elementId=element_manager.elements[0].id;
+		newData = module_manager.server_run(jsonData.id);
 		newData.type="superResponse";
 		connection.send(JSON.stringify(newData));
 	}

@@ -649,8 +649,8 @@ class ModuleManager {
     
     
 	
-	server_run(){
-		let mod =this.modules.filter(module=>module.moduleType === "target" && !module.target.dead)[0];
+	server_run(id){
+		let mod =this.modules.find(module=>module.moduleType === "target" && !module.target.dead && module.target.id === id);
 		mod.run();
 		return {position:mod.target.position,dir:mod.target.dir};
 	}

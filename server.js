@@ -414,16 +414,16 @@ wss.on('connection', function(ws) {
             var project = projects.find(p => p.name === admin.actualProject);
 			ready_users++;
             project.execute = true;
-			elements.push({posx:Math.random()%boundaries.right,posy:Math.random()%boundaries.bottom,projectName:project.name})
+			elements.push({id:jsonData.elementId,posx:Math.random()%boundaries.right,posy:Math.random()%boundaries.bottom,projectName:project.name})
 			if (ready_users>=total_users){
 				requester.send(JSON.stringify({type:"everyoneReady"}));
 				//console.log(ready_users);
 			}
         }else if (jsonData.type === 'superRun') {
-			super_run()
+			super_run(true)
         }else if (jsonData.type === 'superResponse') {
            ready_users++;
-		   /*COSAS*/
+		   elements.
 		   if(ready_users>=total_users){
 				elements.forEach(e =>{
 				if (!valid_pos(e.posx,e.posy)){
@@ -433,7 +433,7 @@ wss.on('connection', function(ws) {
 				}
 				});
 				if(total_users>0){
-					super_run();
+					super_run(false);
 				}else{
 				   end_game();
 				}
@@ -454,7 +454,7 @@ wss.on('connection', function(ws) {
 	});
 })
 
-function super_run(){
+function super_run(config){
 	ready_users=0;
 		projects.forEach(project => {
 			var admin = connectedUsers.find(user => user.username === project.admin);
@@ -462,7 +462,7 @@ function super_run(){
 				let data = {
 					type:"superRun",
 					elements:elements,
-					config:true
+					config:config
 				};
 				admin.ws.send(JSON.stringify(data));
 			}
