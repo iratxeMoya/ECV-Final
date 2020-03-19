@@ -442,6 +442,7 @@ wss.on('connection', function(ws) {
 					console.log("AGAIN");
 					super_run(false);
 				}else{
+					console.log("FINISH");
 				   end_game();
 				}
 			}
