@@ -161,7 +161,7 @@ connection.onmessage = (event) => {
 				element_manager.move_element(e.projectName, {x:e.posx,y:e.posy});
 			});
 		}
-		let newData = module_manager.server_run(id);
+		let newData = module_manager.server_run();
 		newData.type="superResponse";
 		connection.send(JSON.stringify(newData));
 	}
