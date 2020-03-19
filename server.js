@@ -426,7 +426,7 @@ wss.on('connection', function(ws) {
 		   /*COSAS*/
 		   if(ready_users>=total_users){
 				elements.forEach(e =>{
-				if !valid_pos(e.posx,e.posy){
+				if (!valid_pos(e.posx,e.posy)){
 					projects.find(proj => e.projectName === proj.name).execute = false;
 					total_users--;
 					elements.remove(elements.find(er => e.projectName === er.projectName));
