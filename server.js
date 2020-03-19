@@ -403,9 +403,9 @@ wss.on('connection', function(ws) {
                 if (admin && admin.ws === ws) {
                     var project = projects.find(p => p.name === admin.actualProject);
                     project.execute = true;
-					creator = ws;
                 }
             })
+			creator = requester.ws;
 			if (ready_users<1){
 				console.log(ready_users);
 				creator.send(JSON.stringify({type:"everyoneReady"}));
