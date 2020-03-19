@@ -406,6 +406,7 @@ wss.on('connection', function(ws) {
                 }
             })
 			creator = requester.ws;
+			console.log(creator);
 			if (ready_users<1){
 				console.log(ready_users);
 				creator.send(JSON.stringify({type:"everyoneReady"}));
