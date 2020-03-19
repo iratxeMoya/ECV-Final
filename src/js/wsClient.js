@@ -2,7 +2,7 @@ import { connection } from './init.js';
 import { module_manager,element_manager } from './client.js'
 import { createModule, createElement, requestProjInfo, deleteUser } from './utils.js';
 import { codeEditorPage, loginPage, regPage, projSelectPage, projListContainer, projInfoContainer, projUserContainer } from './DOMAccess.js';
-import { Element } from './modules.js';
+import { Element } from './module.js';
 
 connection.onopen = event => {
 	//console.log('connection is open');
