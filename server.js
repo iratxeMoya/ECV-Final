@@ -428,9 +428,11 @@ wss.on('connection', function(ws) {
 		   console.log("RESPONSED");
 		   let elementidx=elements.findIndex(e=>e.id === jsonData.elementId);
 		   elements[elementidx]=jsonData.element;
+		   console.log(ready_users+" "+total_users);
 		   if(ready_users>=total_users){
 				elements.forEach(e =>{
 				if (!valid_pos(e.posx,e.posy)){
+					console.log("HAS MUERTO");
 					projects.find(proj => e.projectName === proj.name).execute = false;
 					total_users--;
 					elements.remove(elements.find(er => e.projectName === er.projectName));
