@@ -66,6 +66,8 @@ function superrun(){
 function requestCompetition() {
 	var jsonData = {};
 	jsonData.type = 'requestCompetition';
+	jsonData.mapRight = 30;
+	jsonData.mapBottom = 30;
 
 	superrun_popup.classList.toggle("showBlock");
 	
