@@ -489,6 +489,7 @@ class ModuleManager {
 		this.selectedGroup = null;
 		this.running = false;
 		this.everyone_ready=false;
+		this.ret={status:-1,mod:null};
     }
     
     /**
@@ -647,13 +648,21 @@ class ModuleManager {
 		});
 	}
     
-    
+    run_request(id){
+		this.waiting = id;
+	}
 	
 	server_run(id){
-		console.log("ID "+id);
-		let mod =this.modules.find(module=>module.moduleType === "target" && !module.target.dead && module.target.id === id);
-		mod.run();
-		return {id:id,position:mod.target.position,dir:mod.target.dir};
+		if (this.ret.status<0){
+			this.ret.status = 0;
+			console.log("ID "+id);
+			this.ret.mod =this.modules.find(module=>module.moduleType === "target" && !module.target.dead && module.target.id === id);
+			mod.run();
+			return null;	
+		}else if (this.ret.status>0){
+			this.ret.status = -1;
+			return {id:id,position:this.ret.mod.target.position,dir:this.ret.mod.target.dir}
+		}
 	}
 	
 	 /**

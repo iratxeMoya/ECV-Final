@@ -153,6 +153,7 @@ connection.onmessage = (event) => {
 	}
 	else if (jsonData.type === 'superRun'){
 		let newData={};
+		let ret=false;
 		if (jsonData.config){
 			jsonData.elements.forEach(e => {
 				let newElement = new Element(e.projectName, {x:e.posx,y:e.posy});
@@ -164,7 +165,10 @@ connection.onmessage = (event) => {
 			});
 		}
 		newData.type="superResponse";
-		newData.element = module_manager.server_run(element_manager.elements[0].id);
+		while(!ret){
+			ret=module_manager.server_run(element_manager.elements[0].id);
+		}
+		newData.element = ret
 		connection.send(JSON.stringify(newData));
 	}
 }
