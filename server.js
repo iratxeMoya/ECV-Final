@@ -438,7 +438,7 @@ wss.on('connection', function(ws) {
 					elements.remove(elements.find(er => e.projectName === er.projectName));
 				}
 				});
-				if(total_users>0){
+				if(total_users>=0){
 					console.log("AGAIN");
 					super_run(false);
 				}else{
