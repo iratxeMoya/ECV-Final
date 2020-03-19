@@ -434,6 +434,7 @@ wss.on('connection', function(ws) {
 				}
 				});
 				if(total_users>0){
+					console.log("AGAIN");
 					super_run(false);
 				}else{
 				   end_game();
@@ -465,6 +466,7 @@ function super_run(config){
 					elements:elements,
 					config:config
 				};
+				console.log("CURRAD ESCLAVOS");
 				admin.ws.send(JSON.stringify(data));
 			}
 		})
