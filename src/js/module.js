@@ -657,7 +657,7 @@ class ModuleManager {
 		if (this.ret.status<0){
 			this.ret.status = 0;
 			console.log("ID "+id);
-			this.ret.mod =this.modules.find(module=>module.moduleType === "target" && !module.target.dead && module.target.id === id);
+			this.ret.mod =this.modules[this.modules.findIndex(module=>module.moduleType === "target" && !module.target.dead && module.target.id === id)];
 			mod.run();
 			return null;	
 		}else if (this.ret.status>0){
