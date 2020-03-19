@@ -201,7 +201,7 @@ function update_gs() {
 	paintInCanvas(gs_w, gs_h, gs_ctx, img, false);
 	map.draw(gs_ctx);
 	element_manager.draw(gs_ctx);
-	module_manager.ret.status=1;
+	module_manager.ret.status=module_manager.ret.status==0 ? 1 : -1;
 }
 
 export{
