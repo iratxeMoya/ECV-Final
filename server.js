@@ -436,7 +436,7 @@ wss.on('connection', function(ws) {
 		   elements[elementidx]=jsonData.element;
 		   console.log(ready_users+" "+total_users);
 		   if(ready_users>=total_users){
-				ready users =0;
+				ready_users =0;
 				elements.forEach(e =>{
 				if (!valid_pos(e.posx,e.posy)){
 					console.log("HAS MUERTO");
