@@ -157,8 +157,12 @@ connection.onmessage = (event) => {
 		let ret=false;
 		if (jsonData.config){
 			jsonData.elements.forEach(e => {
-				let newElement = new Element(e.id, {x:e.posx,y:e.posy});
-				element_manager.add_element(newElement);
+				if(e.id != element_manager.elements[0].id){
+					let newElement = new Element(e.id, {x:e.posx,y:e.posy});
+					element_manager.add_element(newElement);
+				}else{
+					element_manager.move_element(e.id, {x:e.posx,y:e.posy});
+				}
 			});
 		}else{
 			jsonData.elements.forEach(e => {
