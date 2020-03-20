@@ -655,15 +655,15 @@ class ModuleManager {
 		this.waiting = id;
 	}
 	
-	server_run(id, set){
+	server_run(id=this.ret.id){
 		console.log(this.ret);
-		if (set){
+		if (!this.ret.id){
 			this.ret.id = id;
 			console.log("ID "+id);
-			this.ret.mod =this.modules.find(module=>module.moduleType === "target" && !module.target.dead && module.target.id === id);
 			return null;	
 		}else{
 			this.ret.mod.run();
+			this.ret.mod =this.modules.find(module=>module.moduleType === "target" && !module.target.dead && module.target.id === id);
 			this.ret.id = null;
 			return {id:id,position:this.ret.mod.target.position,dir:this.ret.mod.target.dir}
 		}
