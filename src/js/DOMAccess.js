@@ -11,12 +11,12 @@ var run_button = document.getElementsByClassName("run_code")[0];
 var stop_button = document.getElementsByClassName("stop_code")[0];
 var competition_button = document.querySelector(".competition");
 
-var superrun_popup = document.querySelector(".competition_popup,.ask");
-var answerrun_popup = document.querySelector(".competition_popup,.ans");
-var superrun_confirm = document.querySelector(".superrun,.ask");
-var superrun_cancel = document.querySelector(".cancel_comp,.ask");
-var answerrun_confirm = document.querySelector(".superrun,.ans");
-var answerrun_cancel = document.querySelector(".cancel_comp,.ans");
+var superrun_popup = document.querySelector(".competition_popup.ask");
+var answerrun_popup = document.querySelector(".competition_popup.ans");
+var superrun_confirm = document.querySelector(".superrun.ask");
+var superrun_cancel = document.querySelector(".cancel_comp.ask");
+var answerrun_confirm = document.querySelector(".superrun.ans");
+var answerrun_cancel = document.querySelector(".cancel_comp.ans");
 
 
 var basicModule = document.querySelector("#basicModule");
