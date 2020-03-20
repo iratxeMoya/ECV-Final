@@ -424,16 +424,19 @@ wss.on('connection', function(ws) {
 				//console.log(ready_users);
 			}
 			console.log("I'M IN "+project.name);
-        }else if (jsonData.type === 'superRun') {
+        }
+		else if (jsonData.type === 'superRun') {
 			console.log("RUN");
 			super_run(true)
-        }else if (jsonData.type === 'superResponse') {
+        }
+		else if (jsonData.type === 'superResponse') {
            ready_users++;
 		   console.log("RESPONSED");
 		   let elementidx=elements.findIndex(e=>e.id === jsonData.elementId);
 		   elements[elementidx]=jsonData.element;
 		   console.log(ready_users+" "+total_users);
 		   if(ready_users>=total_users){
+				ready users =0;
 				elements.forEach(e =>{
 				if (!valid_pos(e.posx,e.posy)){
 					console.log("HAS MUERTO");
