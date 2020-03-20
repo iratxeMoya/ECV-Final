@@ -159,16 +159,16 @@ connection.onmessage = (event) => {
 			console.log(jsonData.elements);
 			jsonData.elements.forEach(e => {
 				if(e.id != element_manager.elements[0].id){
-					let newElement = new Element(e.id, {x:e.posx,y:e.posy});
+					let newElement = new Element(e.id, e.position);
 					element_manager.add_element(newElement);
 				}else{
-					element_manager.move_element(e.id, {x:e.posx,y:e.posy});
+					element_manager.move_element(e.id, e.position);
 				}
 			});
 			console.log(element_manager.elemets);
 		}else{
 			jsonData.elements.forEach(e => {
-				element_manager.move_element(e.id, {x:e.posx,y:e.posy});
+				element_manager.move_element(e.id, e.position);
 			});
 		}
 		module_manager.server_run(element_manager.elements[0].id);
