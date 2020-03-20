@@ -140,6 +140,7 @@ connection.onmessage = (event) => {
         }
     }
     else if (jsonData.type === 'requestCompetition') {
+		answerrun_popup.classList.toggle("showBlock");
         // if(confirm('New Competition! Take part?')) {
         // }
         //esto creo que no hace falta
