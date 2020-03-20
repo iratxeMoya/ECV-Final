@@ -81,7 +81,7 @@ function requestCompetition() {
 	jsonData.type = 'requestCompetition';
 	jsonData.mapRight = 30;
 	jsonData.mapBottom = 30;
-	jsonData.elementId = element_manager.elements[0];
+	jsonData.elementId = element_manager.elements[0].id;
 
 	superrun_popup.classList.toggle("showBlock");
 	
