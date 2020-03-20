@@ -393,7 +393,6 @@ wss.on('connection', function(ws) {
 			var requester = connectedUsers.find(user => user.ws === ws);
 			boundaries.bottom=jsonData.mapBottom;
 			boundaries.right=jsonData.mapRight;
-			elements.push({id:jsonData.elementId,posx:Math.floor(Math.random()*100)%boundaries.right,posy:Math.floor(Math.random()*100)%boundaries.bottom,projectName:project.name})
             projects.forEach(project => {
                 var admin = connectedUsers.find(user => user.username === project.admin);
                 if (admin && admin.actualProject === project.name && admin.ws !== ws) {
@@ -404,6 +403,7 @@ wss.on('connection', function(ws) {
                 if (admin && admin.ws === ws) {
                     var project = projects.find(p => p.name === admin.actualProject);
                     project.execute = true;
+					elements.push({id:jsonData.elementId,posx:Math.floor(Math.random()*100)%boundaries.right,posy:Math.floor(Math.random()*100)%boundaries.bottom,projectName:project.name})
                 }
             })
 			run_requester = requester.ws;
