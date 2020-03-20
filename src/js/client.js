@@ -3,7 +3,7 @@ import { Map } from './map.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
 import { isHover, createModule, paintInCanvas, createElement, fillModuleDropDown,showModuleList} from './utils.js';
-import { wb_cvs,superrun_popup,superrun_cancel,superrun_confirm, wb_ctx,gs_cvs, gs_ctx,conditionModule, basicModule, argModule, targetModule, element, workbench,game_screen, run_button, stop_button, competition_button, dropdownMovement, dropdownControl, dropdownCondition} from './DOMAccess.js';
+import { wb_cvs,answerrun_confirm,answerrun_popup,answerrun_cancel,superrun_popup,superrun_cancel,superrun_confirm, wb_ctx,gs_cvs, gs_ctx,conditionModule, basicModule, argModule, targetModule, element, workbench,game_screen, run_button, stop_button, competition_button, dropdownMovement, dropdownControl, dropdownCondition} from './DOMAccess.js';
 
 var wb_h = workbench.style.height;
 var wb_w = workbench.style.width;
@@ -43,10 +43,23 @@ fillModuleDropDown(dropdownMovement,codes.movement,"movement");
 fillModuleDropDown(dropdownControl,codes.control,"control");
 fillModuleDropDown(dropdownCondition,codes.condition,"condition");
 
+answerrun_cancel.addEventListener("click",ans_no);
+answerrun_confirm.addEventListener("click",ans_ok);
+
 superrun_cancel.addEventListener("click",cancel_competition);
 superrun_confirm.addEventListener("click",superrun);
 
 // FUNCTIONS
+function ans_no(){
+	answerrun_popup.classList.toggle("showBlock");
+}
+
+function ans_ok(){
+	answerrun_popup.classList.toggle("showBlock");
+	connection.send(JSON.stringify({elementId:element_manager.elements[0].id,type: 'acceptCompetition'}));
+
+}
+
 function cancel_competition(){
 	superrun_popup.classList.toggle("showBlock");
 }

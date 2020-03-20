@@ -140,9 +140,8 @@ connection.onmessage = (event) => {
         }
     }
     else if (jsonData.type === 'requestCompetition') {
-        if(confirm('New Competition! Take part?')) {
-            connection.send(JSON.stringify({elementId:element_manager.elements[0].id,type: 'acceptCompetition'}));
-        }
+        // if(confirm('New Competition! Take part?')) {
+        // }
         //esto creo que no hace falta
         /*else {
             connection.send(JSON.stringify({type: 'denyCompetition'}));
