@@ -403,7 +403,7 @@ wss.on('connection', function(ws) {
                 if (admin && admin.ws === ws) {
                     var project = projects.find(p => p.name === admin.actualProject);
                     project.execute = true;
-					elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%boundaries.right,y:Math.floor(Math.random()*100)%boundaries.bottom},projectName:project.name})
+					elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-4),y:Math.floor(Math.random()*100)%(boundaries.bottom-4)},projectName:project.name})
                 }
             })
 			run_requester = requester.ws;
