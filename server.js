@@ -419,7 +419,7 @@ wss.on('connection', function(ws) {
             var project = projects.find(p => p.name === admin.actualProject);
 			ready_users++;
             project.execute = true;
-			elements.push({id:jsonData.elementId,posx:Math.floor(Math.random()*100)%boundaries.right,posy:Math.floor(Math.random()*100)%boundaries.bottom,projectName:project.name})
+			elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%boundaries.right,y:Math.floor(Math.random()*100)%boundaries.bottom},projectName:project.name})
 			if (ready_users>=total_users){
 				run_requester.send(JSON.stringify({type:"everyoneReady"}));
 				//console.log(ready_users);
@@ -439,7 +439,7 @@ wss.on('connection', function(ws) {
 		   if(ready_users>=total_users){
 				ready_users =0;
 				elements.forEach(e =>{
-				if (!valid_pos(e.posx,e.posy)){
+				if (!valid_pos(e.position.x,e.position.y)){
 					console.log("HAS MUERTO");
 					projects.find(proj => e.projectName === proj.name).execute = false;
 					total_users--;
