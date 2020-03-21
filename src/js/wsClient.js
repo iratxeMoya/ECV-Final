@@ -29,7 +29,7 @@ connection.onmessage = (event) => {
 
         if (jsonData.objectType === 'module') {
 
-            var target = module_manager.getModuleByID(jsonData.target);
+            var target = module_manager.getModuleByID(jsonData.target)[0];
 
             createModule(jsonData.id, jsonData.codeType, {x: jsonData.posx, y: jsonData.posy}, null, target, jsonData.arg, jsonData.moduleType, false, jsonData.north, jsonData.west, jsonData.east, jsonData.south);
 
