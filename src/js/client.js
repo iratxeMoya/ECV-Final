@@ -190,7 +190,7 @@ function update_workbench() {
 }
 
 function update_gs() {
-	
+	console.log(module_manager.ret.id);
 	if(module_manager.ret.id){
 		console.log("SUPERRESPONSE");
 		let newData={};
