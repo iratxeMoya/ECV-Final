@@ -389,7 +389,7 @@ class Module {
 		target = target ? target:this.getTarget();
 		//console.log(this.moduleType+" "+this.codeType);
 		if(target){
-			gonsole.log("RUN")
+			console.log("RUN")
 			console.log(target.position.x +" "+target.position.y);
 			eval(codes[this.moduleType][this.codeType]);
 			console.log(target.position.x +" "+target.position.y);
