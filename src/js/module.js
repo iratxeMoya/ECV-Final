@@ -138,6 +138,8 @@ class Module {
 			 'east' : null,
 			 'west' : null,
 		};
+
+		this.relative={dir: null, offset: {x: 0, y: 0}};
 		
 		if (north.node) {
 			this.assemble(north.node, 'north', north.type)
@@ -151,7 +153,6 @@ class Module {
 		if (south.node) {
 			this.assemble(south.node, 'south', south.type)
 		}
-        this.relative={dir: null, offset: {x: 0, y: 0}};
 
     }
 	
