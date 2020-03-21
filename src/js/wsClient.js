@@ -29,9 +29,7 @@ connection.onmessage = (event) => {
 
         if (jsonData.objectType === 'module') {
 
-            module_manager.click_modules(jsonData.posx, jsonData.posy);
-            createModule(jsonData.id, jsonData.codeType, {x: jsonData.posx, y: jsonData.posy}, null, jsonData.target, jsonData.arg, jsonData.moduleType, false, jsonData.north, jsonData.west, jsonData.east, jsonData.south)
-            module_manager.release_modules();
+            createModule(jsonData.id, jsonData.codeType, {x: jsonData.posx, y: jsonData.posy}, null, jsonData.target, jsonData.arg, jsonData.moduleType, false, jsonData.north, jsonData.west, jsonData.east, jsonData.south);
 
         }
         else if (jsonData.objectType === 'element') {
