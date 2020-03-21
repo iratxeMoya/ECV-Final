@@ -664,10 +664,11 @@ class ModuleManager {
 			//console.log("ID "+id);
 			return null;	
 		}else{
-			//console.log(this.ret);
+			console.log(this.ret.mod.target.position);
 			this.ret.mod =this.modules.find(module=>module.moduleType === "target" && !module.target.dead && module.target.id === id);
 			this.ret.mod.run();
 			this.ret.id = null;
+			console.log(this.ret.mod.target.position);
 			return {id:id,position:this.ret.mod.target.position,dir:this.ret.mod.target.dir}
 		}
 	}
