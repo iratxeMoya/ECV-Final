@@ -55,6 +55,7 @@ function ans_no(){
 }
 
 function ans_ok(){
+	element_manager.contestant =element_manager.elements[0].id
 	answerrun_popup.classList.toggle("showBlock");
 	connection.send(JSON.stringify({elementId:element_manager.contestant,type: 'acceptCompetition'}));
 
