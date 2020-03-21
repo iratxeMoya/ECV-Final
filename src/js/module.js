@@ -95,10 +95,10 @@ class ElementManager {
 	
 	move_element (id,position){
 		console.log(position);
-		console.log(this.getElementById(id)[0].position);
 		let idx =this.elements.findIndex(e=>e.id === id);
+		console.log(this.elements[idx].position);
 		this.elements[idx].position = position;
-		console.log(this.getElementById(id)[0].position);
+		console.log(this.elements[idx].position);
 	}
 	
 	refresh(){
