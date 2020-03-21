@@ -338,6 +338,7 @@ class Module {
 				ret =this.siblings[dir].node.run(target);
 			}				
 		}
+		return ret;
 	}
 	
 	isChild(module) {
