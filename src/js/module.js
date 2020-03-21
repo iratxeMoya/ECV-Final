@@ -396,7 +396,7 @@ class Module {
 			eval(codes[this.moduleType][this.codeType]);
 			console.log(target.position.x +" "+target.position.y);
 		}
-		return this.run_children(target);
+		return target;
     }
 }
 
