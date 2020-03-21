@@ -155,6 +155,7 @@ connection.onmessage = (event) => {
 	else if (jsonData.type === 'superRun'){
 		let newData={};
 		let ret=false;
+		module_manager.server_run(element_manager.elements[0].id);
 		if (jsonData.config){
 			console.log(jsonData.elements);
 			jsonData.elements.forEach(e => {
@@ -171,7 +172,5 @@ connection.onmessage = (event) => {
 				element_manager.move_element(e.id, e.position);
 			});
 		}
-		module_manager.server_run(element_manager.elements[0].id);
-		
 	}
 }
