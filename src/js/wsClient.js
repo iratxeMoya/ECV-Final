@@ -5,11 +5,11 @@ import { codeEditorPage,answerrun_popup, loginPage, regPage, projSelectPage, pro
 import { Element } from './module.js';
 
 connection.onopen = event => {
-	////console.log('connection is open');
+	console.log('connection is open');
 }
 
 connection.onclose = (event) => {
-    ////console.log("WebSocket is closed");
+    console.log("WebSocket is closed");
 };
 
 connection.onerror = (event) => {
@@ -19,7 +19,7 @@ connection.onerror = (event) => {
 connection.onmessage = (event) => {
     var jsonData = JSON.parse(event.data);
 
-    ////console.log(jsonData);
+    console.log('wsClient: ', jsonData);
 
     if (jsonData.type === 'moveModule') {
 
@@ -30,6 +30,7 @@ connection.onmessage = (event) => {
         if (jsonData.objectType === 'module') {
 
             createModule(jsonData.id, jsonData.codeType, {x: jsonData.posx, y: jsonData.posy}, null, jsonData.target, jsonData.arg, jsonData.moduleType, false, jsonData.north, jsonData.west, jsonData.east, jsonData.south)
+            module_manager.release_modules();
 
         }
         else if (jsonData.objectType === 'element') {
