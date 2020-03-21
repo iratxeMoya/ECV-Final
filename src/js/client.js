@@ -219,6 +219,7 @@ function update_gs() {
 	element_manager.draw(gs_ctx);
 	
 	if(module_manager.ret.id){
+		console.log("SUPERRESPONSE");
 		let newData={};
 		newData.type="superResponse";
 		newData.element = module_manager.server_run();
