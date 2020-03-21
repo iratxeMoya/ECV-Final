@@ -71,7 +71,7 @@ wss.on('connection', function(ws) {
     ws.on('message', function (data) {
 
         jsonData = JSON.parse(data);
-        ////console.log(jsonData, connectedUsers)
+        //////console.log(jsonData, connectedUsers)
         
         if (jsonData.type === 'login') {
             
@@ -139,7 +139,7 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'logout') {
 
-            //console.log('logout: ', jsonData);
+            ////console.log('logout: ', jsonData);
 
         }
         else if (jsonData.type === 'requestInfo') {
@@ -162,7 +162,7 @@ wss.on('connection', function(ws) {
             projects.push(newProj);
             
             modules[jsonData.name] = {};
-            //console.log('en create proj: ', modules);
+            ////console.log('en create proj: ', modules);
 
             modules['lastSaveDate'] = Date.now();
 
@@ -215,7 +215,7 @@ wss.on('connection', function(ws) {
         else if (jsonData.type === 'enterProj') {
 
             var requester = connectedUsers.find(user => user.ws === ws);
-            //console.log(requester, connectedUsers);
+            ////console.log(requester, connectedUsers);
             requester.actualProject = requester.projects.find(proj => proj === jsonData.project);
 
             ws.send(JSON.stringify({type: 'enterOK'}));
@@ -233,7 +233,7 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'requestProjInfo') {
 
-            //console.log(projects)
+            ////console.log(projects)
 
             var project = projects.find(proj => proj.name === jsonData.project);
 
@@ -261,12 +261,12 @@ wss.on('connection', function(ws) {
             info.moduleType = jsonData.moduleType;
             info.arg = jsonData.arg;
 
-            //console.log('en create proj: ', modules);
+            ////console.log('en create proj: ', modules);
             modules[requester.actualProject][jsonData.id.toString()] = info;
             modules['lastSaveDate'] = Date.now();
 
             orderModules();
-            //console.log('createModule ', modules);
+            ////console.log('createModule ', modules);
 
             var users = [];
             var project = projects.find(proj => proj.name === requester.actualProject);
@@ -306,7 +306,7 @@ wss.on('connection', function(ws) {
             project.users.forEach(user => {
                 var u = connectedUsers.find(u => u.username === user);
                 if (u) {
-                    //console.log(u);
+                    ////console.log(u);
                     users.push(u);
                 }
             })
@@ -322,7 +322,7 @@ wss.on('connection', function(ws) {
 
                 modules[requester.actualProject][module.id.toString()].posx = jsonData.posx;
                 modules[requester.actualProject][module.id.toString()].posy = jsonData.posy;
-				//console.log(jsonData);
+				////console.log(jsonData);
                 if (jsonData.remove) {
                     delete modules[requester.actualProject][module.id.toString()];
                 }else{
@@ -352,8 +352,8 @@ wss.on('connection', function(ws) {
         else if (jsonData.type === 'createElement') {
 
             var requester = connectedUsers.find(user => user.ws === ws);
-			console.log(connectedUsers);
-			console.log(jsonData);
+			//console.log(connectedUsers);
+			//console.log(jsonData);
             var info = {};
 
             info.id = jsonData.id;
@@ -374,7 +374,7 @@ wss.on('connection', function(ws) {
 
             orderModules();
 
-            //console.log('createElement ', modules);
+            ////console.log('createElement ', modules);
 
             var project = projects.find(proj => proj.name === requester.actualProject);
 
@@ -398,7 +398,7 @@ wss.on('connection', function(ws) {
                 if (admin && admin.actualProject === project.name && admin.ws !== ws) {
                     admin.ws.send(data);
 					total_users++;
-					//console.log(ready_users);
+					////console.log(ready_users);
                 }
                 if (admin && admin.ws === ws) {
                     var project = projects.find(p => p.name === admin.actualProject);
@@ -408,39 +408,40 @@ wss.on('connection', function(ws) {
             })
 			run_requester = requester.ws;
 			if (ready_users<1){
-				console.log(ready_users);
+				//console.log(ready_users);
 				run_requester.send(JSON.stringify({type:"everyoneReady"}));
 			}
         }
         else if (jsonData.type === 'acceptCompetition') {
-			console.log("\n\nCREATOR\n\n");
-			console.log(creator);
+			//console.log("\n\nCREATOR\n\n");
+			//console.log(creator);
             var admin = connectedUsers.find(user => user.ws === ws);
             var project = projects.find(p => p.name === admin.actualProject);
 			ready_users++;
             project.execute = true;
-			elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-4)+2,y:Math.floor(Math.random()*100)%(boundaries.bottom-4)+2},projectName:project.name})
+			elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-8)+4,y:Math.floor(Math.random()*100)%(boundaries.bottom-4)+2},projectName:project.name})
 			if (ready_users>=total_users){
 				run_requester.send(JSON.stringify({type:"everyoneReady"}));
-				//console.log(ready_users);
+				////console.log(ready_users);
 			}
-			console.log("I'M IN "+project.name);
+			//console.log("I'M IN "+project.name);
         }
 		else if (jsonData.type === 'superRun') {
-			console.log("RUN");
+			//console.log("RUN");
 			super_run(true)
         }
 		else if (jsonData.type === 'superResponse') {
            ready_users++;
-		   console.log("RESPONSED");
+		   //console.log("RESPONSED");
 		   let elementidx=elements.findIndex(e=>e.id === jsonData.elementId);
 		   elements[elementidx]=jsonData.element;
-		   console.log(ready_users+" "+total_users);
+		   //console.log(ready_users+" "+total_users);
 		   if(ready_users>=total_users){
+			   console.log(elements);
 				ready_users =0;
 				elements.forEach(e =>{
 				if (!valid_pos(e.position.x,e.position.y)){
-					console.log("HAS MUERTO");
+					//console.log("HAS MUERTO");
 					projects.find(proj => e.projectName === proj.name).execute = false;
 					total_users--;
 					let idx = elements.findIndex(er => e.projectName === er.projectName)
@@ -448,10 +449,10 @@ wss.on('connection', function(ws) {
 				}
 				});
 				if(total_users>=0){
-					console.log("AGAIN");
+					//console.log("AGAIN");
 					super_run(false);
 				}else{
-					console.log("FINISH");
+					//console.log("FINISH");
 				   end_game();
 				}
 			}
@@ -461,7 +462,7 @@ wss.on('connection', function(ws) {
 
     ws.on('close', function (event) {
 
-        //console.log('Connection closed');
+        ////console.log('Connection closed');
         var user = connectedUsers.findByField('ws', ws);
 
         connectedUsers.delete(user);
@@ -475,14 +476,14 @@ function super_run(config){
 	ready_users=0;
 		projects.forEach(project => {
 			var admin = connectedUsers.find(user => user.username === project.admin);
-			console.log(admin+" "+project.name +" "+ project.execute);
+			//console.log(admin+" "+project.name +" "+ project.execute);
 			if (admin && admin.actualProject === project.name && project.execute) {
 				let data = {
 					type:"superRun",
 					elements:elements,
 					config:config
 				};
-				console.log("CURRAD ESCLAVOS");
+				//console.log("CURRAD ESCLAVOS");
 				admin.ws.send(JSON.stringify(data));
 			}
 		})
@@ -498,7 +499,7 @@ function valid_pos(x,y){
 
 function loadInformation () {
 
-    //console.log('loading info');
+    ////console.log('loading info');
 
     var serverDate = modules['lastSaveDate'];
     var diskData = loadDatabaseFromDisk();
@@ -508,14 +509,14 @@ function loadInformation () {
         modules = modules;
         registeredUsers = registeredUsers;
         projects = projects;
-        //console.log('loaded diskDate is undefined: ', modules, registeredUsers, projects);
+        ////console.log('loaded diskDate is undefined: ', modules, registeredUsers, projects);
         return;
     }
     if (typeof serverDate === 'undefined') {
         modules = diskData[0];
         registeredUsers = diskData[1];
         projects = diskData[2]
-        //console.log('loaded serverDate is undefined: ', modules, registeredUsers, projects);
+        ////console.log('loaded serverDate is undefined: ', modules, registeredUsers, projects);
         return;
     }
 
@@ -523,7 +524,7 @@ function loadInformation () {
     registeredUsers = serverDate && serverDate > diskDate ? registeredUsers : diskData[1];
     projects = serverDate && serverDate > diskDate ? projects : diskData[2];
 
-    //console.log('loaded: ', modules, registeredUsers);
+    ////console.log('loaded: ', modules, registeredUsers);
 
 
 }
@@ -604,18 +605,18 @@ function init (ws) {
 
     orderModules();
 
-    //console.log('init ', modules);
+    ////console.log('init ', modules);
 
     for (project in modules) {
 
 
         if (requester.actualProject === project) {
-            //console.log(project);
+            ////console.log(project);
             for(id in modules[project]) {
 
                 var module = modules[project][id];
 
-                //console.log(id);
+                ////console.log(id);
 
                 var data = {};
                 data.type = 'reciveInfo';
@@ -642,7 +643,7 @@ function init (ws) {
 }
 
 server.listen(9027, function() {
-    //console.log('app listening on port 9027');
+    ////console.log('app listening on port 9027');
 });
 
 //all html files in src folder

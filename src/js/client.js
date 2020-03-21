@@ -18,7 +18,7 @@ var mouseY;
 
 
 var map = new Map(30,30);
-//console.log(map);
+////console.log(map);
 var module_manager = new ModuleManager(codes);
 var element_manager = new ElementManager();
 var img = new Image();
@@ -96,7 +96,7 @@ function run() {
 
 function stop(){
 	module_manager.running = false;
-	//console.log(module_manager.abort);
+	////console.log(module_manager.abort);
 }
 
 function move(event) {
@@ -142,7 +142,7 @@ function release(event) {
 		var deletingModuleIds = module_manager.remove_modules(module_manager.selectedGroup);
 		module_manager.selectedGroup = null;
 		remove = true;
-		//console.log(deletingModuleIds);
+		////console.log(deletingModuleIds);
 		deletingModuleIds.forEach(id => {
 			var element = {};
 			element.id = id;
@@ -153,7 +153,7 @@ function release(event) {
 		var activeModuleIds=[];
 		module_manager.selectedGroup.get_children_ids(activeModuleIds)
 		module_manager.release_modules();
-		//console.log(activeModuleIds);
+		////console.log(activeModuleIds);
 		activeModuleIds.forEach(id => {
 			
 			var module = module_manager.getModuleByID(id);
@@ -168,7 +168,7 @@ function release(event) {
 		})
 	}
 
-	//console.log('in release: ', modules);
+	////console.log('in release: ', modules);
 
 	connection.send(JSON.stringify({type: 'releaseModule', posx: event.offsetX, posy: event.offsetY, 'remove': remove, modules: modules, screenX: event.screenX, screenY: event.screenY}));
 

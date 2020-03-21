@@ -5,11 +5,11 @@ import { codeEditorPage,answerrun_popup, loginPage, regPage, projSelectPage, pro
 import { Element } from './module.js';
 
 connection.onopen = event => {
-	//console.log('connection is open');
+	////console.log('connection is open');
 }
 
 connection.onclose = (event) => {
-    //console.log("WebSocket is closed");
+    ////console.log("WebSocket is closed");
 };
 
 connection.onerror = (event) => {
@@ -19,7 +19,7 @@ connection.onerror = (event) => {
 connection.onmessage = (event) => {
     var jsonData = JSON.parse(event.data);
 
-    //console.log(jsonData);
+    ////console.log(jsonData);
 
     if (jsonData.type === 'moveModule') {
 
@@ -150,7 +150,7 @@ connection.onmessage = (event) => {
     }
 	else if (jsonData.type === 'everyoneReady'){
 		module_manager.everyone_ready=true;
-		console.log("READY");
+		//console.log("READY");
 	}
 	else if (jsonData.type === 'superRun'){
 		let newData={};
@@ -165,7 +165,7 @@ connection.onmessage = (event) => {
 					element_manager.move_element(e.id, e.position);
 				}
 			});
-			console.log(element_manager.elemets);
+			//console.log(element_manager.elemets);
 		}else{
 			jsonData.elements.forEach(e => {
 				element_manager.move_element(e.id, e.position);

@@ -110,7 +110,7 @@ function createProject () {
     connection.send(JSON.stringify(jsonData));
 
     var element = document.createElement("span");
-    //console.log(projName.value)
+    ////console.log(projName.value)
     element.innerText = projName.value;
     element.classList.add("list");
     element.addEventListener("click", requestProjInfo);

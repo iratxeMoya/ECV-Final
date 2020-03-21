@@ -6,7 +6,7 @@ import { isHover } from './utils.js'
 class Element {
 	
 	constructor (id, position, avatar = null) {
-		//console.log(position);
+		////console.log(position);
 		this.position={x:position.x,y:position.y};
 		this.id = id;
 		this.dir = 0;
@@ -67,7 +67,7 @@ class Element {
 	}
 	
 	colision(map){
-		//console.log(map);
+		////console.log(map);
 		let npos = this.next_pos();
 		return !map.is_valid(npos.x,npos.y);
 	}
@@ -94,11 +94,11 @@ class ElementManager {
     }
 	
 	move_element (id,position){
-		console.log(position);
+		//console.log(position);
 		let idx =this.elements.findIndex(e=>e.id === id);
-		console.log(this.elements[idx].position);
+		//console.log(this.elements[idx].position);
 		this.elements[idx].position = position;
-		console.log(this.elements[idx].position);
+		//console.log(this.elements[idx].position);
 	}
 	
 	refresh(){
@@ -385,9 +385,9 @@ class Module {
      * Runs code of the module
      */
     run (target = null) {
-		//console.log(target);
+		////console.log(target);
 		target = target ? target:this.getTarget();
-		console.log(this.moduleType+" "+this.codeType);
+		//console.log(this.moduleType+" "+this.codeType);
 		if(target){
 			eval(codes[this.moduleType][this.codeType]);
 		}
@@ -458,9 +458,9 @@ class ConditionModule extends Module {
 	run(target = null){
 		
         target = target ? target:this.getTarget();
-        //console.log("COND");
-		//console.log(target);
-		//console.log(this);
+        ////console.log("COND");
+		////console.log(target);
+		////console.log(this);
 		this.value=5;//DEBUGGING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		if (target) {
 
@@ -523,7 +523,7 @@ class ModuleManager {
 	remove_modules(module){
 		let ids=[];
 		module.get_children_ids(ids);
-		//console.log(ids);
+		////console.log(ids);
 		ids.forEach(id =>{
 			this.modules.remove(this.getModuleByID(id));
 		});
@@ -658,16 +658,16 @@ class ModuleManager {
 	}
 	
 	server_run(id=this.ret.id){
-		console.log(this.ret);
+		//console.log(this.ret);
 		if (!this.ret.id){
 			this.ret.id = id;
-			this.ret.mod =this.modules.find(module=>module.moduleType === "target" && !module.target.dead && module.target.id === id);
-			this.ret.mod.run();
-			console.log("ID "+id);
+			//console.log("ID "+id);
 			return null;	
 		}else{
+			//console.log(this.ret);
+			this.ret.mod =this.modules.find(module=>module.moduleType === "target" && !module.target.dead && module.target.id === id);
+			this.ret.mod.run();
 			this.ret.id = null;
-			console.log(this.ret);
 			return {id:id,position:this.ret.mod.target.position,dir:this.ret.mod.target.dir}
 		}
 	}
