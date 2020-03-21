@@ -403,7 +403,7 @@ wss.on('connection', function(ws) {
                 if (admin && admin.ws === ws) {
                     var project = projects.find(p => p.name === admin.actualProject);
                     project.execute = true;
-					elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-4),y:Math.floor(Math.random()*100)%(boundaries.bottom-4)},projectName:project.name})
+					elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-4),y:Math.floor(Math.random()*100)%(boundaries.bottom-4)	},projectName:project.name})
                 }
             })
 			run_requester = requester.ws;
@@ -443,7 +443,8 @@ wss.on('connection', function(ws) {
 					console.log("HAS MUERTO");
 					projects.find(proj => e.projectName === proj.name).execute = false;
 					total_users--;
-					elements.remove(elements.find(er => e.projectName === er.projectName));
+					let idx = elements.findIndex(er => e.projectName === er.projectName)
+					elements.splice(idx);
 				}
 				});
 				if(total_users>=0){
