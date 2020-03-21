@@ -14,7 +14,8 @@ var run_requester = null;
 var lap=0;
 
 var boundaries = {top:0,bottom:0,left:0,right:0}
-var elements = []
+var elements = [];
+var recived_elements =[];
 
 //start server
 var wss = new WebSocket.Server({server});
@@ -404,6 +405,7 @@ wss.on('connection', function(ws) {
                     var project = projects.find(p => p.name === admin.actualProject);
                     project.execute = true;
 					elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-4),y:Math.floor(Math.random()*100)%(boundaries.bottom-4)},projectName:project.name})
+					recived_elements.push(false);
                 }
             })
 			run_requester = requester.ws;
@@ -420,6 +422,7 @@ wss.on('connection', function(ws) {
 			ready_users++;
             project.execute = true;
 			elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-8)+4,y:Math.floor(Math.random()*100)%(boundaries.bottom-4)+2},projectName:project.name})
+			recived_elements.push(false);
 			if (ready_users>=total_users){
 				run_requester.send(JSON.stringify({type:"everyoneReady"}));
 				////console.log(ready_users);
@@ -431,13 +434,17 @@ wss.on('connection', function(ws) {
 			super_run(true)
         }
 		else if (jsonData.type === 'superResponse') {
-           ready_users++;
-		   //console.log("RESPONSED");
-		   let elementidx=elements.findIndex(e=>e.id === jsonData.element.id);
-		   elements[elementidx]=jsonData.element;
-		   //console.log(ready_users+" "+total_users);
-		   if(ready_users>=total_users){
-			   console.log(elements);
+			let elementidx=elements.findIndex(e=>e.id === jsonData.element.id);
+			if(!recived_elements[elementidx]){
+				ready_users++;
+				//console.log("RESPONSED");
+				recived_elements[elementidx] = true;
+				elements[elementidx]=jsonData.element;
+				//console.log(ready_users+" "+total_users);
+			}
+			if(ready_users>=total_users){
+				recived_elements.forEach(re => {re = false});
+				console.log(elements);
 				ready_users =0;
 				elements.forEach(e =>{
 				if (!valid_pos(e.position.x,e.position.y)){
