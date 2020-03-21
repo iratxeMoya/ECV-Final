@@ -198,6 +198,8 @@ class Module {
 	
 	assemble(node, direction, type) {
 
+		console.log(this)
+
         this.relative.dir = direction;
         
 		switch(direction) {
