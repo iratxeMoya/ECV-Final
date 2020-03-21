@@ -133,14 +133,14 @@ class Module {
 		this.codeType=codeType;
         this.id = id;
         this.siblings = {
-			 'north': null,
-			 'south': null,
-			 'east' : null,
-			 'west' : null,
+			 'north': {node: null, type: false},
+			 'south': {node: null, type: false},
+			 'east' : {node: null, type: false},
+			 'west' : {node: null, type: false},
 		};
 
 		this.relative={dir: null, offset: {x: 0, y: 0}};
-		
+
 		if (north.node) {
 			this.assemble(north.node, 'north', north.type)
 		}
