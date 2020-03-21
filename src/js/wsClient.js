@@ -30,7 +30,7 @@ connection.onmessage = (event) => {
         if (jsonData.objectType === 'module') {
 
             var target = element_manager.getElementById(jsonData.target);
-            console.log('target: ', target, )
+            console.log('target: ', target, element_manager.elements, jsonData.target)
 
             createModule(jsonData.id, jsonData.codeType, {x: jsonData.posx, y: jsonData.posy}, null, target ? target[0] : null, jsonData.arg, jsonData.moduleType, false, jsonData.north, jsonData.west, jsonData.east, jsonData.south);
 
