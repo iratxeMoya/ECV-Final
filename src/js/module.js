@@ -332,7 +332,7 @@ class Module {
     }
 	
 	run_children(target=null){
-		ret = target;
+		var ret = target;
 		for (let dir in this.siblings){
 			if(this.siblings[dir].node && this.siblings[dir].type){
 				ret =this.siblings[dir].node.run(target);
