@@ -674,7 +674,8 @@ class ModuleManager {
 			console.log(this.ret.mod.target.position);
 			let ntarget =this.ret.mod.run();
 			this.ret.id = null;
-			console.log(this.ret.mod.target.position);
+			console.log("TARGET");
+			console.log(ntarget);
 			return ntarget;
 		}
 	}
