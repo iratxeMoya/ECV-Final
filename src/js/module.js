@@ -700,7 +700,7 @@ class ModuleManager {
 		if (this.running){
 			this.modules.forEach(module => {
 
-				console.log(module.moduleType === "target" ? module.target : null);
+				console.log(module.moduleType === "target" ? module.target : 'nones');
 				module.moduleType === "target" ? (!module.target.dead ? module.run():null) : null;
 
 			});
