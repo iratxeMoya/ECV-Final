@@ -78,6 +78,7 @@ class ElementManager {
 
     constructor () {
         this.elements = [];
+		this.contestant = null;
     }
 
     add_element (element) {

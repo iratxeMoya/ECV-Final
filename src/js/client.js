@@ -56,7 +56,7 @@ function ans_no(){
 
 function ans_ok(){
 	answerrun_popup.classList.toggle("showBlock");
-	connection.send(JSON.stringify({elementId:element_manager.elements[0].id,type: 'acceptCompetition'}));
+	connection.send(JSON.stringify({elementId:element_manager.contestant,type: 'acceptCompetition'}));
 
 }
 
@@ -77,11 +77,12 @@ function superrun(){
 }
 
 function requestCompetition() {
+	element_manager.contestant =element_manager.elements[0].id
 	var jsonData = {};
 	jsonData.type = 'requestCompetition';
 	jsonData.mapRight = 30;
 	jsonData.mapBottom = 30;
-	jsonData.elementId = element_manager.elements[0].id;
+	jsonData.elementId = element_manager.contestant;
 
 	superrun_popup.classList.toggle("showBlock");
 	
