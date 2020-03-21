@@ -403,13 +403,11 @@ class Module {
      * Runs code of the module
      */
     run (target) {
-		////console.log(target);
+		console.log(target);
 		//console.log(this.moduleType+" "+this.codeType);
 		if(target){
-			console.log("RUN")
-			console.log(target.position.x +" "+target.position.y);
+			console.log("RUN");
 			eval(codes[this.moduleType][this.codeType]);
-			console.log(target.position.x +" "+target.position.y);
 		}
 		return this.run_children(target);
     }
