@@ -395,6 +395,7 @@ class Module {
 			console.log(target.position.x +" "+target.position.y);
 		}
 		this.run_children(target);
+		return target;
     }
 }
 
@@ -429,7 +430,7 @@ class ArgModule extends Module {
 		target = target ? target:this.getTarget();
         eval(codes[this.moduleType][this.codeType].replace('$arg$', this.arg)); 
         this.run_children(target);
-        
+        return target;
     }
 }
 
@@ -446,6 +447,7 @@ class TargetModule extends Module{
 	
 	run(target = null){
 		this.run_children(this.target);
+		return target;
 	}
 	
 }
@@ -482,6 +484,7 @@ class ConditionModule extends Module {
 
 			this.run_children(target);	
 		}
+		return target;
 	}
 	
 }
@@ -669,10 +672,10 @@ class ModuleManager {
 		}else{
 			this.ret.mod =this.modules.find(module=>module.moduleType === "target" && !module.target.dead && module.target.id === id);
 			console.log(this.ret.mod.target.position);
-			this.ret.mod.run();
+			let ntarget =this.ret.mod.run();
 			this.ret.id = null;
 			console.log(this.ret.mod.target.position);
-			return {id:id,position:this.ret.mod.target.position,dir:this.ret.mod.target.dir}
+			return ntarget;
 		}
 	}
 	
