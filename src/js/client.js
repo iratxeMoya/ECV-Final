@@ -191,6 +191,14 @@ function update_workbench() {
 
 function update_gs() {
 	
+	if(module_manager.ret.id){
+		console.log("SUPERRESPONSE");
+		let newData={};
+		newData.type="superResponse";
+		newData.element = module_manager.server_run();
+		connection.send(JSON.stringify(newData));
+	}
+	
 	gs_h = game_screen.clientHeight;
 	gs_w = game_screen.clientWidth;
 	gs_cvs.height = gs_h;
@@ -218,13 +226,7 @@ function update_gs() {
 	map.draw(gs_ctx);
 	element_manager.draw(gs_ctx);
 	
-	if(module_manager.ret.id){
-		console.log("SUPERRESPONSE");
-		let newData={};
-		newData.type="superResponse";
-		newData.element = module_manager.server_run();
-		connection.send(JSON.stringify(newData));
-	}
+	
 	
 }
 
