@@ -90,7 +90,7 @@ class ElementManager {
     }
 
     getElementById (id) {
-        return this.elements.filter(ele => ele.id.toString() === id);
+        return this.elements.filter(ele => ele.id === id);
     }
 	
 	move_element (id,position){
