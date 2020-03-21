@@ -138,6 +138,8 @@ function release(event) {
     var remove = false;
 	var modules = [];
 
+	console.log(event, module_manager.selectedGroup);
+
 	if (isHover(event.screenX, event.screenY) && module_manager.selectedGroup) {
 		var deletingModuleIds = module_manager.remove_modules(module_manager.selectedGroup);
 		module_manager.selectedGroup = null;
