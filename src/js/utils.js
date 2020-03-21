@@ -158,7 +158,11 @@ function createModule (id, codeType, position, map = null, target = null, arg = 
 			mod = new ArgModule(position, moduleType, codeType, id, arg, north, west, east, south);
 			break;
 		case 'target':
-			mod = new TargetModule(position, moduleType,codeType, target, id, north, west, east, south);
+			var targetModule = target;
+			if (typeof target !== Element) {
+				targetModule = element_manager.getElementById(target);
+			}
+			mod = new TargetModule(position, moduleType,codeType, targetModule, id, north, west, east, south);
 			break;
 		case 'condition':
 			mod = new ConditionModule(position, moduleType, codeType, id,map, north, west, east, south);
