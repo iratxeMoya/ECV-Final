@@ -128,9 +128,9 @@ function showModuleList(moduleType){
 }
 
 
-function createModule (id, codeType, position,map = null, target = null, arg = null, moduleType = "movement", send = false, northID = {nodeId: null, type: false}, westID = {nodeId: null, type: false}, eastID = {nodeId: null, type: false}, southID = {nodeId: null, type: false} ) {
+function createModule (id, codeType, position, map = null, target = null, arg = null, moduleType = "movement", send = false, northID = {nodeId: null, type: false}, westID = {nodeId: null, type: false}, eastID = {nodeId: null, type: false}, southID = {nodeId: null, type: false} ) {
 
-	var mod, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false};
+	var mod = null, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false};
 
 	if (northID) {
 		var northMod = module_manager.getModuleByID(northID.nodeId);
@@ -172,7 +172,7 @@ function createModule (id, codeType, position,map = null, target = null, arg = n
     if (mod) {
 
 		module_manager.add_module(mod);
-		////console.log(module_manager.modules, mod);
+		console.log(module_manager.modules, mod);
 
 	}
 	
