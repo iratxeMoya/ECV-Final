@@ -331,7 +331,7 @@ class Module {
         return Math.abs(module.position.x - this.position.x) < MODULESIZE * 2 && Math.abs(module.position.y - this.position.y) < MODULESIZE * 2;  
     }
 	
-	run_children(target=null){
+	run_children(target){
 		var ret = target;
 		for (let dir in this.siblings){
 			if(this.siblings[dir].node && this.siblings[dir].type){
@@ -386,9 +386,8 @@ class Module {
     /**
      * Runs code of the module
      */
-    run (target = null) {
+    run (target) {
 		////console.log(target);
-		target = target ? target:this.getTarget();
 		//console.log(this.moduleType+" "+this.codeType);
 		if(target){
 			console.log("RUN")
@@ -396,7 +395,7 @@ class Module {
 			eval(codes[this.moduleType][this.codeType]);
 			console.log(target.position.x +" "+target.position.y);
 		}
-		return target;
+		return this.run_children(target);
     }
 }
 
@@ -426,9 +425,7 @@ class ArgModule extends Module {
 		this.arg = arg;
 	}
 	
-	run(target = null) {
-
-		target = target ? target:this.getTarget();
+	run(target) {
         eval(codes[this.moduleType][this.codeType].replace('$arg$', this.arg)); 
         return this.run_children(target);
     }
@@ -445,7 +442,7 @@ class TargetModule extends Module{
 		
 	}
 	
-	run(target = null){
+	run(target=null){
 		return this.run_children(this.target);
 		 
 	}
@@ -460,9 +457,8 @@ class ConditionModule extends Module {
 		this.map = map;
 	}
 	
-	run(target = null){
+	run(target){
 		
-        target = target ? target:this.getTarget();
         ////console.log("COND");
 		////console.log(target);
 		////console.log(this);
