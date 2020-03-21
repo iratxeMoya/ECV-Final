@@ -332,9 +332,10 @@ class Module {
     }
 	
 	run_children(target=null){
+		ret = target;
 		for (let dir in this.siblings){
 			if(this.siblings[dir].node && this.siblings[dir].type){
-				this.siblings[dir].node.run(target);
+				ret =this.siblings[dir].node.run(target);
 			}				
 		}
 	}
@@ -394,8 +395,7 @@ class Module {
 			eval(codes[this.moduleType][this.codeType]);
 			console.log(target.position.x +" "+target.position.y);
 		}
-		this.run_children(target);
-		return target;
+		return this.run_children(target);
     }
 }
 
@@ -429,8 +429,7 @@ class ArgModule extends Module {
 
 		target = target ? target:this.getTarget();
         eval(codes[this.moduleType][this.codeType].replace('$arg$', this.arg)); 
-        this.run_children(target);
-        return target;
+        return this.run_children(target);
     }
 }
 
@@ -446,8 +445,8 @@ class TargetModule extends Module{
 	}
 	
 	run(target = null){
-		this.run_children(this.target);
-		return target;
+		return this.run_children(this.target);
+		 
 	}
 	
 }
@@ -482,9 +481,8 @@ class ConditionModule extends Module {
 				
 			}
 
-			this.run_children(target);	
+			return this.run_children(target);	
 		}
-		return target;
 	}
 	
 }
