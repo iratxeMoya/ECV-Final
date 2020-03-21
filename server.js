@@ -403,7 +403,7 @@ wss.on('connection', function(ws) {
                 if (admin && admin.ws === ws) {
                     var project = projects.find(p => p.name === admin.actualProject);
                     project.execute = true;
-					elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-4),y:Math.floor(Math.random()*100)%(boundaries.bottom-4)	},projectName:project.name})
+					elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-4),y:Math.floor(Math.random()*100)%(boundaries.bottom-4)},projectName:project.name})
                 }
             })
 			run_requester = requester.ws;
@@ -419,7 +419,7 @@ wss.on('connection', function(ws) {
             var project = projects.find(p => p.name === admin.actualProject);
 			ready_users++;
             project.execute = true;
-			elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%boundaries.right,y:Math.floor(Math.random()*100)%boundaries.bottom},projectName:project.name})
+			elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-4)+2,y:Math.floor(Math.random()*100)%(boundaries.bottom-4)+2},projectName:project.name})
 			if (ready_users>=total_users){
 				run_requester.send(JSON.stringify({type:"everyoneReady"}));
 				//console.log(ready_users);
