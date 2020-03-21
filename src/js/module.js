@@ -351,7 +351,7 @@ class Module {
 		var ret = target;
 		for (let dir in this.siblings){
 			if(this.siblings[dir].node && this.siblings[dir].type){
-				ret =this.siblings[dir].node.run(target);
+				ret = this.siblings[dir].node.run(target);
 			}				
 		}
 		return ret;
@@ -403,11 +403,13 @@ class Module {
      * Runs code of the module
      */
     run (target) {
-		console.log(target);
+		////console.log(target);
 		//console.log(this.moduleType+" "+this.codeType);
 		if(target){
-			console.log("RUN");
+			console.log("RUN")
+			console.log(target.position.x +" "+target.position.y);
 			eval(codes[this.moduleType][this.codeType]);
+			console.log(target.position.x +" "+target.position.y);
 		}
 		return this.run_children(target);
     }
@@ -457,6 +459,8 @@ class TargetModule extends Module{
 	}
 	
 	run(target=null){
+
+		console.log(this)
 		return this.run_children(this.target);
 		 
 	}
