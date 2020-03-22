@@ -456,7 +456,7 @@ wss.on('connection', function(ws) {
 			console.log(recived_elements);
 			console.log(ready_users+"/"+total_users);
 			if(ready_users>=total_users){
-				recived_elements.forEach(re => {return false});
+				recived_elements.fill(false);
 				console.log(recived_elements);
 				console.log(elements);
 				ready_users =0;
