@@ -169,27 +169,19 @@ span.clicked {
     color: black;
     cursor: pointer;
 }
-/* width */
-::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+.wrapper::-webkit-scrollbar {
+    display: block;
+    width: 5px;
+}
+.wrapper::-webkit-scrollbar-track {
+    background: transparent;
+}
     
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888; 
-    height: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+.wrapper::-webkit-scrollbar-thumb {
+    background-color: red;
+    border-right: none;
+    border-left: none;
+}
 
 .wrapper::-webkit-scrollbar-track-piece:end {
     background: transparent;
