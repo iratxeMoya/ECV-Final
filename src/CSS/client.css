@@ -153,6 +153,7 @@
 	height: 30px;
 	text-decoration: none;
 	display: block;
+	overflow: hidden;
 }
 .dropdown-content span:hover {
 	cursor: pointer;
@@ -184,6 +185,7 @@
 	height: 30px;
 	text-decoration: none;
 	display: block;
+	overflow: hidden;
 }
 
 .dropdown-move span:hover {
@@ -229,6 +231,7 @@
 	height: 30px;
 	text-decoration: none;
 	display: block;
+	overflow: hidden;
 }
 
 .dropdown-cont span:hover {
@@ -261,6 +264,7 @@
 	height: 30px;
 	text-decoration: none;
 	display: block;
+	overflow: hidden;
 }
 
 .dropdown-cond span:hover {
