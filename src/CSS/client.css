@@ -76,9 +76,9 @@ span#element {
 .target {
     position: absolute;
     height: 30px;
-    width: 150px;
+    width: 170px;
     z-index: 2;
-    left: 25px;
+    left: 15px;
     vertical-align: middle;
     top: 50px;
     border-radius: 31px;
