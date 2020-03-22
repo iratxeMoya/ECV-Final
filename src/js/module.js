@@ -93,7 +93,8 @@ class ElementManager {
 		console.log("GETTING")
 		console.log(id);
 		console.log(this.elements);
-        return this.elements.filter(ele => ele.id === id);
+		let ret = this.elements.filter(ele => ele.id === id);
+        return ret;
     }
 	
 	move_element (id,position){
