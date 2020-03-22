@@ -169,26 +169,26 @@ span.clicked {
     color: black;
     cursor: pointer;
 }
-#projListContainer::-webkit-scrollbar {
+::-webkit-scrollbar {
     display: block;
     width: 5px;
 }
-#projListContainer::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background: transparent;
 }
     
-#projListContainer::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background-color: #678ba3;
-    border-right: none;
+    border-right: 5px;
     border-left: none;
 }
 
-#projListContainer::-webkit-scrollbar-track-piece:end {
+::-webkit-scrollbar-track-piece:end {
     background: transparent;
-    margin-bottom: 15px; 
+    margin-bottom: 20px; 
 }
 
-#projListContainer::-webkit-scrollbar-track-piece:start {
+::-webkit-scrollbar-track-piece:start {
     background: transparent;
-    margin-top: 15px;
+    margin-top: 20px;
 }
