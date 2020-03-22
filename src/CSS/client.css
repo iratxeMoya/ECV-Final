@@ -134,38 +134,63 @@
   
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-display: none;
-background-color: #f1f1f1;
-min-width: 160px;
-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-z-index: 1;
+    display: none;
+    background-color: #354152;
+    width: 146px;
+    z-index: 1;
+    margin-left: 12px;
+    margin-right: 12px;
+    text-align: center;
+    border: 1px solid;
+    padding: 1rem;
+    border-top: none;
+    overflow-y: scroll;
+    color: #6b869b;
 }
 
 /* Links inside the dropdown */
 .dropdown-content span {
-color: black;
 padding: 12px 16px;
 text-decoration: none;
 display: block;
+}
+.dropdown-content span :hover {
+	cursor: pointer;
+	background-color: #678ba3;
+    border-radius: 31px;
+    color: black;
 }
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #ddd}
 
 .dropdown-move {
-display: none;
-background-color: #f1f1f1;
-min-width: 160px;
-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-z-index: 1;
+    display: none;
+    background-color: #354152;
+    width: 146px;
+    z-index: 1;
+    margin-left: 12px;
+    margin-right: 12px;
+    text-align: center;
+    border: 1px solid;
+    padding: 1rem;
+    border-top: none;
+    overflow-y: scroll;
+    color: #6b869b;
 }
 
 /* Links inside the dropdown */
 .dropdown-move span {
-color: black;
-padding: 12px 16px;
-text-decoration: none;
-display: block;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-move span :hover {
+	cursor: pointer;
+	background-color: #678ba3;
+    border-radius: 31px;
+    color: black;
 }
 
 .competition_popup {
@@ -185,38 +210,64 @@ display: block;
 .dropdown-move a:hover {background-color: #ddd}
 
 .dropdown-cont {
-display: none;
-background-color: #f1f1f1;
-min-width: 160px;
-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-z-index: 1;
+    display: none;
+    background-color: #354152;
+    width: 146px;
+    z-index: 1;
+    margin-left: 12px;
+    margin-right: 12px;
+    text-align: center;
+    border: 1px solid;
+    padding: 1rem;
+    border-top: none;
+    overflow-y: scroll;
+    color: #6b869b;
 }
 
 /* Links inside the dropdown */
 .dropdown-cont span {
-color: black;
-padding: 12px 16px;
-text-decoration: none;
-display: block;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-cont span :hover {
+	cursor: pointer;
+	background-color: #678ba3;
+    border-radius: 31px;
+    color: black;
 }
 
 /* Change color of dropdown links on hover */
 .dropdown-cont a:hover {background-color: #ddd}
 
 .dropdown-cond {
-display: none;
-background-color: #f1f1f1;
-min-width: 160px;
-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-z-index: 1;
+    display: none;
+    background-color: #354152;
+    width: 146px;
+    z-index: 1;
+    margin-left: 12px;
+    margin-right: 12px;
+    text-align: center;
+    border: 1px solid;
+    padding: 1rem;
+    border-top: none;
+    overflow-y: scroll;
+    color: #6b869b;
 }
 
 /* Links inside the dropdown */
 .dropdown-cond span {
-color: black;
-padding: 12px 16px;
-text-decoration: none;
-display: block;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-cond span :hover {
+	cursor: pointer;
+	background-color: #678ba3;
+    border-radius: 31px;
+    color: black;
 }
 
 /* Change color of dropdown links on hover */
