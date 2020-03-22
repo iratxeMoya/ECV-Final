@@ -84,7 +84,7 @@ function clickDropDownModule (moduleType, codeType) {
 			break;
 		case 'target':	
 			mod = new TargetModule({x:100,y:100}, moduleType, "target",null, id);
-			dropdownContainer.classList.toggle("showBlock");
+			//dropdownContainer.classList.toggle("showBlock");
 			break;
 		case 'condition':
 			mod = new ConditionModule({x:100,y:100}, moduleType, codeType, id, map);
