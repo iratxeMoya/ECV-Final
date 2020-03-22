@@ -112,6 +112,11 @@
     border: none;
     color: black;
 }
+.target:hover{
+	background-color: #678ba3;
+    border: none;
+    color: black;
+}
 
 .run_code:hover{
 	background-color:lightgreen;
