@@ -353,7 +353,7 @@ wss.on('connection', function(ws) {
             
         }
         else if (jsonData.type === 'createElement') {
-
+			console.log(connectedUsers);
             var requester = connectedUsers.find(user => user.ws === ws);
 			console.log(connectedUsers);
 			console.log(jsonData);
