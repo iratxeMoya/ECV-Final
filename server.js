@@ -429,7 +429,7 @@ wss.on('connection', function(ws) {
 			console.log(creator);
             var admin = connectedUsers.find(user => user.ws === ws);
             var project = projects.find(p => p.name === admin.actualProject);
-			ready_users++;
+			total_users++;
             project.execute = true;
 			elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-8)+4,y:Math.floor(Math.random()*100)%(boundaries.bottom-4)+2},projectName:project.name})
 			recived_elements.push(false);
