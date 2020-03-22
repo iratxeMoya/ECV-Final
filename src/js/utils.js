@@ -1,9 +1,10 @@
 import { Module,ConditionModule, ArgModule, TargetModule, Element } from './module.js';
 import { module_manager, element_manager, map } from './client.js';
 import { connection } from './init.js';
-import { dropdownContainer,dropdownMovement, dropdownControl, dropdownCondition, projInfoContainer, projUserContainer, projListContainer, argModule, basicModule, conditionModule } from './DOMAccess.js';
+import { dropdownContainer,dropdownMovement, dropdownControl, dropdownCondition, projInfoContainer, projUserContainer, projListContainer, argModule, basicModule, conditionModule, targetModule } from './DOMAccess.js';
 
 var targetModulePos = null;
+var thereAreElements = false;
 
 /**
  * Is x, y position hovering the trash icon?
@@ -23,7 +24,7 @@ function isHover(x, y) {
 
 function createElement (id, position, send = true) {
 
-
+	thereAreElements = true;
 	var element = new Element(id, position);
 	element_manager.add_element(element);
 	
@@ -84,7 +85,8 @@ function clickDropDownModule (moduleType, codeType) {
 			break;
 		case 'target':	
 			mod = new TargetModule({x:100,y:100}, moduleType, "target",null, id);
-			//dropdownContainer.classList.toggle("showBlock");
+			thereAreElements ? dropdownContainer.classList.toggle("showBlock"): null;
+			thereAreElements ? targetModule.classList.toggle("spaceDown") : null;
 			break;
 		case 'condition':
 			mod = new ConditionModule({x:100,y:100}, moduleType, codeType, id, map);
@@ -118,7 +120,8 @@ function showModuleList(moduleType){
 				dropdownControl.classList.toggle("showBlock");
 		case 'target':
 				targetModulePos = {x:100,y:100};
-				//dropdownContainer.classList.toggle("showBlock");
+				thereAreElements ? dropdownContainer.classList.toggle("showBlock"): null;
+				thereAreElements ? targetModule.classList.toggle("spaceDown") : null;
 			break;
 		case 'condition':
 				targetModulePos = {x:100,y:100};
