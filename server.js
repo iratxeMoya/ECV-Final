@@ -156,7 +156,7 @@ wss.on('connection', function(ws) {
 				newProj.name = jsonData.name;
 				
 				newProj.users = [requester.username];
-				newProj.execute = false;
+				newProj.execute = 0;
 				newProj.admin = requester.username;
 				newProj.lap=0;
 
@@ -414,7 +414,7 @@ wss.on('connection', function(ws) {
                 }
                 if (admin && admin.ws === ws) {
                     var project = projects.find(p => p.name === admin.actualProject);
-                    project.execute = true;
+                    project.execute = 1;
 					elements.push({element:{id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-8)+4,y:Math.floor(Math.random()*100)%(boundaries.bottom-4)+2}},projectName:project.name})
 					recived_elements.push(false);
                 }
@@ -431,7 +431,7 @@ wss.on('connection', function(ws) {
             var admin = connectedUsers.find(user => user.ws === ws);
             var project = projects.find(p => p.name === admin.actualProject);
 			total_users++;
-            project.execute = true;
+            project.execute = 1;
 			elements.push({element:{id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-8)+4,y:Math.floor(Math.random()*100)%(boundaries.bottom-4)+2}},projectName:project.name})
 			recived_elements.push(false);
 			if (ready_users>=total_users){
@@ -466,7 +466,7 @@ wss.on('connection', function(ws) {
 				elements.forEach(e =>{
 				if (!valid_pos(e.element.position.x,e.element.position.y)){
 					console.log("HAS MUERTO");
-					projects.find(proj => e.projectName === proj.name).execute = false;
+					projects.find(proj => e.projectName === proj.name).execute = -1;
 					total_users--;
 					let idx = elements.findIndex(er => e.projectName === er.projectName)
 					elements.splice(idx);
@@ -501,7 +501,7 @@ function super_run(config){
 		projects.forEach(project => {
 			var admin = connectedUsers.find(user => user.username === project.admin);
 			console.log(admin+" "+project.name +" "+ project.execute);
-			if (admin && admin.actualProject === project.name && project.execute) {
+			if (admin && admin.actualProject === project.name && project.execute>0) {
 				let data = {
 					type:"superRun",
 					elements:elements,
@@ -516,14 +516,16 @@ function super_run(config){
 function end_game(winner){
 	
 	projects.forEach(project => {
-		console.log(project)
-		console.log(connectedUsers)
-		var admin = connectedUsers.find(user => user.username === project.admin);
-		let data = {
-			type:"endGame",
-			winner:winner
-		};
-		admin.ws.send(JSON.stringify(data));
+		if(project.execute!=0){
+			console.log(project)
+			console.log(connectedUsers)
+			var admin = connectedUsers.find(user => user.username === project.admin);
+			let data = {
+				type:"endGame",
+				winner:winner
+			};
+			admin.ws.send(JSON.stringify(data));
+		}
 	})
 	
 }
