@@ -127,7 +127,9 @@ span#element {
 }
 
 .module:hover{
-	background-color:grey;
+	background-color: #678ba3;
+    border: none;
+    color: black;
 }
 
 .run_code:hover{
