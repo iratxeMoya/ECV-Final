@@ -464,7 +464,7 @@ wss.on('connection', function(ws) {
 				console.log(elements);
 				ready_users =0;
 				elements.forEach(e =>{
-				if (!valid_pos(e.position.x,e.position.y)){
+				if (!valid_pos(e.element.position.x,e.element.position.y)){
 					console.log("HAS MUERTO");
 					projects.find(proj => e.projectName === proj.name).execute = false;
 					total_users--;
