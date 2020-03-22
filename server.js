@@ -13,6 +13,7 @@ var total_users =0;
 var run_requester = null;
 var lap=0;
 
+
 var boundaries = {top:0,bottom:0,left:0,right:0}
 var elements = [];
 var recived_elements =[];
@@ -469,12 +470,12 @@ wss.on('connection', function(ws) {
 					elements.splice(idx);
 				}
 				});
-				if(total_users>=0){
+				if(total_users>1){
 					console.log("AGAIN");
 					super_run(false);
 				}else{
 					console.log("FINISH");
-				   end_game();
+					end_game(elements[0].projectName);
 				}
 			}
         }
@@ -510,7 +511,16 @@ function super_run(config){
 		})
 }
 
-function end_game(){
+function end_game(winner){
+	
+	projects.forEach(project => {
+		var admin = connectedUsers.find(user => user.username === project.admin);
+		let data = {
+			type:"endGame",
+			winner:winner
+		};
+		admin.ws.send(JSON.stringify(data));
+	})
 	
 }
 

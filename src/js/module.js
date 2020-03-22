@@ -5,12 +5,13 @@ import { isHover } from './utils.js'
 
 class Element {
 	
-	constructor (id, position, avatar = null) {
+	constructor (id, position,contestant=false, avatar = null) {
 		////console.log(position);
 		this.position={x:position.x,y:position.y};
 		this.id = id;
 		this.dir = 0;
 		this.dead=false;
+		this.contest= contestant;
 		
     }
 	
@@ -124,6 +125,14 @@ class ElementManager {
             element.draw(gs_ctx);
         })
     }
+	
+	end_contest(){
+		for( let i=0;i<this.elements.length;i++){
+			if(elements[i].contest){
+				elements.splice(i);
+			}
+		}
+	}
 
     
 }

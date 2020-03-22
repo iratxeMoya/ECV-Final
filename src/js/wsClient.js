@@ -164,7 +164,7 @@ connection.onmessage = (event) => {
 			console.log(jsonData.elements);
 			jsonData.elements.forEach(e => {
 				if(e.id != element_manager.contestant){
-					let newElement = new Element(e.id, e.position);
+					let newElement = new Element(e.id, e.position,true);
 					element_manager.add_element(newElement);
 				}else{
 					element_manager.move_element(e.id, e.position);
@@ -177,5 +177,8 @@ connection.onmessage = (event) => {
 			});
 		}
 		module_manager.server_run(element_manager.contestant);
+	}else (jsonData.type === 'endGame'){
+		alert("WINNER IS "+jsonData.winner+"'S ELEMENT");
+		element_manager.end_contest();
 	}
 }
