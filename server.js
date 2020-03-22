@@ -189,7 +189,7 @@ wss.on('connection', function(ws) {
 
             var projIndex = projects.findIndex(proj => proj.name === jsonData.projName);
 
-            if (projIndex !== 0) {
+            if (projIndex !== 0 && invited) {
                 projects[projIndex].users.push(invited.username);
 
                 invited.projects.push(projects[projIndex].name);
