@@ -118,7 +118,7 @@ function showModuleList(moduleType){
 				dropdownControl.classList.toggle("showBlock");
 		case 'target':
 				targetModulePos = {x:100,y:100};
-				dropdownContainer.classList.toggle("showBlock");
+				//dropdownContainer.classList.toggle("showBlock");
 			break;
 		case 'condition':
 				targetModulePos = {x:100,y:100};
