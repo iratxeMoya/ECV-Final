@@ -516,6 +516,8 @@ function super_run(config){
 function end_game(winner){
 	
 	projects.forEach(project => {
+		console.log(project)
+		console.log(connectedUsers)
 		var admin = connectedUsers.find(user => user.username === project.admin);
 		let data = {
 			type:"endGame",
