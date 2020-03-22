@@ -43,48 +43,29 @@
 }
 
 .module{
-	position: absolute;
-    height: 30px;
+	height: 30px;
     width: 170px;
     z-index: 2;
-    left: 15px;
-    vertical-align: middle;
-    top: 50px;
+    align-self: center;
     border-radius: 31px;
     color: #7e8ba3;
     border: 1px solid #7e8ba3;
     cursor: pointer;
-}
-
-span#conditionModule {
-    top: 100px;
-}
-
-span#argModule {
-    top: 150px;
-}
-
-
-span#targetModule {
-    top: 200px;
-}
-
-span#element {
-    top: 250px;
+    display: block;
+    margin-top: 1em;
 }
 
 .target {
-    position: absolute;
     height: 30px;
     width: 170px;
     z-index: 2;
-    left: 15px;
-    vertical-align: middle;
-    top: 50px;
+    align-self: center;
     border-radius: 31px;
     color: #7e8ba3;
     border: 1px solid #7e8ba3;
     cursor: pointer;
+    display: block;
+    margin-top: 1em;
 }
 
 
@@ -258,4 +239,8 @@ display: block;
 }
 #regPage {
 	display: none;
+}
+
+.spaceDown {
+	margin-bottom: 150px;
 }

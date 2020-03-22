@@ -1,7 +1,7 @@
 import { Module,ConditionModule, ArgModule, TargetModule, Element } from './module.js';
 import { module_manager, element_manager, map } from './client.js';
 import { connection } from './init.js';
-import { dropdownContainer,dropdownMovement, dropdownControl, dropdownCondition, projInfoContainer, projUserContainer, projListContainer } from './DOMAccess.js';
+import { dropdownContainer,dropdownMovement, dropdownControl, dropdownCondition, projInfoContainer, projUserContainer, projListContainer, argModule, basicModule, conditionModule } from './DOMAccess.js';
 
 var targetModulePos = null;
 
@@ -80,6 +80,7 @@ function clickDropDownModule (moduleType, codeType) {
 		case 'control':
 			mod = new ArgModule({x:100,y:100}, moduleType, codeType, id,null);
 			dropdownControl.classList.toggle("showBlock");
+			argModule.classList.toggle("spaceDown");
 			break;
 		case 'target':	
 			mod = new TargetModule({x:100,y:100}, moduleType, "target",null, id);
@@ -88,10 +89,12 @@ function clickDropDownModule (moduleType, codeType) {
 		case 'condition':
 			mod = new ConditionModule({x:100,y:100}, moduleType, codeType, id, map);
 			dropdownCondition.classList.toggle("showBlock");
+			conditionModule.classList.toggle("spaceDown");
 			break;
 		default:
 			mod = new Module({x:100,y:100}, moduleType, codeType, id);
 			dropdownMovement.classList.toggle("showBlock");
+			basicModule.classList.toggle("spaceDown");
 			break;
 	}
 
@@ -111,6 +114,7 @@ function showModuleList(moduleType){
 	switch (moduleType){
 		case 'control':
 				targetModulePos = {x:100,y:100};
+				argModule.classList.toggle("spaceDown");
 				dropdownControl.classList.toggle("showBlock");
 		case 'target':
 				targetModulePos = {x:100,y:100};
@@ -118,10 +122,12 @@ function showModuleList(moduleType){
 			break;
 		case 'condition':
 				targetModulePos = {x:100,y:100};
+				conditionModule.classList.toggle("spaceDown");
 				dropdownCondition.classList.toggle("showBlock");
 			break;
 		default:
 				targetModulePos = {x:100,y:100};
+				basicModule.classList.toggle("spaceDown");
 				dropdownMovement.classList.toggle("showBlock");
 			break;
 	}
@@ -165,7 +171,6 @@ function createModule (id, codeType, position, map = null, target = null, arg = 
 			mod = new ConditionModule(position, moduleType, codeType, id,map, north, west, east, south);
 			break;
 		default:
-			////console.log('is default');
 			mod = new Module(position, moduleType, codeType, id, north, west, east, south);
 			break;
 	}
@@ -195,9 +200,6 @@ function sendModuleInfo (module, codeType, moduleType, arg) {
 	newModule.codeType = codeType;
 	newModule.moduleType = moduleType;
 	newModule.arg = arg;
-
-	////console.log(module);
-	////console.log(newModule);
 	
 	connection.send(JSON.stringify(newModule));
 
