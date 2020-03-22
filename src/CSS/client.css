@@ -15,12 +15,15 @@
 }
 
 .module_shelf{
-	position:absolute;
-	top:20px;
-	left:20px;
-	background-color:blue;
-	width:200px;
-	height:calc(100% - 40px);
+	position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 200px;
+    height: calc(100% - 40px);
+    box-shadow: 0 0 70px #000;
+    text-align: center;
+	padding: 2rem;
+	overflow-y: scroll;
 }
 
 .game_screen{
@@ -40,29 +43,30 @@
 }
 
 .module{
-	position:absolute;
-	background-color:red;
-	width:100px;
-	height:100px;
-	z-index:2;
-	left: 50px;
+	position: absolute;
+    height: 30px;
+    width: 150px;
+    z-index: 2;
+    left: 25px;
+    vertical-align: middle;
     top: 50px;
+    border-radius: 31px;
+    color: #7e8ba3;
+    border: 1px solid #7e8ba3;
+    cursor: pointer;
 }
 
 span#conditionModule {
     top: 170px;
-	background-color:white;
 }
 
 span#argModule {
     top: 290px;
-	background-color:black;
 }
 
 
 span#targetModule {
     top: 410px;
-	background-color:green;
 }
 
 span#element {
@@ -71,12 +75,16 @@ span#element {
 
 .target {
     position: absolute;
-    background-color: #e5ff1e;
-    width: 100px;
-    height: 100px;
+    height: 30px;
+    width: 150px;
     z-index: 2;
-    left: 50px;
+    left: 25px;
+    vertical-align: middle;
     top: 50px;
+    border-radius: 31px;
+    color: #7e8ba3;
+    border: 1px solid #7e8ba3;
+    cursor: pointer;
 }
 
 
