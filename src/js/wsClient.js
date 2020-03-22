@@ -142,7 +142,20 @@ connection.onmessage = (event) => {
             alert('User not registered');
         }
     }else if(jsonData.type === 'projectResponse'){
-		alert("project name already existing");
+		if (jsonData.status === 'OK') {
+
+            var element = document.createElement("span");
+            element.innerText = projName.value;
+            element.classList.add("list");
+            element.addEventListener("click", requestProjInfo);
+        
+            projListContainer.appendChild(element);
+        
+            projName.value = '';
+        }
+        else {
+            alert("project name already existing");
+        }
 	}
     else if (jsonData.type === 'requestCompetition') {
 		answerrun_popup.classList.toggle("showBlock");

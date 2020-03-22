@@ -108,16 +108,6 @@ function createProject () {
     jsonData.name = projName.value;
 
     connection.send(JSON.stringify(jsonData));
-
-    var element = document.createElement("span");
-    ////console.log(projName.value)
-    element.innerText = projName.value;
-    element.classList.add("list");
-    element.addEventListener("click", requestProjInfo);
-
-    projListContainer.appendChild(element);
-
-    projName.value = '';
 }
 
 function toggleLogReg() {

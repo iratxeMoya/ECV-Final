@@ -169,7 +169,13 @@ wss.on('connection', function(ws) {
 				modules[jsonData.name] = {};
 				//console.log('en create proj: ', modules);
 
-				modules['lastSaveDate'] = Date.now();
+                modules['lastSaveDate'] = Date.now();
+                
+                var sendData = {};
+                sendData.type = 'projectResponse';
+                sendData.status = 'OK';
+
+                ws.send(JSON.stringify(sendData));
 			}else {
                 var sendData = {};
                 sendData.type = 'projectResponse';
