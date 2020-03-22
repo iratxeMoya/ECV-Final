@@ -445,6 +445,8 @@ wss.on('connection', function(ws) {
 				elements[elementidx]=jsonData.element;
 				console.log(ready_users+" "+total_users);
 			}
+			console.log(recived_elements);
+			console.log(ready_users+"/"+total_users);
 			if(ready_users>=total_users){
 				recived_elements.forEach(re => {re = false});
 				console.log(elements);
