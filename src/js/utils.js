@@ -158,7 +158,7 @@ function createModule (id, codeType, position, map = null, target = null, arg = 
 			mod = new ArgModule(position, moduleType, codeType, id, arg, north, west, east, south);
 			break;
 		case 'target':
-			
+			console.log(target);
 			mod = new TargetModule(position, moduleType,codeType, target, id, north, west, east, south);
 			break;
 		case 'condition':
