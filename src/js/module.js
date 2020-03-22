@@ -93,7 +93,7 @@ class ElementManager {
 		console.log("GETTING")
 		console.log(id);
 		console.log(this.elements);
-		let ret = this.elements.filter(ele => ele.id === id);
+		let ret = this.elements.filter(ele => ele.id.toString() === id);
 		console.log(ret);
         return ret;
     }
