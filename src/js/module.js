@@ -90,6 +90,9 @@ class ElementManager {
     }
 
     getElementById (id) {
+		console.log("GETTING")
+		console.log(id);
+		console.log(this.elements);
         return this.elements.filter(ele => ele.id === id);
     }
 	
