@@ -141,7 +141,9 @@ connection.onmessage = (event) => {
         else {
             alert('User not registered');
         }
-    }
+    }else if(jsonData.type === 'projectResponse'){
+		alert("project name already existing");
+	}
     else if (jsonData.type === 'requestCompetition') {
 		answerrun_popup.classList.toggle("showBlock");
         // if(confirm('New Competition! Take part?')) {

@@ -147,26 +147,34 @@ wss.on('connection', function(ws) {
             init(ws);
         }
         else if (jsonData.type === 'createProject') {
+			var foundClient = projects.find(proj => proj.name === jsonData.name);
+			if (!foundClient) {
+				var requester = connectedUsers.find(user => user.ws === ws);
 
-            var requester = connectedUsers.find(user => user.ws === ws);
+				var newProj = {};
+				newProj.name = jsonData.name;
+				
+				newProj.users = [requester.username];
+				newProj.execute = false;
+				newProj.admin = requester.username;
+				newProj.lap=0;
 
-            var newProj = {};
-            newProj.name = jsonData.name;
-            
-            newProj.users = [requester.username];
-            newProj.execute = false;
-            newProj.admin = requester.username;
-			newProj.lap=0;
+				requester.projects.push(newProj.name);
 
-            requester.projects.push(newProj.name);
+				projects.push(newProj);
+				
+				modules[jsonData.name] = {};
+				//console.log('en create proj: ', modules);
 
-            projects.push(newProj);
-            
-            modules[jsonData.name] = {};
-            //console.log('en create proj: ', modules);
+				modules['lastSaveDate'] = Date.now();
+			}else {
+                var sendData = {};
+                sendData.type = 'projectResponse';
+                sendData.status = 'notOK';
 
-            modules['lastSaveDate'] = Date.now();
+                ws.send(JSON.stringify(sendData));
 
+            }
             //esto creo que no hay que broadcastearlo ya que es algo que solo le importa al server
         }
         else if (jsonData.type === 'inviteToProj') { 
