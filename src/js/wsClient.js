@@ -164,7 +164,7 @@ connection.onmessage = (event) => {
 			console.log(jsonData.elements);
 			jsonData.elements.forEach(e => {
 				if(e.id != element_manager.contestant){
-					let newElement = new Element(e.id, e.position,true);
+					let newElement = new Element(e.element.id, e.element.position,true);
 					element_manager.add_element(newElement);
 				}else{
 					element_manager.move_element(e.id, e.position);
@@ -173,7 +173,7 @@ connection.onmessage = (event) => {
 			//console.log(element_manager.elemets);
 		}else{
 			jsonData.elements.forEach(e => {
-				element_manager.move_element(e.id, e.position);
+				element_manager.move_element(e.element.id, e.element.position);
 			});
 		}
 		module_manager.server_run(element_manager.contestant);

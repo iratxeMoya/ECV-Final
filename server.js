@@ -415,7 +415,7 @@ wss.on('connection', function(ws) {
                 if (admin && admin.ws === ws) {
                     var project = projects.find(p => p.name === admin.actualProject);
                     project.execute = true;
-					elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-4),y:Math.floor(Math.random()*100)%(boundaries.bottom-4)},projectName:project.name})
+					elements.push({element:{id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-8)+4,y:Math.floor(Math.random()*100)%(boundaries.bottom-4)+2}},projectName:project.name})
 					recived_elements.push(false);
                 }
             })
@@ -432,7 +432,7 @@ wss.on('connection', function(ws) {
             var project = projects.find(p => p.name === admin.actualProject);
 			total_users++;
             project.execute = true;
-			elements.push({id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-8)+4,y:Math.floor(Math.random()*100)%(boundaries.bottom-4)+2},projectName:project.name})
+			elements.push({element:{id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-8)+4,y:Math.floor(Math.random()*100)%(boundaries.bottom-4)+2}},projectName:project.name})
 			recived_elements.push(false);
 			if (ready_users>=total_users){
 				run_requester.send(JSON.stringify({type:"everyoneReady"}));
@@ -451,7 +451,7 @@ wss.on('connection', function(ws) {
 				ready_users++;
 				console.log("RESPONSED");
 				recived_elements[elementidx] = true;
-				elements[elementidx]=jsonData.element;
+				elements[elementidx]={element:jsonData.element,elements[elementidx].projectName};
 				console.log(ready_users+" "+total_users);
 			}
 			console.log(recived_elements);
