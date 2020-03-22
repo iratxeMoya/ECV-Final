@@ -194,8 +194,9 @@ function update_gs() {
 		console.log("SUPERRESPONSE");
 		let newData={};
 		newData.type="superResponse";
-		newData.element = module_manager.server_run();
+		newData.element = module_manager.server_run(module_manager.ret.id);
 		connection.send(JSON.stringify(newData));
+		module_manager.ret.id = null;
 	}
 	
 	gs_h = game_screen.clientHeight;

@@ -692,7 +692,6 @@ class ModuleManager {
 			this.ret.mod =this.modules.find(module=>(module.moduleType === "target" ? (!module.target.dead && module.target.id === id):false));
 			console.log(this.ret.mod.target.position);
 			let ntarget =this.ret.mod.run();
-			this.ret.id = null;
 			console.log("TARGET");
 			console.log(ntarget);
 			return ntarget;
