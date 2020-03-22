@@ -167,7 +167,7 @@ connection.onmessage = (event) => {
 					let newElement = new Element(e.element.id, e.element.position,true);
 					element_manager.add_element(newElement);
 				}else{
-					element_manager.move_element(e.id, e.position);
+					element_manager.move_element(e.element.id, e.element.position);
 				}
 			});
 			//console.log(element_manager.elemets);
