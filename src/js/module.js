@@ -94,6 +94,7 @@ class ElementManager {
 		console.log(id);
 		console.log(this.elements);
 		let ret = this.elements.filter(ele => ele.id === id);
+		console.log(ret);
         return ret;
     }
 	
