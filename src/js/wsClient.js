@@ -163,7 +163,7 @@ connection.onmessage = (event) => {
 		if (jsonData.config){
 			console.log(jsonData.elements);
 			jsonData.elements.forEach(e => {
-				if(e.id != element_manager.contestant){
+				if(e.element.id != element_manager.contestant){
 					let newElement = new Element(e.element.id, e.element.position,true);
 					element_manager.add_element(newElement);
 				}else{
