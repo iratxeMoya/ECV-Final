@@ -169,26 +169,26 @@ span.clicked {
     color: black;
     cursor: pointer;
 }
-.wrapper::-webkit-scrollbar {
+#projListContainer::-webkit-scrollbar {
     display: block;
     width: 5px;
 }
-.wrapper::-webkit-scrollbar-track {
+#projListContainer::-webkit-scrollbar-track {
     background: transparent;
 }
     
-.wrapper::-webkit-scrollbar-thumb {
+#projListContainer::-webkit-scrollbar-thumb {
     background-color: red;
     border-right: none;
     border-left: none;
 }
 
-.wrapper::-webkit-scrollbar-track-piece:end {
+#projListContainer::-webkit-scrollbar-track-piece:end {
     background: transparent;
     margin-bottom: 10px; 
 }
 
-.wrapper::-webkit-scrollbar-track-piece:start {
+#projListContainer::-webkit-scrollbar-track-piece:start {
     background: transparent;
     margin-top: 10px;
 }
