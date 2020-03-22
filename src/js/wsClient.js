@@ -177,7 +177,7 @@ connection.onmessage = (event) => {
 			});
 		}
 		module_manager.server_run(element_manager.contestant);
-	}else (jsonData.type === 'endGame'){
+	}else if(jsonData.type === 'endGame'){
 		alert("WINNER IS "+jsonData.winner+"'S ELEMENT");
 		element_manager.end_contest();
 	}
