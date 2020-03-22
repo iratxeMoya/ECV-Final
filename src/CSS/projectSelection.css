@@ -174,11 +174,11 @@ span.clicked {
     width: 5px;
 }
 #projListContainer::-webkit-scrollbar-track {
-    background: #678ba3;
+    background: transparent;
 }
     
 #projListContainer::-webkit-scrollbar-thumb {
-    background-color: #242c37;
+    background-color: #678ba3;
     border-right: none;
     border-left: none;
 }
