@@ -451,7 +451,7 @@ wss.on('connection', function(ws) {
 				ready_users++;
 				console.log("RESPONSED");
 				recived_elements[elementidx] = true;
-				elements[elementidx]={element:jsonData.element,elements[elementidx].projectName};
+				elements[elementidx]={element:jsonData.element,projectName:elements[elementidx].projectName};
 				console.log(ready_users+" "+total_users);
 			}
 			console.log(recived_elements);
