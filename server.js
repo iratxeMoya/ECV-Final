@@ -299,7 +299,9 @@ wss.on('connection', function(ws) {
 
         }
         else if (jsonData.type === 'clickModule') {
-
+			console.log(ws)
+			console.log(jsonData)
+			console.log(projects)
             var creator = connectedUsers.find(us => us.ws === ws);
             var project = projects.find(proj => proj.name === creator.actualProject);
 
