@@ -525,6 +525,7 @@ function end_game(winner){
 }
 
 function valid_pos(x,y){
+	console.log(boundaries);
 	return x>boundaries.left  && x<boundaries.right && y> boundaries.top && y<boundaries.bottom;
 }
 
