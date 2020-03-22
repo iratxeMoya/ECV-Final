@@ -150,11 +150,11 @@
 
 /* Links inside the dropdown */
 .dropdown-content span {
-padding: 12px 16px;
-text-decoration: none;
-display: block;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
 }
-.dropdown-content span :hover {
+.dropdown-content span:hover {
 	cursor: pointer;
 	background-color: #678ba3;
     border-radius: 31px;
@@ -186,7 +186,7 @@ display: block;
 	display: block;
 }
 
-.dropdown-move span :hover {
+.dropdown-move span:hover {
 	cursor: pointer;
 	background-color: #678ba3;
     border-radius: 31px;
@@ -231,7 +231,7 @@ display: block;
 	display: block;
 }
 
-.dropdown-cont span :hover {
+.dropdown-cont span:hover {
 	cursor: pointer;
 	background-color: #678ba3;
     border-radius: 31px;
@@ -263,7 +263,7 @@ display: block;
 	display: block;
 }
 
-.dropdown-cond span :hover {
+.dropdown-cond span:hover {
 	cursor: pointer;
 	background-color: #678ba3;
     border-radius: 31px;
