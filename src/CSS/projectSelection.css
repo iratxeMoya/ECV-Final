@@ -80,6 +80,8 @@ input:focus {
     border: 1px solid #242c37;
     padding: 1em;
     border-radius: 31px;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 #enterProj {
     grid-column-start: 5;
@@ -170,7 +172,7 @@ span.clicked {
 /* width */
 ::-webkit-scrollbar {
     width: 6px;
-    
+    max-height: 60%;
   }
   
   /* Track */
