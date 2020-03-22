@@ -45,9 +45,9 @@
 .module{
 	position: absolute;
     height: 30px;
-    width: 150px;
+    width: 170px;
     z-index: 2;
-    left: 25px;
+    left: 15px;
     vertical-align: middle;
     top: 50px;
     border-radius: 31px;
@@ -57,20 +57,20 @@
 }
 
 span#conditionModule {
-    top: 170px;
+    top: 100px;
 }
 
 span#argModule {
-    top: 290px;
+    top: 150px;
 }
 
 
 span#targetModule {
-    top: 410px;
+    top: 200px;
 }
 
 span#element {
-    top: 530px;
+    top: 250px;
 }
 
 .target {
