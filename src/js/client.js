@@ -18,7 +18,7 @@ var setup = true;
 
 
 
-var map = null;
+var map =  new Map(30,30);;
 ////console.log(map);
 var module_manager = new ModuleManager(codes);
 var element_manager = new ElementManager();
