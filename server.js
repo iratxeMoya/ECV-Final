@@ -169,7 +169,7 @@ wss.on('connection', function(ws) {
 				
 				modules[jsonData.name] = {};
 				////console.log('en create proj: ', modules);
-
+				console.log('en create proj: ', modules);
                 modules['lastSaveDate'] = Date.now();
                 
                 var sendData = {};
