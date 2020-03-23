@@ -202,8 +202,8 @@ function update_gs() {
 	
 	gs_h = game_screen.clientHeight;
 	gs_w = game_screen.clientWidth;
-	gs_cvs.height = gs_h;
-	gs_cvs.width = gs_w;
+	gs_cvs.height = Math.floor(gs_w/30)*30;
+	gs_cvs.width = Math.floor(gs_w/30)*30;
 	
 	MODULESIZE = Math.floor(gs_w/30);
 	
