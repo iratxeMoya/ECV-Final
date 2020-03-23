@@ -156,7 +156,7 @@ wss.on('connection', function(ws) {
 			if (!foundProj) {
 
 				var requester = connectedUsers.find(user => user.username === jsonData.sender);
-                //console.log(connectedUsers, requester)
+                console.log(jsonData)
 
 				var newProj = {};
 				newProj.name = jsonData.name;
