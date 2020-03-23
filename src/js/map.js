@@ -1,4 +1,5 @@
-import { codes, styles, MODULESIZE } from './codes.js';
+import { codes, styles } from './codes.js';
+import { MODULESIZE } from './client.js';
 
 class Map {
 	constructor(sizex,sizey){
