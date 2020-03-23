@@ -203,10 +203,13 @@ function update_gs() {
 	
 	gs_h = game_screen.clientHeight;
 	gs_w = game_screen.clientWidth;
-	gs_cvs.height = Math.floor(gs_w/TILENUM)*TILENUM;
-	gs_cvs.width = Math.floor(gs_w/TILENUM)*TILENUM;
 	
 	MODULESIZE = Math.min(Math.floor(gs_w/TILENUM)+2,Math.floor(gs_h/TILENUM)+2);
+	
+	gs_cvs.height = Math.min(Math.floor(gs_w/TILENUM)*TILENUM,Math.floor(gs_h/TILENUM)*TILENUM);
+	gs_cvs.width = Math.min(Math.floor(gs_w/TILENUM)*TILENUM,Math.floor(gs_h/TILENUM)*TILENUM);
+	
+
 	
 	module_manager.run_modules();
 	
