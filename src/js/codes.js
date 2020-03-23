@@ -22,10 +22,8 @@ var styles = {
 	"target":"#AAFFAA"
 	}
 
-var MODULESIZE = 25;
 
 export{
 	codes,
-	styles,
-	MODULESIZE
+	styles
 }

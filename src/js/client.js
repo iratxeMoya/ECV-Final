@@ -15,7 +15,7 @@ var mouseDown = false;
 var mouseX;
 var mouseY;
 var setup = true;
-
+var MODULESIZE = 25;
 
 
 var map =  new Map(30,30);;
@@ -236,5 +236,6 @@ function update_gs() {
 export{
 	module_manager,
 	element_manager,
-	map
+	map,
+	MODULESIZE
 }

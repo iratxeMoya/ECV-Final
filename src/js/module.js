@@ -1,6 +1,7 @@
-import { codes, styles,MODULESIZE } from './codes.js';
+import { codes, styles } from './codes.js';
 import { Map } from './map.js';
-import { isHover } from './utils.js'
+import { isHover } from './utils.js';
+import { MODULESIZE } from './client.js';
 
 
 class Element {
