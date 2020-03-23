@@ -83,7 +83,7 @@ class Map {
 		for(var i =1;i<this.sizey-1;i++){
 			for(var j =1;j<this.sizex-1;j++){
 				ctx.fillStyle = (i+j)%2==0 ? '#AAAAAA' : '#DDDDDD';
-				ctx.fillRect((j-1)*MODULESIZE,(i-1)*MODULESIZE, MODULESIZE,MODULESIZE);
+				ctx.fillRect((j)*MODULESIZE,(i)*MODULESIZE, MODULESIZE,MODULESIZE);
 			}
 		}
 	}
