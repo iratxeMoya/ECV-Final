@@ -325,6 +325,7 @@ wss.on('connection', function(ws) {
 			//console.log(ws)
 			//console.log(jsonData)
 			//console.log(projects)
+			console.log(connectedUsers);
             var creator = connectedUsers.find(us => us.ws === ws);
             var project = projects.find(proj => proj.name === creator.actualProject);
 
