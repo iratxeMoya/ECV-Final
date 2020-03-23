@@ -304,7 +304,7 @@ wss.on('connection', function(ws) {
                 }
             })
 
-            broadcastMsg(data, users, ws);
+            broadcastMsg(data, users, jsonData.sender);
             console.log("FINISH");
         }
         else if (jsonData.type === 'moveModule') {
@@ -320,7 +320,7 @@ wss.on('connection', function(ws) {
                 }
             })
 
-            broadcastMsg(data, users, ws);
+            broadcastMsg(data, users, jsonData.sender);
 			console.log("FINISH");
         }
         else if (jsonData.type === 'clickModule') {
@@ -340,7 +340,7 @@ wss.on('connection', function(ws) {
                 }
             })
 
-            broadcastMsg(data, users, ws);
+            broadcastMsg(data, users, jsonData.sender);
             console.log("FINISH");
         }
         else if (jsonData.type === 'releaseModule') {
@@ -375,7 +375,7 @@ wss.on('connection', function(ws) {
                 }
             })
 
-            broadcastMsg(data, users, ws);
+            broadcastMsg(data, users, jsonData.sender);
             console.log("FINISH");
         }
         else if (jsonData.type === 'createElement') {
@@ -415,7 +415,7 @@ wss.on('connection', function(ws) {
                 }
             })
 
-            broadcastMsg(data, users, ws);
+            broadcastMsg(data, users, jsonData.sender);
             console.log("FINISH");
         }
         else if (jsonData.type === 'requestCompetition') {
@@ -626,10 +626,10 @@ function loadDatabaseFromDisk()
 }
 
 
-function broadcastMsg(data, usersToSend, connection) {
+function broadcastMsg(data, usersToSend, broadcaster) {
 
     usersToSend.forEach(user => {
-        if(user.ws !== connection) {
+        if(user.username !== broadcaster) {
             user.ws.send(data);
         }
     })
