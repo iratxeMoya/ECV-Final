@@ -269,7 +269,7 @@ wss.on('connection', function(ws) {
         else if (jsonData.type === 'createModule') {
 
             var requester = connectedUsers.find(user => user.ws === ws);
-
+			console.log(requester);
             var info = {};
             info.id = jsonData.id;
             info.objectType = 'module'; 
