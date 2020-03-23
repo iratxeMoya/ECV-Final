@@ -424,7 +424,7 @@ wss.on('connection', function(ws) {
 			boundaries.right=jsonData.mapRight;
             projects.forEach(project => {
                 var admin = connectedUsers.find(user => user.username === project.admin);
-                if (admin && admin.actualProject === project.name && admin.ws !== ws) {
+                if (admin && admin.actualProject === project.name && admin.username !== jsonData.sender) {
                     admin.ws.send(data);
 					total_users++;
 					////console.log(ready_users);
