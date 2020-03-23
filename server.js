@@ -269,7 +269,7 @@ wss.on('connection', function(ws) {
         else if (jsonData.type === 'createModule') {
 
             var requester = connectedUsers.find(user => user.ws === ws);
-			console.log(requester);
+			//console.log(requester);
             var info = {};
             info.id = jsonData.id;
             info.objectType = 'module'; 
@@ -284,7 +284,7 @@ wss.on('connection', function(ws) {
             info.moduleType = jsonData.moduleType;
             info.arg = jsonData.arg;
 
-            //console.log('en create proj: ', modules);
+            console.log('en create proj: ', modules);
             //console.log('en create proj: ', requester.actualProject);
             modules[requester.actualProject][jsonData.id.toString()] = info;
             modules['lastSaveDate'] = Date.now();
