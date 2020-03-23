@@ -4,6 +4,7 @@ import { codes } from './codes.js';
 import { connection } from './init.js';
 import { isHover, createModule, paintInCanvas, createElement, fillModuleDropDown,showModuleList} from './utils.js';
 import { wb_cvs,answerrun_confirm,answerrun_popup,answerrun_cancel,superrun_popup,superrun_cancel,superrun_confirm, wb_ctx,gs_cvs, gs_ctx,conditionModule, basicModule, argModule, targetModule, element, workbench,game_screen, run_button, stop_button, competition_button, dropdownMovement, dropdownControl, dropdownCondition} from './DOMAccess.js';
+import { user }	from './wsClient.js';
 
 var wb_h = workbench.style.height;
 var wb_w = workbench.style.width;
@@ -17,7 +18,6 @@ var mouseY;
 var setup = true;
 var MODULESIZE = 25;
 const TILENUM =30;
-
 
 var map =  new Map(TILENUM,TILENUM);;
 ////console.log(map);
@@ -59,7 +59,7 @@ function ans_no(){
 function ans_ok(){
 	element_manager.contestant =element_manager.elements[0].id
 	answerrun_popup.classList.toggle("showBlock");
-	connection.send(JSON.stringify({elementId:element_manager.contestant,type: 'acceptCompetition'}));
+	connection.send(JSON.stringify({elementId:element_manager.contestant,type: 'acceptCompetition',sender:user}));
 
 }
 
@@ -73,6 +73,7 @@ function superrun(){
 		superrun_popup.classList.toggle("showBlock");
 		let jsonData ={};
 		jsonData.type = 'superRun';
+		jsonData.sender = user;
 		
 		connection.send(JSON.stringify(jsonData));
 	}
@@ -83,8 +84,9 @@ function requestCompetition() {
 	element_manager.contestant =element_manager.elements[0].id
 	var jsonData = {};
 	jsonData.type = 'requestCompetition';
-	jsonData.mapRight = 30;
-	jsonData.mapBottom = 30;
+	jsonData.mapRight = TILENUM;
+	jsonData.mapBottom = TILENUM;
+	jsonData.sender = user;
 	jsonData.elementId = element_manager.contestant;
 
 	superrun_popup.classList.toggle("showBlock");
@@ -112,6 +114,7 @@ function move(event) {
 		var jsonData = {};
 		jsonData.type = 'moveModule'
 		jsonData.newPosition = {x: mouseX, y: mouseY};
+		jsonData.sender = user;
 
 		connection.send(JSON.stringify(jsonData));
 
@@ -129,6 +132,7 @@ function click(event) {
 	var jsonData = {};
 	jsonData.type = 'clickModule'
 	jsonData.newPosition = {x: event.offsetX, y: event.offsetY};
+	jsonData.sender = user;
 
 	connection.send(JSON.stringify(jsonData));
 
@@ -172,7 +176,7 @@ function release(event) {
 
 	////console.log('in release: ', modules);
 
-	connection.send(JSON.stringify({type: 'releaseModule', posx: event.offsetX, posy: event.offsetY, 'remove': remove, modules: modules, screenX: event.screenX, screenY: event.screenY}));
+	connection.send(JSON.stringify({sender:user,type: 'releaseModule', posx: event.offsetX, posy: event.offsetY, 'remove': remove, modules: modules, screenX: event.screenX, screenY: event.screenY}));
 
 }
 

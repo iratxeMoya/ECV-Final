@@ -2,6 +2,7 @@ import { Module,ConditionModule, ArgModule, TargetModule, Element } from './modu
 import { module_manager, element_manager, map } from './client.js';
 import { connection } from './init.js';
 import { dropdownContainer,dropdownMovement, dropdownControl, dropdownCondition, projInfoContainer, projUserContainer, projListContainer, argModule, basicModule, conditionModule, targetModule } from './DOMAccess.js';
+import { user } from './wsClient.js';
 
 var targetModulePos = null;
 var thereAreElements = false;
@@ -203,6 +204,7 @@ function sendModuleInfo (module, codeType, moduleType, arg) {
 	newModule.codeType = codeType;
 	newModule.moduleType = moduleType;
 	newModule.arg = arg;
+	newModule.sender = user;
 	
 	connection.send(JSON.stringify(newModule));
 
@@ -216,6 +218,7 @@ function sendElementInfo (element) {
 	newElement.id = element.id;
 	newElement.posx = element.position.x;
 	newElement.posy = element.position.y;
+	newElement.sender = user;
 
 	connection.send(JSON.stringify(newElement));
 
@@ -269,7 +272,7 @@ function requestProjInfo () {
 			projInfoContainer.classList.toggle('showGrid');
 		}
 	}
-
+	jsonData.sender = user;
 	connection.send(JSON.stringify(jsonData));
 }
 

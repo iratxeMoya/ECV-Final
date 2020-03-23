@@ -4,6 +4,8 @@ import { createModule, createElement, requestProjInfo, deleteUser } from './util
 import { codeEditorPage,answerrun_popup, loginPage, regPage, projSelectPage, projListContainer, projInfoContainer, projUserContainer } from './DOMAccess.js';
 import { Element } from './module.js';
 
+var user = "";
+
 connection.onopen = event => {
 	console.log('connection is open');
 }
@@ -69,12 +71,13 @@ connection.onmessage = (event) => {
         if(jsonData.status === 'OK') {
 
             projSelectPage.classList.toggle("showGrid");
-
+			
             jsonData.connectionType === 'login'
                 ? loginPage.classList.toggle("showBlock")
                 : regPage.classList.toggle("showBlock");
             
-            connection.send(JSON.stringify({type: 'getProjList'}))
+			user = jsonData.user;
+            connection.send(JSON.stringify({type: 'getProjList',sender: user}))
         
         }
         else {
@@ -113,7 +116,7 @@ connection.onmessage = (event) => {
         })
     }
     else if (jsonData.type === 'enterOK') {
-        connection.send(JSON.stringify({type: 'requestInfo'}));
+        connection.send(JSON.stringify({type: 'requestInfo',sender:user}));
     }
     else if (jsonData.type === 'invitedToProj') {
         if(jsonData.status === 'OK') {
@@ -194,4 +197,8 @@ connection.onmessage = (event) => {
 		alert("WINNER IS "+jsonData.winner+"'S ELEMENT");
 		element_manager.end_contest();
 	}
+}
+
+export{
+	user
 }

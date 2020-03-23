@@ -85,6 +85,7 @@ wss.on('connection', function(ws) {
                 sendData.type = 'connectionResponse';
                 sendData.status = 'OK';
                 sendData.connectionType = 'login';
+				sendData.user = jsonData.username;
 
                 foundUser.ws = ws;
                 foundUser.actualProject = "none";
@@ -113,6 +114,7 @@ wss.on('connection', function(ws) {
                 sendData.type = 'connectionResponse';
                 sendData.status = 'OK';
                 sendData.connectionType = 'register';
+				sendData.user = jsonData.username;
 
                 var newUser = {};
                 newUser.username = jsonData.username;
@@ -153,7 +155,7 @@ wss.on('connection', function(ws) {
 			var foundProj = projects.find(proj => proj.name === jsonData.name);
 			if (!foundProj) {
 
-				var requester = connectedUsers.find(user => user.ws == ws);
+				var requester = connectedUsers.find(user => user.username === jsonData.sender);
                 //console.log(connectedUsers, requester)
 
 				var newProj = {};
@@ -234,7 +236,7 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'enterProj') {
 
-            var requester = connectedUsers.find(user => user.ws === ws);
+            var requester = connectedUsers.find(user => user.username === jsonData.sender);
             ////console.log(requester, connectedUsers);
 			//console.log(requester.username);
             requester.actualProject = requester.projects.find(proj => proj === jsonData.project);
@@ -243,7 +245,7 @@ wss.on('connection', function(ws) {
 			console.log("FINISH");
         }
         else if (jsonData.type === 'getProjList') {
-            var requester = connectedUsers.find(user => user.ws === ws);
+            var requester = connectedUsers.find(user => user.username === jsonData.sender);
             var userProjects = requester.projects ? requester.projects : [];
 
             var info = {};
@@ -268,7 +270,7 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'createModule') {
 
-            var requester = connectedUsers.find(user => user.ws === ws);
+            var requester = connectedUsers.find(user => user.username === jsonData.sender);
 			//console.log(requester);
             var info = {};
             info.id = jsonData.id;
@@ -307,7 +309,7 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'moveModule') {
             
-            var creator = connectedUsers.find(user => user.ws === ws);
+            var creator = connectedUsers.find(user => user.username === jsonData.sender);
             var project = projects.find(proj => proj.name === creator.actualProject);
 
             var users = [];
@@ -325,8 +327,8 @@ wss.on('connection', function(ws) {
 			//console.log(ws)
 			//console.log(jsonData)
 			//console.log(projects)
-			connectedUsers.forEach(u=>{console.log((u.ws===ws)+" "+u.username)});
-            var creator = connectedUsers.find(us => us.ws === ws);
+			connectedUsers.forEach(u=>{console.log((u.username === jsonData.sender)+" "+u.username)});
+            var creator = connectedUsers.find(us => us.username === jsonData.sender);
             var project = projects.find(proj => proj.name === creator.actualProject);
 
             var users = [];
@@ -343,7 +345,7 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'releaseModule') {
 
-            var requester = connectedUsers.find(user => user.ws === ws);
+            var requester = connectedUsers.find(user => user.username === jsonData.sender);
 
             jsonData.modules.forEach(module => {
 
@@ -378,7 +380,7 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'createElement') {
 			//console.log(connectedUsers);
-            var requester = connectedUsers.find(user => user.ws === ws);
+            var requester = connectedUsers.find(user => user.username === jsonData.sender);
 			//console.log(connectedUsers);
 			//console.log(jsonData);
             var info = {};
@@ -417,7 +419,7 @@ wss.on('connection', function(ws) {
             console.log("FINISH");
         }
         else if (jsonData.type === 'requestCompetition') {
-			var requester = connectedUsers.find(user => user.ws === ws);
+			var requester = connectedUsers.find(user => user.username === jsonData.sender);
 			boundaries.bottom=jsonData.mapBottom;
 			boundaries.right=jsonData.mapRight;
             projects.forEach(project => {
@@ -427,7 +429,7 @@ wss.on('connection', function(ws) {
 					total_users++;
 					////console.log(ready_users);
                 }
-                if (admin && admin.ws === ws) {
+                if (admin && admin.username === jsonData.sender) {
                     var project = projects.find(p => p.name === admin.actualProject);
                     project.execute = 1;
 					elements.push({element:{id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-8)+4,y:Math.floor(Math.random()*100)%(boundaries.bottom-4)+2}},projectName:project.name})
@@ -444,7 +446,7 @@ wss.on('connection', function(ws) {
         else if (jsonData.type === 'acceptCompetition') {
 			//console.log("\n\nCREATOR\n\n");
 			//console.log(creator);
-            var admin = connectedUsers.find(user => user.ws === ws);
+            var admin = connectedUsers.find(user => user.username === jsonData.sender);
             var project = projects.find(p => p.name === admin.actualProject);
 			total_users++;
             project.execute = 1;
@@ -658,7 +660,7 @@ function orderModules () {
 
 function init (ws) {
 
-    var requester = connectedUsers.find(user => user.ws === ws);
+    var requester = connectedUsers.find(user => user.username === jsonData.sender);
 
     orderModules();
 
