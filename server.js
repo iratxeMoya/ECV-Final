@@ -73,7 +73,7 @@ wss.on('connection', function(ws) {
     ws.on('message', function (data) {
 
         jsonData = JSON.parse(data);
-        ////console.log(jsonData, connectedUsers)
+        console.log("ENTER "+jsonData.type)
         
         if (jsonData.type === 'login') {
             
@@ -101,7 +101,7 @@ wss.on('connection', function(ws) {
 
                 ws.send(JSON.stringify(sendData));
             }
-
+			console.log("FINISH");
         }
         else if (jsonData.type === 'register') {
 
@@ -137,22 +137,23 @@ wss.on('connection', function(ws) {
                 ws.send(JSON.stringify(sendData));
 
             }
-            
+            console.log("FINISH");
         }
         else if (jsonData.type === 'logout') {
 
-            //console.log('logout: ', jsonData);
-
+            ////console.log('logout: ', jsonData);
+			console.log("FINISH");
         }
         else if (jsonData.type === 'requestInfo') {
             init(ws);
+			console.log("FINISH");
         }
         else if (jsonData.type === 'createProject') {
 			var foundProj = projects.find(proj => proj.name === jsonData.name);
 			if (!foundProj) {
 
 				var requester = connectedUsers.find(user => user.ws == ws);
-                console.log(connectedUsers, requester)
+                //console.log(connectedUsers, requester)
 
 				var newProj = {};
 				newProj.name = jsonData.name;
@@ -167,7 +168,7 @@ wss.on('connection', function(ws) {
 				projects.push(newProj);
 				
 				modules[jsonData.name] = {};
-				//console.log('en create proj: ', modules);
+				////console.log('en create proj: ', modules);
 
                 modules['lastSaveDate'] = Date.now();
                 
@@ -184,6 +185,7 @@ wss.on('connection', function(ws) {
                 ws.send(JSON.stringify(sendData));
 
             }
+			console.log("FINISH");
             //esto creo que no hay que broadcastearlo ya que es algo que solo le importa al server
         }
         else if (jsonData.type === 'inviteToProj') { 
@@ -213,13 +215,13 @@ wss.on('connection', function(ws) {
                     invited.ws.send(JSON.stringify(jsonData));
                 }
                 
-
+		
             } 
             else {
                 jsonData.status = 'notOK';
                 ws.send(JSON.stringify(jsonData));
             }
-            
+            console.log("FINISH");
 
         }
         else if (jsonData.type === 'deleteFromProj') {
@@ -227,18 +229,18 @@ wss.on('connection', function(ws) {
             projects[projIndex].users.remove(jsonData.username);
 
             modules['lastSaveDate'] = Date.now();
-
+			console.log("FINISH");
             //esto creo que no hay que broadcastearlo ya que es algo que solo le importa al server
         }
         else if (jsonData.type === 'enterProj') {
 
             var requester = connectedUsers.find(user => user.ws === ws);
-            //console.log(requester, connectedUsers);
-			console.log(requester.username);
+            ////console.log(requester, connectedUsers);
+			//console.log(requester.username);
             requester.actualProject = requester.projects.find(proj => proj === jsonData.project);
-			console.log(requester.actualProject);
+			//console.log(requester.actualProject);
             ws.send(JSON.stringify({type: 'enterOK'}));
-
+			console.log("FINISH");
         }
         else if (jsonData.type === 'getProjList') {
             var requester = connectedUsers.find(user => user.ws === ws);
@@ -249,10 +251,11 @@ wss.on('connection', function(ws) {
             info.projects = userProjects;
 
             ws.send(JSON.stringify(info));
+			console.log("FINISH");
         }
         else if (jsonData.type === 'requestProjInfo') {
 
-            //console.log(projects)
+            ////console.log(projects)
 
             var project = projects.find(proj => proj.name === jsonData.project);
 
@@ -261,6 +264,7 @@ wss.on('connection', function(ws) {
             info.project = project.users;
 
             ws.send(JSON.stringify(info));
+			console.log("FINISH");
         }
         else if (jsonData.type === 'createModule') {
 
@@ -280,13 +284,13 @@ wss.on('connection', function(ws) {
             info.moduleType = jsonData.moduleType;
             info.arg = jsonData.arg;
 
-            console.log('en create proj: ', modules);
-            console.log('en create proj: ', requester.actualProject);
+            //console.log('en create proj: ', modules);
+            //console.log('en create proj: ', requester.actualProject);
             modules[requester.actualProject][jsonData.id.toString()] = info;
             modules['lastSaveDate'] = Date.now();
 
             orderModules();
-            //console.log('createModule ', modules);
+            ////console.log('createModule ', modules);
 
             var users = [];
             var project = projects.find(proj => proj.name === requester.actualProject);
@@ -299,7 +303,7 @@ wss.on('connection', function(ws) {
             })
 
             broadcastMsg(data, users, ws);
-            
+            console.log("FINISH");
         }
         else if (jsonData.type === 'moveModule') {
             
@@ -315,12 +319,12 @@ wss.on('connection', function(ws) {
             })
 
             broadcastMsg(data, users, ws);
-
+			console.log("FINISH");
         }
         else if (jsonData.type === 'clickModule') {
-			console.log(ws)
-			console.log(jsonData)
-			console.log(projects)
+			//console.log(ws)
+			//console.log(jsonData)
+			//console.log(projects)
             var creator = connectedUsers.find(us => us.ws === ws);
             var project = projects.find(proj => proj.name === creator.actualProject);
 
@@ -328,13 +332,13 @@ wss.on('connection', function(ws) {
             project.users.forEach(user => {
                 var u = connectedUsers.find(u => u.username === user);
                 if (u) {
-                    //console.log(u);
+                    ////console.log(u);
                     users.push(u);
                 }
             })
 
             broadcastMsg(data, users, ws);
-            
+            console.log("FINISH");
         }
         else if (jsonData.type === 'releaseModule') {
 
@@ -344,7 +348,7 @@ wss.on('connection', function(ws) {
 
                 modules[requester.actualProject][module.id.toString()].posx = jsonData.posx;
                 modules[requester.actualProject][module.id.toString()].posy = jsonData.posy;
-				//console.log(jsonData);
+				////console.log(jsonData);
                 if (jsonData.remove) {
                     delete modules[requester.actualProject][module.id.toString()];
                 }else{
@@ -369,13 +373,13 @@ wss.on('connection', function(ws) {
             })
 
             broadcastMsg(data, users, ws);
-            
+            console.log("FINISH");
         }
         else if (jsonData.type === 'createElement') {
-			console.log(connectedUsers);
+			//console.log(connectedUsers);
             var requester = connectedUsers.find(user => user.ws === ws);
-			console.log(connectedUsers);
-			console.log(jsonData);
+			//console.log(connectedUsers);
+			//console.log(jsonData);
             var info = {};
 
             info.id = jsonData.id;
@@ -396,7 +400,7 @@ wss.on('connection', function(ws) {
 
             orderModules();
 
-            //console.log('createElement ', modules);
+            ////console.log('createElement ', modules);
 
             var project = projects.find(proj => proj.name === requester.actualProject);
 
@@ -409,7 +413,7 @@ wss.on('connection', function(ws) {
             })
 
             broadcastMsg(data, users, ws);
-            
+            console.log("FINISH");
         }
         else if (jsonData.type === 'requestCompetition') {
 			var requester = connectedUsers.find(user => user.ws === ws);
@@ -420,7 +424,7 @@ wss.on('connection', function(ws) {
                 if (admin && admin.actualProject === project.name && admin.ws !== ws) {
                     admin.ws.send(data);
 					total_users++;
-					//console.log(ready_users);
+					////console.log(ready_users);
                 }
                 if (admin && admin.ws === ws) {
                     var project = projects.find(p => p.name === admin.actualProject);
@@ -431,13 +435,14 @@ wss.on('connection', function(ws) {
             })
 			run_requester = requester.ws;
 			if (ready_users<1){
-				console.log(ready_users);
+				//console.log(ready_users);
 				run_requester.send(JSON.stringify({type:"everyoneReady"}));
 			}
+			console.log("FINISH");
         }
         else if (jsonData.type === 'acceptCompetition') {
-			console.log("\n\nCREATOR\n\n");
-			console.log(creator);
+			//console.log("\n\nCREATOR\n\n");
+			//console.log(creator);
             var admin = connectedUsers.find(user => user.ws === ws);
             var project = projects.find(p => p.name === admin.actualProject);
 			total_users++;
@@ -446,36 +451,38 @@ wss.on('connection', function(ws) {
 			recived_elements.push(false);
 			if (ready_users>=total_users){
 				run_requester.send(JSON.stringify({type:"everyoneReady"}));
-				//console.log(ready_users);
+				////console.log(ready_users);
 			}
-			console.log("I'M IN "+project.name);
+			//console.log("I'M IN "+project.name);
+			console.log("FINISH");
         }
 		else if (jsonData.type === 'superRun') {
-			console.log("RUN");
+			//console.log("RUN");
 			super_run(true)
+			console.log("FINISH");
         }
 		else if (jsonData.type === 'superResponse') {
-			console.log(recived_elements);
+			//console.log(recived_elements);
 			let elementidx=elements.findIndex(e=>e.element.id === jsonData.element.id);
 			if(!recived_elements[elementidx]){
 				ready_users++;
-				console.log("RESPONSED");
-				console.log(elementidx);
-				console.log(elements);
+				//console.log("RESPONSED");
+				//console.log(elementidx);
+				//console.log(elements);
 				recived_elements[elementidx] = true;
 				elements[elementidx]={element:jsonData.element,projectName:elements[elementidx].projectName};
-				console.log(ready_users+" "+total_users);
+				//console.log(ready_users+" "+total_users);
 			}
-			console.log(recived_elements);
-			console.log(ready_users+"/"+total_users);
+			//console.log(recived_elements);
+			//console.log(ready_users+"/"+total_users);
 			if(ready_users>=total_users){
 				recived_elements.fill(false);
-				console.log(recived_elements);
-				console.log(elements);
+				//console.log(recived_elements);
+				//console.log(elements);
 				ready_users =0;
 				elements.forEach(e =>{
 				if (!valid_pos(e.element.position.x,e.element.position.y)){
-					console.log("HAS MUERTO");
+					//console.log("HAS MUERTO");
 					projects.find(proj => e.projectName === proj.name).execute = -1;
 					total_users--;
 					let idx = elements.findIndex(er => e.projectName === er.projectName)
@@ -483,20 +490,21 @@ wss.on('connection', function(ws) {
 				}
 				});
 				if(total_users>1){
-					console.log("AGAIN");
+					//console.log("AGAIN");
 					super_run(false);
 				}else{
-					console.log("FINISH");
+					//console.log("FINISH");
 					end_game(elements[0].projectName);
 				}
 			}
+			console.log("FINISH");
         }
 
     });
 
     ws.on('close', function (event) {
 
-        //console.log('Connection closed');
+        ////console.log('Connection closed');
         var user = connectedUsers.findByField('ws', ws);
 
         connectedUsers.delete(user);
@@ -510,14 +518,14 @@ function super_run(config){
 	ready_users=0;
 		projects.forEach(project => {
 			var admin = connectedUsers.find(user => user.username === project.admin);
-			console.log(admin+" "+project.name +" "+ project.execute);
+			//console.log(admin+" "+project.name +" "+ project.execute);
 			if (admin && admin.actualProject === project.name && project.execute>0) {
 				let data = {
 					type:"superRun",
 					elements:elements,
 					config:config
 				};
-				console.log("CURRAD ESCLAVOS");
+				//console.log("CURRAD ESCLAVOS");
 				admin.ws.send(JSON.stringify(data));
 			}
 		})
@@ -527,8 +535,8 @@ function end_game(winner){
 	
 	projects.forEach(project => {
 		if(project.execute!=0){
-			console.log(project)
-			console.log(connectedUsers)
+			//console.log(project)
+			//console.log(connectedUsers)
 			var admin = connectedUsers.find(user => user.username === project.admin);
 			let data = {
 				type:"endGame",
@@ -541,13 +549,13 @@ function end_game(winner){
 }
 
 function valid_pos(x,y){
-	console.log(boundaries);
+	//console.log(boundaries);
 	return x>boundaries.left  && x<boundaries.right && y> boundaries.top && y<boundaries.bottom;
 }
 
 function loadInformation () {
 
-    //console.log('loading info');
+    ////console.log('loading info');
 
     var serverDate = modules['lastSaveDate'];
     var diskData = loadDatabaseFromDisk();
@@ -557,14 +565,14 @@ function loadInformation () {
         modules = modules;
         registeredUsers = registeredUsers;
         projects = projects;
-        //console.log('loaded diskDate is undefined: ', modules, registeredUsers, projects);
+        ////console.log('loaded diskDate is undefined: ', modules, registeredUsers, projects);
         return;
     }
     if (typeof serverDate === 'undefined') {
         modules = diskData[0];
         registeredUsers = diskData[1];
         projects = diskData[2]
-        //console.log('loaded serverDate is undefined: ', modules, registeredUsers, projects);
+        ////console.log('loaded serverDate is undefined: ', modules, registeredUsers, projects);
         return;
     }
 
@@ -572,7 +580,7 @@ function loadInformation () {
     registeredUsers = serverDate && serverDate > diskDate ? registeredUsers : diskData[1];
     projects = serverDate && serverDate > diskDate ? projects : diskData[2];
 
-    //console.log('loaded: ', modules, registeredUsers);
+    ////console.log('loaded: ', modules, registeredUsers);
 
 
 }
@@ -653,18 +661,18 @@ function init (ws) {
 
     orderModules();
 
-    //console.log('init ', modules);
+    ////console.log('init ', modules);
 
     for (project in modules) {
 
 
         if (requester.actualProject === project) {
-            //console.log(project);
+            ////console.log(project);
             for(id in modules[project]) {
 
                 var module = modules[project][id];
 
-                //console.log(id);
+                ////console.log(id);
 
                 var data = {};
                 data.type = 'reciveInfo';
@@ -691,7 +699,7 @@ function init (ws) {
 }
 
 server.listen(9027, function() {
-    //console.log('app listening on port 9027');
+    ////console.log('app listening on port 9027');
 });
 
 //all html files in src folder
