@@ -14,10 +14,11 @@ var gs_updater = setInterval(update_gs, 100);
 var mouseDown = false;
 var mouseX;
 var mouseY;
+var setup = true;
 
 
 
-var map = new Map(30,30);
+var map = null;
 ////console.log(map);
 var module_manager = new ModuleManager(codes);
 var element_manager = new ElementManager();
@@ -203,6 +204,8 @@ function update_gs() {
 	gs_w = game_screen.clientWidth;
 	gs_cvs.height = gs_h;
 	gs_cvs.width = gs_w;
+	
+	MODULESIZE = Math.floor(gs_w/30);
 	
 	module_manager.run_modules();
 	
