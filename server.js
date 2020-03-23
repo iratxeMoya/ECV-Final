@@ -65,10 +65,11 @@ DATA EXAMPLE IN MODULES:
         }
     }
 */
+loadInformation();
 
 wss.on('connection', function(ws) {
 
-    loadInformation();
+    
 
     ws.on('message', function (data) {
 
@@ -162,7 +163,6 @@ wss.on('connection', function(ws) {
 				newProj.execute = 0;
 				newProj.admin = requester.username;
 				newProj.lap=0;
-
 				requester.projects.push(newProj.name);
 
 				projects.push(newProj);
