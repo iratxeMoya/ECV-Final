@@ -206,7 +206,7 @@ function update_gs() {
 	gs_cvs.height = Math.floor(gs_w/TILENUM)*TILENUM;
 	gs_cvs.width = Math.floor(gs_w/TILENUM)*TILENUM;
 	
-	MODULESIZE = Math.floor(gs_w/TILENUM)+2;
+	MODULESIZE = Math.min(Math.floor(gs_w/TILENUM)+2,Math.floor(gs_h/TILENUM)+2);
 	
 	module_manager.run_modules();
 	
