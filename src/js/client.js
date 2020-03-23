@@ -16,9 +16,10 @@ var mouseX;
 var mouseY;
 var setup = true;
 var MODULESIZE = 25;
+const TILENUM =30;
 
 
-var map =  new Map(30,30);;
+var map =  new Map(TILENUM,TILENUM);;
 ////console.log(map);
 var module_manager = new ModuleManager(codes);
 var element_manager = new ElementManager();
@@ -202,10 +203,10 @@ function update_gs() {
 	
 	gs_h = game_screen.clientHeight;
 	gs_w = game_screen.clientWidth;
-	gs_cvs.height = Math.floor(gs_w/30)*30;
-	gs_cvs.width = Math.floor(gs_w/30)*30;
+	gs_cvs.height = Math.floor(gs_w/TILENUM)*TILENUM;
+	gs_cvs.width = Math.floor(gs_w/TILENUM)*TILENUM;
 	
-	MODULESIZE = Math.floor(gs_w/30);
+	MODULESIZE = Math.floor(gs_w/TILENUM)+2;
 	
 	module_manager.run_modules();
 	
