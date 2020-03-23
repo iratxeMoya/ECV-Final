@@ -22,6 +22,8 @@ import {
 } from './DOMAccess.js';
 import {connection} from './init.js';
 import { actualProject, isSelected, requestProjInfo, deleteUser } from './utils.js';
+import { user } from './wsClient.js';
+
 
 goToLog.addEventListener("click", toggleLogReg);
 goToReg.addEventListener("click", toggleLogReg);
@@ -78,7 +80,7 @@ function enterProject () {
 
         projSelectPage.classList.toggle("showGrid");
         codeEditorPage.classList.toggle("showBlock");
-
+		jsonData.sender = user;
         connection.send(JSON.stringify(jsonData));
 
     }
@@ -96,7 +98,7 @@ function addUserToProj () {
     jsonData.type = 'inviteToProj';
     jsonData.projName = actualProject;
     jsonData.username = newUser.value;
-
+	jsonData.sender = user;
     connection.send(JSON.stringify(jsonData));
 
     newUser.value = '';
@@ -106,7 +108,7 @@ function createProject () {
     var jsonData = {};
     jsonData.type = 'createProject';
     jsonData.name = projName.value;
-
+	jsonData.sender = user;
     connection.send(JSON.stringify(jsonData));
 }
 
@@ -120,7 +122,6 @@ function sendLogin () {
     jsonData.type = 'login';
     jsonData.username = loginUser.value;
     jsonData.password = loginPass.value;
-
     connection.send(JSON.stringify(jsonData));
 
     loginUser.value = '';
