@@ -349,8 +349,9 @@ class Module {
 
 		wb_ctx.fillStyle = styles[this.moduleType];
         wb_ctx.fillRect(this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2, MODULESIZE,MODULESIZE);
+		wb_ctx.fillStyle = "#FFFFFF";
         wb_ctx.font = MODULESIZE+"px Georgia";
-		wb_ctx.fillText(this.codeType.charAt(0).toUpperCase(), this.position.x-MODULESIZE/2, this.position.y-MODULESIZE/2);
+		wb_ctx.fillText(this.codeType.charAt(0).toUpperCase(), this.position.x+MODULESIZE/2, this.position.y+MODULESIZE/2);
 	}
     
     /**
