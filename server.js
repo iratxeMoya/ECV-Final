@@ -700,7 +700,7 @@ function orderModules () {
 
 function init (ws) {
 
-    var requester = connectedUsers.find(user => user.username === jsonData.sender);
+    var requester = connectedUsers.find(user => user.ws === ws);
 
     orderModules();
 
