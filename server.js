@@ -456,6 +456,9 @@ wss.on('connection', function(ws) {
 			recived_elements.push(false);
 			console.log(ready_users+"/"+total_users);
 			if (ready_users>=total_users){
+				connectedUsers.forEach(u=>{
+					console.log(u.username===run_requester ? u : "FAIL");
+				});
 				connectedUsers.find(cu=>cu.username===run_requester).ws.send(JSON.stringify({type:"everyoneReady"}));
 				////console.log(ready_users);
 			}
