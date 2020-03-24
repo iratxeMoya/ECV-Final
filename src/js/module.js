@@ -218,7 +218,7 @@ class Module {
 		console.log(this)
 	
         this.relative.dir = direction;
-        this.update_superparentId(this.id);
+        this.update_superparentId(node.superparentId);
 		switch(direction) {
 
 			case 'north':
