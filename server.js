@@ -426,6 +426,7 @@ wss.on('connection', function(ws) {
                 var admin = connectedUsers.find(user => user.username === project.admin);
                 if (admin && admin.actualProject === project.name && admin.username !== jsonData.sender) {
                     admin.ws.send(data);
+					total_users++;
 					////console.log(ready_users);
                 }
                 if (admin && admin.username === jsonData.sender) {
@@ -433,8 +434,8 @@ wss.on('connection', function(ws) {
                     project.execute = 1;
 					elements.push({element:{id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-8)+4,y:Math.floor(Math.random()*100)%(boundaries.bottom-4)+2}},projectName:project.name})
 					recived_elements.push(false);
+					total_users++;
                 }
-				total_users++;
             })
 			ready_users =1;
 			run_requester = requester.ws;
