@@ -75,13 +75,17 @@ wss.on('connection', function(ws) {
 
         jsonData = JSON.parse(data);
         console.log("ENTER "+jsonData.type + " " +connectedUsers.length)
+		console.log("A");
         connectedUsers.forEach(u=>{
 			console.log(u.ws? u.username+" GOOD" : u.username+" BAD")
 		});
         if (jsonData.type === 'login') {
             
             var foundUser = registeredUsers.find(user => user.username === jsonData.username);
-
+			console.log("B");
+			connectedUsers.forEach(u=>{
+				console.log(u.ws? u.username+" GOOD" : u.username+" BAD")
+			});
             if (foundUser && passwordHash.verify(jsonData.password, foundUser.hashedPassword)) {
                 var sendData = {};
                 sendData.type = 'connectionResponse';
@@ -95,7 +99,10 @@ wss.on('connection', function(ws) {
                 connectedUsers.push(foundUser);
 
                 ws.send(JSON.stringify(sendData));
-
+				console.log("A");
+				connectedUsers.forEach(u=>{
+					console.log(u.ws? u.username+" GOOD" : u.username+" BAD")
+				});
             }
             else {
                 var sendData = {};
