@@ -419,6 +419,7 @@ wss.on('connection', function(ws) {
             console.log("FINISH");
         }
         else if (jsonData.type === 'requestCompetition') {
+			console.log(connectedUsers);
 			var requester = connectedUsers.find(user => user.username === jsonData.sender);
 			boundaries.bottom=jsonData.mapBottom;
 			boundaries.right=jsonData.mapRight;
