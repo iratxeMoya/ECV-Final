@@ -617,11 +617,11 @@ class ModuleManager {
      */
 	release_modules() {
 
-		if(this.selectedGroup) {
+		if(this.selectedGroup && this.selectedGroup.moduleType!=="target") {
 	
 			var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
 			
-			if (nearModule && this.selectedGroup.moduleType!=="target") {
+			if (nearModule ) {
 
 				if (Math.abs(nearModule.position.x - this.selectedGroup.position.x) > MODULESIZE){
 
