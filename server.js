@@ -75,7 +75,9 @@ wss.on('connection', function(ws) {
 
         jsonData = JSON.parse(data);
         console.log("ENTER "+jsonData.type)
-        
+        connectedUsers.forEach(u=>{
+			console.log(u.ws? u.username+" GOOD" : u.username+" BAD")
+		});
         if (jsonData.type === 'login') {
             
             var foundUser = registeredUsers.find(user => user.username === jsonData.username);
@@ -419,7 +421,7 @@ wss.on('connection', function(ws) {
             console.log("FINISH");
         }
         else if (jsonData.type === 'requestCompetition') {
-			console.log(connectedUsers);
+			//console.log(connectedUsers);
 			var requester = connectedUsers.find(user => user.username === jsonData.sender);
 			boundaries.bottom=jsonData.mapBottom;
 			boundaries.right=jsonData.mapRight;
@@ -512,10 +514,14 @@ wss.on('connection', function(ws) {
 		else if (jsonData.type === 'close') {
 			var uidx = connectedUsers.findIndex(u=>u.username === jsonData.sender);
 			connectedUsers.splice(uidx);
+			console.log("FINISH");
 		}
     });
 
     ws.on('close', function (event) {
+		var uidx = connectedUsers.findIndex(u=>u.ws === ws);
+		connectedUsers.splice(uidx);
+		
         saveDatabaseToDisk();
 
 	});
