@@ -498,7 +498,7 @@ wss.on('connection', function(ws) {
 					projects.find(proj => e.projectName === proj.name).execute = -1;
 					total_users--;
 					let idx = elements.findIndex(er => e.projectName === er.projectName)
-					elements.splice(idx);
+					elements.splice(idx,1);
 				}
 				});
 				if(total_users>1){
@@ -513,7 +513,7 @@ wss.on('connection', function(ws) {
         }
 		else if (jsonData.type === 'close') {
 			var uidx = connectedUsers.findIndex(u=>u.username === jsonData.sender);
-			connectedUsers.splice(uidx);
+			connectedUsers.splice(uidx,1);
 			console.log("FINISH");
 		}
     });
@@ -521,7 +521,7 @@ wss.on('connection', function(ws) {
     ws.on('close', function (event) {
 		var uidx = connectedUsers.findIndex(u=>u.ws === ws);
 		console.log(uidx+" "+connectedUsers[uidx].username)
-		connectedUsers.splice(uidx);
+		connectedUsers.splice(uidx,1);
 		
         saveDatabaseToDisk();
 
