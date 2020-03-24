@@ -641,13 +641,20 @@ function saveDatabaseToDisk()
 
     fs.writeFileSync('src/data/modules.json', JSON.stringify(modules) );
 
+	saveJson = [];
+	
     registeredUsers.forEach(user => {
-        delete user.ws;
+		let jsonSave ={}
+		jsonSave.username = user.username;
+		jsonSave.hashedPassword = user.hashedPassword;
+		jsonSave.actualProject = user.actualProject;
+		jsonSave.projects = user.projects;
+		saveJson.push(jsonSave);
     });
 
 
-    var registeredUsersJson = arrayToJson(registeredUsers, 'username'); 
-    fs.writeFileSync('src/data/users.json', JSON.stringify(registeredUsersJson));
+    var registeredUsersJson = arrayToJson(saveJson, 'username'); 
+    fs.writeFileSync('src/data/users.json', JSON.stringify(saveJson));
 
     var projectsJson = arrayToJson(projects, 'name'); 
     fs.writeFileSync('src/data/projects.json', JSON.stringify(projectsJson));
