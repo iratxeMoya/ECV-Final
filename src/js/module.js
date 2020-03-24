@@ -146,6 +146,7 @@ class Module {
         this.position = position;
 		this.moduleType = moduleType;
 		this.codeType=codeType;
+		this.superparentId = id;
         this.id = id;
         this.siblings = {
 			 'north': {node: null, type: false},
@@ -217,7 +218,7 @@ class Module {
 		console.log(this)
 
         this.relative.dir = direction;
-        
+        this.superparentId=node.superparentId;
 		switch(direction) {
 
 			case 'north':
@@ -273,8 +274,21 @@ class Module {
 		this.siblings[this.relative.dir].node.siblings[this.oposite(this.relative.dir)].node = null;
 		this.siblings[this.relative.dir].node = null;
 		this.relative.dir = null;
+		this.update_superparentId(this.id);
 		this.relative.offset.x = 0;
 		this.relative.offset.y = 0;
+	}
+	
+	update_superparentId(id){
+		this.superparentId=id
+		for(let dir in this.siblings) {
+
+			if (dir !== this.relative.dir && this.siblings[dir].node) {
+
+                this.siblings[dir].node.update_superparentId(id);
+                
+			}
+		}
 	}
 	
 	change_gate(dir,type = !this.siblings[dir].type){
@@ -626,12 +640,12 @@ class ModuleManager {
 				console.log("GROUPING");
 				if (Math.abs(nearModule.position.x - this.selectedGroup.position.x) > MODULESIZE){
 
-					if (nearModule.position.x > this.selectedGroup.position.x && !nearModule.siblings.west.node) {
+					if (nearModule.position.x > this.selectedGroup.position.x && !nearModule.siblings.west.node && this.selectedGroup.superparentId !== nearModule.superparentId) {
 
                         this.selectedGroup.assemble(nearModule, 'east', false);
                         
                     }
-                    else if (!nearModule.siblings.east.node){
+                    else if (!nearModule.siblings.east.node && this.selectedGroup.superparentId !== nearModule.superparentId){
 
                         this.selectedGroup.assemble(nearModule, 'west', false);
                         
@@ -639,12 +653,12 @@ class ModuleManager {
                 }
                 else {
 
-					if (nearModule.position.y > this.selectedGroup.position.y && !nearModule.siblings.north.node) {
+					if (nearModule.position.y > this.selectedGroup.position.y && !nearModule.siblings.north.node && this.selectedGroup.superparentId !== nearModule.superparentId) {
 
                         this.selectedGroup.assemble(nearModule, 'south', false);
                         
                     }
-                    else if (!nearModule.siblings.south.node) {
+                    else if (!nearModule.siblings.south.node && this.selectedGroup.superparentId !== nearModule.superparentId) {
 
                         this.selectedGroup.assemble(nearModule, 'north', false);
                         
