@@ -574,7 +574,7 @@ function valid_pos(element){
 	}
 	
 	elements.forEach(e=>{
-		ret = ret && !(e.element.position.x === px && e.element.position.y === py);	
+		ret = e.element.id !== element.id ? ret && !(e.element.position.x === px && e.element.position.y === py) : ret;	
 	});
 	console.log(px+" "+py);
 	return ret;
