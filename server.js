@@ -505,16 +505,13 @@ wss.on('connection', function(ws) {
 			}
 			console.log("FINISH");
         }
-
+		else if (jsonData.type === 'close') {
+			var uidx = connectedUsers.findIndex(u=>u.username === jsonData.sender);
+			connectedUsers.splice(uidx);
+		}
     });
 
     ws.on('close', function (event) {
-
-        ////console.log('Connection closed');
-        var user = connectedUsers.findByField('ws', ws);
-
-        connectedUsers.delete(user);
-
         saveDatabaseToDisk();
 
 	});

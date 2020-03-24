@@ -11,7 +11,7 @@ connection.onopen = event => {
 }
 
 connection.onclose = (event) => {
-    console.log("WebSocket is closed");
+    connection.send(JSON.stringify({type:"close",sender:user}));
 };
 
 connection.onerror = (event) => {
