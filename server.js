@@ -520,6 +520,7 @@ wss.on('connection', function(ws) {
 
     ws.on('close', function (event) {
 		var uidx = connectedUsers.findIndex(u=>u.ws === ws);
+		console.log(uidx+" "+connectedUsers[uidx])
 		connectedUsers.splice(uidx);
 		
         saveDatabaseToDisk();
