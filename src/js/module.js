@@ -621,16 +621,16 @@ class ModuleManager {
 	
 			var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
 			
-			if (nearModule) {
+			if (nearModule && this.selectedGroup.moduleType!=="target") {
 
 				if (Math.abs(nearModule.position.x - this.selectedGroup.position.x) > MODULESIZE){
 
-					if (nearModule.position.x > this.selectedGroup.position.x && !nearModule['west']) {
+					if (nearModule.position.x > this.selectedGroup.position.x && !nearModule.siblings.west) {
 
                         this.selectedGroup.assemble(nearModule, 'east', false);
                         
                     }
-                    else {
+                    else if (!nearModule.siblings.east){
 
                         this.selectedGroup.assemble(nearModule, 'west', false);
                         
@@ -638,12 +638,12 @@ class ModuleManager {
                 }
                 else {
 
-					if (nearModule.position.y > this.selectedGroup.position.y) {
+					if (nearModule.position.y > this.selectedGroup.position.y && !nearModule.siblings.north) {
 
                         this.selectedGroup.assemble(nearModule, 'south', false);
                         
                     }
-                    else {
+                    else if (!nearModule.siblings.south) {
 
                         this.selectedGroup.assemble(nearModule, 'north', false);
                         
