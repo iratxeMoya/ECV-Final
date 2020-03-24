@@ -533,12 +533,12 @@ wss.on('connection', function(ws) {
 		var uidx = connectedUsers.findIndex(u=>u.ws === ws);
 		console.log(uidx+" "+connectedUsers[uidx].username)
 		connectedUsers.splice(uidx,1);
+		
+        saveDatabaseToDisk();
 		console.log("AFTER");
 		connectedUsers.forEach(u=>{
 			console.log(u.ws? u.username+" GOOD" : u.username+" BAD")
 		});
-        saveDatabaseToDisk();
-
 	});
 })
 
