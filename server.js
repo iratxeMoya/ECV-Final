@@ -438,7 +438,7 @@ wss.on('connection', function(ws) {
                 }
             })
 			ready_users =1;
-			run_requester = requester.ws;
+			run_requester = requester.username;
 			if (total_users<1){
 				//console.log(ready_users);
 				run_requester.send(JSON.stringify({type:"everyoneReady"}));
@@ -456,7 +456,7 @@ wss.on('connection', function(ws) {
 			recived_elements.push(false);
 			console.log(ready_users+"/"+total_users);
 			if (ready_users>=total_users){
-				run_requester.send(JSON.stringify({type:"everyoneReady"}));
+				connectedUsers.find(cu=>cu.username===run_requester).ws.send(JSON.stringify({type:"everyoneReady"}));
 				////console.log(ready_users);
 			}
 			//console.log("I'M IN "+project.name);
