@@ -74,7 +74,7 @@ wss.on('connection', function(ws) {
     ws.on('message', function (data) {
 
         jsonData = JSON.parse(data);
-        console.log("ENTER "+jsonData.type + " " connectedUsers.length)
+        console.log("ENTER "+jsonData.type + " " +connectedUsers.length)
         connectedUsers.forEach(u=>{
 			console.log(u.ws? u.username+" GOOD" : u.username+" BAD")
 		});
