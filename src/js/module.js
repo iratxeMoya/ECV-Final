@@ -626,12 +626,12 @@ class ModuleManager {
 				console.log("GROUPING");
 				if (Math.abs(nearModule.position.x - this.selectedGroup.position.x) > MODULESIZE){
 
-					if (nearModule.position.x > this.selectedGroup.position.x && !nearModule.siblings.west) {
+					if (nearModule.position.x > this.selectedGroup.position.x && !nearModule.siblings.west.node) {
 
                         this.selectedGroup.assemble(nearModule, 'east', false);
                         
                     }
-                    else if (!nearModule.siblings.east){
+                    else if (!nearModule.siblings.east.node){
 
                         this.selectedGroup.assemble(nearModule, 'west', false);
                         
@@ -639,12 +639,12 @@ class ModuleManager {
                 }
                 else {
 
-					if (nearModule.position.y > this.selectedGroup.position.y && !nearModule.siblings.north) {
+					if (nearModule.position.y > this.selectedGroup.position.y && !nearModule.siblings.north.node) {
 
                         this.selectedGroup.assemble(nearModule, 'south', false);
                         
                     }
-                    else if (!nearModule.siblings.south) {
+                    else if (!nearModule.siblings.south.node) {
 
                         this.selectedGroup.assemble(nearModule, 'north', false);
                         
