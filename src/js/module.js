@@ -625,7 +625,7 @@ class ModuleManager {
 
 				if (Math.abs(nearModule.position.x - this.selectedGroup.position.x) > MODULESIZE){
 
-					if (nearModule.position.x > this.selectedGroup.position.x) {
+					if (nearModule.position.x > this.selectedGroup.position.x && !nearModule['west']) {
 
                         this.selectedGroup.assemble(nearModule, 'east', false);
                         
