@@ -621,8 +621,9 @@ class ModuleManager {
 	
 			var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
 			
+			console.log(nearModule)
 			if (nearModule  && this.selectedGroup.moduleType!=="target") {
-
+				console.log("GROUPING");
 				if (Math.abs(nearModule.position.x - this.selectedGroup.position.x) > MODULESIZE){
 
 					if (nearModule.position.x > this.selectedGroup.position.x && !nearModule.siblings.west) {
