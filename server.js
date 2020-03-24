@@ -437,7 +437,7 @@ wss.on('connection', function(ws) {
                 }
             })
 			run_requester = requester.ws;
-			if (ready_users<1){
+			if (total_users<1){
 				//console.log(ready_users);
 				run_requester.send(JSON.stringify({type:"everyoneReady"}));
 			}
