@@ -426,7 +426,6 @@ wss.on('connection', function(ws) {
                 var admin = connectedUsers.find(user => user.username === project.admin);
                 if (admin && admin.actualProject === project.name && admin.username !== jsonData.sender) {
                     admin.ws.send(data);
-					total_users++;
 					////console.log(ready_users);
                 }
                 if (admin && admin.username === jsonData.sender) {
@@ -435,8 +434,9 @@ wss.on('connection', function(ws) {
 					elements.push({element:{id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-8)+4,y:Math.floor(Math.random()*100)%(boundaries.bottom-4)+2}},projectName:project.name})
 					recived_elements.push(false);
                 }
+				total_users++;
             })
-			ready_users =0;
+			ready_users =1;
 			run_requester = requester.ws;
 			if (total_users<1){
 				//console.log(ready_users);
@@ -487,7 +487,7 @@ wss.on('connection', function(ws) {
 				ready_users =0;
 				elements.forEach(e =>{
 				if (!valid_pos(e.element)){
-					//console.log("HAS MUERTO");
+					console.log("HAS MUERTO");
 					projects.find(proj => e.projectName === proj.name).execute = -1;
 					total_users--;
 					let idx = elements.findIndex(er => e.projectName === er.projectName)
