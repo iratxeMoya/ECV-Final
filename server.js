@@ -484,7 +484,7 @@ wss.on('connection', function(ws) {
 				//console.log(elements);
 				ready_users =0;
 				elements.forEach(e =>{
-				if (!valid_pos(e.element.position.x,e.element.position.y)){
+				if (!valid_pos(e.element)){
 					//console.log("HAS MUERTO");
 					projects.find(proj => e.projectName === proj.name).execute = -1;
 					total_users--;
@@ -551,9 +551,31 @@ function end_game(winner){
 	
 }
 
-function valid_pos(x,y){
+function valid_pos(element){
 	//console.log(boundaries);
-	return x>boundaries.left  && x<boundaries.right && y> boundaries.top && y<boundaries.bottom;
+	var ret = element.position.x>boundaries.left  && element.position.x<boundaries.right && element.position.y> boundaries.top && element.position.y<boundaries.bottom;
+	let px =element.position.x;
+	let py =element.position.y;
+
+	switch(element.dir){
+		case 0:
+			px-=1;
+		break;
+		case 1:
+			py-=1;
+		break;
+		case 2:
+			px+=1;
+		break;
+		default:
+			py+=1;
+	}
+	
+	elements.forEach(e=>{
+		ret = ret && !(e.position.x === px && e.position.y === py);	
+	});
+	
+	return ret;
 }
 
 function loadInformation () {
