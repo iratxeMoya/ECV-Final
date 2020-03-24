@@ -616,7 +616,7 @@ class ModuleManager {
      * Disables mooving any module that has been released. If 2 modules are near, locates one module below the other (related) 
      */
 	release_modules() {
-
+		console.log(this.selectedGroup);
 		if(this.selectedGroup && this.selectedGroup.moduleType!=="target") {
 	
 			var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
