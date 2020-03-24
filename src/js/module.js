@@ -1,7 +1,7 @@
 import { codes, styles } from './codes.js';
 import { Map } from './map.js';
 import { isHover } from './utils.js';
-import { MODULESIZE } from './client.js';
+import { ELEMENTSIZE,MODULESIZE } from './client.js';
 
 
 class Element {
@@ -65,7 +65,7 @@ class Element {
 	
 	draw(gs_ctx){
 		gs_ctx.fillStyle = '#FF6DC9';
-        gs_ctx.fillRect((this.position.x-1)*MODULESIZE,(this.position.y-1)*MODULESIZE, MODULESIZE,MODULESIZE);
+        gs_ctx.fillRect((this.position.x-1)*ELEMENTSIZE,(this.position.y-1)*ELEMENTSIZE, ELEMENTSIZE,ELEMENTSIZE);
 	}
 	
 	colision(map){
@@ -617,11 +617,11 @@ class ModuleManager {
      */
 	release_modules() {
 		console.log(this.selectedGroup);
-		if(this.selectedGroup && this.selectedGroup.moduleType!=="target") {
+		if(this.selectedGroup) {
 	
 			var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
 			
-			if (nearModule ) {
+			if (nearModule  && this.selectedGroup.moduleType!=="target") {
 
 				if (Math.abs(nearModule.position.x - this.selectedGroup.position.x) > MODULESIZE){
 

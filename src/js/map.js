@@ -1,5 +1,5 @@
 import { codes, styles } from './codes.js';
-import { MODULESIZE } from './client.js';
+import { ELEMENTSIZE } from './client.js';
 
 class Map {
 	constructor(sizex,sizey){
@@ -83,7 +83,7 @@ class Map {
 		for(var i =0;i<this.sizey-1;i++){
 			for(var j =0;j<this.sizex-1;j++){
 				ctx.fillStyle = (i+j)%2==0 ? '#AAAAAA' : '#DDDDDD';
-				ctx.fillRect((j-1)*MODULESIZE,(i-1)*MODULESIZE, MODULESIZE,MODULESIZE);
+				ctx.fillRect((j-1)*ELEMENTSIZE,(i-1)*ELEMENTSIZE, ELEMENTSIZE,ELEMENTSIZE);
 			}
 		}
 	}
