@@ -547,7 +547,7 @@ function end_game(winner){
 				type:"endGame",
 				winner:winner
 			};
-			admin.ws.send(JSON.stringify(data));
+			admin ? admin.ws.send(JSON.stringify(data)) : null;
 		}
 	})
 	
@@ -576,7 +576,7 @@ function valid_pos(element){
 	elements.forEach(e=>{
 		ret = ret && !(e.element.position.x === px && e.element.position.y === py);	
 	});
-	
+	console.log(px+" "+py);
 	return ret;
 }
 
