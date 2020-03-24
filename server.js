@@ -436,7 +436,7 @@ wss.on('connection', function(ws) {
 					recived_elements.push(false);
                 }
             })
-			ready_users =1;
+			ready_users =0;
 			run_requester = requester.ws;
 			if (total_users<1){
 				//console.log(ready_users);
