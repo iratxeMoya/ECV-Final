@@ -427,6 +427,7 @@ wss.on('connection', function(ws) {
                 if (admin && admin.actualProject === project.name && admin.username !== jsonData.sender) {
                     admin.ws.send(data);
 					total_users++;
+					ready_users =1;
 					////console.log(ready_users);
                 }
                 if (admin && admin.username === jsonData.sender) {
