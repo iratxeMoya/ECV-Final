@@ -451,10 +451,10 @@ wss.on('connection', function(ws) {
             console.log(total_users);
 			if (total_users<1){
 				
-				run_requester.send(JSON.stringify({type:"everyoneReady"}));
+				connectedUsers.find(us => us.username === run_requester).ws.send(JSON.stringify({type:"everyoneReady"}));
             }
             if(total_users === 1) {
-                run_requester.send(JSON.stringify({type: 'noUsers'}));
+                connectedUsers.find(us => us.username === run_requester).ws.send(JSON.stringify({type: 'noUsers'}));
             }
 			console.log("FINISH");
         }
