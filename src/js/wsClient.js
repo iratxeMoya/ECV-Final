@@ -164,6 +164,8 @@ connection.onmessage = (event) => {
 		answerrun_popup.classList.toggle("showBlock");
     }
 	else if (jsonData.type === 'everyoneReady'){
+        console.log(jsonData);
+        
         module_manager.everyone_ready=true;
         var child = superrun_confirm.lastElementChild;  
         while (child) { 

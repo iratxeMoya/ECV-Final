@@ -219,7 +219,7 @@
     height: 50px;
 }
 .superrun.ask:disabled {
-    background: darkseagreen;
+	background: #9E9E9E;
 }
 .cancel_comp.ask {
 	border: none;
