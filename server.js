@@ -546,8 +546,14 @@ wss.on('connection', function(ws) {
                 }
                 else
                 {
-					//console.log("FINISH");
-					end_game(elements[0].projectName);
+                    //console.log("FINISH");
+                    if(elements.length > 1) {
+                        end_game('empate');
+                    }
+                    else {
+                        end_game(elements[0].projectName);
+                    }
+					
 				}
 			}
 			console.log("FINISH");
@@ -602,7 +608,8 @@ function end_game(winner){
 			var admin = connectedUsers.find(user => user.username === project.admin);
 			let data = {
 				type:"endGame",
-				winner:winner
+                winner: winner === 'empate' ? elements : winner,
+                empate: winner === empate
 			};
 			admin ? admin.ws.send(JSON.stringify(data)) : null;
         }

@@ -228,7 +228,16 @@ connection.onmessage = (event) => {
         noUsers.classList.toggle("showBlock");
     }
     else if(jsonData.type === 'endGame'){
-		alert("WINNER IS "+jsonData.winner+"'S ELEMENT");
+		if(jsonData.empate) {
+            var winners = '';
+            jsonData.winner.forEach(w =>{
+                winners += winners + ', ' + w.projectName;
+            });
+            alert('THERE WAS A TIE! WINNERS: ' + winners);
+        }
+        else {
+            alert ('THE WINNER IS ' + winner + '!!');
+        }
         element_manager.end_contest();
         
         superrun_confirm.innerText = '';
