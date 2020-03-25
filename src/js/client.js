@@ -71,6 +71,12 @@ function ans_ok(){
 
 function cancel_competition(){
 	superrun_popup.classList.toggle("showBlock");
+	superrun_confirm.innerText = '';
+	let spinner = document.createElement("div");
+	spinner.classList.add("spinner-grow");
+	spinner.classList.add("text-muted");
+	superrun_confirm.appendChild(spinner);
+	superrun_confirm.disabled = true;
 	fullPage.classList.toggle('darkBack');
 	connection.send(JSON.stringify({type: 'cancelCompetition', sender: user}));
 }
