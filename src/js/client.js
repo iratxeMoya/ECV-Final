@@ -72,6 +72,7 @@ function ans_ok(){
 function cancel_competition(){
 	superrun_popup.classList.toggle("showBlock");
 	fullPage.classList.toggle('darkBack');
+	connection.send(JSON.stringify({type: 'cancelCompetition', sender: user}));
 }
 
 function superrun(){

@@ -210,7 +210,24 @@ connection.onmessage = (event) => {
 			});
 		}
 		module_manager.server_run(element_manager.contestant);
-	}else if(jsonData.type === 'endGame'){
+    }
+    else if (jsonData.type === 'cancelCompetition') {
+
+        if (jsonData.status === 'unacepted') {
+            superrun_popup.classList.toggle("showBlock");
+        }
+
+        superrun_confirm.innerText = '';
+        let spinner = document.createElement("div");
+        spinner.classList.add("spinner-grow");
+        spinner.classList.add("text-muted");
+        superrun_confirm.appendChild(spinner);
+        superrun_confirm.disabled = true;
+
+        noUsers_text.innerText = jsonData.msg;
+        noUsers.classList.toggle("showBlock");
+    }
+    else if(jsonData.type === 'endGame'){
 		alert("WINNER IS "+jsonData.winner+"'S ELEMENT");
         element_manager.end_contest();
         

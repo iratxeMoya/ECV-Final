@@ -436,7 +436,6 @@ wss.on('connection', function(ws) {
                 if (admin && admin.actualProject === project.name && admin.username !== jsonData.sender) {
                     admin.ws.send(data);
 					total_users++;
-					console.log();
                 }
                 if (admin && admin.username === jsonData.sender) {
                     var project = projects.find(p => p.name === admin.actualProject);
@@ -468,9 +467,6 @@ wss.on('connection', function(ws) {
 			recived_elements.push(false);
 			console.log(ready_users+"/"+total_users);
 			if (ready_users>=total_users){
-				connectedUsers.forEach(u=>{
-					console.log( u);
-                });
 
                 connectedUsers.find(cu=>cu.username === run_requester).ws.send(JSON.stringify({type:"everyoneReady"}));
                 
@@ -481,12 +477,35 @@ wss.on('connection', function(ws) {
         }
         else if(jsonData.type === 'denyCompetition'){
 
+            var admin = connectedUsers.find(user => user.username === jsonData.sender);
+            var project = projects.find(p => p.name === admin.actualProject);
+
+            project.execute = -2; //denied
+
             total_users -= 1;
             if (ready_users>=total_users && total_users === 1){
 
                 connectedUsers.find(us => us.username === run_requester).ws.send(JSON.stringify({type: 'noUsers', msg: 'The connected users do not want to compete!'}));
 				
 			}
+
+            console.log("FINISH");
+        }
+        else if (jsonData.type === 'cancelCompetition') {
+
+            projects.forEach(project => {
+                var admin = connectedUsers.find(user => user.username === project.admin);
+                if (admin && admin.actualProject === project.name && admin.username !== jsonData.sender) {
+
+                    var info = {};
+                    info.type = 'cancelCompetition';
+                    info.status = project.execute === 1 ? 'acepted' : project.execute === -2 ? 'denied' : 'unacepted';
+
+                    console.log(info.status);
+                    admin.ws.send(JSON.stringify(info));
+                }
+                project.execute = 0;
+            })
 
             console.log("FINISH");
         }
