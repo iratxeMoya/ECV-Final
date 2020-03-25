@@ -229,9 +229,13 @@
 }
 .superrun.ask:hover {
 	cursor: pointer;
+    box-shadow: 0 0 15px #b7c6b7;
+    z-index: 5;
 }
 .cancel_comp.ask:hover {
 	cursor: pointer;
+    box-shadow: 0 0 15px #f09292;
+    z-index: 5;
 }
 
 
@@ -266,6 +270,9 @@
 	background-color: #678ba3;
     border-radius: 31px;
     color: black;
+}
+.ask {
+    font-size: medium;
 }
 
 /* Change color of dropdown links on hover */
@@ -333,5 +340,5 @@
 	height: 100%;
 }
 .darkBack {
-	background: #000;
+	/*background: #000;*/
 }

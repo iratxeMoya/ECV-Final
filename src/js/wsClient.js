@@ -1,7 +1,7 @@
 import { connection } from './init.js';
 import { module_manager,element_manager } from './client.js'
 import { createModule, createElement, requestProjInfo, deleteUser } from './utils.js';
-import { codeEditorPage,answerrun_popup, loginPage, regPage, projSelectPage, projListContainer, projInfoContainer, projUserContainer } from './DOMAccess.js';
+import { codeEditorPage,answerrun_popup, loginPage, regPage, projSelectPage, projListContainer, superrun_confirm, projUserContainer } from './DOMAccess.js';
 import { Element } from './module.js';
 
 var user = "";
@@ -170,7 +170,15 @@ connection.onmessage = (event) => {
         }*/
     }
 	else if (jsonData.type === 'everyoneReady'){
-		module_manager.everyone_ready=true;
+        module_manager.everyone_ready=true;
+        var child = superrun_confirm.lastElementChild;  
+        while (child) { 
+            superrun_confirm.removeChild(child); 
+            child = superrun_confirm.lastElementChild; 
+        }
+        
+        superrun_confirm.innerText = 'GO';
+        superrun_confirm.disabled = false;
 		//console.log("READY");
 	}
 	else if (jsonData.type === 'superRun'){
@@ -195,7 +203,14 @@ connection.onmessage = (event) => {
 		module_manager.server_run(element_manager.contestant);
 	}else if(jsonData.type === 'endGame'){
 		alert("WINNER IS "+jsonData.winner+"'S ELEMENT");
-		element_manager.end_contest();
+        element_manager.end_contest();
+        
+        superrun_confirm.innerText = '';
+        let spinner = document.createElement("div");
+        spinner.classList.add("spinner-grow");
+        spinner.classList.add("text-muted");
+        superrun_confirm.appendChild(spinner);
+        superrun_confirm.disabled = true;
 	}
 }
 
