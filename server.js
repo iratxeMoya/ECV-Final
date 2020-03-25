@@ -442,7 +442,7 @@ wss.on('connection', function(ws) {
                 if (admin && admin.username === jsonData.sender) {
                     var project = projects.find(p => p.name === admin.actualProject);
                     project.execute = 1;
-					elements.push({element:{id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-8)+4,y:Math.floor(Math.random()*100)%(boundaries.bottom-4)+2}},projectName:project.name})
+					//elements.push({element:{id:jsonData.elementId,position:{x:Math.floor(Math.random()*100)%(boundaries.right-8)+4,y:Math.floor(Math.random()*100)%(boundaries.bottom-4)+2}},projectName:project.name})
 					recived_elements.push(false);
 					total_users++;
                 }
