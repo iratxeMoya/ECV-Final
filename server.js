@@ -412,8 +412,6 @@ wss.on('connection', function(ws) {
 
             orderModules();
 
-            ////console.log('createElement ', modules);
-
             var project = projects.find(proj => proj.name === requester.actualProject);
 
             var users = [];
@@ -448,10 +446,10 @@ wss.on('connection', function(ws) {
 					total_users++;
                 }
             })
-			ready_users =1;
+			ready_users = 1;
 			run_requester = requester.username;
 			if (total_users<1){
-				//console.log(ready_users);
+				console.log(total_users);
 				run_requester.send(JSON.stringify({type:"everyoneReady"}));
 			}
 			console.log("FINISH");
@@ -470,8 +468,7 @@ wss.on('connection', function(ws) {
 				connectedUsers.forEach(u=>{
 					console.log( u);
 				});
-				connectedUsers.find(cu=>cu.username===run_requester).ws.send(JSON.stringify({type:"everyoneReady"}));
-				////console.log(ready_users);
+				connectedUsers.find(cu=>cu.username === run_requester).ws.send(JSON.stringify({type:"everyoneReady"}));
 			}
 			//console.log("I'M IN "+project.name);
 			console.log("FINISH");
@@ -486,12 +483,9 @@ wss.on('connection', function(ws) {
 			let elementidx=elements.findIndex(e=>e.element.id === jsonData.element.id);
 			if(!recived_elements[elementidx]){
 				ready_users++;
-				//console.log("RESPONSED");
-				//console.log(elementidx);
-				//console.log(elements);
 				recived_elements[elementidx] = true;
 				elements[elementidx]={element:jsonData.element,projectName:elements[elementidx].projectName};
-				//console.log(ready_users+" "+total_users);
+
 			}
 			//console.log(recived_elements);
 			//console.log(ready_users+"/"+total_users);
