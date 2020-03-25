@@ -471,12 +471,9 @@ wss.on('connection', function(ws) {
 				connectedUsers.forEach(u=>{
 					console.log( u);
                 });
-                if(total_users > 1) {
-                    connectedUsers.find(cu=>cu.username === run_requester).ws.send(JSON.stringify({type:"everyoneReady"}));
-                }
-                else {
-                    connectedUsers.find(us => us.username === run_requester).ws.send(JSON.stringify({type: 'noUsers'}));
-                }
+
+                connectedUsers.find(cu=>cu.username === run_requester).ws.send(JSON.stringify({type:"everyoneReady"}));
+                
 				
 			}
 			//console.log("I'M IN "+project.name);
@@ -485,6 +482,11 @@ wss.on('connection', function(ws) {
         else if(jsonData.type === 'denyCompetition'){
 
             total_users -= 1;
+            if (ready_users>=total_users && total_users === 1){
+
+                connectedUsers.find(us => us.username === run_requester).ws.send(JSON.stringify({type: 'noUsers'}));
+				
+			}
 
             console.log("FINISH");
         }
