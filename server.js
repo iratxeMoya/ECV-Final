@@ -602,7 +602,8 @@ function end_game(winner){
 				winner:winner
 			};
 			admin ? admin.ws.send(JSON.stringify(data)) : null;
-		}
+        }
+        project.execute = 0;
 	})
 	
 }
