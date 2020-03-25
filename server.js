@@ -600,9 +600,10 @@ function super_run(config){
 }
 
 function end_game(winner){
-	
+	var isFirst = true;
 	projects.forEach(project => {
-		if(project.execute!=0){
+		if(project.execute!=0 && isFirst){
+            isFirst = false;
 			//console.log(project)
 			console.log(elements);
 			var admin = connectedUsers.find(user => user.username === project.admin);
