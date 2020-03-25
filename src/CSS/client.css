@@ -240,6 +240,35 @@
     box-shadow: 0 0 15px #f09292;
     z-index: 5;
 }
+
+.superrun.ans {
+	border: none;
+    background: darkseagreen;
+    width: 50%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+}
+.cancel_comp.ans {
+	border: none;
+    background: indianred;
+    width: 50%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 50px;
+}
+.superrun.ans:hover {
+	cursor: pointer;
+    box-shadow: 0 0 15px #b7c6b7;
+    z-index: 5;
+}
+.cancel_comp.ans:hover {
+	cursor: pointer;
+    box-shadow: 0 0 15px #f09292;
+    z-index: 5;
+}
 .noUsersPopup {
     display: none;
     position: absolute;
