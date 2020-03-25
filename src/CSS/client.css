@@ -196,17 +196,44 @@
 }
 
 .competition_popup {
-	display:none;
-	position:absolute;
-	top:50vh;
-	left:50vw;
-	transform: translate(-50% , -50%);
-	background-color:white;
-	border: 10px solid #000;
-	height:100px;
-	width:200px;
-	z-index:4;
+	display: none;
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50% , -50%);
+    background-color: #1d242d;
+    height: 150px;
+    width: 250px;
+    box-shadow: 0 0 70px #000;
+    z-index: 4;
+    text-align: center;
+    padding: 30px;
 }
+.superrun.ask {
+	border: none;
+    background: darkseagreen;
+    width: 50%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+}
+.cancel_comp.ask {
+	border: none;
+    background: indianred;
+    width: 50%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 50px;
+}
+.superrun.ask:hover {
+	cursor: pointer;
+}
+.cancel_comp.ask:hover {
+	cursor: pointer;
+}
+
 
 /* Change color of dropdown links on hover */
 .dropdown-move a:hover {background-color: #ddd}
