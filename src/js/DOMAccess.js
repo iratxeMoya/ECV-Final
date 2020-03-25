@@ -20,6 +20,7 @@ var answerrun_cancel = document.querySelector(".cancel_comp.ans");
 var fullPage = document.querySelector(".fullPage");
 var noUsers = document.querySelector(".noUsersPopup");
 var noUsers_accept = document.querySelector(".accept_noUsers");
+var noUsers_text = document.querySelector(".noUsersPopup b");
 
 var basicModule = document.querySelector("#basicModule");
 var conditionModule = document.querySelector("#conditionModule");
@@ -106,5 +107,6 @@ export {
     projUserContainer,
     fullPage,
     noUsers,
+    noUsers_text,
     noUsers_accept
 }

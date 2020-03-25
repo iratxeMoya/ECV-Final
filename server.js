@@ -453,7 +453,7 @@ wss.on('connection', function(ws) {
 				connectedUsers.find(us => us.username === run_requester).ws.send(JSON.stringify({type:"everyoneReady"}));
             }
             if(total_users === 1) {
-                connectedUsers.find(us => us.username === run_requester).ws.send(JSON.stringify({type: 'noUsers'}));
+                connectedUsers.find(us => us.username === run_requester).ws.send(JSON.stringify({type: 'noUsers', msg: 'There are not connected users to commpete!'}));
             }
 			console.log("FINISH");
         }
@@ -484,7 +484,7 @@ wss.on('connection', function(ws) {
             total_users -= 1;
             if (ready_users>=total_users && total_users === 1){
 
-                connectedUsers.find(us => us.username === run_requester).ws.send(JSON.stringify({type: 'noUsers'}));
+                connectedUsers.find(us => us.username === run_requester).ws.send(JSON.stringify({type: 'noUsers', msg: 'The connected users do not want to compete!}));
 				
 			}
 
