@@ -17,6 +17,7 @@ var superrun_confirm = document.querySelector(".superrun.ask");
 var superrun_cancel = document.querySelector(".cancel_comp.ask");
 var answerrun_confirm = document.querySelector(".superrun.ans");
 var answerrun_cancel = document.querySelector(".cancel_comp.ans");
+var fullPage = document.querySelector(".fullPage");
 
 
 var basicModule = document.querySelector("#basicModule");
@@ -101,5 +102,6 @@ export {
     enterProj,
     newUser,
     addUser,
-    projUserContainer
+    projUserContainer,
+    fullPage
 }

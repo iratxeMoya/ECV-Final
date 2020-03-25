@@ -300,3 +300,11 @@
 .spaceDown {
 	margin-bottom: 0px;
 }
+
+.fullPage {
+	width: 100%;
+	height: 100%;
+}
+.darkBack {
+	background: #000;
+}

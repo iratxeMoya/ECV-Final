@@ -3,7 +3,7 @@ import { Map } from './map.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
 import { isHover, createModule, paintInCanvas, createElement, fillModuleDropDown,showModuleList} from './utils.js';
-import { wb_cvs,answerrun_confirm,answerrun_popup,answerrun_cancel,superrun_popup,superrun_cancel,superrun_confirm, wb_ctx,gs_cvs, gs_ctx,conditionModule, basicModule, argModule, targetModule, element, workbench,game_screen, run_button, stop_button, competition_button, dropdownMovement, dropdownControl, dropdownCondition} from './DOMAccess.js';
+import { wb_cvs,answerrun_confirm,answerrun_popup,answerrun_cancel,superrun_popup,fullPage,superrun_cancel,superrun_confirm, wb_ctx,gs_cvs, gs_ctx,conditionModule, basicModule, argModule, targetModule, element, workbench,game_screen, run_button, stop_button, competition_button, dropdownMovement, dropdownControl, dropdownCondition} from './DOMAccess.js';
 import { user }	from './wsClient.js';
 
 var wb_h = workbench.style.height;
@@ -66,12 +66,14 @@ function ans_ok(){
 
 function cancel_competition(){
 	superrun_popup.classList.toggle("showBlock");
+	fullPage.classList.toggle('darkBack');
 }
 
 function superrun(){
 
 	if(module_manager.everyone_ready){
 		superrun_popup.classList.toggle("showBlock");
+		fullPage.classList.toggle('darkBack');
 		let jsonData ={};
 		jsonData.type = 'superRun';
 		jsonData.sender = user;
@@ -91,6 +93,7 @@ function requestCompetition() {
 	jsonData.elementId = element_manager.contestant;
 
 	superrun_popup.classList.toggle("showBlock");
+	fullPage.classList.toggle('darkBack');
 	
 	connection.send(JSON.stringify(jsonData));
 }
