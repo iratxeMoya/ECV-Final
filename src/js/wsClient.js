@@ -213,7 +213,7 @@ connection.onmessage = (event) => {
     }
     else if (jsonData.type === 'cancelCompetition') {
 
-        if (jsonData.status === 'unaccepted') {
+        if (jsonData.status !== 'unaccepted') {
             superrun_popup.classList.toggle("showBlock");
         }
 
