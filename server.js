@@ -452,7 +452,10 @@ wss.on('connection', function(ws) {
 			if (total_users<1){
 				
 				run_requester.send(JSON.stringify({type:"everyoneReady"}));
-			}
+            }
+            if(total_users === 1) {
+                run_requester.send(JSON.stringify({type: 'noUsers'}));
+            }
 			console.log("FINISH");
         }
         else if (jsonData.type === 'acceptCompetition') {

@@ -1,7 +1,7 @@
 import { connection } from './init.js';
 import { module_manager,element_manager } from './client.js'
 import { createModule, createElement, requestProjInfo, deleteUser } from './utils.js';
-import { codeEditorPage,answerrun_popup, loginPage, regPage, projSelectPage, projListContainer, superrun_confirm, projUserContainer } from './DOMAccess.js';
+import { codeEditorPage,answerrun_popup, loginPage, regPage, projSelectPage, projListContainer, superrun_popup, superrun_confirm, projUserContainer, noUsers } from './DOMAccess.js';
 import { Element } from './module.js';
 
 var user = "";
@@ -176,7 +176,19 @@ connection.onmessage = (event) => {
         superrun_confirm.innerText = 'GO';
         superrun_confirm.disabled = false;
 		//console.log("READY");
-	}
+    }
+    else if(jsonData.type === 'noUsers') {
+        superrun_popup.classList.toggle("showBlock");
+
+        superrun_confirm.innerText = '';
+        let spinner = document.createElement("div");
+        spinner.classList.add("spinner-grow");
+        spinner.classList.add("text-muted");
+        superrun_confirm.appendChild(spinner);
+        superrun_confirm.disabled = true;
+
+        noUsers.classList.toggle("showBlock");
+    }
 	else if (jsonData.type === 'superRun'){
 		let newData={};
 		let ret=false;
