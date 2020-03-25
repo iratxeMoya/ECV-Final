@@ -162,12 +162,6 @@ connection.onmessage = (event) => {
 	}
     else if (jsonData.type === 'requestCompetition') {
 		answerrun_popup.classList.toggle("showBlock");
-        // if(confirm('New Competition! Take part?')) {
-        // }
-        //esto creo que no hace falta
-        /*else {
-            connection.send(JSON.stringify({type: 'denyCompetition'}));
-        }*/
     }
 	else if (jsonData.type === 'everyoneReady'){
         module_manager.everyone_ready=true;

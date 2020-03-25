@@ -218,6 +218,9 @@
     bottom: 0;
     height: 50px;
 }
+.superrun.ask:disabled {
+    background: darkseagreen;
+}
 .cancel_comp.ask {
 	border: none;
     background: indianred;
@@ -227,7 +230,7 @@
     bottom: 0;
     height: 50px;
 }
-.superrun.ask:hover {
+.superrun.ask:hover:enabled {
 	cursor: pointer;
     box-shadow: 0 0 15px #b7c6b7;
     z-index: 5;

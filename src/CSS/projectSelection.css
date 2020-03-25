@@ -52,6 +52,7 @@ input:focus {
     color: #fff;
     border-radius: 999px;
     border: none;
+    font-size: smaller;
 }
 #projects {
 	grid-column-start: 9;
@@ -96,6 +97,7 @@ input:focus {
     color: #fff;
     border-radius: 999px;
     border: none;
+    font-size: smaller;
 }
 #projInfoContainer {
 	display: none;
@@ -151,6 +153,7 @@ input:focus {
     color: #fff;
     border-radius: 999px;
     border: none;
+    font-size: smaller;
 }
 span.list {
 	display: block;
