@@ -8,10 +8,12 @@ var passwordHash = require('password-hash');
 var mysql = require ('mysql');
 var wrapper = require('node-mysql-wrapper');
 var fs = require('fs');
-var ready_users =0;
-var total_users =0;
+
+var ready_users = 0;
+var total_users = 0;
 var run_requester = null;
-var lap=0;
+var lap = 0;
+var elapsed_time = 0;
 
 
 var boundaries = {top:0,bottom:0,left:0,right:0}
@@ -179,7 +181,6 @@ wss.on('connection', function(ws) {
 				projects.push(newProj);
 				
 				modules[jsonData.name] = {};
-				////console.log('en create proj: ', modules);
 				console.log('en create proj: ', modules);
                 modules['lastSaveDate'] = Date.now();
                 
@@ -426,7 +427,8 @@ wss.on('connection', function(ws) {
             console.log("FINISH");
         }
         else if (jsonData.type === 'requestCompetition') {
-			//console.log(connectedUsers);
+            //console.log(connectedUsers);
+            elapsed_time = 0;
 			var requester = connectedUsers.find(user => user.username === jsonData.sender);
 			boundaries.bottom=jsonData.mapBottom;
             boundaries.right=jsonData.mapRight;
@@ -510,7 +512,7 @@ wss.on('connection', function(ws) {
             console.log("FINISH");
         }
 		else if (jsonData.type === 'superRun') {
-			//console.log("RUN");
+			
 			super_run(true)
 			console.log("FINISH");
         }
@@ -539,10 +541,11 @@ wss.on('connection', function(ws) {
 					elements.splice(idx,1);
 				}
 				});
-				if(total_users>1){
-					//console.log("AGAIN");
+				if(total_users>1 && elapsed_time < 10){
 					super_run(false);
-				}else{
+                }
+                else
+                {
 					//console.log("FINISH");
 					end_game(elements[0].projectName);
 				}
@@ -574,7 +577,8 @@ wss.on('connection', function(ws) {
 })
 
 function super_run(config){
-	ready_users=0;
+    ready_users = 0;
+    elapsed_time += 1;
 		projects.forEach(project => {
 			var admin = connectedUsers.find(user => user.username === project.admin);
 			//console.log(admin+" "+project.name +" "+ project.execute);
@@ -584,7 +588,6 @@ function super_run(config){
 					elements:elements,
 					config:config
 				};
-				//console.log("CURRAD ESCLAVOS");
 				admin.ws.send(JSON.stringify(data));
 			}
 		})
