@@ -614,7 +614,8 @@ function end_game(winner){
 			admin ? admin.ws.send(JSON.stringify(data)) : null;
         }
         project.execute = 0;
-	})
+    });
+    elements = [];
 	
 }
 

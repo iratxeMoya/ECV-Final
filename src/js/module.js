@@ -129,8 +129,8 @@ class ElementManager {
 	
 	end_contest(){
 		for( let i=0;i<this.elements.length;i++){
-			if(elements[i].contest){
-				elements.splice(i);
+			if(this.elements[i].contest){
+				this.elements.splice(i);
 			}
 		}
 	}
