@@ -59,12 +59,13 @@ function noUsersAccept() {
 }
 function ans_no(){
 	answerrun_popup.classList.toggle("showBlock");
+	connection.send(JSON.stringify({type:'denyCompetition', sender: user}));
 }
 
 function ans_ok(){
-	element_manager.contestant =element_manager.elements[0].id
+	element_manager.contestant = element_manager.elements[0].id
 	answerrun_popup.classList.toggle("showBlock");
-	connection.send(JSON.stringify({elementId:element_manager.contestant,type: 'acceptCompetition',sender:user}));
+	connection.send(JSON.stringify({elementId:element_manager.contestant,type: 'acceptCompetition',sender: user}));
 
 }
 
