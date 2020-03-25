@@ -242,8 +242,32 @@
 }
 .noUsersPopup {
     display: none;
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50% , -50%);
+    background-color: #1d242d;
+    height: 150px;
+    width: 250px;
+    box-shadow: 0 0 70px #000;
+    z-index: 4;
+    text-align: center;
+    padding: 30px
 }
-
+.accept_noUsers {
+    border: none;
+    background: darkseagreen;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+}
+.accept_noUsers:hover:enabled {
+	cursor: pointer;
+    box-shadow: 0 0 15px #b7c6b7;
+    z-index: 5;
+}
 
 /* Change color of dropdown links on hover */
 .dropdown-move a:hover {background-color: #ddd}
