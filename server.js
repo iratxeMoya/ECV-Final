@@ -450,7 +450,6 @@ wss.on('connection', function(ws) {
             run_requester = requester.username;
             console.log(total_users);
 			if (total_users<1){
-				
 				connectedUsers.find(us => us.username === run_requester).ws.send(JSON.stringify({type:"everyoneReady"}));
             }
             if(total_users === 1) {
