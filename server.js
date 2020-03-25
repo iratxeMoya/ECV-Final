@@ -484,7 +484,7 @@ wss.on('connection', function(ws) {
             total_users -= 1;
             if (ready_users>=total_users && total_users === 1){
 
-                connectedUsers.find(us => us.username === run_requester).ws.send(JSON.stringify({type: 'noUsers', msg: 'The connected users do not want to compete!}));
+                connectedUsers.find(us => us.username === run_requester).ws.send(JSON.stringify({type: 'noUsers', msg: 'The connected users do not want to compete!'}));
 				
 			}
 
