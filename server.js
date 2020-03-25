@@ -500,7 +500,7 @@ wss.on('connection', function(ws) {
                     var info = {};
                     info.type = 'cancelCompetition';
                     info.status = project.execute === 1 ? 'acepted' : project.execute === -2 ? 'denied' : 'unacepted';
-
+                    info.msg = 'Competition canceled';
                     console.log(info.status);
                     admin.ws.send(JSON.stringify(info));
                 }
