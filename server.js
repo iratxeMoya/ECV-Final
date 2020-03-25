@@ -541,7 +541,7 @@ wss.on('connection', function(ws) {
 					elements.splice(idx,1);
 				}
 				});
-				if(total_users>1 && elapsed_time < 10){
+				if(total_users>1 && elapsed_time < 100){
 					super_run(false);
                 }
                 else
