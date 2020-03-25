@@ -229,12 +229,12 @@ connection.onmessage = (event) => {
     }
     else if(jsonData.type === 'endGame'){
 		if(jsonData.empate) {
-            var winners = '';
+            var winners = [];
             jsonData.winner.forEach(w => {
                 console.log(w);
-                winners += winners + ', ' + w.projectName;
+                winners.push(w.projectName);
             });
-            alert('THERE WAS A TIE! WINNERS: ' + winners);
+            alert('THERE WAS A TIE! WINNERS: ' + winners.join(', '));
         }
         else {
             alert ('THE WINNER IS ' + jsonData.winner + '!!');
