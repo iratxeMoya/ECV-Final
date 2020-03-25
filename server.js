@@ -609,7 +609,7 @@ function end_game(winner){
 			let data = {
 				type:"endGame",
                 winner: winner === 'empate' ? elements : winner,
-                empate: winner === empate
+                empate: winner === 'empate'
 			};
 			admin ? admin.ws.send(JSON.stringify(data)) : null;
         }
