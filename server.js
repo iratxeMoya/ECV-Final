@@ -473,7 +473,7 @@ wss.on('connection', function(ws) {
 
 			}
 
-			if(ready_users>=total_users) {
+			if(ready_users >= total_users) {
 
 				recived_elements.fill(false);
                 ready_users = 0;
@@ -489,7 +489,7 @@ wss.on('connection', function(ws) {
                         
                     }
 				});
-				if(total_users>1 && elapsed_time < 100) {
+				if(total_users > 1 && elapsed_time < 100) {
 
                     super_run(false);
                     
@@ -533,6 +533,8 @@ function super_run(config) {
 
     ready_users = 0;
     elapsed_time += 1;
+
+    console.log('iteracion num: ', elapsed_time);
 
 		projects.forEach(project => {
 

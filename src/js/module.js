@@ -175,7 +175,8 @@ class ElementManager {
     }
 	
 	end_contest() {
-		for( let i=0; i < this.elements.length; i++) {
+
+		for( let i = 0; i < this.elements.length; i++) {
 
 			if(this.elements[i].contest) {
 
