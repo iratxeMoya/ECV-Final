@@ -51,7 +51,7 @@ function createElement (id, position, send = true) {
 		elementSelectANS.appendChild(dropdownElement2);
 		elementSelectASK.appendChild(dropdownElement2);
 
-		console.log(dropdownElement2);
+		console.log(elementSelectANS);
 	}
 	
 
