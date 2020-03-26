@@ -49,7 +49,6 @@ function createElement (id, position, send = true) {
 		dropdownElement2.addEventListener("click", selectElement);
 		dropdownContainer.appendChild(dropdownElement);
 		elementSelect.appendChild(dropdownElement2);
-		console.log(id);
 
 	}
 	
@@ -58,7 +57,7 @@ function createElement (id, position, send = true) {
 
 function selectElement() {
 
-	selectElement = this.id;
+	selectedElement = this.id;
 	console.log(selectedElement);
 }
 
