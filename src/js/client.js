@@ -57,9 +57,11 @@ noUsers_accept.addEventListener("click", noUsersAccept);
 
 // FUNCTIONS
 function showListASK() {
+	console.log('ask')
 	elementSelectASK.classList.toggle("showBlock");
 }
 function showListANS() {
+	console.log('ans')
 	elementSelectANS.classList.toggle("showBlock");
 }
 
