@@ -489,7 +489,7 @@ wss.on('connection', function(ws) {
                         
                     }
 				});
-				if(total_users > 1 && elapsed_time < 100) {
+				if(total_users > 1 && elapsed_time < 10) {
 
                     super_run(false);
                     
