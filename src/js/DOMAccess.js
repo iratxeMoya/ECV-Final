@@ -35,7 +35,7 @@ var dropdownControl = document.querySelector(".dropdown-cont");
 var dropdownCondition = document.querySelector(".dropdown-cond");
 var elementSelectASK = document.querySelector("#elementSelectASK");
 var elementSelectBtnASK = document.querySelector('#elementSelectBtnASK');
-var elementSelectANS = document.querySelector("#elementSelectASK");
+var elementSelectANS = document.querySelector("#elementSelectANS");
 var elementSelectBtnANS = document.querySelector('#elementSelectBtnANS');
 
 

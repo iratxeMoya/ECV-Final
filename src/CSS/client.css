@@ -403,7 +403,7 @@
 }
 
 .elementSelect {
-    display: none;
+    /*display: none;*/
     background-color: #354152;
     width: 146px;
     z-index: 1;
