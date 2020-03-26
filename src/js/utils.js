@@ -1,7 +1,7 @@
 import { Module,ConditionModule, ArgModule, TargetModule, Element } from './module.js';
 import { module_manager, element_manager, map } from './client.js';
 import { connection } from './init.js';
-import { dropdownContainer, elementSelect, dropdownMovement, dropdownControl, dropdownCondition, projInfoContainer, projUserContainer, projListContainer, argModule, basicModule, conditionModule, targetModule } from './DOMAccess.js';
+import { dropdownContainer, elementSelectASK, elementSelectANS, dropdownMovement, dropdownControl, dropdownCondition, projInfoContainer, projUserContainer, projListContainer, argModule, basicModule, conditionModule, targetModule } from './DOMAccess.js';
 import { user } from './wsClient.js';
 
 var targetModulePos = null;
@@ -48,7 +48,8 @@ function createElement (id, position, send = true) {
 		dropdownElement.addEventListener("click", clickDropDownElement)
 		dropdownElement2.addEventListener("click", selectElement);
 		dropdownContainer.appendChild(dropdownElement);
-		elementSelect.appendChild(dropdownElement2);
+		elementSelectASK.appendChild(dropdownElement2);
+		elementSelectANS.appendChild(dropdownElement2);
 
 	}
 	

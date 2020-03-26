@@ -33,8 +33,10 @@ var dropdownContainer = document.querySelector(".dropdown-content");
 var dropdownMovement = document.querySelector(".dropdown-move");
 var dropdownControl = document.querySelector(".dropdown-cont");
 var dropdownCondition = document.querySelector(".dropdown-cond");
-var elementSelect = document.querySelector(".elementSelect");
-var elementSelectBtn = document.querySelector('#elementSelectBtn');
+var elementSelectASK = document.querySelector("#elementSelectASK");
+var elementSelectBtnASK = document.querySelector('#elementSelectBtnASK');
+var elementSelectANS = document.querySelector("#elementSelectASK");
+var elementSelectBtnANS = document.querySelector('#elementSelectBtnASK');
 
 
 //Login Page
@@ -111,6 +113,8 @@ export {
     noUsers,
     noUsers_text,
     noUsers_accept,
-    elementSelect,
-    elementSelectBtn
+    elementSelectASK,
+    elementSelectBtnASK,
+    elementSelectANS,
+    elementSelectBtnANS
 }

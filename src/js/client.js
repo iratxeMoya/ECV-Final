@@ -3,7 +3,7 @@ import { Map } from './map.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
 import { isHover, paintInCanvas, createElement, fillModuleDropDown,showModuleList, selectedElement } from './utils.js';
-import { wb_cvs, elementSelect, elementSelectBtn, answerrun_confirm, answerrun_popup, answerrun_cancel, superrun_popup, fullPage, noUsers_accept, noUsers, superrun_cancel, superrun_confirm, wb_ctx, gs_cvs, gs_ctx, conditionModule, basicModule, argModule, targetModule, element, workbench, game_screen, run_button, stop_button, competition_button, dropdownMovement, dropdownControl, dropdownCondition } from './DOMAccess.js';
+import { wb_cvs, elementSelectASK, elementSelectANS, elementSelectBtnASK, elementSelectBtnANS, answerrun_confirm, answerrun_popup, answerrun_cancel, superrun_popup, fullPage, noUsers_accept, noUsers, superrun_cancel, superrun_confirm, wb_ctx, gs_cvs, gs_ctx, conditionModule, basicModule, argModule, targetModule, element, workbench, game_screen, run_button, stop_button, competition_button, dropdownMovement, dropdownControl, dropdownCondition } from './DOMAccess.js';
 import { user }	from './wsClient.js';
 
 var wb_h = workbench.style.height;
@@ -46,7 +46,8 @@ fillModuleDropDown(dropdownCondition,codes.condition,"condition");
 
 answerrun_cancel.addEventListener("click",ans_no);
 answerrun_confirm.addEventListener("click",ans_ok);
-elementSelectBtn.addEventListener("click", showList);
+elementSelectBtnASK.addEventListener("click", showListASK);
+elementSelectBtnANS.addEventListener("click", showListANS);
 
 superrun_cancel.addEventListener("click",cancel_competition);
 superrun_confirm.addEventListener("click",superrun);
@@ -55,8 +56,11 @@ noUsers_accept.addEventListener("click", noUsersAccept);
 
 
 // FUNCTIONS
-function showList() {
-	elementSelect.classList.toggle("showBlock");
+function showListASK() {
+	elementSelectASK.classList.toggle("showBlock");
+}
+function showListANS() {
+	elementSelectANS.classList.toggle("showBlock");
 }
 
 function noUsersAccept() {
