@@ -36,7 +36,7 @@ var dropdownCondition = document.querySelector(".dropdown-cond");
 var elementSelectASK = document.querySelector("#elementSelectASK");
 var elementSelectBtnASK = document.querySelector('#elementSelectBtnASK');
 var elementSelectANS = document.querySelector("#elementSelectASK");
-var elementSelectBtnANS = document.querySelector('#elementSelectBtnASK');
+var elementSelectBtnANS = document.querySelector('#elementSelectBtnANS');
 
 
 //Login Page
