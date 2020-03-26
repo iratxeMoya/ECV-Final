@@ -140,6 +140,7 @@ class ElementManager {
 	move_element (id, position) {
 
 		let idx = this.elements.findIndex(e => e.id.toString() === id.toString()); 
+		console.log('index: ', idx)
 		this.elements[idx].position = position;
 
 	}
