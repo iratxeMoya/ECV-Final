@@ -56,6 +56,7 @@ function createElement (id, position, send = true) {
 function selectElement() {
 
 	selectElement = this.id;
+	print(selectedElement);
 }
 
 function clickDropDownElement () {
