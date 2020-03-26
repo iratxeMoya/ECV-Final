@@ -48,8 +48,8 @@ function createElement (id, position, send = true) {
 		dropdownElement.addEventListener("click", clickDropDownElement)
 		dropdownElement2.addEventListener("click", selectElement);
 		dropdownContainer.appendChild(dropdownElement);
-		elementSelectASK.appendChild(dropdownElement2);
 		elementSelectANS.appendChild(dropdownElement2);
+		elementSelectASK.appendChild(dropdownElement2);
 
 	}
 	
