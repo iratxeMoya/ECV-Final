@@ -7,19 +7,15 @@ import { user } from './wsClient.js';
 var targetModulePos = null;
 var thereAreElements = false;
 
-/**
- * Is x, y position hovering the trash icon?
- * 
- * @param {int} x 
- * @param {int} y
- * @returns {boolean} 
- */
 function isHover(x, y) {
 
     if (x < 25 && x > 0 && y < 35 && y > 0) {
+
 		console.log(x, y);
-        return true;
-    }
+		return true;
+		
+	}
+	
     return false;
 }
 
@@ -30,13 +26,16 @@ function createElement (id, position, send = true) {
 	element_manager.add_element(element);
 	
 	if (send) {
+
 		sendElementInfo(element);
+
 	}
 	
 	var dropdownElement = document.createElement("span");
 	dropdownElement.id = id;
 
 	var elementsWithId = document.getElementById(id);
+
     if (!elementsWithId) {
 
 		dropdownElement.innerText = id; //Esto estaria bien tener un nombre para el element
@@ -53,7 +52,6 @@ function clickDropDownElement () {
 	var id = Date.now();
 
 	var t = element_manager.getElementById(this.id)[0]
-	console.log(t);
 	var mod = new TargetModule(targetModulePos,"target","target", t , id);
 
 	module_manager.add_module(mod);
@@ -64,13 +62,16 @@ function clickDropDownElement () {
 
 }
 
-function fillModuleDropDown(dropdown,json,type){
-	for (let codeType in json){
+function fillModuleDropDown(dropdown, json, type) {
+
+	for (let codeType in json) {
+
 		let dropdownElement = document.createElement("span");
 
 		dropdownElement.innerText = codeType; //Esto estaria bien tener un nombre para el element
 		dropdownElement.addEventListener("click", function(){clickDropDownModule(type,codeType);})
 		dropdown.appendChild(dropdownElement);
+
 	}
 }
 
@@ -78,27 +79,37 @@ function clickDropDownModule (moduleType, codeType) {
 
 	var mod;
 	var id = Date.now();
-	switch (moduleType){
+
+	switch (moduleType) {
+
 		case 'control':
+
 			mod = new ArgModule({x:100,y:100}, moduleType, codeType, id,null);
 			dropdownControl.classList.toggle("showBlock");
 			argModule.classList.toggle("spaceDown");
 			break;
-		case 'target':	
+
+		case 'target':
+
 			mod = new TargetModule({x:100,y:100}, moduleType, "target",null, id);
 			thereAreElements ? dropdownContainer.classList.toggle("showBlock"): null;
 			thereAreElements ? targetModule.classList.toggle("spaceDown") : null;
 			break;
+
 		case 'condition':
+
 			mod = new ConditionModule({x:100,y:100}, moduleType, codeType, id, map);
 			dropdownCondition.classList.toggle("showBlock");
 			conditionModule.classList.toggle("spaceDown");
 			break;
+
 		default:
+
 			mod = new Module({x:100,y:100}, moduleType, codeType, id);
 			dropdownMovement.classList.toggle("showBlock");
 			basicModule.classList.toggle("spaceDown");
 			break;
+
 	}
 
 	module_manager.add_module(mod);
@@ -110,30 +121,40 @@ function clickDropDownModule (moduleType, codeType) {
 
 	}
 
-	//FALTA AÑADIR SERVER
 }
 
-function showModuleList(moduleType){
-	switch (moduleType){
+function showModuleList(moduleType) {
+
+	switch (moduleType) {
+
 		case 'control':
-				targetModulePos = {x:100,y:100};
-				argModule.classList.toggle("spaceDown");
-				dropdownControl.classList.toggle("showBlock");
+
+			targetModulePos = {x:100,y:100};
+			argModule.classList.toggle("spaceDown");
+			dropdownControl.classList.toggle("showBlock");
+			break;
+
 		case 'target':
-				targetModulePos = {x:100,y:100};
-				thereAreElements ? dropdownContainer.classList.toggle("showBlock"): null;
-				thereAreElements ? targetModule.classList.toggle("spaceDown") : null;
+
+			targetModulePos = {x:100,y:100};
+			thereAreElements ? dropdownContainer.classList.toggle("showBlock"): null;
+			thereAreElements ? targetModule.classList.toggle("spaceDown") : null;
 			break;
+
 		case 'condition':
-				targetModulePos = {x:100,y:100};
-				conditionModule.classList.toggle("spaceDown");
-				dropdownCondition.classList.toggle("showBlock");
+
+			targetModulePos = {x:100,y:100};
+			conditionModule.classList.toggle("spaceDown");
+			dropdownCondition.classList.toggle("showBlock");
 			break;
+
 		default:
-				targetModulePos = {x:100,y:100};
-				basicModule.classList.toggle("spaceDown");
-				dropdownMovement.classList.toggle("showBlock");
+
+			targetModulePos = {x:100,y:100};
+			basicModule.classList.toggle("spaceDown");
+			dropdownMovement.classList.toggle("showBlock");
 			break;
+
 	}
 }
 
@@ -143,40 +164,56 @@ function createModule (id, codeType, position, map = null, target = null, arg = 
 	var mod = null, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false};
 
 	if (northID) {
+
 		var northMod = module_manager.getModuleByID(northID.nodeId);
 		north.node = northMod;
 		north.type = northID.type;
+
 	}
 	if (westID) {
+
 		var westMod = module_manager.getModuleByID(westID.nodeId);
 		west.node = westMod;
 		west.type = westID.type;
+
 	}
 	if (eastID) {
+
 		var eastMod = module_manager.getModuleByID(eastID.nodeId);
 		east.node = eastMod;
 		east.type = eastID.type;
+
 	}
 	if (southID) {
+
 		var southMod = module_manager.getModuleByID(southID.nodeId);
 		south.node = southMod;
 		south.type = southID.type;
+
 	}
 
-	switch (moduleType){
+	switch (moduleType) {
+
 		case 'control':
+
 			mod = new ArgModule(position, moduleType, codeType, id, arg, north, west, east, south);
 			break;
+
 		case 'target':
-			console.log(target);
+
 			mod = new TargetModule(position, moduleType,codeType, target, id, north, west, east, south);
 			break;
+
 		case 'condition':
+
 			mod = new ConditionModule(position, moduleType, codeType, id,map, north, west, east, south);
 			break;
+
 		default:
+
 			mod = new Module(position, moduleType, codeType, id, north, west, east, south);
 			break;
+
 	}
 	
     if (mod) {
@@ -252,35 +289,47 @@ function requestProjInfo () {
 	focusElement(this, projListContainer);
 
 	if (!isSelected) {
+
 		for (var i = 0; i < projInfoContainer.classList.length; i++) {
+
 			var className = projInfoContainer.classList[i];
+
 			if (className === 'showGrid') {
+
 				projInfoContainer.classList.toggle('showGrid');
+
 			}
+
 		}
 	}
 	else {
 
 		var showing = false;
+
 		for (var i = 0; i < projInfoContainer.classList.length; i++) {
+
 			var className = projInfoContainer.classList[i];
+
 			if (className === 'showGrid') {
+
 				showing = true;
+
 			}
 		}
 		if(!showing) {
+			
 			projInfoContainer.classList.toggle('showGrid');
+
 		}
 	}
+
 	jsonData.sender = user;
 	connection.send(JSON.stringify(jsonData));
 }
 
 function deleteUser () {
-	//aqui deberia borrarse el user
 
 	focusElement(this, projUserContainer);
-
 
 }
 
@@ -296,18 +345,24 @@ function focusElement (elem, par) {
 
 			var className = child.classList[j];
 			if (className === 'clicked') {
+
 				if(child === elem) {
+
 					isSelected = false;
 					isElem = true;
+
 				}
+
 				child.classList.toggle('clicked');
 			}
 		}
 	}
 
 	if (!isElem) {
+
 		isSelected = true;
 		elem.classList.toggle('clicked');
+		
 	}
 	
 

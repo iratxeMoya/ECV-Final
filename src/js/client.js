@@ -1,9 +1,9 @@
-import { ModuleManager, Element, ElementManager } from './module.js';
+import { ModuleManager, ElementManager } from './module.js';
 import { Map } from './map.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
-import { isHover, createModule, paintInCanvas, createElement, fillModuleDropDown,showModuleList} from './utils.js';
-import { wb_cvs,answerrun_confirm,answerrun_popup,answerrun_cancel,superrun_popup,fullPage,noUsers_accept,noUsers,superrun_cancel,superrun_confirm, wb_ctx,gs_cvs, gs_ctx,conditionModule, basicModule, argModule, targetModule, element, workbench,game_screen, run_button, stop_button, competition_button, dropdownMovement, dropdownControl, dropdownCondition} from './DOMAccess.js';
+import { isHover, paintInCanvas, createElement, fillModuleDropDown,showModuleList} from './utils.js';
+import { wb_cvs, answerrun_confirm, answerrun_popup, answerrun_cancel, superrun_popup, fullPage, noUsers_accept, noUsers, superrun_cancel, superrun_confirm, wb_ctx, gs_cvs, gs_ctx, conditionModule, basicModule, argModule, targetModule, element, workbench, game_screen, run_button, stop_button, competition_button, dropdownMovement, dropdownControl, dropdownCondition } from './DOMAccess.js';
 import { user }	from './wsClient.js';
 
 var wb_h = workbench.style.height;
@@ -21,7 +21,6 @@ var MODULESIZE = 40;
 const TILENUM =30;
 
 var map =  new Map(TILENUM,TILENUM);;
-////console.log(map);
 var module_manager = new ModuleManager(codes);
 var element_manager = new ElementManager();
 var img = new Image();
@@ -31,7 +30,6 @@ img.src = "icons/basura.svg";
 basicModule.addEventListener("click", function(){showModuleList("movement")});
 argModule.addEventListener("click", function(){showModuleList("control")});
 conditionModule.addEventListener("click", function(){showModuleList("condition")});
-// argModule.addEventListener("click", function(){createModule(Date.now(), 'log',{x: 100, y: 200}, null, "Hola", "arg")});
 targetModule.addEventListener("click", function(){showModuleList("target")});
 element.addEventListener("click", function() {createElement(Date.now(), {x: 2, y:2})});
 
@@ -55,21 +53,30 @@ noUsers_accept.addEventListener("click", noUsersAccept)
 
 // FUNCTIONS
 function noUsersAccept() {
+
 	noUsers.classList.toggle("showBlock");
-}
-function ans_no(){
-	answerrun_popup.classList.toggle("showBlock");
-	connection.send(JSON.stringify({type:'denyCompetition', sender: user}));
+
 }
 
-function ans_ok(){
+function ans_no() {
+
+	answerrun_popup.classList.toggle("showBlock");
+
+	connection.send(JSON.stringify({type:'denyCompetition', sender: user}));
+
+}
+
+function ans_ok() {
+
 	element_manager.contestant = element_manager.elements[0].id
 	answerrun_popup.classList.toggle("showBlock");
+
 	connection.send(JSON.stringify({elementId:element_manager.contestant,type: 'acceptCompetition',sender: user}));
 
 }
 
-function cancel_competition(){
+function cancel_competition() {
+
 	superrun_popup.classList.toggle("showBlock");
 	superrun_confirm.innerText = '';
 	let spinner = document.createElement("div");
@@ -78,25 +85,32 @@ function cancel_competition(){
 	superrun_confirm.appendChild(spinner);
 	superrun_confirm.disabled = true;
 	fullPage.classList.toggle('darkBack');
+
 	connection.send(JSON.stringify({type: 'cancelCompetition', sender: user}));
+
 }
 
-function superrun(){
+function superrun() {
 
-	if(module_manager.everyone_ready){
+	if(module_manager.everyone_ready) {
+
 		superrun_popup.classList.toggle("showBlock");
 		fullPage.classList.toggle('darkBack');
+
 		let jsonData ={};
 		jsonData.type = 'superRun';
 		jsonData.sender = user;
 		
 		connection.send(JSON.stringify(jsonData));
+
 	}
 	
 }
 
 function requestCompetition() {
-	element_manager.contestant =element_manager.elements[0].id
+
+	element_manager.contestant =element_manager.elements[0].id;
+
 	var jsonData = {};
 	jsonData.type = 'requestCompetition';
 	jsonData.mapRight = TILENUM;
@@ -108,15 +122,20 @@ function requestCompetition() {
 	fullPage.classList.toggle('darkBack');
 	
 	connection.send(JSON.stringify(jsonData));
-}
-function run() {
-	element_manager.refresh();
-	module_manager.running = true;
+
 }
 
-function stop(){
+function run() {
+
+	element_manager.refresh();
+	module_manager.running = true;
+
+}
+
+function stop() {
+
 	module_manager.running = false;
-	////console.log(module_manager.abort);
+
 }
 
 function move(event) {
@@ -161,21 +180,26 @@ function release(event) {
 	var modules = [];
 
 	if (isHover(module_manager.selectedGroup.position.x, module_manager.selectedGroup.position.y) && module_manager.selectedGroup) {
+
 		var deletingModuleIds = module_manager.remove_modules(module_manager.selectedGroup);
 		module_manager.selectedGroup = null;
 		remove = true;
-		////console.log(deletingModuleIds);
+
 		deletingModuleIds.forEach(id => {
+
 			var element = {};
 			element.id = id;
 			modules.push(element);
-		})
+
+		});
+
 	} 
 	else {
+
 		var activeModuleIds=[];
 		module_manager.selectedGroup.get_children_ids(activeModuleIds)
 		module_manager.release_modules();
-		////console.log(activeModuleIds);
+
 		activeModuleIds.forEach(id => {
 			
 			var module = module_manager.getModuleByID(id);
@@ -187,10 +211,10 @@ function release(event) {
 			element.west = {nodeId: module.siblings.west.node ? module.siblings.west.node.id : null, type: module.siblings.west.type};
 
 			modules.push(element);
-		})
-	}
 
-	////console.log('in release: ', modules);
+		});
+
+	}
 
 	connection.send(JSON.stringify({sender:user,type: 'releaseModule', posx: event.offsetX, posy: event.offsetY, 'remove': remove, modules: modules, screenX: event.screenX, screenY: event.screenY}));
 
@@ -198,7 +222,6 @@ function release(event) {
 
 //LOOP
 function update_workbench() {
-
 
 	wb_h = workbench.clientHeight;
 	wb_w = workbench.clientWidth;
@@ -212,13 +235,16 @@ function update_workbench() {
 }
 
 function update_gs() {
+
 	if(module_manager.ret.id){
-		console.log("SUPERRESPONSE");
+
 		let newData={};
-		newData.type="superResponse";
 		newData.element = module_manager.server_run(module_manager.ret.id);
+
 		connection.send(JSON.stringify(newData));
+
 		module_manager.ret.id = null;
+
 	}
 	
 	gs_h = game_screen.clientHeight;
@@ -228,8 +254,6 @@ function update_gs() {
 	
 	gs_cvs.height = Math.min(Math.floor(gs_w/TILENUM)*TILENUM,Math.floor(gs_h/TILENUM)*TILENUM);
 	gs_cvs.width = Math.min(Math.floor(gs_w/TILENUM)*TILENUM,Math.floor(gs_h/TILENUM)*TILENUM);
-	
-
 	
 	module_manager.run_modules();
 	
@@ -253,11 +277,9 @@ function update_gs() {
 	map.draw(gs_ctx);
 	element_manager.draw(gs_ctx);
 	
-	
-	
 }
 
-export{
+export {
 	module_manager,
 	element_manager,
 	map,

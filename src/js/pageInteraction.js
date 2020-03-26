@@ -13,15 +13,12 @@ import {
     createProj,
     newUser,
     addUser,
-    projInfoContainer,
-    projUserContainer,
-    projListContainer,
     enterProj,
     projSelectPage,
     codeEditorPage
 } from './DOMAccess.js';
 import {connection} from './init.js';
-import { actualProject, isSelected, requestProjInfo, deleteUser } from './utils.js';
+import { actualProject, isSelected } from './utils.js';
 import { user } from './wsClient.js';
 
 

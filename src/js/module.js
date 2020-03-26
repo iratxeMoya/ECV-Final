@@ -7,7 +7,7 @@ import { ELEMENTSIZE,MODULESIZE } from './client.js';
 class Element {
 	
 	constructor (id, position,contestant=false, avatar = null) {
-		////console.log(position);
+
 		this.position={x:position.x,y:position.y};
 		this.id = id;
 		this.dir = 0;
@@ -16,62 +16,94 @@ class Element {
 		
     }
 	
-	forward(){
-		switch(this.dir){
+	forward() {
+
+		switch(this.dir) {
+
 			case 0:
-				this.position.x+=1;
+
+				this.position.x += 1;
 				break;
+
 			case 1:
-				this.position.y+=1;
+
+				this.position.y += 1;
 				break;
+
 			case 2:
-				this.position.x-=1;
+
+				this.position.x -= 1;
 				break;
+
 			default:
-				this.position.y-=1;
+
+				this.position.y -= 1;
+
 		}
 	}
 	
-	in_range(pos,xi,xf,yi,yf){
-		return (pos.x>xi && pos.x<xf && pos.y>yi && pos.y<yf);
+	in_range(pos, xi, xf, yi, yf) {
+
+		return (pos.x > xi && pos.x < xf && pos.y > yi && pos.y < yf);
+
 	}
 	
-	turn_clock(){
-		this.dir = (this.dir+1)%4;
+	turn_clock() {
+
+		this.dir = (this.dir + 1) % 4;
+
 	}
 	
-	turn_counter(){
-		this.dir = (this.dir-1)%4;
+	turn_counter() {
+
+		this.dir = (this.dir - 1) % 4;
+
 	}
 	
-	next_pos(){
-		var nposx=this.position.x;
-		var nposy=this.position.y;
-		switch(this.dir){
+	next_pos() {
+
+		var nposx = this.position.x;
+		var nposy = this.position.y;
+
+		switch(this.dir) {
+
 			case 0:
-				nposx+=1;
+
+				nposx += 1;
 				break;
+
 			case 1:
-				nposy+=1;
+
+				nposy += 1;
 				break;
+
 			case 2:
-				nposx-=1;
+
+				nposx -= 1;
 				break;
+
 			default:
-				nposy-=1;
+
+				nposy -= 1;
+
 		}
-		return {x:nposx,y:nposy};
+
+		return {x: nposx, y: nposy};
+
 	}
 	
-	draw(gs_ctx){
+	draw(gs_ctx) {
+
 		gs_ctx.fillStyle = '#FF6DC9';
-        gs_ctx.fillRect((this.position.x-1)*ELEMENTSIZE,(this.position.y-1)*ELEMENTSIZE, ELEMENTSIZE,ELEMENTSIZE);
+		gs_ctx.fillRect((this.position.x - 1) * ELEMENTSIZE, (this.position.y - 1) * ELEMENTSIZE, ELEMENTSIZE, ELEMENTSIZE);
+		
 	}
 	
-	colision(map){
-		////console.log(map);
+	colision(map) {
+
 		let npos = this.next_pos();
-		return !map.is_valid(npos.x,npos.y);
+		return !map.is_valid(npos.x, npos.y);
+
 	}
 	
 }
@@ -79,58 +111,76 @@ class Element {
 class ElementManager {
 
     constructor () {
+
         this.elements = [];
 		this.contestant = null;
+
     }
 
     add_element (element) {
-        this.elements.push(element);
+
+		this.elements.push(element);
+		
     }
 
     delete_element (element) {
-        this.elements.remove(element);
+
+		this.elements.remove(element);
+		
     }
 
     getElementById (id) {
-		console.log("GETTING")
-		console.log(id);
-		console.log(this.elements);
+
 		let ret = this.elements.filter(ele => ele.id.toString() === id.toString());
-		console.log(ret);
-        return ret;
-    }
+
+		return ret;
+		
+	}
 	
-	move_element (id,position){
-		//console.log(position);
-		let idx =this.elements.findIndex(e=>e.id === id);
-		//console.log(this.elements[idx].position);
+	move_element (id, position) {
+
+		let idx = this.elements.findIndex(e => e.id === id); 
 		this.elements[idx].position = position;
-		//console.log(this.elements[idx].position);
+
 	}
 	
-	refresh(){
+	refresh() {
+
 		this.elements.forEach(element => {
-			element.dead=false;
+			element.dead = false;
 		});
+
 	}
 	
-	any_alive(){
-		var ret=true;
+	any_alive() {
+
+		var ret = true;
+
 		this.elements.forEach(element => {
+
 			ret = ret && !element.dead;
+
 		});
+
 	}
 
     draw (gs_ctx) {
+
         this.elements.forEach(element => {
-            element.draw(gs_ctx);
-        })
+
+			element.draw(gs_ctx);
+			
+		})
+		
     }
 	
-	end_contest(){
-		for( let i=0;i<this.elements.length;i++){
-			if(this.elements[i].contest){
+	end_contest() {
+		for( let i=0; i < this.elements.length; i++) {
+
+			if(this.elements[i].contest) {
+
 				this.elements.splice(i);
+
 			}
 		}
 	}
@@ -172,7 +222,8 @@ class Module {
 
     }
 	
-	get_offset(){
+	get_offset() {
+
 		if (!this.relative.dir) {
 
             return {x: 0, y: 0};
@@ -214,8 +265,6 @@ class Module {
 	}
 	
 	assemble(node, direction, type) {
-
-		console.log(this)
 	
         this.relative.dir = direction;
         this.update_superparentId(node.superparentId);
@@ -266,7 +315,6 @@ class Module {
 		let mp = this.getMasterPos();
 		this.move(mp.x, mp.y);
 		
-		
 	}
 	
 	disassemble() {
@@ -279,8 +327,10 @@ class Module {
 		this.relative.offset.y = 0;
 	}
 	
-	update_superparentId(id){
-		this.superparentId=id
+	update_superparentId(id) {
+
+		this.superparentId = id
+
 		for(let dir in this.siblings) {
 
 			if (dir !== this.relative.dir && this.siblings[dir].node) {
@@ -291,8 +341,10 @@ class Module {
 		}
 	}
 	
-	change_gate(dir,type = !this.siblings[dir].type){
-		this.siblings[dir].type=type;
+	change_gate(dir, type = !this.siblings[dir].type){
+
+		this.siblings[dir].type = type;
+
 	}
 
     /**
@@ -336,9 +388,6 @@ class Module {
 		}
     }
 
-    /**
-     * Enable module to move
-     */
 	enable_moving() {
 
         this.moving = true;
@@ -346,20 +395,12 @@ class Module {
         
     }
     
-	/**
-     * Disable module to move
-     */
 	disable_moving() {
 
         this.moving = false;
         
 	}
     
-    /**
-     * Draw module in canvas
-     * 
-     * @param {Canvas context} wb_ctx 
-     */
 	draw(wb_ctx) {
 
 		wb_ctx.fillStyle = styles[this.moduleType];
@@ -368,24 +409,29 @@ class Module {
         wb_ctx.font = MODULESIZE+"px Georgia";
 		wb_ctx.fillText(this.codeType.charAt(0).toUpperCase(), this.position.x-MODULESIZE/2, this.position.y+MODULESIZE/2);
 	}
-    
-    /**
-     * 
-     * @param {Module} module 
-     * @returns {boolean} is module near of this?
-     */
+
     isNear(module) {
-        return Math.abs(module.position.x - this.position.x) < MODULESIZE * 2 && Math.abs(module.position.y - this.position.y) < MODULESIZE * 2;  
+
+		return Math.abs(module.position.x - this.position.x) < MODULESIZE * 2 && Math.abs(module.position.y - this.position.y) < MODULESIZE * 2;  
+		
     }
 	
-	run_children(target){
+	run_children(target) {
+
 		var ret = target;
-		for (let dir in this.siblings){
-			if(this.siblings[dir].node && this.siblings[dir].type){
+
+		for (let dir in this.siblings) {
+
+			if(this.siblings[dir].node && this.siblings[dir].type) {
+
 				ret = this.siblings[dir].node.run(target);
-			}				
+
+			}	
+
 		}
+
 		return ret;
+
 	}
 	
 	isChild(module) {
@@ -412,49 +458,51 @@ class Module {
 		return ret;
 	}
 	
-	get_children_ids(ids){
+	get_children_ids(ids) {
+
 		ids.push(this.id);
-		for (let dir in this.siblings){
-			if(this.siblings[dir].node && dir !== this.relative.dir){
+
+		for (let dir in this.siblings) {
+
+			if(this.siblings[dir].node && dir !== this.relative.dir) {
+
 				this.siblings[dir].node.get_children_ids(ids);
+
 			}
+
 		}
+
 	}
 	
-	destroy(){
-		for (let dir in this.siblings){
-			if(this.siblings[dir].node && dir !== this.relative.dir){
+	destroy() {
+		for (let dir in this.siblings) {
+
+			if(this.siblings[dir].node && dir !== this.relative.dir) {
+
 				this.siblings[dir].node.destroy();
 				delete this.siblings[dir].node;
+
 			}
+
 		}
+
 	}
-	
-    /**
-     * Runs code of the module
-     */
+
     run (target) {
-		////console.log(target);
-		//console.log(this.moduleType+" "+this.codeType);
-		if(target){
-			console.log("RUN")
-			console.log(target.position.x +" "+target.position.y);
+
+		if(target) {
+
 			eval(codes[this.moduleType][this.codeType]);
-			console.log(target.position.x +" "+target.position.y);
+
 		}
+
 		return this.run_children(target);
+
     }
 }
 
 class ArgModule extends Module {
-	/**
-     * 
-     * @param {Object} position {x, y}
-     * @param {String} type 
-     * @param {Module} target
-     * @param {Int} id Unique ??????? no se como hacer esto
-     * @param {String} argument to pass	
-     */
+
 	constructor (position, moduleType, type, id, arg, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}) {
 
 		super(position, moduleType, type, id, north, west, east, south);
@@ -462,19 +510,16 @@ class ArgModule extends Module {
         
     }
     
-    /**
-     * Sets arguments for code running
-     * 
-     * @param {String} arg 
-     */
 	set_arg(arg){
 
 		this.arg = arg;
 	}
 	
 	run(target) {
+
         eval(codes[this.moduleType][this.codeType].replace('$arg$', this.arg)); 
-        return this.run_children(target);
+		return this.run_children(target);
+		
     }
 }
 
@@ -489,9 +534,8 @@ class TargetModule extends Module{
 		
 	}
 	
-	run(target=null){
+	run(target = null) {
 
-		console.log(this)
 		return this.run_children(this.target);
 		 
 	}
@@ -501,17 +545,17 @@ class TargetModule extends Module{
 class ConditionModule extends Module {
 	
 	constructor(position, moduleType, type, id,map, value=null, north = {node: null, type: false}, west = {node: null, type: false}, east = {node: null, type: false}, south = {node: null, type: false}){
+
 		super(position, moduleType, type, id, north, west, east, south);
 		this.value = value;
 		this.map = map;
+
 	}
 	
-	run(target){
+	run(target) {
 		
-        ////console.log("COND");
-		////console.log(target);
-		////console.log(this);
-		this.value=5;//DEBUGGING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		this.value = 5;//DEBUGGING!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 		if (target) {
 
 			if (eval(codes[this.moduleType][this.codeType].replace('$val$', this.value))) {
@@ -535,9 +579,6 @@ class ConditionModule extends Module {
 
 class ModuleManager {
 
-    /**
-     * Creates a module manager object
-     */
 	constructor() {
 		this.modules = [];
 		this.count = 0;
@@ -547,19 +588,11 @@ class ModuleManager {
 		this.ret={status:-1,mod:null,id:null};
     }
     
-    /**
-     * Adds a new module to the manager
-     * 
-     * @param {Module} newModule 
-     */
 	add_module(newModule) {
 
 		this.modules.push(newModule)
     }
     
-    /**
-     * Deletes a module from de manager
-     */
     delete_module (x, y) {
 
 		this.modules.forEach(module => {
@@ -570,22 +603,20 @@ class ModuleManager {
 
     }
 	
-	remove_modules(module){
+	remove_modules(module) {
+
 		let ids=[];
 		module.get_children_ids(ids);
-		////console.log(ids);
-		ids.forEach(id =>{
+
+		ids.forEach(id => {
+
 			this.modules.remove(this.getModuleByID(id));
+
 		});
+
 		return ids;
 	}
     
-    /**
-     * Enables moving any module that has been clicked
-     * 
-     * @param {int} posx 
-     * @param {int} posy 
-     */
 	click_modules(posx, posy) {
 
 		this.modules.forEach(module => {
@@ -626,18 +657,14 @@ class ModuleManager {
         
 	}
 	
-    /**
-     * Disables mooving any module that has been released. If 2 modules are near, locates one module below the other (related) 
-     */
 	release_modules() {
-		console.log(this.selectedGroup);
+
 		if(this.selectedGroup) {
 	
 			var nearModule = this.closest_node(this.selectedGroup.position.x,this.selectedGroup.position.y,MODULESIZE*2);
 			
-			console.log(nearModule)
 			if (nearModule  && this.selectedGroup.moduleType!=="target") {
-				console.log("GROUPING");
+
 				if (Math.abs(nearModule.position.x - this.selectedGroup.position.x) > MODULESIZE){
 
 					if (nearModule.position.x > this.selectedGroup.position.x && !nearModule.siblings.west.node && this.selectedGroup.superparentId !== nearModule.superparentId) {
@@ -676,24 +703,13 @@ class ModuleManager {
         return this.modules.filter(mod => mod.id === id)[0];
 
     }
-    
-    /**
-     * Moves all modules that are enabled to move to posx, posy position.
-     * 
-     * @param {int} posx 
-     * @param {int} posy 
-     */
+
 	move_modules(posx, posy) {
 
 		this.selectedGroup ? this.selectedGroup.move(posx, posy) : null;
        
 	}
     
-    /**
-     * Draws all the modules in the manager in the canvas
-     * 
-     * @param {Canvas context} wb_ctx 
-     */
 	draw(wb_ctx) {
 
 
@@ -704,32 +720,34 @@ class ModuleManager {
 		});
 	}
     
-    run_request(id){
+    run_request(id) {
+
 		this.waiting = id;
+
 	}
 	
-	server_run(id=this.ret.id){
-		//console.log(this.ret);
-		if (!this.ret.id){
+	server_run(id = this.ret.id) {
+
+		if (!this.ret.id) {
+
 			this.ret.id = id;
-			//console.log("ID "+id);
-			return null;	
-		}else{
-			console.log(this.modules);
+			return null;
+
+		}
+		else {
+
 			this.ret.mod =this.modules.find(module=>(module.moduleType === "target" ? (module.target.id === id):false));
-			console.log(this.ret.mod.target.position);
 			let ntarget =this.ret.mod.run();
-			console.log("TARGET");
-			console.log(ntarget);
+			
 			return ntarget;
+
 		}
 	}
-	
-	 /**
-     * Runs the code of all the modules in the manager
-     */
+
 	run_modules() {
-		if (this.running){
+
+		if (this.running) {
+
 			this.modules.forEach(module => {
 
 				console.log(module.moduleType === "target" ? module.target : 'nones');
@@ -740,11 +758,6 @@ class ModuleManager {
 	}
 }
 
-
-
-/**
- * Removes element from array
- */
 Array.prototype.remove = function() {
 
     var what, a = arguments, L = a.length, ax;
