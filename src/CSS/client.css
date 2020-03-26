@@ -401,3 +401,32 @@
 .darkBack {
 	/*background: #000;*/
 }
+
+.elementSelect {
+    display: none;
+    background-color: #354152;
+    width: 146px;
+    z-index: 1;
+    margin-left: 12px;
+    margin-right: 12px;
+    text-align: center;
+    border: 1px solid;
+    padding: 1rem;
+    border-top: none;
+    overflow-y: scroll;
+    color: #6b869b;
+}
+
+/* Links inside the dropdown */
+.elementSelect span {
+	height: 30px;
+	text-decoration: none;
+	display: block;
+	overflow: hidden;
+}
+.elementSelect span:hover {
+	cursor: pointer;
+	background-color: #678ba3;
+    border-radius: 31px;
+    color: black;
+}

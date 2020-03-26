@@ -33,6 +33,8 @@ var dropdownContainer = document.querySelector(".dropdown-content");
 var dropdownMovement = document.querySelector(".dropdown-move");
 var dropdownControl = document.querySelector(".dropdown-cont");
 var dropdownCondition = document.querySelector(".dropdown-cond");
+var elementSelect = document.querySelector(".elementSelect");
+var elementSelectBtn = document.querySelector('#elementSelectBtn');
 
 
 //Login Page
@@ -108,5 +110,7 @@ export {
     fullPage,
     noUsers,
     noUsers_text,
-    noUsers_accept
+    noUsers_accept,
+    elementSelect,
+    elementSelectBtn
 }

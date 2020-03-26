@@ -189,6 +189,7 @@ connection.onmessage = (event) => {
 
         answerrun_popup.classList.toggle("showBlock");
         
+        
     }
 	else if (jsonData.type === 'everyoneReady'){
                 

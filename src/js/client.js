@@ -2,8 +2,8 @@ import { ModuleManager, ElementManager } from './module.js';
 import { Map } from './map.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
-import { isHover, paintInCanvas, createElement, fillModuleDropDown,showModuleList} from './utils.js';
-import { wb_cvs, answerrun_confirm, answerrun_popup, answerrun_cancel, superrun_popup, fullPage, noUsers_accept, noUsers, superrun_cancel, superrun_confirm, wb_ctx, gs_cvs, gs_ctx, conditionModule, basicModule, argModule, targetModule, element, workbench, game_screen, run_button, stop_button, competition_button, dropdownMovement, dropdownControl, dropdownCondition } from './DOMAccess.js';
+import { isHover, paintInCanvas, createElement, fillModuleDropDown,showModuleList, selectedElement } from './utils.js';
+import { wb_cvs, elementSelect, elementSelectBtn, answerrun_confirm, answerrun_popup, answerrun_cancel, superrun_popup, fullPage, noUsers_accept, noUsers, superrun_cancel, superrun_confirm, wb_ctx, gs_cvs, gs_ctx, conditionModule, basicModule, argModule, targetModule, element, workbench, game_screen, run_button, stop_button, competition_button, dropdownMovement, dropdownControl, dropdownCondition } from './DOMAccess.js';
 import { user }	from './wsClient.js';
 
 var wb_h = workbench.style.height;
@@ -46,12 +46,19 @@ fillModuleDropDown(dropdownCondition,codes.condition,"condition");
 
 answerrun_cancel.addEventListener("click",ans_no);
 answerrun_confirm.addEventListener("click",ans_ok);
+elementSelectBtn.addEventListener("click", showList);
 
 superrun_cancel.addEventListener("click",cancel_competition);
 superrun_confirm.addEventListener("click",superrun);
-noUsers_accept.addEventListener("click", noUsersAccept)
+noUsers_accept.addEventListener("click", noUsersAccept);
+
+
 
 // FUNCTIONS
+function showList() {
+	elementSelect.classList.toggle("showBlock");
+}
+
 function noUsersAccept() {
 
 	noUsers.classList.toggle("showBlock");
@@ -68,7 +75,7 @@ function ans_no() {
 
 function ans_ok() {
 
-	element_manager.contestant = element_manager.elements[0].id
+	element_manager.contestant = selectedElement;
 	answerrun_popup.classList.toggle("showBlock");
 
 	connection.send(JSON.stringify({elementId:element_manager.contestant,type: 'acceptCompetition',sender: user}));
@@ -109,7 +116,7 @@ function superrun() {
 
 function requestCompetition() {
 
-	element_manager.contestant =element_manager.elements[0].id;
+	element_manager.contestant = selectedElement;
 
 	var jsonData = {};
 	jsonData.type = 'requestCompetition';

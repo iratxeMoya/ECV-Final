@@ -1,11 +1,12 @@
 import { Module,ConditionModule, ArgModule, TargetModule, Element } from './module.js';
 import { module_manager, element_manager, map } from './client.js';
 import { connection } from './init.js';
-import { dropdownContainer,dropdownMovement, dropdownControl, dropdownCondition, projInfoContainer, projUserContainer, projListContainer, argModule, basicModule, conditionModule, targetModule } from './DOMAccess.js';
+import { dropdownContainer, elementSelect, dropdownMovement, dropdownControl, dropdownCondition, projInfoContainer, projUserContainer, projListContainer, argModule, basicModule, conditionModule, targetModule } from './DOMAccess.js';
 import { user } from './wsClient.js';
 
 var targetModulePos = null;
 var thereAreElements = false;
+var selectedElement = null;
 
 function isHover(x, y) {
 
@@ -32,7 +33,10 @@ function createElement (id, position, send = true) {
 	}
 	
 	var dropdownElement = document.createElement("span");
+	var dropdownElement2 = document.createElement("span");
+
 	dropdownElement.id = id;
+	dropdownElement2.id = id;
 
 	var elementsWithId = document.getElementById(id);
 
@@ -40,11 +44,18 @@ function createElement (id, position, send = true) {
 
 		dropdownElement.innerText = id; //Esto estaria bien tener un nombre para el element
 		dropdownElement.addEventListener("click", clickDropDownElement)
+		dropdownElement2.addEventListener("click", selectElement);
 		dropdownContainer.appendChild(dropdownElement);
+		elementSelect.appendChild(dropdownElement2);
 
 	}
 	
 
+}
+
+function selectElement() {
+
+	selectElement = this.id;
 }
 
 function clickDropDownElement () {
@@ -379,5 +390,6 @@ export {
 	requestProjInfo,
 	actualProject,
 	isSelected,
-	deleteUser
+	deleteUser,
+	selectedElement
 }
