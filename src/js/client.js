@@ -82,6 +82,7 @@ function ans_no() {
 function ans_ok() {
 
 	element_manager.contestant = selectedElement;
+	console.log(selectedElement);
 	answerrun_popup.classList.toggle("showBlock");
 
 	connection.send(JSON.stringify({elementId:element_manager.contestant,type: 'acceptCompetition',sender: user}));
@@ -123,6 +124,7 @@ function superrun() {
 function requestCompetition() {
 
 	element_manager.contestant = selectedElement;
+	console.log(selectedElement);
 
 	var jsonData = {};
 	jsonData.type = 'requestCompetition';
