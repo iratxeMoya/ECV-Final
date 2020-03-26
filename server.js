@@ -469,7 +469,7 @@ wss.on('connection', function(ws) {
 
 				ready_users++;
 				recived_elements[elementidx] = true;
-				elements[elementidx]={element:jsonData.element,projectName:elements[elementidx].projectName};
+				elements[elementidx] = {element:jsonData.element,projectName:elements[elementidx].projectName};
 
 			}
 
