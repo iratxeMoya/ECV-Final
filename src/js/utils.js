@@ -34,9 +34,11 @@ function createElement (id, position, send = true) {
 	
 	var dropdownElement = document.createElement("span");
 	var dropdownElement2 = document.createElement("span");
+	var dropdownElement3 = document.createElement("span");
 
 	dropdownElement.id = id;
 	dropdownElement2.id = id;
+	dropdownElement3.id = id;
 
 	var elementsWithId = document.getElementById(id);
 
@@ -44,14 +46,16 @@ function createElement (id, position, send = true) {
 
 		dropdownElement.innerText = id; //Esto estaria bien tener un nombre para el element
 		dropdownElement2.innerText = id; //Esto estaria bien tener un nombre para el element
+		dropdownElement3.innerText = id; //Esto estaria bien tener un nombre para el element
 
 		dropdownElement.addEventListener("click", clickDropDownElement)
 		dropdownElement2.addEventListener("click", selectElement);
+		dropdownElement3.addEventListener("click", selectElement);
 		dropdownContainer.appendChild(dropdownElement);
-		elementSelectANS.appendChild(dropdownElement2);
+		elementSelectANS.appendChild(dropdownElement3);
 		elementSelectASK.appendChild(dropdownElement2);
 
-		console.log(elementSelectANS);
+		console.log(elementSelectANS, );
 	}
 	
 
