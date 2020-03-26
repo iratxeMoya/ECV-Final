@@ -556,11 +556,10 @@ function super_run(config) {
 
 function end_game(winner) {
 
-    var isFirst = true;
     
 	projects.forEach(project => {
 
-		if(project.execute!=0 && isFirst) {
+		if(project.execute!=0) {
 
             isFirst = false;
 
