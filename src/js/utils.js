@@ -298,8 +298,7 @@ function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash) {
 		wb_ctx.fillStyle = "#09f";
 		wb_ctx.fillRect(0, 0, wb_w, wb_h);
 		
-		// reset comp. mode
-		ctx.globalCompositeOperation = "source-over";
+
 	}
 
 }
