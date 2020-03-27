@@ -739,7 +739,7 @@ class ModuleManager {
 		}
 		else {
 
-			this.ret.mod =this.modules.find(module=>(module.moduleType === "target" ? (module.target.id === id):false));
+			this.ret.mod =this.modules.find(module=>(module.moduleType === "target" ? (module.target.id.toString() === id.toString()):false));
 			let ntarget =this.ret.mod.run();
 			
 			return ntarget;
