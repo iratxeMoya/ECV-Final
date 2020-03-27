@@ -464,3 +464,7 @@
     border-radius: 31px;
     color: black;
 }
+.h2, h2 {
+    font-size: 2rem;
+    margin-bottom: 2em;
+}
