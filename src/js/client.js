@@ -81,7 +81,9 @@ function noUsersAccept() {
 
 function display_name(event){
 	var now = new Date().getTime();
+	console.log("NO");
 	if(Math.abs(timer-now)>1000){
+		console.log("YES");
 		module_manager.is_hover(event.offsetX,event.offsetY);
 	}
 }
