@@ -52,6 +52,7 @@
     border: 1px solid #7e8ba3;
     cursor: pointer;
     display: block;
+    margin: auto;
     margin-top: 1em;
 }
 
@@ -202,7 +203,7 @@
     left: 50vw;
     transform: translate(-50% , -50%);
     background-color: #1d242d;
-    height: 250px;
+    height: fit-content;
     width: 250px;
     box-shadow: 0 0 70px #000;
     z-index: 4;
@@ -215,7 +216,7 @@
     width: 50%;
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -50px;
     height: 50px;
 }
 .superrun.ask:disabled {
@@ -227,7 +228,7 @@
     width: 50%;
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: -50px;
     height: 50px;
 }
 .superrun.ask:hover:enabled {
@@ -407,8 +408,7 @@
     background-color: #1d242d;
     width: 146px;
     z-index: 1;
-    margin-left: 12px;
-    margin-right: 12px;
+    margin: auto;
     text-align: center;
     border: 1px solid;
     padding: 1rem;
