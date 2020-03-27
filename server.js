@@ -478,6 +478,7 @@ wss.on('connection', function(ws) {
 		else if (jsonData.type === 'superResponse') {
 
             let elementidx=elements.findIndex(e=>e.element.id.toString() === jsonData.element.id.toString());
+            console.log(elements)
             
 			if(!recived_elements[elementidx]) {
 
