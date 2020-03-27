@@ -3,7 +3,7 @@ import { Map } from './map.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
 import { isHover, paintInCanvas, createElement, fillModuleDropDown,showModuleList, selectedElement } from './utils.js';
-import { wb_cvs, elementSelectASK, elementSelectANS, elementSelectBtnASK, elementSelectBtnANS, answerrun_confirm, answerrun_popup, answerrun_cancel, superrun_popup, fullPage, noUsers_accept, noUsers, superrun_cancel, superrun_confirm, wb_ctx, gs_cvs, gs_ctx, conditionModule, basicModule, argModule, targetModule, element, workbench, game_screen, run_button, stop_button, competition_button, dropdownMovement, dropdownControl, dropdownCondition } from './DOMAccess.js';
+import { wb_cvs, elementSelectASK, elementSelectANS, elementSelectBtnASK, elementSelectBtnANS, answerrun_confirm, answerrun_popup, answerrun_cancel, superrun_popup, noUsers_accept, noUsers, superrun_cancel, superrun_confirm, wb_ctx, gs_cvs, gs_ctx, conditionModule, basicModule, argModule, targetModule, element, workbench, game_screen, run_button, stop_button, competition_button, dropdownMovement, dropdownControl, dropdownCondition } from './DOMAccess.js';
 import { user }	from './wsClient.js';
 
 var wb_h = workbench.style.height;
@@ -81,11 +81,20 @@ function ans_no() {
 
 function ans_ok() {
 
-	element_manager.contestant = selectedElement;
-	console.log('selected ',element_manager.contestant);
-	answerrun_popup.classList.toggle("showBlock");
+	if (selectedElement) {
 
-	connection.send(JSON.stringify({elementId:element_manager.contestant,type: 'acceptCompetition',sender: user}));
+		element_manager.contestant = selectedElement;
+		console.log('selected ',element_manager.contestant);
+		answerrun_popup.classList.toggle("showBlock");
+		connection.send(JSON.stringify({elementId:element_manager.contestant,type: 'acceptCompetition',sender: user}));
+
+	}
+	else {
+
+		alert("You have to select an element first!");
+
+	}
+	
 
 }
 
@@ -108,16 +117,24 @@ function superrun() {
 
 	if(module_manager.everyone_ready) {
 
-		superrun_popup.classList.toggle("showBlock");
-		fullPage.classList.toggle('darkBack');
+		if (selectedElement) {
 
-		let jsonData ={};
-		jsonData.type = 'superRun';
-		jsonData.sender = user;
-		jsonData.contestant = selectedElement;
-		element_manager.contestant = selectedElement;
-		
-		connection.send(JSON.stringify(jsonData));
+			superrun_popup.classList.toggle("showBlock");
+
+			let jsonData ={};
+			jsonData.type = 'superRun';
+			jsonData.sender = user;
+			jsonData.contestant = selectedElement;
+			element_manager.contestant = selectedElement;
+			
+			connection.send(JSON.stringify(jsonData));
+
+		}
+		else {
+
+			alert("You have to select an element first!");
+
+		}
 
 	}
 	
@@ -136,7 +153,6 @@ function requestCompetition() {
 	jsonData.elementId = element_manager.contestant;
 
 	superrun_popup.classList.toggle("showBlock");
-	fullPage.classList.toggle('darkBack');
 	
 	connection.send(JSON.stringify(jsonData));
 

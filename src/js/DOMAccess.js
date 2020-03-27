@@ -17,7 +17,6 @@ var superrun_confirm = document.querySelector(".superrun.ask");
 var superrun_cancel = document.querySelector(".cancel_comp.ask");
 var answerrun_confirm = document.querySelector(".superrun.ans");
 var answerrun_cancel = document.querySelector(".cancel_comp.ans");
-var fullPage = document.querySelector(".fullPage");
 var noUsers = document.querySelector(".noUsersPopup");
 var noUsers_accept = document.querySelector(".accept_noUsers");
 var noUsers_text = document.querySelector(".noUsersPopup b");
@@ -109,7 +108,6 @@ export {
     newUser,
     addUser,
     projUserContainer,
-    fullPage,
     noUsers,
     noUsers_text,
     noUsers_accept,
