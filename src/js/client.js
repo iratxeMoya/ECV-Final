@@ -183,7 +183,7 @@ function stop() {
 function move(event) {
 	console.log(Math.abs(mouseX-event.offsetX));
 
-	if (Math.abs(mouseX-event.offsetX)>10 || Math.abs(mouseY-event.offsetY)>10){
+	if (Math.abs(mouseX-event.offsetX)>1 || Math.abs(mouseY-event.offsetY)>1){
 		timer = new Date().getTime();
 		module_manager.moduleInfo=null; 
 	}
