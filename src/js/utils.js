@@ -283,12 +283,12 @@ function sendElementInfo (element) {
 
 function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash) {
 
-	wb_ctx.fillStyle = "#FFFFFF";
+	wb_ctx.fillStyle = "#354152";
 	wb_ctx.fillRect(0, 0, wb_w, wb_h);
 
 	if (trash){
 
-		wb_ctx.fillStyle = "#FFFFFF";
+		wb_ctx.fillStyle = "#354152";
 		wb_ctx.drawImage(img, 5, 5, 25, 25);
 		
 	}
