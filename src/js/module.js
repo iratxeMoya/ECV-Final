@@ -20,22 +20,21 @@ class Element {
 		if (nextElementPos.x + 2 > TILENUM) {
 
 			nextElementPos.x = 1;
+			if (nextElementPos.y + 2 > TILENUM) {
+
+				nextElementPos.y = 1;
+	
+			}
+			else {
+	
+				nextElementPos.y += 2;
+	
+			}
 
 		}
 		else {
 
 			nextElementPos.x += 2;
-		}
-
-		if (nextElementPos.y + 2 > TILENUM) {
-
-			nextElementPos.y = 1;
-
-		}
-		else {
-
-			nextElementPos.y += 2;
-
 		}
 
     }
