@@ -81,7 +81,8 @@ function ans_no() {
 
 function ans_ok() {
 
-	element_manager.contestant = selectedElement;
+	element_manager.contestant = element_manager.elements[0].id
+	//element_manager.contestant = selectedElement;
 	console.log(selectedElement);
 	answerrun_popup.classList.toggle("showBlock");
 
@@ -123,7 +124,8 @@ function superrun() {
 
 function requestCompetition() {
 
-	element_manager.contestant = selectedElement;
+	element_manager.contestant = element_manager.elements[0].id
+	//element_manager.contestant = selectedElement;
 	console.log(selectedElement);
 
 	var jsonData = {};
