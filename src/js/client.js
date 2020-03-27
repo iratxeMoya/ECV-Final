@@ -185,7 +185,7 @@ function move(event) {
 	if (Math.abs(mouseX-event.offsetX)>1 || Math.abs(mouseY-event.offsetY)>1){
 		console.log('module info null');
 		timer = new Date().getTime();
-		module_manager.moduleInfo = null; 
+		module_manager.moduleInfo.text = ''; 
 	}
 
 	mouseX = event.offsetX;
@@ -230,7 +230,7 @@ function release(event) {
 	if (isHover(module_manager.selectedGroup.position.x, module_manager.selectedGroup.position.y) && module_manager.selectedGroup) {
 
 		var deletingModuleIds = module_manager.remove_modules(module_manager.selectedGroup);
-		module_manager.selectedGroup = '';
+		module_manager.selectedGroup = null;
 		remove = true;
 
 		deletingModuleIds.forEach(id => {

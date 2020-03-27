@@ -669,7 +669,7 @@ class ModuleManager {
 		this.running = false;
 		this.everyone_ready=false;
 		this.ret={status:-1,mod:null,id:null};
-		this.moduleinfo=null;
+		this.moduleinfo={text: ''};
     }
     
 	add_module(newModule) {
@@ -811,7 +811,7 @@ class ModuleManager {
             module.draw(wb_ctx);
             
 		});
-		if(this.moduleinfo !== ''){
+		if(this.moduleinfo.text !== ''){
 
 			console.log('not null');
 			wb_ctx.font = "30px Arial";
