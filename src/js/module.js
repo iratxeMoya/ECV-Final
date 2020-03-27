@@ -7,6 +7,8 @@ var nextElementPos = {x: 2, y: 2};
 
 var element_img = new Image(50, 200);
 element_img.src = 'icons/base_element.png';
+var base_module_img = new Image(50, 50);
+base_module_img.src = 'icons/base_module.png';
 
 class Element {
 	
@@ -125,8 +127,7 @@ class Element {
 		 gs_ctx.globalCompositeOperation = "multiply";
 		 gs_ctx.fillStyle = '#FF6DC9';
 		 gs_ctx.fillRect((this.position.x - 1) * ELEMENTSIZE, (this.position.y - 1) * ELEMENTSIZE, ELEMENTSIZE, ELEMENTSIZE);
-		gs_ctx.drawImage(element_img, 0, 0,50,50,(this.position.x - 1) * ELEMENTSIZE,(this.position.y - 1) * ELEMENTSIZE,ELEMENTSIZE,ELEMENTSIZE);
-		
+		 gs_ctx.drawImage(element_img, 0, 0,50,50,(this.position.x - 1) * ELEMENTSIZE,(this.position.y - 1) * ELEMENTSIZE,ELEMENTSIZE,ELEMENTSIZE);
 	}
 	
 	colision(map) {
@@ -473,11 +474,11 @@ class Module {
     
 	draw(wb_ctx) {
 
+		gs_ctx.globalCompositeOperation = "multiply";
 		wb_ctx.fillStyle = styles[this.moduleType];
         wb_ctx.fillRect(this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2, MODULESIZE,MODULESIZE);
-		wb_ctx.fillStyle = "#FFFFFF";
-        wb_ctx.font = MODULESIZE+"px Georgia";
-		wb_ctx.fillText(this.codeType.charAt(0).toUpperCase(), this.position.x-MODULESIZE/2, this.position.y+MODULESIZE/2);
+		gs_ctx.drawImage(base_module_img, 0, 0,50,50,(this.position.x - 1) * ELEMENTSIZE,(this.position.y - 1) * ELEMENTSIZE,ELEMENTSIZE,ELEMENTSIZE);
+		
 	}
 
     isNear(module) {
