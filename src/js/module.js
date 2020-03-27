@@ -475,10 +475,9 @@ class Module {
     
 	draw(wb_ctx) {
 
-		wb_ctx.globalCompositeOperation = "soft-light";
 		wb_ctx.fillStyle = styles[this.moduleType];
 		wb_ctx.drawImage(base_module_img, 0, 0,50,50,this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2,MODULESIZE,MODULESIZE);
-        wb_ctx.globalAlpha = 0.5;
+        wb_ctx.globalCompositeOperation = "soft-light";
 		wb_ctx.fillRect(this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2, MODULESIZE,MODULESIZE);
 		
 	}
