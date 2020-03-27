@@ -731,7 +731,7 @@ class ModuleManager {
 	
 	server_run(id = this.ret.id) {
 
-		console.log('serverRun: ', this.ret)
+		console.log('serverRun: ', this.ret, id)
 
 		if (!this.ret.id) {
 
