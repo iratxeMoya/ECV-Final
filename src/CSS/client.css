@@ -466,5 +466,5 @@
 }
 .h2, h2 {
     font-size: 2rem;
-    margin-bottom: 2em;
+    margin-bottom: 2em !important;
 }
