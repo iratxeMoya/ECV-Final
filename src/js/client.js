@@ -304,5 +304,6 @@ export {
 	element_manager,
 	map,
 	ELEMENTSIZE,
-	MODULESIZE
+	MODULESIZE,
+	TILENUM
 }
