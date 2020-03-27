@@ -18,7 +18,7 @@ var mouseY;
 var setup = true;
 var ELEMENTSIZE = 25;
 var MODULESIZE = 40;
-const TILENUM =30;
+const TILENUM = 30;
 
 var map =  new Map(TILENUM,TILENUM);;
 var module_manager = new ModuleManager(codes);

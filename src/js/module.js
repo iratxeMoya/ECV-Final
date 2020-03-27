@@ -3,7 +3,7 @@ import { Map } from './map.js';
 import { isHover } from './utils.js';
 import { ELEMENTSIZE, MODULESIZE, TILENUM } from './client.js';
 
-var nextElementPos = {x: Math.floor(TILENUM / 2), y: Math.floor(TILENUM / 2)};
+var nextElementPos = {x: 1, y: 1};
 
 
 class Element {
