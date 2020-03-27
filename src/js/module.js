@@ -819,7 +819,7 @@ class ModuleManager {
 			wb_ctx.fillStyle = '#CCCCCC';
 			wb_ctx.fillRect(this.moduleinfo.position.x,this.moduleinfo.position.y - 18,this.moduleinfo.text.length*10 + 4, 18);
 			wb_ctx.fillStyle = '#000000';
-			wb_ctx.fillText(this.moduleinfo.text,this.moduleinfo.position.x + 2, this.moduleinfo.position.y - 7);
+			wb_ctx.fillText(this.moduleinfo.text,this.moduleinfo.position.x + 2, this.moduleinfo.position.y - 5);
 		}
 	}
     
