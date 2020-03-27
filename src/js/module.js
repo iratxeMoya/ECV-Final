@@ -3,6 +3,8 @@ import { Map } from './map.js';
 import { isHover } from './utils.js';
 import { ELEMENTSIZE, MODULESIZE, TILENUM } from './client.js';
 
+var nextElementPos = {x: Math.floor(TILENUM / 2), y: Math.floor(TILENUM / 2)};
+
 
 class Element {
 	
@@ -14,6 +16,28 @@ class Element {
 		this.dead = false;
 		this.contest= contestant;
 		this.name = name;
+
+		if (nextElementPos.x + 2 > TILENUM) {
+
+			nextElementPos.x = 1;
+
+		}
+		else {
+
+			nextElementPos.x += 2;
+		}
+
+		if (nextElementPos.y + 2 > TILENUM) {
+
+			nextElementPos.y = 1;
+
+		}
+		else {
+
+			nextElementPos.y += 2;
+
+		}
+
     }
 	
 	forward() {
@@ -812,5 +836,6 @@ export {
 	TargetModule,
     ModuleManager,
     Element, 
-    ElementManager
+	ElementManager,
+	nextElementPos,
 }

@@ -1,4 +1,4 @@
-import { ModuleManager, ElementManager } from './module.js';
+import { ModuleManager, ElementManager, nextElementPos } from './module.js';
 import { Map } from './map.js';
 import { codes } from './codes.js';
 import { connection } from './init.js';
@@ -36,7 +36,7 @@ element.addEventListener("click", function() {
 	if (name === null || name === '') {
 		name = 'Untitled Element';
 	}
-	createElement(name, Date.now(), {x: Math.floor(TILENUM / 2), y: Math.floor(TILENUM / 2)})
+	createElement(name, Date.now(), nextElementPos)
 });
 
 run_button.addEventListener("click", run);
