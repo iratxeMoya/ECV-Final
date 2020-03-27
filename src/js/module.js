@@ -810,6 +810,7 @@ class ModuleManager {
             
 		});
 		if(this.moduleinfo){
+			console.log("SAFDF");
 			wb_ctx.font = "30px Arial";
 			wb_ctx.globalCompositeOperation = "source-over";
 			wb_ctx.fillStyle = '#CCCCCC';
