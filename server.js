@@ -439,6 +439,8 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'cancelCompetition') {
 
+            elements = [];
+
             projects.forEach(project => {
 
                 var admin = connectedUsers.find(user => user.username === project.admin);

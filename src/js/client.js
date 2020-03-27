@@ -19,9 +19,9 @@ var setup = true;
 var ELEMENTSIZE = 25;
 var MODULESIZE = 40;
 const TILENUM = 30;
-var timer =0;
+var timer = 0;
 
-var map =  new Map(TILENUM,TILENUM);;
+var map = new Map(TILENUM, TILENUM);
 var module_manager = new ModuleManager(codes);
 var element_manager = new ElementManager();
 var img = new Image();

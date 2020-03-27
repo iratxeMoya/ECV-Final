@@ -34,7 +34,7 @@ class Map {
 	
 	is_valid(x, y) {
 
-		return !(x > TILENUM || y > TILENUM) ?  this.matrix[y][x] >= 0 : false;
+		return !(x > TILENUM || y > TILENUM);
 
 	}
 	

@@ -258,6 +258,8 @@ connection.onmessage = (event) => {
     }
     else if (jsonData.type === 'cancelCompetition') {
 
+        console.log('cancelled :', jsonData)
+
         if (jsonData.status === 'unaccepted') {
 
              answerrun_popup.classList.toggle("showBlock");
