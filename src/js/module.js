@@ -3,7 +3,7 @@ import { Map } from './map.js';
 import { isHover } from './utils.js';
 import { ELEMENTSIZE, MODULESIZE, TILENUM } from './client.js';
 
-var nextElementPos = {x: 1, y: 1};
+var nextElementPos = {x: 2, y: 2};
 
 
 class Element {
@@ -17,7 +17,7 @@ class Element {
 		this.contest= contestant;
 		this.name = name;
 
-		console.log('next element pos: ', nextElementPos);
+		console.log('next element pos: ', nextElementPos, position);
 		if (nextElementPos.x + 2 > TILENUM - 1) {
 
 			nextElementPos.x = 2
