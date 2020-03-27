@@ -152,6 +152,7 @@ function run() {
 function stop() {
 
 	module_manager.running = false;
+	element_manager.reset();
 
 }
 

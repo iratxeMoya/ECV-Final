@@ -63,6 +63,7 @@ function createElement (id, position, send = true) {
 
 function selectElement() {
 
+	focusElement(this, this.parentNode);
 	selectedElement = this.id;
 	console.log(selectedElement);
 }
