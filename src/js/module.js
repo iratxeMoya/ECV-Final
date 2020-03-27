@@ -817,9 +817,9 @@ class ModuleManager {
 			wb_ctx.font = "14px Arial";
 			wb_ctx.globalCompositeOperation = "source-over";
 			wb_ctx.fillStyle = '#CCCCCC';
-			wb_ctx.fillRect(this.moduleinfo.position.x,this.moduleinfo.position.y,this.moduleinfo.text.length*10 + 4, 18);
+			wb_ctx.fillRect(this.moduleinfo.position.x,this.moduleinfo.position.y - 18,this.moduleinfo.text.length*10 + 4, 18);
 			wb_ctx.fillStyle = '#000000';
-			wb_ctx.fillText(this.moduleinfo.text,this.moduleinfo.position.x + 2, this.moduleinfo.position.y + 16);
+			wb_ctx.fillText(this.moduleinfo.text,this.moduleinfo.position.x + 2, this.moduleinfo.position.y);
 		}
 	}
     
