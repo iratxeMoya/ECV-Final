@@ -17,7 +17,7 @@ class Element {
 		this.contest= contestant;
 		this.name = name;
 
-		console.log(nextElementPos);
+		console.log('next element pos: ', nextElementPos);
 		if (nextElementPos.x + 2 > TILENUM) {
 
 			nextElementPos.x = 2
@@ -240,7 +240,7 @@ class ElementManager {
 			else {
 				x += 2;
 			}
-			console.log(x, y, TILENUM);
+			console.log('reset: ', x, y, TILENUM);
 			this.elements[i].position.x = x
 			this.elements[i].position.y = y;
 			this.elements[i].dead = false;
