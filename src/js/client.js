@@ -291,8 +291,8 @@ function update_gs() {
 		}
 	});
 	
-	!element_manager.any_alive ? module_manager.running = false : null;
-	!element_manager.any_alive ? element_manager.reset() : null;
+	!element_manager.any_alive() ? module_manager.running = false : null;
+	!element_manager.any_alive() ? element_manager.reset() : null;
 	
 	paintInCanvas(gs_w, gs_h, gs_ctx, img, false);
 	map.draw(gs_ctx);
