@@ -70,36 +70,54 @@
     margin-top: 1em;
 }
 
-
-
-
 .run_code{
-	position:absolute;
-	background-color:green;
-	width:50px;
-	height:50px;
-	bottom:90px;
-	right:20px;
-	border-radius:50%;
+	bottom: 65px;
+    right: 20px;
+    padding: 2px;
+    text-align: center;
+    position: absolute;
+    width: 84px;
+    height: max-content;
+    z-index: 2;
+    align-self: center;
+    border-radius: 31px;
+    color: #7e8ba3;
+    border: 1px solid #7e8ba3;
+    cursor: pointer;
+    display: block;
 }
 
 .stop_code{
-	position:absolute;
-	background-color:red;
-	width:50px;
-	height:50px;
-	bottom:20px;
-	right:20px;
-	border-radius:50%;
+    bottom: 20px;
+    right: 20px;
+    padding: 2px;
+    text-align: center;
+    position: absolute;
+    width: 84px;
+    height: max-content;
+    z-index: 2;
+    align-self: center;
+    border-radius: 31px;
+    color: #7e8ba3;
+    border: 1px solid #7e8ba3;
+    cursor: pointer;
+    display: block;
 }
 .competition {
-	position:absolute;
-	background-color:yellow;
-	width:50px;
-	height:50px;
-	bottom:160px;
-	right:20px;
-	border-radius:50%;
+	padding: 2px;
+    text-align: center;
+    position: absolute;
+    width: 84px;
+    bottom: 110px;
+    right: 20px;
+    height: max-content;
+    z-index: 2;
+    align-self: center;
+    border-radius: 31px;
+    color: #7e8ba3;
+    border: 1px solid #7e8ba3;
+    cursor: pointer;
+    display: block;
 }
 
 .canvas{
@@ -121,7 +139,19 @@
 }
 
 .run_code:hover{
-	background-color:lightgreen;
+    cursor: pointer;
+    background-color:lightgreen;
+    color: black;
+}
+.stop_code:hover {
+    cursor: pointer;
+    background-color: lightcoral;
+    color: black;
+}
+.competition:hover {
+    cursor: pointer;
+    background-color: lightyellow;
+    color: black;
 }
 
 #trashIcon {

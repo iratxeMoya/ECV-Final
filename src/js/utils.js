@@ -289,7 +289,7 @@ function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash) {
 	if (trash){
 
 		wb_ctx.fillStyle = "#354152";
-		wb_ctx.drawImage(img, 5, 5, 35, 35);
+		wb_ctx.drawImage(img, 10, 10, 35, 35);
 		
 	}
 
