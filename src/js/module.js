@@ -163,6 +163,7 @@ class ElementManager {
 
 		});
 
+		console.log('any alive ', ret);
 		return ret;
 
 	}
