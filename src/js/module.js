@@ -11,7 +11,7 @@ class Element {
 		this.position={x: position.x, y: position.y};
 		this.id = id;
 		this.dir = 0;
-		this.dead=false;
+		this.dead = false;
 		this.contest= contestant;
 		
     }
@@ -195,6 +195,18 @@ class ElementManager {
 
 	}
 
+	reset() {
+
+		for (let i = 0; i < this.elements.length; i++) {
+
+			this.elements[i].position.x = Math.floor(TILENUM / 2);
+			this.elements[i].position.y = Math.floor(TILENUM / 2);
+			this.elements[i].dead = false;
+			this.elements[i].dir = 0;
+
+		}
+
+	}
     
 }
 
@@ -767,15 +779,6 @@ class ModuleManager {
 				module.moduleType === "target" ? (!module.target.dead ? module.run() : null) : null;
 
 			});
-		}
-		else {
-
-			this.modules.forEach(module => {
-
-				module.moduleType === "target" ? module.target.position = {x: Math.floor(TILENUM / 2), y: Math.floor(TILENUM / 2)} : null;
-
-			});
-
 		}
 	}
 }
