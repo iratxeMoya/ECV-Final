@@ -812,6 +812,8 @@ class ModuleManager {
             
 		});
 		if(this.moduleinfo){
+
+			console.log('not null');
 			wb_ctx.font = "30px Arial";
 			wb_ctx.globalCompositeOperation = "source-over";
 			wb_ctx.fillStyle = '#CCCCCC';
