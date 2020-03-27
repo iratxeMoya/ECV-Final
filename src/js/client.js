@@ -184,7 +184,7 @@ function move(event) {
 
 	if (Math.abs(mouseX-event.offsetX)>10 || Math.abs(mouseY-event.offsetY)>10){
 		timer = new Date().getTime();
-		module_manager.moduleInfo=null;
+		module_manager.moduleInfo=null; 
 	}
 
 	mouseX = event.offsetX;
