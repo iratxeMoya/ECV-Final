@@ -457,7 +457,15 @@ wss.on('connection', function(ws) {
 
         }
 		else if (jsonData.type === 'superRun') {
-			
+
+            var admin = connectedUsers.find(user => user.username === jsonData.sender);
+            var project = projects.find(p => p.name === admin.actualProject);
+            var element = elements.find(e => e.element.projName = project.name);
+
+            if(jsonData.contestant) {
+                element.element.elementId = jsonData.contestant;
+            }
+            
 			super_run(true)
 
         }

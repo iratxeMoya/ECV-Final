@@ -114,6 +114,7 @@ function superrun() {
 		let jsonData ={};
 		jsonData.type = 'superRun';
 		jsonData.sender = user;
+		jsonData.contestant = selectedElement;
 		
 		connection.send(JSON.stringify(jsonData));
 
