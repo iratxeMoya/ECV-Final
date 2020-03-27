@@ -474,10 +474,10 @@ class Module {
     
 	draw(wb_ctx) {
 
-		gs_ctx.globalCompositeOperation = "multiply";
+		wb_ctx.globalCompositeOperation = "multiply";
 		wb_ctx.fillStyle = styles[this.moduleType];
         wb_ctx.fillRect(this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2, MODULESIZE,MODULESIZE);
-		gs_ctx.drawImage(base_module_img, 0, 0,50,50,(this.position.x - 1) * ELEMENTSIZE,(this.position.y - 1) * ELEMENTSIZE,ELEMENTSIZE,ELEMENTSIZE);
+		wb_ctx.drawImage(base_module_img, 0, 0,50,50,(this.position.x - 1) * ELEMENTSIZE,(this.position.y - 1) * ELEMENTSIZE,ELEMENTSIZE,ELEMENTSIZE);
 		
 	}
 
