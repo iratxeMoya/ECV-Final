@@ -123,7 +123,7 @@ class Map {
 
 			for(var j = 0; j < this.sizex - 1; j++) {
 
-				ctx.fillStyle = (i+j)%2==0 ? '#AAAAAA' : '#DDDDDD';
+				ctx.fillStyle = (i+j)%2==0 ? '#CCCCCD' : '#DDDDDD';
 				ctx.fillRect((j - 1) * ELEMENTSIZE, (i - 1)* ELEMENTSIZE, ELEMENTSIZE, ELEMENTSIZE);
 
 			}

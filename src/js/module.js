@@ -231,7 +231,7 @@ class ElementManager {
 
 	reset() {
 
-		var x = 2;
+		var x = 0;
 		var y = 2;
 
 		for (let i = 0; i < this.elements.length; i++) {
