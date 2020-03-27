@@ -230,7 +230,7 @@ function release(event) {
 	if (isHover(module_manager.selectedGroup.position.x, module_manager.selectedGroup.position.y) && module_manager.selectedGroup) {
 
 		var deletingModuleIds = module_manager.remove_modules(module_manager.selectedGroup);
-		module_manager.selectedGroup = null;
+		module_manager.selectedGroup = '';
 		remove = true;
 
 		deletingModuleIds.forEach(id => {
