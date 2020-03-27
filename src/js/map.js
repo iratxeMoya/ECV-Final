@@ -34,7 +34,8 @@ class Map {
 	
 	is_valid(x, y) {
 
-		return !(x > TILENUM || y > TILENUM);
+		console.log(x, y, TILENUM)
+		return (x < TILENUM && y < TILENUM);
 
 	}
 	

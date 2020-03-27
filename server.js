@@ -439,6 +439,7 @@ wss.on('connection', function(ws) {
         }
         else if (jsonData.type === 'cancelCompetition') {
 
+            console.log(jsonData)
             elements = [];
 
             projects.forEach(project => {
