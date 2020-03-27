@@ -122,7 +122,7 @@ class Element {
 	}
 	
 	draw(gs_ctx) {
-
+		ctx.globalCompositeOperation = "hue";
 		gs_ctx.drawImage(element_img, 0, 0,50,50,(this.position.x - 1) * ELEMENTSIZE,(this.position.y - 1) * ELEMENTSIZE,ELEMENTSIZE,ELEMENTSIZE);
 		gs_ctx.fillStyle = '#FF6DC9';
 		gs_ctx.fillRect((this.position.x - 1) * ELEMENTSIZE, (this.position.y - 1) * ELEMENTSIZE, ELEMENTSIZE, ELEMENTSIZE);
