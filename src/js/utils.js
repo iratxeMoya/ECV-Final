@@ -20,10 +20,10 @@ function isHover(x, y) {
     return false;
 }
 
-function createElement (id, position, send = true) {
+function createElement (name, id, position, send = true) {
 
 	thereAreElements = true;
-	var element = new Element(id, position);
+	var element = new Element(name, id, position);
 	element_manager.add_element(element);
 	
 	if (send) {
@@ -44,9 +44,9 @@ function createElement (id, position, send = true) {
 
     if (!elementsWithId) {
 
-		dropdownElement.innerText = id; //Esto estaria bien tener un nombre para el element
-		dropdownElement2.innerText = id; //Esto estaria bien tener un nombre para el element
-		dropdownElement3.innerText = id; //Esto estaria bien tener un nombre para el element
+		dropdownElement.innerText = name;
+		dropdownElement2.innerText = name;
+		dropdownElement3.innerText = name;
 
 		dropdownElement.addEventListener("click", clickDropDownElement)
 		dropdownElement2.addEventListener("click", selectElement);

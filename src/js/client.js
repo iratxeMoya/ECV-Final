@@ -31,7 +31,13 @@ basicModule.addEventListener("click", function(){showModuleList("movement")});
 argModule.addEventListener("click", function(){showModuleList("control")});
 conditionModule.addEventListener("click", function(){showModuleList("condition")});
 targetModule.addEventListener("click", function(){showModuleList("target")});
-element.addEventListener("click", function() {createElement(Date.now(), {x: Math.floor(TILENUM / 2), y: Math.floor(TILENUM / 2)})});
+element.addEventListener("click", function() {
+	var name = prompt("Please enter element name:", "Untitled Element");
+	if (name === null || name === '') {
+		name = 'Untitled Element';
+	}
+	createElement(name, Date.now(), {x: Math.floor(TILENUM / 2), y: Math.floor(TILENUM / 2)})
+});
 
 run_button.addEventListener("click", run);
 stop_button.addEventListener("click", stop);

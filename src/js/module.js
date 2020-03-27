@@ -6,14 +6,14 @@ import { ELEMENTSIZE, MODULESIZE, TILENUM } from './client.js';
 
 class Element {
 	
-	constructor (id, position, contestant = false, avatar = null) {
+	constructor (name, id, position, contestant = false, avatar = null) {
 
 		this.position={x: position.x, y: position.y};
 		this.id = id;
 		this.dir = 0;
 		this.dead = false;
 		this.contest= contestant;
-		
+		this.name = name;
     }
 	
 	forward() {
