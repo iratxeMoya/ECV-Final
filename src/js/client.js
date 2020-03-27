@@ -280,7 +280,7 @@ function update_workbench() {
 	console.log("NO");
 	if(Math.abs(timer-now)>1000){
 		console.log("YES");
-		module_manager.is_hover(event.offsetX,event.offsetY);
+		module_manager.is_hover(mouseX,mouseY);
 	}
 	
 }
