@@ -126,8 +126,9 @@ class Element {
 	draw(gs_ctx) {
 		 gs_ctx.globalCompositeOperation = "soft-light";
 		 gs_ctx.fillStyle = '#FF6DC9';
-		 gs_ctx.fillRect((this.position.x - 1) * ELEMENTSIZE, (this.position.y - 1) * ELEMENTSIZE, ELEMENTSIZE, ELEMENTSIZE);
 		 gs_ctx.drawImage(element_img, 0, 0,50,50,(this.position.x - 1) * ELEMENTSIZE,(this.position.y - 1) * ELEMENTSIZE,ELEMENTSIZE,ELEMENTSIZE);
+		 gs_ctx.globalAlpha = 0.5;
+		 gs_ctx.fillRect((this.position.x - 1) * ELEMENTSIZE, (this.position.y - 1) * ELEMENTSIZE, ELEMENTSIZE, ELEMENTSIZE);
 	}
 	
 	colision(map) {
@@ -477,7 +478,8 @@ class Module {
 		wb_ctx.globalCompositeOperation = "soft-light";
 		wb_ctx.fillStyle = styles[this.moduleType];
 		wb_ctx.drawImage(base_module_img, 0, 0,50,50,this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2,MODULESIZE,MODULESIZE);
-        wb_ctx.fillRect(this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2, MODULESIZE,MODULESIZE);
+        wb_ctx.globalAlpha = 0.5;
+		wb_ctx.fillRect(this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2, MODULESIZE,MODULESIZE);
 		
 	}
 
