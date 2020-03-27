@@ -764,10 +764,18 @@ class ModuleManager {
 
 			this.modules.forEach(module => {
 
-				console.log(module.moduleType === "target" ? module.target : 'nones');
-				module.moduleType === "target" ? (!module.target.dead ? module.run():null) : null;
+				module.moduleType === "target" ? (!module.target.dead ? module.run() : null) : null;
 
 			});
+		}
+		else {
+
+			this.modules.forEach(module => {
+
+				module.moduleType === "target" ? module.target.position = {x: Math.floor(TILENUM / 2), y: Math.floor(TILENUM / 2)} : null;
+
+			});
+
 		}
 	}
 }
