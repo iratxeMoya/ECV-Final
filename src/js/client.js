@@ -183,7 +183,7 @@ function stop() {
 function move(event) {
 
 	if (Math.abs(mouseX-event.offsetX)>1 || Math.abs(mouseY-event.offsetY)>1){
-		console.log('module info null');
+		console.log('module info null: ', module_manager);
 		timer = new Date().getTime();
 		module_manager.moduleInfo.text = ''; 
 	}
