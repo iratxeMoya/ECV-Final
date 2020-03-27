@@ -777,6 +777,7 @@ function init (ws) {
                 data.east = module.east;
                 data.west = module.west;
                 data.objectType = module.objectType;
+                data.name = module.name ? module.name : null;
         
                 ws.send(JSON.stringify(data));
 
