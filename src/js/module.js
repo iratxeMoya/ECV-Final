@@ -163,6 +163,8 @@ class ElementManager {
 
 		});
 
+		return ret;
+
 	}
 
     draw (gs_ctx) {
