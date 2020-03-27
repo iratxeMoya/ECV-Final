@@ -119,12 +119,12 @@ class Map {
 	
 	draw(ctx) {
 
-		for(var i = 0; i < this.sizey - 1; i++) {
+		for(var i = 0; i < this.sizey; i++) {
 
-			for(var j = 0; j < this.sizex - 1; j++) {
+			for(var j = 0; j < this.sizex; j++) {
 
 				ctx.fillStyle = (i+j)%2==0 ? '#CCCCCD' : '#DDDDDD';
-				ctx.fillRect((j - 1) * ELEMENTSIZE, (i - 1)* ELEMENTSIZE, ELEMENTSIZE, ELEMENTSIZE);
+				ctx.fillRect((j) * ELEMENTSIZE, (i)* ELEMENTSIZE, ELEMENTSIZE, ELEMENTSIZE);
 
 			}
 		}
