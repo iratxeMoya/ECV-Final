@@ -595,9 +595,9 @@ function end_game(winner) {
 
 function valid_pos(element) {
 	
-	var ret = element.position.x>boundaries.left  && element.position.x<boundaries.right && element.position.y> boundaries.top && element.position.y<boundaries.bottom;
-	let px =element.position.x;
-	let py =element.position.y;
+	var ret = element.position.x>=boundaries.left && element.position.x<boundaries.right && element.position.y>= boundaries.top && element.position.y<boundaries.bottom;
+	let px = element.position.x;
+	let py = element.position.y;
 
 	switch(element.dir) {
 		case 0:
