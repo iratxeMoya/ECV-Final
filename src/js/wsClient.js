@@ -295,6 +295,7 @@ connection.onmessage = (event) => {
 
         }
         element_manager.end_contest();
+        element_manager.reset();
         
         superrun_confirm.innerText = '';
 
