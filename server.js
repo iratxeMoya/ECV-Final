@@ -504,7 +504,7 @@ wss.on('connection', function(ws) {
                         
                     }
 				});
-				if(total_users > 1 && elapsed_time < 100) {
+				if(total_users > 1 && elapsed_time < 500) {
 
                     super_run(false);
                     

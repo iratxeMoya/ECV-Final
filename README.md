@@ -1,177 +1,37 @@
 # ECV-Final - PYROS
 
-## Clases:
+    Pau Pamos: 193793
+    Iratxe Moya: 192671
 
-### Module:
+## FEATURES
 
-#### constructor (position, type, id, next, prev)
+    Compete with other users:
+        Winner: who "eats" the other users in less than 500 iterations. (editable)
+    Colaborate with other users in order to develop the code within a project.
 
-    position: {x, y}
-    type: String
-    next: Module
-    prev: Module
+## UTILITIES
 
-#### update_offset()
+    Login / Register
+    Create Projects
+    Invite users to projects (colaborate)
+    Create codes (IAs)
+    Run codes
+    Stop running codes
+    Delete modules
 
-#### enable_moving()
+## MODULES
 
-#### disable_moving()
+    move: moves to the direction that is facing
+    rndir: turns the element in a random direction
+    turn_clock: turns the element clockwise
+    turn_counter: turns the element counter clockwise
 
-#### draw(wb_ctx)
+    ifwall: if the element would bump into a wall execute the eastern child of the module. Otherwise, execute the one  from the west
+    facing_opponent: if the element is facing the opponent execute the eastern child of the module. Otherwise, execute the one  from the west.
+    near_opponent: if the element is near an opponent execute the eastern child of the module. Otherwise, execute the one  from the west.
 
-    wb_ctx: Canvas context
+    empty: does nothing. Only for structure.
 
-#### isNear(module)
+    target: connects the code with an element
 
-    module: Module
-
-#### relate (module, position)
-
-    module: Module
-    position: String
-
-#### run()
-
-### ArgModule extends Module
-
-#### costructor(position, type, id, arg, next, prev)
-
-    position: {x, y}
-    type: String
-    next: Module
-    prev: Module
-    arg: String
-
-#### set_arg(arg)
-
-    arg: String
-
-#### run()
-
-### TargetModule
-
-#### constructor(position, target, id, next?, prev?)
-
-    position: {x, y}
-    target: Element
-    id: int
-    next: Module
-    prev: Module
-
-#### run()
-
-### ModuleManager
-
-#### constructor()
-
-#### add_module(newModule)
-
-    newModule: Module
-
-#### delete_module()
-
-#### click_modules(posx, posy) 
-
-    posx: int
-    posy: int
-
-#### release_modules()
-
-#### move_modules(posx, posy)
-
-    posx: int
-    posy: int
-
-#### draw(wb_ctx)
-
-    wb_ctx: canvas context
-
-#### run_modules()
-
-#### getElementById(id)
-
-    id: int
-
-### Element:
-
-#### constructor(id, position, avatar?)
-
-    id: int
-    position: {x, y}
-
-#### draw(gs_ctx):
-
-    gs_gtx: canvas context
-
-### ElementManager:
-
-#### constructor()
-
-#### add_element(element)
-
-    element: Element
-
-#### delete_element(element)
-
-    element: Element
-
-#### getElementById(id)
-
-    id: int
-
-#### drawElements(gs_ctx)
-
-    gs_ctx: canvas context
-
-## Server:
-
-### Arrays:
-
-    connectedUsers
-
-### Tables (DB)
-
-    NONE
-
-### Message types:
-
-    login (no implemented)
-    register (no implemented)
-    logout (no implemented)
-    createModule
-    moveModule
-    clickModule
-    releaseModule
-    createElement
-
-### Files:
-
-#### modules.json
-
-Data template:
-
-    {
-        id: int,
-        prev_id: int / null,
-        next_id: int / null,
-        position: {
-            x: int,
-            y: int
-        },
-        target_id: int / null,
-        type: String,
-        arg: String
-
-    }
-
-#### elements.json
-
-Data template:
-
-    {
-        id: int,
-        position: {
-            x: int,
-            y: int
-        }
-    }
+    element: creates an element.
