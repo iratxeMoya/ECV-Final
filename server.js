@@ -341,6 +341,7 @@ wss.on('connection', function(ws) {
             info.codeType = null;
             info.moduleType = null;
             info.arg = jsonData.arg;
+            info.name = jsonData.elementName;
 
             modules[requester.actualProject][jsonData.id.toString()] = info;
             modules['lastSaveDate'] = Date.now();

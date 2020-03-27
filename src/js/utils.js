@@ -55,7 +55,6 @@ function createElement (name, id, position, send = true) {
 		elementSelectANS.appendChild(dropdownElement3);
 		elementSelectASK.appendChild(dropdownElement2);
 
-		console.log(elementSelectANS, );
 	}
 	
 
@@ -276,6 +275,7 @@ function sendElementInfo (element) {
 	newElement.posx = element.position.x;
 	newElement.posy = element.position.y;
 	newElement.sender = user;
+	newElement.elementName = element.name;
 
 	connection.send(JSON.stringify(newElement));
 
