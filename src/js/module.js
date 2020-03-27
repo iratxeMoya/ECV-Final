@@ -17,7 +17,7 @@ class Element {
 		this.contest= contestant;
 		this.name = name;
 
-		console.log('next element pos: ', nextElementPos, position);
+		console.log('next element pos: ', position);
 		if (nextElementPos.x + 2 > TILENUM - 1) {
 
 			nextElementPos.x = 2
