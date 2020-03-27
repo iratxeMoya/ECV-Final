@@ -248,7 +248,7 @@
     width: 50%;
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -50px;
     height: 50px;
 }
 .cancel_comp.ans {
@@ -257,7 +257,7 @@
     width: 50%;
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: -50px;
     height: 50px;
 }
 .superrun.ans:hover {
