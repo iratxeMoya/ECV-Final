@@ -44,7 +44,6 @@ run_button.addEventListener("click", run);
 stop_button.addEventListener("click", stop);
 competition_button.addEventListener("click", requestCompetition);
 wb_cvs.addEventListener("mousemove", move);
-wb_cvs.addEventListener("mouseover", display_name);
 wb_cvs.addEventListener("mousedown", click);
 wb_cvs.addEventListener("mouseup", release);
 
@@ -79,14 +78,6 @@ function noUsersAccept() {
 
 }
 
-function display_name(event){
-	var now = new Date().getTime();
-	console.log("NO");
-	if(Math.abs(timer-now)>1000){
-		console.log("YES");
-		module_manager.is_hover(event.offsetX,event.offsetY);
-	}
-}
 
 function ans_no() {
 
@@ -284,6 +275,13 @@ function update_workbench() {
 	paintInCanvas(wb_w, wb_h, wb_ctx, img, true, mouseX, mouseY);
 
 	module_manager.draw(wb_ctx);
+	
+	var now = new Date().getTime();
+	console.log("NO");
+	if(Math.abs(timer-now)>1000){
+		console.log("YES");
+		module_manager.is_hover(event.offsetX,event.offsetY);
+	}
 	
 }
 
