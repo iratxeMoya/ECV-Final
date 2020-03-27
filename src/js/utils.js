@@ -239,7 +239,6 @@ function createModule (id, codeType, position, map = null, target = null, arg = 
     if (mod) {
 
 		module_manager.add_module(mod);
-		console.log(module_manager.modules, mod);
 
 	}
 	

@@ -27,6 +27,7 @@ connection.onerror = (event) => {
 connection.onmessage = (event) => {
 
     var jsonData = JSON.parse(event.data);
+    console.log("wsClient: ", jsonData);
 
    if (jsonData.type === 'moveModule') {
 
