@@ -462,6 +462,8 @@ wss.on('connection', function(ws) {
             var project = projects.find(p => p.name === admin.actualProject);
             var element = elements.find(e => e.element.projName = project.name);
 
+            console.log(jsonData.contestant, element);
+
             if(jsonData.contestant) {
                 element.element.elementId = jsonData.contestant;
             }
