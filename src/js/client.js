@@ -186,6 +186,7 @@ function move(event) {
 	if (Math.abs(mouseX-event.offsetX)>1 || Math.abs(mouseY-event.offsetY)>1){
 		timer = new Date().getTime();
 		module_manager.moduleInfo=null; 
+		console.log("ASDSAD");
 	}
 
 	mouseX = event.offsetX;
