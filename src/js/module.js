@@ -19,10 +19,10 @@ class Element {
 
 		if (nextElementPos.x + 2 > TILENUM) {
 
-			nextElementPos.x = 1;
+			nextElementPos.x = 2
 			if (nextElementPos.y + 2 > TILENUM) {
 
-				nextElementPos.y = 1;
+				nextElementPos.y = 2;
 	
 			}
 			else {
@@ -222,10 +222,24 @@ class ElementManager {
 
 	reset() {
 
+		var x = 0;
+		var y = 0;
 		for (let i = 0; i < this.elements.length; i++) {
 
-			this.elements[i].position.x = Math.floor(TILENUM / 2);
-			this.elements[i].position.y = Math.floor(TILENUM / 2);
+			if (x + 2 > TILENUM) {
+				x = 2;
+				if (y + 2 > TILENUM) {
+					y = 2;
+				}
+				else {
+					y += 2;
+				}
+			}
+			else {
+				x += 2;
+			}
+			this.elements[i].position.x = x
+			this.elements[i].position.y = y;
 			this.elements[i].dead = false;
 			this.elements[i].dir = 0;
 
