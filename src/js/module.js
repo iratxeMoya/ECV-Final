@@ -124,10 +124,10 @@ class Element {
 	}
 	
 	draw(gs_ctx) {
-		 // gs_ctx.globalCompositeOperation = "soft-light";
+		 
 		 gs_ctx.fillStyle = '#FF6DC9';
 		 gs_ctx.drawImage(element_img, 0, 0,50,50,(this.position.x - 1) * ELEMENTSIZE,(this.position.y - 1) * ELEMENTSIZE,ELEMENTSIZE,ELEMENTSIZE);
-		 gs_ctx.globalAlpha = 0.5;
+		 gs_ctx.globalCompositeOperation = "multiply";
 		 gs_ctx.fillRect((this.position.x - 1) * ELEMENTSIZE, (this.position.y - 1) * ELEMENTSIZE, ELEMENTSIZE, ELEMENTSIZE);
 	}
 	
