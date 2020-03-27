@@ -232,7 +232,8 @@ connection.onmessage = (event) => {
 
 				if(e.element.id != element_manager.contestant){
 
-					let newElement = new Element(e.element.id, e.element.position,true);
+                    let color = '#2b57b5';
+					let newElement = new Element(e.element.id, e.element.position, color, true);
                     element_manager.add_element(newElement);
                     
                 }

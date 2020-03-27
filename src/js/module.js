@@ -14,7 +14,7 @@ if_module_img.src = 'icons/if_module.png';
 
 class Element {
 	
-	constructor (name, id, position, contestant = false, avatar = null) {
+	constructor (name, id, position, color = '#b5652b', contestant = false, avatar = null) {
 
 		this.position={x: position.x, y: position.y};
 		this.id = id;
@@ -22,6 +22,7 @@ class Element {
 		this.dead = false;
 		this.contest= contestant;
 		this.name = name;
+		this.color = color;
 
 		console.log('next element pos: ', position);
 		if (nextElementPos.x + 2 > TILENUM - 1) {
@@ -127,7 +128,7 @@ class Element {
 	
 	draw(gs_ctx) {
 		 gs_ctx.globalCompositeOperation = "source-over";
-		 gs_ctx.fillStyle = '#FF6DC9';
+		 gs_ctx.fillStyle = this.color;
 		 gs_ctx.drawImage(element_img, 0, 0,50,50,(this.position.x - 1) * ELEMENTSIZE,(this.position.y - 1) * ELEMENTSIZE,ELEMENTSIZE,ELEMENTSIZE);
 		 gs_ctx.globalCompositeOperation = "multiply";
 		 gs_ctx.fillRect((this.position.x - 1) * ELEMENTSIZE, (this.position.y - 1) * ELEMENTSIZE, ELEMENTSIZE, ELEMENTSIZE);
@@ -814,11 +815,11 @@ class ModuleManager {
 		if(this.moduleinfo.text !== ''){
 
 			console.log('not null');
-			wb_ctx.font = "14px Arial";
+			wb_ctx.font = "14px Roboto";
 			wb_ctx.globalCompositeOperation = "source-over";
-			wb_ctx.fillStyle = '#CCCCCC';
-			wb_ctx.fillRect(this.moduleinfo.position.x,this.moduleinfo.position.y - 18,this.moduleinfo.text.length*10 + 4, 18);
-			wb_ctx.fillStyle = '#000000';
+			wb_ctx.fillStyle = '#78859c';
+			wb_ctx.fillRect(this.moduleinfo.position.x,this.moduleinfo.position.y - 18,this.moduleinfo.text.length*8 + 4, 18);
+			wb_ctx.fillStyle = '#354152';
 			wb_ctx.fillText(this.moduleinfo.text,this.moduleinfo.position.x + 2, this.moduleinfo.position.y - 5);
 		}
 	}
