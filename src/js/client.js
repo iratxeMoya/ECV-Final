@@ -182,11 +182,14 @@ function stop() {
 
 function move(event) {
 
+	if (Math.abs(mouseX-event.offsetX)>10 || Math.abs(mouseY-event.offsetY)>10){
+		timer = new Date().getTime();
+		module_manager.moduleInfo=null;
+	}
+
 	mouseX = event.offsetX;
 	mouseY = event.offsetY;
 	module_manager.move_modules(event.offsetX, event.offsetY);
-	timer = new Date().getTime();
-	module_manager.moduleInfo=null;
 	
 	if (mouseDown) {
 
