@@ -71,7 +71,7 @@ connection.onmessage = (event) => {
     }
     else if (jsonData.type === 'createElement') {
 
-        createElement(jsonData.elementName, jsonData.id, {x: jsonData.posx, y: jsonData.posy}, false);
+        createElement(jsonData.name, jsonData.id, {x: jsonData.posx, y: jsonData.posy}, false);
 
     }
     else if (jsonData.type === 'connectionResponse') {
@@ -232,8 +232,8 @@ connection.onmessage = (event) => {
 
 				if(e.element.id != element_manager.contestant){
 
-                    let color = '#2b57b5';
-					let newElement = new Element(e.element.id, e.element.position, color, true);
+                    var color = '#2b57b5';
+					let newElement = new Element('Competitor', e.element.id, e.element.position,color, true);
                     element_manager.add_element(newElement);
                     
                 }
