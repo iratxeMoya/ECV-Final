@@ -1,14 +1,14 @@
 import { codes, styles } from './codes.js';
 import { Map } from './map.js';
 import { isHover } from './utils.js';
-import { ELEMENTSIZE,MODULESIZE } from './client.js';
+import { ELEMENTSIZE, MODULESIZE, TILENUM } from './client.js';
 
 
 class Element {
 	
-	constructor (id, position,contestant=false, avatar = null) {
+	constructor (id, position, contestant = false, avatar = null) {
 
-		this.position={x:position.x,y:position.y};
+		this.position={x: position.x, y: position.y};
 		this.id = id;
 		this.dir = 0;
 		this.dead=false;
@@ -184,6 +184,13 @@ class ElementManager {
 				this.elements.splice(i);
 
 			}
+		}
+
+		for (let i = 0; i < this.elements.length; i++) {
+
+			elements[i].position.x = Math.floor(TILENUM / 2);
+			elements[i].position.y = Math.floor(TILENUM / 2);
+
 		}
 
 	}

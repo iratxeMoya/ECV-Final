@@ -31,7 +31,7 @@ basicModule.addEventListener("click", function(){showModuleList("movement")});
 argModule.addEventListener("click", function(){showModuleList("control")});
 conditionModule.addEventListener("click", function(){showModuleList("condition")});
 targetModule.addEventListener("click", function(){showModuleList("target")});
-element.addEventListener("click", function() {createElement(Date.now(), {x: 2, y:2})});
+element.addEventListener("click", function() {createElement(Date.now(), {x: Math.floor(TILENUM / 2), y: Math.floor(TILENUM / 2)})});
 
 run_button.addEventListener("click", run);
 stop_button.addEventListener("click", stop);
