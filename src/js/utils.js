@@ -10,7 +10,7 @@ var selectedElement = null;
 
 function isHover(x, y) {
 
-    if (x < 25 && x > 0 && y < 35 && y > 0) {
+    if (x < 35 && x > 0 && y < 45 && y > 0) {
 
 		console.log(x, y);
 		return true;
@@ -289,7 +289,7 @@ function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash) {
 	if (trash){
 
 		wb_ctx.fillStyle = "#354152";
-		wb_ctx.drawImage(img, 5, 5, 25, 25);
+		wb_ctx.drawImage(img, 5, 5, 35, 35);
 		
 	}
 
