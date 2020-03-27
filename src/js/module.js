@@ -124,7 +124,7 @@ class Element {
 	}
 	
 	draw(gs_ctx) {
-		 
+		 gs_ctx.globalCompositeOperation = "source-over";
 		 gs_ctx.fillStyle = '#FF6DC9';
 		 gs_ctx.drawImage(element_img, 0, 0,50,50,(this.position.x - 1) * ELEMENTSIZE,(this.position.y - 1) * ELEMENTSIZE,ELEMENTSIZE,ELEMENTSIZE);
 		 gs_ctx.globalCompositeOperation = "multiply";
@@ -231,8 +231,8 @@ class ElementManager {
 
 	reset() {
 
-		var x = 0;
-		var y = 0;
+		var x = 2;
+		var y = 2;
 
 		for (let i = 0; i < this.elements.length; i++) {
 
@@ -474,7 +474,7 @@ class Module {
 	}
     
 	draw(wb_ctx) {
-
+		wb_ctx.globalCompositeOperation = "source-over";
 		wb_ctx.fillStyle = styles[this.moduleType];
 		wb_ctx.drawImage(base_module_img, 0, 0,50,50,this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2,MODULESIZE,MODULESIZE);
         wb_ctx.globalCompositeOperation = "soft-light";
