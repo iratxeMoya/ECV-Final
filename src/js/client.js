@@ -115,7 +115,6 @@ function cancel_competition() {
 	spinner.classList.add("text-muted");
 	superrun_confirm.appendChild(spinner);
 	superrun_confirm.disabled = true;
-	fullPage.classList.toggle('darkBack');
 
 	connection.send(JSON.stringify({type: 'cancelCompetition', sender: user}));
 
