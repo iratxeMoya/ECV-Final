@@ -115,6 +115,7 @@ function superrun() {
 		jsonData.type = 'superRun';
 		jsonData.sender = user;
 		jsonData.contestant = selectedElement;
+		element_manager.contestant = selectedElement;
 		
 		connection.send(JSON.stringify(jsonData));
 
