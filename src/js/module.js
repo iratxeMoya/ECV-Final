@@ -704,6 +704,8 @@ class ModuleManager {
 	is_hover(posx,posy){
 		this.modules.forEach(module=>{
 			if(Math.abs(posx-module.position.x)<MODULESIZE/2 && Math.abs(posy-module.position.y)<MODULESIZE/2) {
+
+				console.log('into module info')
 				this.moduleinfo = {position:{x:posx,y:posy},text:module.moduleType === "target" ? "Target: "+module.target.name : module.codeType};
 			}
 		});

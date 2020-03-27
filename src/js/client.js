@@ -185,7 +185,7 @@ function move(event) {
 
 	if (Math.abs(mouseX-event.offsetX)>1 || Math.abs(mouseY-event.offsetY)>1){
 		timer = new Date().getTime();
-		module_manager.moduleInfo=null; 
+		module_manager.moduleInfo = null; 
 	}
 
 	mouseX = event.offsetX;
@@ -282,6 +282,7 @@ function update_workbench() {
 	
 	var now = new Date().getTime();
 	if(Math.abs(timer-now)>1000){
+		console.log(module_manager.moduleinfo);
 		console.log('tiempo quieto: ',timer-now);
 		module_manager.is_hover(mouseX,mouseY);
 	}
