@@ -282,8 +282,8 @@ function update_workbench() {
 	module_manager.draw(wb_ctx);
 	
 	var now = new Date().getTime();
-	console.log('tiempo quieto: ',timer-now);
 	if(Math.abs(timer-now)>1000){
+		console.log('tiempo quieto: ',timer-now);
 		module_manager.is_hover(mouseX,mouseY);
 	}
 	
