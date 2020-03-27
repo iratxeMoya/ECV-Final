@@ -228,6 +228,7 @@ connection.onmessage = (event) => {
         
 		if (jsonData.config) {
 
+            console.log(jsonData.elements)
 			jsonData.elements.forEach(e => {
 
 				if(e.element.id != element_manager.contestant){
