@@ -254,6 +254,8 @@ function update_gs() {
 
 	if(module_manager.ret.id){
 
+		console.log('update_gs ', module_manager.ret);
+
 		let newData = {};
 		newData.type = 'superResponse';
 		newData.element = module_manager.server_run(module_manager.ret.id);
