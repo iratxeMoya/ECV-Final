@@ -465,7 +465,7 @@ wss.on('connection', function(ws) {
             console.log(jsonData.contestant, element);
 
             if(jsonData.contestant) {
-                element.element.elementId = jsonData.contestant;
+                element.element.id = jsonData.contestant;
             }
             
 			super_run(true)
