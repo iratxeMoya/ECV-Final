@@ -5,6 +5,8 @@ import { ELEMENTSIZE, MODULESIZE, TILENUM } from './client.js';
 
 var nextElementPos = {x: 2, y: 2};
 
+var element_img = new Image(50, 200);
+element_img.src = 'icons/base_element.png';
 
 class Element {
 	
@@ -121,6 +123,7 @@ class Element {
 	
 	draw(gs_ctx) {
 
+		gs_ctx.drawImage(element_img, 0, 0,50,50,(this.position.x - 1) * ELEMENTSIZE,(this.position.y - 1) * ELEMENTSIZE,ELEMENTSIZE,ELEMENTSIZE);
 		gs_ctx.fillStyle = '#FF6DC9';
 		gs_ctx.fillRect((this.position.x - 1) * ELEMENTSIZE, (this.position.y - 1) * ELEMENTSIZE, ELEMENTSIZE, ELEMENTSIZE);
 		
