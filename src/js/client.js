@@ -282,6 +282,7 @@ function update_workbench() {
 	module_manager.draw(wb_ctx);
 	
 	var now = new Date().getTime();
+	console.log(timer-now);
 	if(Math.abs(timer-now)>1000){
 		module_manager.is_hover(mouseX,mouseY);
 	}
