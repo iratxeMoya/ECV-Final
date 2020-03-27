@@ -19,6 +19,7 @@ var setup = true;
 var ELEMENTSIZE = 25;
 var MODULESIZE = 40;
 const TILENUM = 30;
+var timer =0;
 
 var map =  new Map(TILENUM,TILENUM);;
 var module_manager = new ModuleManager(codes);
@@ -43,6 +44,7 @@ run_button.addEventListener("click", run);
 stop_button.addEventListener("click", stop);
 competition_button.addEventListener("click", requestCompetition);
 wb_cvs.addEventListener("mousemove", move);
+wb_cvs.addEventListener("mouseover", display_name);
 wb_cvs.addEventListener("mousedown", click);
 wb_cvs.addEventListener("mouseup", release);
 
@@ -75,6 +77,13 @@ function noUsersAccept() {
 
 	noUsers.classList.toggle("showBlock");
 
+}
+
+function display_name(event){
+	var now = new Date().getTime();
+	if(Math.abs(timer-now)>1000){
+		module_manager.is_hover(event.offsetX,event.offsetY);
+	}
 }
 
 function ans_no() {
@@ -183,6 +192,8 @@ function move(event) {
 	mouseX = event.offsetX;
 	mouseY = event.offsetY;
 	module_manager.move_modules(event.offsetX, event.offsetY);
+	timer = new Date().getTime();
+	module_manager.moduleInfo=null;
 	
 	if (mouseDown) {
 

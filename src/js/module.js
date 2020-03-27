@@ -9,6 +9,8 @@ var element_img = new Image(50, 200);
 element_img.src = 'icons/base_element.png';
 var base_module_img = new Image(50, 50);
 base_module_img.src = 'icons/base_module.png';
+var if_module_img = new Image(50, 50);
+if_module_img.src = 'icons/if_module.png';
 
 class Element {
 	
@@ -647,6 +649,15 @@ class ConditionModule extends Module {
 		}
 	}
 	
+	draw(wb_ctx) {
+		wb_ctx.globalCompositeOperation = "source-over";
+		wb_ctx.fillStyle = styles[this.moduleType];
+		wb_ctx.drawImage(if_module_img, 0, 0,50,50,this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2,MODULESIZE,MODULESIZE);
+        wb_ctx.globalCompositeOperation = "soft-light";
+		wb_ctx.fillRect(this.position.x-MODULESIZE/2,this.position.y-MODULESIZE/2, MODULESIZE,MODULESIZE);
+		
+	}
+	
 }
 
 class ModuleManager {
@@ -658,6 +669,7 @@ class ModuleManager {
 		this.running = false;
 		this.everyone_ready=false;
 		this.ret={status:-1,mod:null,id:null};
+		this.moduleinfo=null;
     }
     
 	add_module(newModule) {
@@ -689,6 +701,14 @@ class ModuleManager {
 		return ids;
 	}
     
+	is_hover(posx,posy){
+		this.modules.forEach(module=>{
+			if(Math.abs(posx-module.position.x)<MODULESIZE/2 && Math.abs(posy-module.position.y)<MODULESIZE/2) {
+				this.moduleinfo = {position:{x:posx,y:posy},text:module.moduleType === "target" ? "Target: "+module.target.name : module.codeType};
+			}
+		});
+	}
+	
 	click_modules(posx, posy) {
 
 		this.modules.forEach(module => {
@@ -790,6 +810,13 @@ class ModuleManager {
             module.draw(wb_ctx);
             
 		});
+		if(this.moduleinfo){
+			wb_ctx.font = "30px Arial";
+			wb_ctx.globalCompositeOperation = "source-over";
+			wb_ctx.fillStyle = '#CCCCCC';
+			wb_ctx.fillRect(this.moduleinfo.position.x,this.moduleinfo.position.y,this.moduleinfo.text.length()*2,15);
+			ctx.fillText(this.moduleinfo.text,this.moduleinfo.position.x , this.moduleinfo.position.x);
+		}
 	}
     
     run_request(id) {

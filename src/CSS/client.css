@@ -124,7 +124,7 @@
 	position:absolute;
 	top:0px;
 	left:0px;
-	/* outline:10px outset blue; */
+	box-shadow: 0 0 30px #000;
 }
 
 .module:hover{
