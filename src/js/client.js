@@ -96,6 +96,8 @@ function ans_ok() {
 		answerrun_popup.classList.toggle("showBlock");
 		connection.send(JSON.stringify({elementId:element_manager.contestant,type: 'acceptCompetition',sender: user}));
 
+		
+
 	}
 	else {
 
