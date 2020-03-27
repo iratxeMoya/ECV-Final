@@ -1,5 +1,5 @@
 import { codes, styles } from './codes.js';
-import { ELEMENTSIZE } from './client.js';
+import { ELEMENTSIZE, TILENUM } from './client.js';
 
 class Map {
 
@@ -34,7 +34,8 @@ class Map {
 	
 	is_valid(x, y) {
 
-		return this.matrix[y][x] >= 0;
+		console.log(!(x > TILENUM || y > TILENUM) && this.matrix[y][x] >= 0)
+		return !(x > TILENUM || y > TILENUM) && this.matrix[y][x] >= 0;
 
 	}
 	

@@ -188,8 +188,8 @@ class ElementManager {
 
 		for (let i = 0; i < this.elements.length; i++) {
 
-			elements[i].position.x = Math.floor(TILENUM / 2);
-			elements[i].position.y = Math.floor(TILENUM / 2);
+			this.elements[i].position.x = Math.floor(TILENUM / 2);
+			this.elements[i].position.y = Math.floor(TILENUM / 2);
 
 		}
 
