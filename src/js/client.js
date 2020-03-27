@@ -293,10 +293,10 @@ function update_gs() {
 	gs_h = game_screen.clientHeight;
 	gs_w = game_screen.clientWidth;
 	
-	ELEMENTSIZE = Math.min(Math.floor(gs_w/TILENUM)+2,Math.floor(gs_h/TILENUM)+2);
+	ELEMENTSIZE = Math.min(Math.floor(gs_w/TILENUM),Math.floor(gs_h/TILENUM));
 	
-	gs_cvs.height = Math.min(Math.floor(gs_w/TILENUM)*TILENUM,Math.floor(gs_h/TILENUM)*TILENUM);
-	gs_cvs.width = Math.min(Math.floor(gs_w/TILENUM)*TILENUM,Math.floor(gs_h/TILENUM)*TILENUM);
+	gs_cvs.height = ELEMENTSIZE*TILENUM;
+	gs_cvs.width = ELEMENTSIZE*TILENUM;
 	
 	module_manager.run_modules();
 	
