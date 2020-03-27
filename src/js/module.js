@@ -731,6 +731,8 @@ class ModuleManager {
 	
 	server_run(id = this.ret.id) {
 
+		console.log('serverRun: ', this.ret)
+
 		if (!this.ret.id) {
 
 			this.ret.id = id;
@@ -739,8 +741,10 @@ class ModuleManager {
 		}
 		else {
 
-			this.ret.mod =this.modules.find(module=>(module.moduleType === "target" ? (module.target.id.toString() === id.toString()):false));
-			let ntarget =this.ret.mod.run();
+			this.ret.mod = this.modules.find(module=> (module.moduleType === "target" ? (module.target.id.toString() === id.toString()) : false));
+			let ntarget = this.ret.mod.run();
+
+			console.log("serverRun: ", ntarget);
 			
 			return ntarget;
 
