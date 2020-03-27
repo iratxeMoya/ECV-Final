@@ -473,12 +473,13 @@ wss.on('connection', function(ws) {
         }
 		else if (jsonData.type === 'superResponse') {
 
-            let elementidx=elements.findIndex(e=>e.element.id === jsonData.element.id);
+            let elementidx=elements.findIndex(e=>e.element.id.toString() === jsonData.element.id.toString());
             
 			if(!recived_elements[elementidx]) {
 
 				ready_users++;
-				recived_elements[elementidx] = true;
+                recived_elements[elementidx] = true;
+                
 				elements[elementidx] = {element:jsonData.element,projectName:elements[elementidx].projectName};
 
 			}
