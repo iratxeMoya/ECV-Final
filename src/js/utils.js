@@ -288,17 +288,9 @@ function paintInCanvas (wb_w, wb_h, wb_ctx, img, trash) {
 
 	if (trash){
 
-		//wb_ctx.fillStyle = "#354152";
+		wb_ctx.fillStyle = "#354152";
 		wb_ctx.drawImage(img, 5, 5, 25, 25);
-
-		// set composite mode
-		wb_ctx.globalCompositeOperation = "source-in";
-
-		// draw color
-		wb_ctx.fillStyle = "#09f";
-		wb_ctx.fillRect(0, 0, wb_w, wb_h);
 		
-
 	}
 
 }
