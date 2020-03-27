@@ -141,16 +141,19 @@
 .run_code:hover{
     cursor: pointer;
     background-color:lightgreen;
+    border-color: lightgreen;
     color: black;
 }
 .stop_code:hover {
     cursor: pointer;
     background-color: lightcoral;
+    border-color: lightcoral;
     color: black;
 }
 .competition:hover {
     cursor: pointer;
     background-color: lightyellow;
+    border-color: lightyellow;
     color: black;
 }
 
