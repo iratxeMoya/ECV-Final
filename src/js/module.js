@@ -18,10 +18,12 @@ class Element {
 		this.name = name;
 
 		console.log('next element pos: ', nextElementPos);
-		if (nextElementPos.x + 2 > TILENUM) {
+		if (nextElementPos.x + 2 > TILENUM - 1) {
 
 			nextElementPos.x = 2
-			if (nextElementPos.y + 2 > TILENUM) {
+
+			console.log(nextElementPos);
+			if (nextElementPos.y + 2 > TILENUM - 1) {
 
 				nextElementPos.y = 2;
 	
@@ -36,6 +38,7 @@ class Element {
 		else {
 
 			nextElementPos.x += 2;
+
 		}
 
     }
@@ -228,9 +231,9 @@ class ElementManager {
 
 		for (let i = 0; i < this.elements.length; i++) {
 
-			if (x + 2 > TILENUM) {
+			if (x + 2 > TILENUM - 1) {
 				x = 2;
-				if (y + 2 > TILENUM) {
+				if (y + 2 > TILENUM - 1) {
 					y = 2;
 				}
 				else {
