@@ -1,0 +1,20 @@
+{
+  "name": "ecv-final",
+  "version": "1.0.0",
+  "description": "Pau Pamos: 193793\r     Iratxe Moya: 192671",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iratxeMoya/ECV-Final.git"
+  },
+  "author": "iratxe Moya and Pau Pamos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iratxeMoya/ECV-Final/issues"
+  },
+  "homepage": "https://github.com/iratxeMoya/ECV-Final#readme"
+}
