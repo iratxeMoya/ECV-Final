@@ -789,8 +789,8 @@ function init (ws) {
 
 }
 
-server.listen(9027, function() {
-    console.log('app listening on port 9027');
+server.listen(process.env.PORT || 3000, function() {
+    console.log('app listening on port');
 });
 
 //all html files in src folder
