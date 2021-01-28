@@ -16,5 +16,18 @@
   "bugs": {
     "url": "https://github.com/iratxeMoya/ECV-Final/issues"
   },
-  "homepage": "https://github.com/iratxeMoya/ECV-Final#readme"
+  "homepage": "https://github.com/iratxeMoya/ECV-Final#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-ws": "^4.0.0",
+    "mongodb": "^3.5.2",
+    "mongoose": "^5.8.10",
+    "password-hash": "^1.2.2",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "soket.io": "0.0.1-security",
+    "swig": "^1.4.2",
+    "websocket": "^1.0.31",
+    "ws": "^7.2.1"
+  }
 }
